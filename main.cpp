@@ -1,7 +1,12 @@
-#include <iostream>
+/**
+ * @file main.cpp
+ * @author Auden Garrard
+ */
 
-int main()
-{
-	std::cout << "Hello, World!" << std::endl;
-	return 0;
-}
+#include "pch.h"
+#include "GameApp.h"
+
+wxIMPLEMENT_APP(GameApp);
+
+
+

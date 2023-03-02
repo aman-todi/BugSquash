@@ -58,7 +58,6 @@ public:
 
     // Functions ----
 
-    virtual void Draw(wxDC *dc);
 
     virtual bool HitTest(int x, int y);
 
@@ -73,6 +72,7 @@ public:
      * @param elapsed The time since the last update
      */
     virtual void Update(double elapsed) {}
+
 
     /**
      * Get the pointer to the Game object

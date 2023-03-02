@@ -21,6 +21,21 @@ private:
 //	int mHeight = 0;
 
 
+	/// array to hold individual frames of the animation
+	std::vector<wxGraphicsBitmap> mSpriteSheetFrames;
+
+	/// index of the current frame to draw
+	int mCurrentFrameIndex;
+
+	/// The bitmap we can display for this Bug
+	std::unique_ptr<wxBitmap> mBugBitmap;
+
+	/// The bitmap we can display for this Bug splash
+	std::unique_ptr<wxBitmap> mBugSplatBitmap;
+
+	bool splat = false;
+
+	wxTimer mTimer;
 public:
 	/// Default constructor (disabled)
 	GarbageBug() = delete;
@@ -32,6 +47,10 @@ public:
 	void operator=(const GarbageBug &) = delete;
 
 	GarbageBug(Game *game);
+
+	virtual void Draw(wxDC* dc) override;
+	void OnTimer(wxTimerEvent &event);
+
 };
 
 #endif //GAME_GAME_GAMELIB_GARBAGEBUG_H

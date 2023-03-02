@@ -28,6 +28,7 @@ private:
     std::unique_ptr<wxBitmap> mItemBitmap;
 
     bool mMirror = false;   ///< True mirrors the item image
+
 public:
     virtual ~Item();
     /**
@@ -57,6 +58,7 @@ public:
 
     /// Assignment operator
     void operator=(const Item &) = delete;
+	virtual void Draw(wxDC *dc){}
 
     // Functions ----
 

@@ -38,7 +38,6 @@ public:
     /// Assignment operator
     void operator=(const Game &) = delete;
 
-	virtual void Draw(wxDC *dc){}
 	//virtual void Draw(wxDC *dc);
 
     // not sure if either of these did anything

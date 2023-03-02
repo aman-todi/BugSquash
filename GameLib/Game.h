@@ -18,6 +18,8 @@
 #include <random>
 #include <wx/graphics.h>
 
+class Scoreboard;
+
 class Game
 {
 private:
@@ -29,6 +31,9 @@ private:
 
 	/// All of the bugs in game
 	std::vector<std::shared_ptr<Item> > mItems;
+
+    //Game Scoreboard
+    std::shared_ptr<Scoreboard> mScoreboard;
 
 	void XmlBug(wxXmlNode *node);
 

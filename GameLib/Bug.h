@@ -12,7 +12,9 @@
 
 
 class Game;
-
+/**
+ * Base Class for Bug
+ */
 class Bug : public Item {
 private:
     /// Bug speed in the X direction
@@ -46,8 +48,7 @@ public:
 //    * @return true if clicked on */
 //	virtual bool HitTest(int x, int y);
 
-	///  Handle updates for animation
-	/// @param elapsed The time since the last update
+
 	void Update(double elapsed);
     //made not virtual, not sure if it did anything
 protected:

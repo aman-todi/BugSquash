@@ -80,7 +80,10 @@ void MainFrame::OnAbout(wxCommandEvent& event)
 			  wxOK,
 			  this);
 }
-
+/**
+ * Handle a close event. Stop the animation and destroy this window.
+ * @param event The Close event
+ */
 void MainFrame::OnClose(wxCommandEvent& event)
 {
 

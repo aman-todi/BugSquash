@@ -7,6 +7,10 @@
 #include <MainFrame.h>
 #include "GameApp.h"
 
+/**
+ * Initialize the application.
+ * @return false if the screen can't populate otherwise true
+ */
 bool GameApp::OnInit()
 {
 	if(!wxApp::OnInit())

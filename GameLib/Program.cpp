@@ -11,12 +11,9 @@ const std::wstring ProgramImage = L"images/laptop.png";
 
 /// Program name font size
 const int ProgramNameFontSize = 22;
-
 /**
- * Program Constructor
- *
- * @param game
- * @param filename
+ * Constructor
+ * @param game Game this bug is a member of
  */
 Program::Program(Game* game) : Item(game, ProgramImage)
 {

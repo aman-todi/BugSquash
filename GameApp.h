@@ -9,7 +9,9 @@
 #define PROJECT_1__GAMEAPP_H
 
 
-
+/**
+ * Main  application class
+ */
 class GameApp : public wxApp
 {
 private:

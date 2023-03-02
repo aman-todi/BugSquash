@@ -7,7 +7,9 @@
 
 #ifndef TESTS_GAMELIB_IDS_H
 #define TESTS_GAMELIB_IDS_H
-
+/**
+ * ID for the different Bugs
+ */
 enum IDs {
 	IDM_LEVELZERO = wxID_HIGHEST + 1,
 	IDM_LEVELONE,

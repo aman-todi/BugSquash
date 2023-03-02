@@ -9,7 +9,9 @@
 #define GAME_ITEM_H
 
 class Game;
-
+/**
+ * ase class for any item in our Game
+ */
 class Item {
 private:
     /// The game this item is contained in

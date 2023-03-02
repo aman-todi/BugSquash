@@ -10,7 +10,9 @@
 
 #include "Item.h"
 #include "Game.h"
-
+/**
+ * Class for a bug type Program
+ */
 class Program : public Item
 {
 private:

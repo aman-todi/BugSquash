@@ -10,6 +10,9 @@
 
 #include "Bug.h"
 #include "Game.h"
+/**
+ * Class for a bug type NullBug
+ */
 class NullBug: public Bug
 {
 private:

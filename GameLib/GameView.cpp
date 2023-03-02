@@ -203,7 +203,10 @@ void GameView::OnAddFeatureBug(wxCommandEvent &event) {
 	mGame.Add(bug);
 	Refresh();
 }
-
+/**
+ * Mea
+ * @param event Menu event
+ */
 void GameView::OnViewShrink(wxCommandEvent& event)
 {
     mGame.Shrink();

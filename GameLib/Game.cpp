@@ -36,7 +36,10 @@ const int ProgramNameFontSize = 22;
 
 /**
  * Draw the game
+ * @param graphics The graphic of the screen
  * @param dc The device context to draw on
+ * @param width The width of the screen
+ * @param height The height of the scree
  */
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,wxDC *dc ,int width, int height)
 {
@@ -153,10 +156,10 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
 
 
 
-/**
- * Handle a node of type bug.
- * @param node XML node
- */
+///**
+// * Handle a node of type bug.
+// * @param node XML node
+// */
 //void Game::XmlBug(wxXmlNode *node)
 //{
 //	// A pointer for the item we are loading
@@ -191,7 +194,6 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
 
 /**
  * Clear the game data.
- *
  * Deletes all known items in the game.
  */
 void Game::Clear()
@@ -227,7 +229,9 @@ void Game::DeleteBug(std::shared_ptr<Bug> bug)
 		mItems.erase(loc);
 	}
 }
-
+/**
+* Shrink The Game Window
+*/
 void Game::Shrink()
 {
     mShrinked = !(mShrinked);

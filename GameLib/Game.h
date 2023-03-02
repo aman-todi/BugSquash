@@ -18,6 +18,10 @@
 #include <random>
 #include <wx/graphics.h>
 
+
+/**
+ * The main Game class
+ */
 class Game
 {
 private:
@@ -30,21 +34,21 @@ private:
 	/// All of the bugs in game
 	std::vector<std::shared_ptr<Item> > mItems;
 
-	void XmlBug(wxXmlNode *node);
+	//void XmlBug(wxXmlNode *node);
 
 	/// Random number generator
 	std::mt19937 mRandom;
 
-    //Is Window Shrunk?
+    ///Is Window Shrunk?
     bool mShrinked = false;
 
-    //Scaled Window Value
+    ///Scaled Window Value
     double mScale = 0;
 
-    //X-coord scale offset
+    ///X-coord scale offset
     double mXOffset = 0;
 
-    //Y-coord scale offset
+    ///Y-coord scale offset
     double mYOffset = 0;
 
 public:
@@ -58,8 +62,8 @@ public:
 
 	void Add(std::shared_ptr<Bug> item);
 	std::shared_ptr<Item> HitTest(int x, int y);
-	void MoveToFront(std::shared_ptr<Bug> item);
-	void MovetoEnd(std::shared_ptr<Bug> item);
+//	void MoveToFront(std::shared_ptr<Bug> item);
+//	void MovetoEnd(std::shared_ptr<Bug> item);
 	void DeleteBug(std::shared_ptr<Bug> item);
 
 
@@ -67,9 +71,6 @@ public:
 
 	void Clear();
 
-    /**
-     * Shrink The Game Window
-     */
     void Shrink();
 
     /**
@@ -79,7 +80,8 @@ public:
     bool IsShrunk() {return mShrinked;}
 
 	void Update(double elapsed);
-	void SortBugs();
+
+	//void SortBugs();
 
 
 	/**

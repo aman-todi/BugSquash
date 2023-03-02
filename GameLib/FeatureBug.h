@@ -11,7 +11,9 @@
 #include "Bug.h"
 #include "Game.h"
 
-
+/**
+ * Class for a bug type FeatureBug
+ */
 class FeatureBug: public Bug
 {
 private:
@@ -25,6 +27,7 @@ public:
 
 	/// Assignment operator
 	void operator=(const FeatureBug &) = delete;
+
 	FeatureBug(Game *game);
 };
 

@@ -55,8 +55,8 @@ public:
 	void OnTimer(wxTimerEvent &event);
 
 	void OnViewShrink(wxCommandEvent &event);
-	void OnUpdateViewShrink(wxUpdateUIEvent &event);
-	void AddLevelMenuOption(wxFrame* mainFrame, wxMenu* menu, int id, const std::wstring& text, const std::wstring& help);
+//	void OnUpdateViewShrink(wxUpdateUIEvent &event);
+//	void AddLevelMenuOption(wxFrame* mainFrame, wxMenu* menu, int id, const std::wstring& text, const std::wstring& help);
 
 //	void OnAddGarbageBug(wxCommandEvent &event);
 //	void OnAddNullBug(wxCommandEvent &event);

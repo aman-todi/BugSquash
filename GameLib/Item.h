@@ -15,7 +15,7 @@ class Game;
 class Item {
 private:
     /// The game this item is contained in
-    Game *mGame;
+    Game *mGame = nullptr;
 
     // Item location in the game
     double  mX = 0;     ///< X location for the center of the item
@@ -60,7 +60,6 @@ public:
 
     // Functions ----
 
-    virtual void Draw(wxDC *dc);
 
     virtual bool HitTest(int x, int y);
 
@@ -75,6 +74,7 @@ public:
      * @param elapsed The time since the last update
      */
     virtual void Update(double elapsed) {}
+
 
     /**
      * Get the pointer to the Game object

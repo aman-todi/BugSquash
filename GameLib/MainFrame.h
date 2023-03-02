@@ -21,7 +21,7 @@ class MainFrame : public wxFrame
 private:
 
 	/// Pointer to GameView
-	GameView *mGameView;
+	GameView *mGameView = nullptr;
 
 	void OnExit(wxCommandEvent& event);
 

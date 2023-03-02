@@ -33,14 +33,14 @@ Item::Item(Game *game, const std::wstring &filename) : mGame(game)
  * Draw this bug
  * @param dc Device context to draw on
  */
-void Item::Draw(wxDC *dc)
-{
-    double wid = mItemBitmap->GetWidth();
-    double hit = mItemBitmap->GetHeight();
-    dc->DrawBitmap(*mItemBitmap,
-            int(GetX() - wid / 2),
-            int(GetY() - hit / 2));
-}
+//void Item::Draw(wxDC *dc)
+//{
+//    double wid = mItemBitmap->GetWidth();
+//    double hit = mItemBitmap->GetHeight();
+//    dc->DrawBitmap(*mItemBitmap,
+//            int(GetX() - wid / 2),
+//            int(GetY() - hit / 2));
+//}
 
 /**
  * Test to see if we hit this object with a mouse.

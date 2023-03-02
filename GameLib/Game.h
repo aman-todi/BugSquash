@@ -32,7 +32,7 @@ private:
 	wxGraphicsBitmap mLaptopBitmap;
 
 	/// All of the bugs in game
-	std::vector<std::shared_ptr<Item> > mItems;
+	std::vector<std::shared_ptr<Item>> mItems;
 
 	//void XmlBug(wxXmlNode *node);
 

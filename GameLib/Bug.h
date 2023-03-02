@@ -25,6 +25,8 @@ private:
     /// in pixels per second
     double mSpeedY = 0;
 
+
+
 public:
     /// Default constructor (disabled)
     Bug() = delete;
@@ -32,10 +34,11 @@ public:
     /// Copy constructor (disabled)
     Bug(const Bug &) = delete;
 
+	double GetSpeed(){return sqrt(mSpeedX*mSpeedX+mSpeedY*mSpeedY);}
     /// Assignment operator
     void operator=(const Game &) = delete;
 
-
+	virtual void Draw(wxDC *dc){}
 	//virtual void Draw(wxDC *dc);
 
     // not sure if either of these did anything
@@ -51,6 +54,8 @@ public:
 
 	void Update(double elapsed);
     //made not virtual, not sure if it did anything
+
+
 protected:
     Bug(Game* game, const std::wstring& filename);
 

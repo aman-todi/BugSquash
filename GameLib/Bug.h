@@ -17,11 +17,11 @@ class Bug : public Item {
 private:
     /// Bug speed in the X direction
     /// in pixels per second
-    double mSpeedX;
+    double mSpeedX = 0;
 
     /// Bug speed in the Y direction
     /// in pixels per second
-    double mSpeedY;
+    double mSpeedY = 0;
 
 public:
     /// Default constructor (disabled)

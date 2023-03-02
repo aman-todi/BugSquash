@@ -24,7 +24,7 @@ private:
     /// The Laptop image
     std::shared_ptr<wxImage> mLaptopImage;
 
-    //Laptop Bitmap
+    ///Laptop Bitmap
 	wxGraphicsBitmap mLaptopBitmap;
 
 	/// All of the bugs in game
@@ -36,16 +36,16 @@ private:
 	std::mt19937 mRandom;
 
     //Is Window Shrunk?
-    bool mShrinked;
+    bool mShrinked = false;
 
     //Scaled Window Value
-    double mScale;
+    double mScale = 0;
 
     //X-coord scale offset
-    double mXOffset;
+    double mXOffset = 0;
 
     //Y-coord scale offset
-    double mYOffset;
+    double mYOffset = 0;
 
 public:
 	Game();
@@ -63,7 +63,7 @@ public:
 	void DeleteBug(std::shared_ptr<Bug> item);
 
 
-	void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
+	void OnDraw(std::shared_ptr<wxGraphicsContext> graphics,wxDC *dc,int width, int height);
 
 	void Clear();
 

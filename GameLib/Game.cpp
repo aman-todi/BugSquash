@@ -38,7 +38,7 @@ const int ProgramNameFontSize = 22;
  * Draw the game
  * @param dc The device context to draw on
  */
-void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
+void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,wxDC *dc ,int width, int height)
 {
     //Create Image Bitmap
     if (mLaptopBitmap.IsNull()) {
@@ -89,10 +89,11 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 				wxFONTWEIGHT_NORMAL);
     graphics->SetFont(font, wxColour(255, 0, 255));
 
-//	for(auto bug : mItems)
-//	{
-//		bug->Draw(dc);
-//	}
+	//This isn't being hit since there is no bug in mItems yet
+	for(auto bug : mItems)
+	{
+		bug->Draw(dc);
+	}
 
     graphics->PopState();
 }
@@ -103,6 +104,17 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 Game::Game()
 {
     mLaptopImage = std::make_shared<wxImage>(ProgramImage);
+
+	// Makes the bug
+	shared_ptr<Item> garbageBug = make_shared<GarbageBug>(this);
+	shared_ptr<Item> nullBug = make_shared<NullBug>(this);
+	shared_ptr<Item> feature = make_shared<FeatureBug>(this);
+
+	// Pushed the bug onto Item
+	mItems.push_back(garbageBug);
+	mItems.push_back(nullBug);
+	mItems.push_back(feature);
+
 }
 
 /**

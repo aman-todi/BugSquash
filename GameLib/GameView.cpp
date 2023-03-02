@@ -104,7 +104,7 @@ void GameView::OnPaint(wxPaintEvent& event)
         return;
     }
 
-    mGame.OnDraw(gc, rect.GetWidth(), rect.GetHeight());
+    mGame.OnDraw(gc, &dc,rect.GetWidth(), rect.GetHeight());
 }
 
 

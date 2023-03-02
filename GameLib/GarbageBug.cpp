@@ -23,3 +23,4 @@ const int GarbageBugNumSpriteImages = 5;
 GarbageBug::GarbageBug(Game *game) : Bug(game, GarbageBugSpriteImageName)
 {
 }
+

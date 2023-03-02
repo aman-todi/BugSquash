@@ -14,6 +14,12 @@
 class GarbageBug: public Bug
 {
 private:
+//	/// Width of the sprite image
+//	int mWidth = 0;
+//
+//	/// Height of the sprite image
+//	int mHeight = 0;
+
 
 public:
 	/// Default constructor (disabled)

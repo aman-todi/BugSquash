@@ -20,7 +20,7 @@ Item::~Item()
 
 /**
  * Constructor
- * @param aquarium The aquarium this item is a member of
+ * @param game The game this item is a member of
  * @param filename The name of the file to display for this item
  */
 Item::Item(Game *game, const std::wstring &filename) : mGame(game)

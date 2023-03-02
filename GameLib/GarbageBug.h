@@ -25,7 +25,7 @@ private:
 	std::vector<wxGraphicsBitmap> mSpriteSheetFrames;
 
 	/// index of the current frame to draw
-	int mCurrentFrameIndex;
+	int mCurrentFrameIndex=0;
 
 	/// The bitmap we can display for this Bug
 	std::unique_ptr<wxBitmap> mBugBitmap;
@@ -34,8 +34,6 @@ private:
 	std::unique_ptr<wxBitmap> mBugSplatBitmap;
 
 	bool splat = false;
-
-	wxTimer mTimer;
 public:
 	/// Default constructor (disabled)
 	GarbageBug() = delete;
@@ -49,8 +47,8 @@ public:
 	GarbageBug(Game *game);
 
 	virtual void Draw(wxDC* dc) override;
-	void OnTimer(wxTimerEvent &event);
 
+	void UpdateFrame();
 };
 
 #endif //GAME_GAME_GAMELIB_GARBAGEBUG_H

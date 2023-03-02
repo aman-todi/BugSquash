@@ -23,7 +23,10 @@ private:
 	Game mGame;
 
 	/// The timer that allows for animation
-	wxTimer mTimer;
+	wxTimer mTimerAnimation;
+
+	/// The timer that allows for bug motion updating each 3/speed seconds
+	wxTimer mTimerBugMotion;
 
 	/// Stopwatch used to measure elapsed time
 	wxStopWatch mStopWatch;
@@ -52,7 +55,8 @@ public:
 	void OnDoubleClick(wxMouseEvent &event);
 
 
-	void OnTimer(wxTimerEvent &event);
+	void OnTimer1(wxTimerEvent &event);
+	void OnTimer2(wxTimerEvent &event);
 
 	void OnViewShrink(wxCommandEvent &event);
 	void OnUpdateViewShrink(wxUpdateUIEvent &event);

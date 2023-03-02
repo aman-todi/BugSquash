@@ -67,6 +67,9 @@ public:
 
 	void Clear();
 
+	std::vector<std::shared_ptr<Item>> GetItems(){return mItems;}
+
+
     /**
      * Shrink The Game Window
      */

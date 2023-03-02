@@ -29,6 +29,9 @@ const static int GameWidth = 1250;
 /// Game area height in virtual pixels
 const static int GameHeight = 1000;
 
+///Bug speed in virtual pixels per second
+const static int BugSpeed = 10;
+
 
 using namespace std;
 
@@ -44,6 +47,7 @@ void GameView::Initialize(wxFrame* parent)
             wxFULL_REPAINT_ON_RESIZE);
 
 	SetBackgroundStyle(wxBG_STYLE_PAINT);
+	//mTimerBugMotion.Start(3/BugSpeed);
 
 	Bind(wxEVT_PAINT, &GameView::OnPaint, this);
 	//parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnFileSaveAs, this, wxID_SAVEAS);
@@ -59,11 +63,13 @@ void GameView::Initialize(wxFrame* parent)
 	Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
 	Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
 	Bind(wxEVT_LEFT_DCLICK, &GameView::OnDoubleClick, this);
-	Bind(wxEVT_TIMER, &GameView::OnTimer, this);
+	Bind(wxEVT_TIMER, &GameView::OnTimer1, this,mTimerAnimation.GetId());
+	Bind(wxEVT_TIMER, &GameView::OnTimer2, this,mTimerBugMotion.GetId());
+
 
 	// The timer for animation
-	mTimer.SetOwner(this);
-	mTimer.Start(FrameDuration);
+	mTimerAnimation.SetOwner(this);
+	mTimerAnimation.Start(FrameDuration);
 	mStopWatch.Start();
 }
 
@@ -109,10 +115,25 @@ void GameView::OnPaint(wxPaintEvent& event)
 
 
 /**
- * Event handler for wxEVT_TIMER
+ * Event handler for wxEVT_TIMER for animation timer
  * @param event Timer event
  */
-void GameView::OnTimer(wxTimerEvent &event){
+void GameView::OnTimer1(wxTimerEvent &event){
+	Refresh();
+}
+
+/**
+ * Event handler for wxEVT_TIMER for bug motion timer
+ * @param event Timer event
+ */
+void GameView::OnTimer2(wxTimerEvent &event){
+
+	//loop through each bug and update frame index
+//	for (auto item : mGame.GetItems())
+//	{
+//		///Make sure its a bug using visitor
+//		///visit each bug and update frame index
+//	}
 	Refresh();
 }
 

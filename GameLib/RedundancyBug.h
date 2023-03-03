@@ -29,6 +29,12 @@ public:
 	void operator=(const RedundancyBug &) = delete;
 	RedundancyBug(Game *game);
 
+	/**
+	* Accept a visitor
+	* @param visitor The visitor we accept
+	*/
+	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitRedundancyBug(this); }
+
 };
 
 #endif //GAME_GAME_GAMELIB_REDUNDANCYBUG_H

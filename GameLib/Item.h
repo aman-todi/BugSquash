@@ -8,6 +8,9 @@
 #ifndef GAME_ITEM_H
 #define GAME_ITEM_H
 
+#include <memory>
+#include "ItemsVisitor.h"
+
 class Game;
 /**
  * ase class for any item in our Game
@@ -77,6 +80,11 @@ public:
      */
     virtual void Update(double elapsed) {}
 
+	/**
+	 * Accept a visitor
+	 * @param visitor The visitor we accept
+	 */
+	virtual void Accept(ItemsVisitor* visitor) = 0;
 
     /**
      * Get the pointer to the Game object
@@ -87,6 +95,7 @@ public:
     //void SetMirror(bool m);   still need to implement this
 protected:
     Item(Game *game, const std::wstring &filename);
+
 
 };
 

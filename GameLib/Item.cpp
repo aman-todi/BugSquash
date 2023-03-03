@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "Item.h"
 #include "Game.h"
+#include "ItemsVisitor.h"
 
 using namespace std;
 

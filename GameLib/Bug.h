@@ -55,6 +55,12 @@ public:
 	void Update(double elapsed);
     //made not virtual, not sure if it did anything
 
+	/**
+	 * Accept a visitor
+	 * @param visitor The visitor we accept
+	 */
+	virtual void Accept(ItemsVisitor* visitor) = 0;
+
 
 protected:
     Bug(Game* game, const std::wstring& filename);

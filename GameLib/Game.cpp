@@ -290,3 +290,15 @@ void Game::Shrink()
 {
     mShrinked = !(mShrinked);
 }
+
+/**
+ * Accept a visitor for the collection of items
+ * @param visitor The visitor for the collection
+ */
+void Game::Accept(ItemsVisitor* visitor)
+{
+	for (auto item : mItems)
+	{
+		item->Accept(visitor);
+	}
+}

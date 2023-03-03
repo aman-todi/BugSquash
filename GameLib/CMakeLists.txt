@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.24)
 project(GameLib)
 
 set(SOURCE_FILES
@@ -11,7 +12,10 @@ set(SOURCE_FILES
         GarbageBug.h GarbageBug.cpp
         NullBug.h NullBug.cpp
         RedundancyBug.h RedundancyBug.cpp
-        FeatureBug.h FeatureBug.cpp Program.h Program.cpp Scoreboard.cpp Scoreboard.h)
+        FeatureBug.h FeatureBug.cpp
+        Program.h Program.cpp
+        Scoreboard.cpp Scoreboard.h
+        ItemsVisitor.h ItemsVisitor.cpp)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)

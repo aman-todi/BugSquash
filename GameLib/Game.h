@@ -19,6 +19,7 @@
 #include <wx/graphics.h>
 
 class Scoreboard;
+class ItemsVisitor;
 
 class Game
 {
@@ -99,6 +100,9 @@ public:
 		std::random_device rd;
 		mRandom.seed(1238197374);
 		return mRandom;}
+
+	/// visitor
+	void Accept(ItemsVisitor* visitor);
 };
 
 #endif //PROJECT1_GAMELIB_GAME_H

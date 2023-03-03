@@ -47,6 +47,12 @@ public:
 	void OnTimer(wxTimerEvent &event);
 
 	void UpdateFrame();
+
+	/**
+	* Accept a visitor
+	* @param visitor The visitor we accept
+	*/
+	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitNullBug(this); }
 };
 
 #endif //GAME_GAME_GAMELIB_NULLBUG_H

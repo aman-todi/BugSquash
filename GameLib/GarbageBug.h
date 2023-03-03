@@ -50,6 +50,12 @@ public:
 
 	void OnTimer(wxTimerEvent &event);
 
+	/**
+	* Accept a visitor
+	* @param visitor The visitor we accept
+	*/
+	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitGarbageBug(this); }
+
 };
 
 #endif //GAME_GAME_GAMELIB_GARBAGEBUG_H

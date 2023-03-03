@@ -19,6 +19,12 @@ private:
 
 public:
 	Program(Game* game);
+
+	/**
+	 * Accept a visitor
+	 * @param visitor The visitor we accept
+	 */
+	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitProgram(this); }
 };
 
 #endif //GAME_GAMELIB_PROGRAM_H

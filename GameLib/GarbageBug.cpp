@@ -25,22 +25,16 @@ GarbageBug::GarbageBug(Game *game) : Bug(game, GarbageBugSpriteImageName)
 
 	mBugBitmap = std::make_unique<wxBitmap>(GarbageBugSpriteImageName,wxBITMAP_TYPE_ANY);
 	mBugSplatBitmap = std::make_unique<wxBitmap>(GarbageBugSplatImageName,wxBITMAP_TYPE_ANY);
+	wxImage spriteSheet(GarbageBugSpriteImageName, wxBITMAP_TYPE_ANY);
 
-	wxGraphicsRenderer* renderer = wxGraphicsRenderer::GetDefaultRenderer();
-
-	wxImage image = mBugBitmap->ConvertToImage();
-	wxGraphicsBitmap spriteSheet = renderer->CreateBitmapFromImage(image);
-
-	// Extract each frame from the wxGraphicsBitmap object and store it in the array
-	int frameWidth = mBugBitmap->GetWidth() / GarbageBugNumSpriteImages;
+	// Get the height of each image
+	double imageHeight = spriteSheet.GetHeight() / GarbageBugNumSpriteImages;
 
 	for (int i = 0; i < GarbageBugNumSpriteImages; i++)
 	{
-		wxGraphicsBitmap frameBitmap = renderer->CreateSubBitmap(spriteSheet, i * frameWidth,
-																 0, frameWidth, frameWidth);
-		mSpriteSheetFrames.push_back(frameBitmap);
+		auto image = spriteSheet.GetSubImage(wxRect(0, i * imageHeight, imageHeight, imageHeight));
+		mSpriteSheetFrames.push_back(std::make_unique<wxBitmap>(image));
 	}
-
 }
 
 void GarbageBug::Draw(wxDC *dc)
@@ -50,12 +44,9 @@ void GarbageBug::Draw(wxDC *dc)
 		double wid = mBugBitmap->GetWidth();
 		double hit = mBugBitmap->GetHeight();
 
-		// Get the current frame to draw and update the index for the next frame
-		wxGraphicsBitmap currentFrame = mSpriteSheetFrames[mCurrentFrameIndex];
-
 
 		// Draw the bug image using the device context
-		dc->DrawBitmap(currentFrame.ConvertToImage(), int(GetX() - wid / 2),
+		dc->DrawBitmap(*(mSpriteSheetFrames[mCurrentFrameIndex]), int(GetX() - wid / 2),
 					   int(GetY() - hit / 2));
 
 	}

@@ -22,7 +22,8 @@ private:
 
 
 	/// array to hold individual frames of the animation
-	std::vector<wxGraphicsBitmap> mSpriteSheetFrames;
+	std::vector<std::unique_ptr<wxBitmap>> mSpriteSheetFrames;
+	//std::vector<wxGraphicsBitmap> mSpriteSheetFrames;
 
 	/// index of the current frame to draw
 	int mCurrentFrameIndex=0;

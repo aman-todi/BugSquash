@@ -1,6 +1,6 @@
 /**
  * @file FeatureBug.cpp
- * @author srira
+ * @author sriram
  */
 
 #include "pch.h"

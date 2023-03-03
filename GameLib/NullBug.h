@@ -16,6 +16,20 @@
 class NullBug: public Bug
 {
 private:
+	/// array to hold individual frames of the animation
+	std::vector<std::unique_ptr<wxBitmap>> mSpriteSheetFrames;
+
+	/// index of the current frame to draw
+	int mCurrentFrameIndex = 0;
+
+	/// The bitmap we can display for this Bug
+	std::unique_ptr<wxBitmap> mBugBitmap;
+
+	/// The bitmap we can display for this Bug splash
+	std::unique_ptr<wxBitmap> mBugSplatBitmap;
+
+	/// Has the bug been clicked on
+	bool mSplat = false;
 
 public:
 	/// Default constructor (disabled)
@@ -27,6 +41,12 @@ public:
 	/// Assignment operator
 	void operator=(const NullBug &) = delete;
 	NullBug(Game *game);
+
+	virtual void Draw(wxDC* dc) override;
+
+	void OnTimer(wxTimerEvent &event);
+
+	void UpdateFrame();
 };
 
 #endif //GAME_GAME_GAMELIB_NULLBUG_H

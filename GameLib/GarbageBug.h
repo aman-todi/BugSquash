@@ -16,16 +16,8 @@
 class GarbageBug: public Bug
 {
 private:
-//	/// Width of the sprite image
-//	int mWidth = 0;
-//
-//	/// Height of the sprite image
-//	int mHeight = 0;
-
-
 	/// array to hold individual frames of the animation
 	std::vector<std::unique_ptr<wxBitmap>> mSpriteSheetFrames;
-
 
 	/// index of the current frame to draw
 	int mCurrentFrameIndex = 0;
@@ -53,6 +45,9 @@ public:
 	GarbageBug(Game *game);
 
 	virtual void Draw(wxDC* dc) override;
+
+	void UpdateFrame();
+
 	void OnTimer(wxTimerEvent &event);
 
 };

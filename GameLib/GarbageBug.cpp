@@ -35,20 +35,20 @@ GarbageBug::GarbageBug(Game *game) : Bug(game, GarbageBugSpriteImageName)
 		auto image = spriteSheet.GetSubImage(wxRect(0, i * imageHeight, imageHeight, imageHeight));
 		mSpriteSheetFrames.push_back(std::make_unique<wxBitmap>(image));
 	}
+	// Put the standing sprite at index 0
+	std::reverse(mSpriteSheetFrames.begin(),mSpriteSheetFrames.end());
 }
 
 void GarbageBug::Draw(wxDC *dc)
 {
-	if (!splat)
+	if (!mSplat)
 	{
 		double wid = mBugBitmap->GetWidth();
 		double hit = mBugBitmap->GetHeight();
 
-
 		// Draw the bug image using the device context
 		dc->DrawBitmap(*(mSpriteSheetFrames[mCurrentFrameIndex]), int(GetX() - wid / 2),
 					   int(GetY() - hit / 2));
-
 	}
 	else
 	{
@@ -65,5 +65,5 @@ void GarbageBug::Draw(wxDC *dc)
  */
 void GarbageBug::UpdateFrame()
 {
-	mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (GarbageBugNumSpriteImages-1);
+	mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (GarbageBugNumSpriteImages - 1);
 }

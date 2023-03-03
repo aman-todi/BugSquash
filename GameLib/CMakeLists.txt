@@ -11,7 +11,7 @@ set(SOURCE_FILES
         GarbageBug.h GarbageBug.cpp
         NullBug.h NullBug.cpp
         RedundancyBug.h RedundancyBug.cpp
-        FeatureBug.h FeatureBug.cpp Program.h Program.cpp)
+        FeatureBug.h FeatureBug.cpp Program.h Program.cpp Scoreboard.cpp Scoreboard.h)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)

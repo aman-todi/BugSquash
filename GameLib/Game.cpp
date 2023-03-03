@@ -10,11 +10,13 @@
 #include <wx/xml/xml.h>
 #include <wx/graphics.h>
 #include <algorithm>
+#include <sstream>
 #include "Bug.h"
 #include "GarbageBug.h"
 #include "NullBug.h"
 #include "RedundancyBug.h"
 #include "FeatureBug.h"
+#include "Scoreboard.h"
 
 using namespace std;
 
@@ -32,6 +34,25 @@ const std::wstring ProgramImage = L"images/laptop.png";
 
 /// Program name font size
 const int ProgramNameFontSize = 22;
+
+/// Score font size to use
+const int ScoreSize = 85;
+
+/// Lable for score font size to use
+const int LabelSize = 40;
+
+/// The font color to use
+const wxColour FontColor = wxColour(0, 200, 200);
+
+/// Left score X location. The right score is
+/// the width minus this value.
+const int LeftScoreX = 150;
+
+/// Score Y location
+const int ScoreY = 20;
+
+/// Score label Y location
+const int ScoreLabelY = 100;
 
 
 /**
@@ -83,14 +104,40 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,wxDC *dc ,int widt
     graphics->SetPen(*wxWHITE_PEN);
     graphics->DrawRectangle(0, 0, GameWidth, GameHeight);
 
+    //  Draw Scoreboard
+    //Score
+    wxFont fontScore(ScoreSize,
+            wxFONTFAMILY_SWISS,
+            wxFONTSTYLE_NORMAL,
+            wxFONTWEIGHT_BOLD);
+
+    wxFont fontLabel(LabelSize,
+            wxFONTFAMILY_SWISS,
+            wxFONTSTYLE_NORMAL,
+            wxFONTWEIGHT_BOLD);
+
+    graphics->SetFont(fontScore, FontColor);
+
+    graphics->DrawText(L"0", LeftScoreX, ScoreY);
+    graphics->DrawText(L"0", GameWidth/2, ScoreY);
+    graphics->DrawText(L"0", GameWidth-LeftScoreX, ScoreY);
+
+    //Label
+    graphics->SetFont(fontLabel, FontColor);
+
+    double widLabel, hgtLabel;
+    graphics->GetTextExtent(L"Fixed", &widLabel, &hgtLabel);
+    graphics->DrawText((L"Fixed"), LeftScoreX - (widLabel/4), ScoreLabelY+(hgtLabel/2));
+
+    graphics->GetTextExtent(L"Missed", &widLabel, &hgtLabel);
+    graphics->DrawText((L"Missed"), (GameWidth/2) - (widLabel/4), ScoreLabelY+(hgtLabel/2));
+
+    graphics->GetTextExtent(L"Oops", &widLabel, &hgtLabel);
+    graphics->DrawText((L"Oops"), (GameWidth-LeftScoreX) - (widLabel/4), ScoreLabelY+(hgtLabel/2));
+
+
     //Draw Laptop
     graphics->DrawBitmap(mLaptopBitmap, centerX, centerY, laptopWid, laptopHgt);
-
-	wxFont font(wxSize(0, 22),
-				wxFONTFAMILY_SWISS,
-				wxFONTSTYLE_NORMAL,
-				wxFONTWEIGHT_NORMAL);
-    graphics->SetFont(font, wxColour(255, 0, 255));
 
 	//This isn't being hit since there is no bug in mItems yet
 	for(auto bug : mItems)
@@ -106,6 +153,9 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,wxDC *dc ,int widt
  */
 Game::Game()
 {
+    //Initialize Scoreboard
+    shared_ptr<Scoreboard> scoreBoard = make_shared<Scoreboard>(Scoreboard());
+
     mLaptopImage = std::make_shared<wxImage>(ProgramImage);
 
 	// Makes the bug

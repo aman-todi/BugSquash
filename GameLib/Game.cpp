@@ -160,7 +160,7 @@ Game::Game()
 	shared_ptr<Item> nullBug = make_shared<NullBug>(this);
 	shared_ptr<Item> feature = make_shared<FeatureBug>(this);
 
-	garbageBug->SetLocation(100,100);
+	garbageBug->SetLocation(626,500);
 	// Pushed the bug onto Item
 	mItems.push_back(garbageBug);
 //	mItems.push_back(nullBug);

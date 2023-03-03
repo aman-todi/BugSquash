@@ -25,25 +25,10 @@ GarbageBug::GarbageBug(Game *game) : Bug(game, GarbageBugSpriteImageName)
 
 	mBugBitmap = std::make_unique<wxBitmap>(GarbageBugSpriteImageName,wxBITMAP_TYPE_ANY);
 	mBugSplatBitmap = std::make_unique<wxBitmap>(GarbageBugSplatImageName,wxBITMAP_TYPE_ANY);
-//
-//	wxGraphicsRenderer* renderer = wxGraphicsRenderer::GetDefaultRenderer();
-//
-//	wxImage image = mBugBitmap->ConvertToImage();
-//	wxGraphicsBitmap spriteSheet = renderer->CreateBitmapFromImage(image);
-//
-//	// Extract each frame from the wxGraphicsBitmap object and store it in the array
-//	double frameWidth = mBugBitmap->GetHeight() / GarbageBugNumSpriteImages;
-//
-//	for (int i = 0; i < GarbageBugNumSpriteImages; i++)
-//	{
-//		wxGraphicsBitmap frameBitmap = renderer->CreateSubBitmap(spriteSheet, 0,
-//																 i * frameWidth, frameWidth, frameWidth);
-//		mSpriteSheetFrames.push_back(frameBitmap);
-//	}
-	wxImage spriteSheet(GarbageBugSpriteImageName, wxBITMAP_TYPE_PNG);
+	wxImage spriteSheet(GarbageBugSpriteImageName, wxBITMAP_TYPE_ANY);
 
 	// Get the height of each image
-	int imageHeight = spriteSheet.GetHeight() / GarbageBugNumSpriteImages;
+	double imageHeight = spriteSheet.GetHeight() / GarbageBugNumSpriteImages;
 
 	for (int i = 0; i < GarbageBugNumSpriteImages; i++)
 	{

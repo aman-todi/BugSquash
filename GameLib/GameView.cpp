@@ -148,10 +148,10 @@ void GameView::OnLeftDown(wxMouseEvent &event)
 	if(mClickedItem != nullptr)
 	{
 		mGame.UpdateList(mClickedItem);
+		mClickedItem->ClickedOn();
 	}
 	Refresh();
 }
-
 
 /**
 * Handle the left mouse button up event

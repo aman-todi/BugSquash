@@ -90,7 +90,9 @@ public:
      * Get the pointer to the Game object
      * @return Pointer to Game object
      */
-    Game *GetGame() { return mGame;  }
+    Game *GetGame() { return mGame; }
+
+	virtual void ClickedOn(){};
 
     //void SetMirror(bool m);   still need to implement this
 protected:

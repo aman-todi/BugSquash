@@ -48,6 +48,8 @@ public:
 
 	void UpdateFrame();
 
+	virtual void ClickedOn() override;
+
 	/**
 	* Accept a visitor
 	* @param visitor The visitor we accept

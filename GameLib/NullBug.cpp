@@ -39,6 +39,12 @@ NullBug::NullBug(Game *game) : Bug(game, NullBugSpriteImageName)
 
 }
 
+void NullBug::ClickedOn()
+{
+	mSplat = true;
+}
+
+
 /**
  * Draws the bug if it is either splat or moving
  * @param dc The device context to draw on

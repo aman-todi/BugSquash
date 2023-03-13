@@ -302,3 +302,21 @@ void Game::Accept(ItemsVisitor* visitor)
 		item->Accept(visitor);
 	}
 }
+
+/**
+ * Take the last touched Item and moves it to the end of the list
+ * @param item Item an pointer to item in the aquarium
+ */
+void Game::UpdateList(std::shared_ptr<Item> item)
+{
+	//finds the location of item in the list
+	auto loc = find(begin(mItems), end(mItems), item);
+	//if item is not found then iterator will be at the end of the list so
+	if (loc != end(mItems))
+	{
+		mItems.erase(loc);
+	}
+	//push the item back to the end of the list
+	mItems.push_back(item);
+}
+

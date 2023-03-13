@@ -144,7 +144,12 @@ void GameView::OnTimer2(wxTimerEvent &event){
 */
 void GameView::OnLeftDown(wxMouseEvent &event)
 {
-	OnMouseMove(event);
+	mClickedItem = mGame.HitTest(event.GetX(),event.GetY());
+	if(mClickedItem != nullptr)
+	{
+		mGame.UpdateList(mClickedItem);
+	}
+	Refresh();
 }
 
 

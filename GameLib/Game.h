@@ -33,7 +33,7 @@ private:
 	/// All of the bugs in game
 	std::vector<std::shared_ptr<Item> > mItems;
 
-    //Game Scoreboard
+    ///Game Scoreboard
     std::shared_ptr<Scoreboard> mScoreboard;
 
 	void XmlBug(wxXmlNode *node);
@@ -41,16 +41,16 @@ private:
 	/// Random number generator
 	std::mt19937 mRandom;
 
-    //Is Window Shrunk?
+    ///Is Window Shrunk?
     bool mShrinked = false;
 
-    //Scaled Window Value
+    ///Scaled Window Value
     double mScale = 0;
 
-    //X-coord scale offset
+    ///X-coord scale offset
     double mXOffset = 0;
 
-    //Y-coord scale offset
+    ///Y-coord scale offset
     double mYOffset = 0;
 
 public:
@@ -90,6 +90,7 @@ public:
 	void Update(double elapsed);
 	void SortBugs();
 
+	void UpdateList(std::shared_ptr<Item> item);
 
 	/**
      * Get the random number generator

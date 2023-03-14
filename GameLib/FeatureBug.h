@@ -46,7 +46,6 @@ public:
 
 	virtual void Draw(wxDC* dc) override;
 
-
 	void OnTimer(wxTimerEvent &event);
 
 	void UpdateFrame();
@@ -56,6 +55,11 @@ public:
 	* @param visitor The visitor we accept
 	*/
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitFeatureBug(this); }
+
+	/**
+ 	 * Set the bug to splat
+ 	 */
+	void SetSplat(){ mSplat = true; }
 };
 
 #endif //GAME_GAME_GAMELIB_FEATUREBUG_H

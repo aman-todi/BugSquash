@@ -7,18 +7,35 @@
 
 #ifndef PROJECT1_SCOREBOARD_H
 #define PROJECT1_SCOREBOARD_H
-
+/**
+ * The Main ScoreBoard class
+ */
 class Scoreboard {
 private:
-    int mFixed;
-    int mMissed;
-    int mOops;
+	/// Score of Fixed Bug
+    int mFixed = 0;
+	/// Score of Missed Bug
+    int mMissed = 0;
+	/// Score of squashed Feature bugs
+    int mOops = 0;
 public:
     Scoreboard();
-
+	/**
+	 * Getter for the Fixed score
+	 * @return the score of mFixed
+	 */
     int GetFixed() {return mFixed;};
+	/**
+	 * Getter for the Missed  score
+	 * @return the score of mMissed
+	 */
     int GetMissed() {return mMissed;}
+	/**
+	 * Getter for the Oops score
+	 * @return the score of mOops
+	 */
     int GetOops() {return mOops;}
+
 
     void KeepScore(int fix, int miss, int oop);
 };

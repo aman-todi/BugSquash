@@ -46,6 +46,7 @@ public:
 
 	virtual void Draw(wxDC* dc) override;
 
+
 	void OnTimer(wxTimerEvent &event);
 
 	void UpdateFrame();

@@ -38,7 +38,9 @@ NullBug::NullBug(Game *game) : Bug(game, NullBugSpriteImageName)
 	std::reverse(mSpriteSheetFrames.begin(),mSpriteSheetFrames.end());
 
 }
-
+/**
+ * Sets Bug splat to True
+ */
 void NullBug::ClickedOn()
 {
 	mSplat = true;

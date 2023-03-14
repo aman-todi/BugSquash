@@ -20,7 +20,9 @@
 
 class Scoreboard;
 class ItemsVisitor;
-
+/**
+ * The main Game class
+ */
 class Game
 {
 private:
@@ -36,7 +38,7 @@ private:
     ///Game Scoreboard
     std::shared_ptr<Scoreboard> mScoreboard;
 
-	void XmlBug(wxXmlNode *node);
+	//void XmlBug(wxXmlNode *node);
 
 	/// Random number generator
 	std::mt19937 mRandom;
@@ -64,8 +66,8 @@ public:
 
 	void Add(std::shared_ptr<Bug> item);
 	std::shared_ptr<Item> HitTest(int x, int y);
-	void MoveToFront(std::shared_ptr<Bug> item);
-	void MovetoEnd(std::shared_ptr<Bug> item);
+//	void MoveToFront(std::shared_ptr<Bug> item);
+//	void MovetoEnd(std::shared_ptr<Bug> item);
 	void DeleteBug(std::shared_ptr<Bug> item);
 
 
@@ -73,7 +75,8 @@ public:
 
 	void Clear();
 
-	std::vector<std::shared_ptr<Item>> GetItems(){return mItems;}
+	// I don't think we can have this
+	//std::vector<std::shared_ptr<Item>> GetItems(){return mItems;}
 
 
     /**
@@ -88,7 +91,7 @@ public:
     bool IsShrunk() {return mShrinked;}
 
 	void Update(double elapsed);
-	void SortBugs();
+	//void SortBugs();
 
 	void UpdateList(std::shared_ptr<Item> item);
 

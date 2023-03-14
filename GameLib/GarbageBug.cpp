@@ -39,6 +39,10 @@ GarbageBug::GarbageBug(Game *game) : Bug(game, GarbageBugSpriteImageName)
 	std::reverse(mSpriteSheetFrames.begin(),mSpriteSheetFrames.end());
 }
 
+/**
+ * Draws the GarbageBug or splat GarbageBug
+ * @param dc Device context to draw on
+ */
 void GarbageBug::Draw(wxDC *dc)
 {
 	if (!mSplat)

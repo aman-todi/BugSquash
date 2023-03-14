@@ -26,7 +26,6 @@ private:
     double mSpeedY = 0;
 
 
-
 public:
     /// Default constructor (disabled)
     Bug() = delete;
@@ -34,10 +33,19 @@ public:
     /// Copy constructor (disabled)
     Bug(const Bug &) = delete;
 
+	/**
+	 * Calculate the speed of the bug
+	 * @return the speed of the bug
+	 */
 	double GetSpeed(){return sqrt(mSpeedX*mSpeedX+mSpeedY*mSpeedY);}
+
     /// Assignment operator
     void operator=(const Game &) = delete;
 
+	/**
+	 * Draw this item
+	 * @param dc Device context to draw on
+	 */
 	virtual void Draw(wxDC *dc){}
 	//virtual void Draw(wxDC *dc);
 

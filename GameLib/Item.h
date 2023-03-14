@@ -61,6 +61,10 @@ public:
 
     /// Assignment operator
     void operator=(const Item &) = delete;
+	/**
+	 * Draw this Item
+	 * @param dc  Device context to draw on
+	 */
 	virtual void Draw(wxDC *dc){}
 
     // Functions ----
@@ -92,6 +96,7 @@ public:
      */
     Game *GetGame() { return mGame; }
 
+	/// Register if the bug has been clicked on
 	virtual void ClickedOn(){};
 
     //void SetMirror(bool m);   still need to implement this

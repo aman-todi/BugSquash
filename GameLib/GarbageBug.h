@@ -31,7 +31,7 @@ private:
 	/// Has the bug been clicked on
 	bool mSplat = false;
 
-	wxTimer mTimer;
+	//wxTimer mTimer;
 public:
 	/// Default constructor (disabled)
 	GarbageBug() = delete;
@@ -48,7 +48,7 @@ public:
 
 	void UpdateFrame();
 
-	void OnTimer(wxTimerEvent &event);
+	//void OnTimer(wxTimerEvent &event);
 
 	/**
 	* Accept a visitor

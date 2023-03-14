@@ -48,6 +48,8 @@ public:
 
 	void UpdateFrame();
 
+
+	virtual void ClickedOn() override;
 	//void OnTimer(wxTimerEvent &event);
 
 	/**

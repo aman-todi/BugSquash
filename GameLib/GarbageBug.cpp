@@ -71,3 +71,8 @@ void GarbageBug::UpdateFrame()
 {
 	mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (GarbageBugNumSpriteImages - 1);
 }
+
+void GarbageBug::ClickedOn()
+{
+	mSplat = true;
+}

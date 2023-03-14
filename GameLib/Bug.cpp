@@ -48,3 +48,17 @@ void Bug::Update(double elapsed)
 //        SetMirror(true);
 //
 }
+
+///**
+// * Hit test x,y to see if they are clicking on this bug.
+// * @param x X location in pixels
+// * @param y Y location in pixels
+// * @return true if clicked on bug
+// */
+//bool Bug::HitTest(int x, int y)
+//{
+//	double dx = x - GetX();
+//	double dy = y - GetY();
+//
+//	return sqrt(dx * dx + dy * dy) < 50;
+//}

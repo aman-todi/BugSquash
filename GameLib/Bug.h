@@ -57,7 +57,7 @@ public:
 //    * @param x X location on the city to test
 //    * @param y Y location on the city to test
 //    * @return true if clicked on */
-//	virtual bool HitTest(int x, int y);
+	//virtual bool HitTest(int x, int y);
 
 
 	void Update(double elapsed);

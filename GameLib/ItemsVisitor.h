@@ -9,6 +9,8 @@
 #define PROJECT1_GAMELIB_ITEMSVISITOR_H
 
 // Forward references to all bug types
+class Item;
+class Bug;
 class GarbageBug;
 class NullBug;
 class RedundancyBug;

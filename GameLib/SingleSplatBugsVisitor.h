@@ -8,13 +8,22 @@
 #ifndef PROJECT1_GAMELIB_SINGLESPLATBUGSVISITOR_H
 #define PROJECT1_GAMELIB_SINGLESPLATBUGSVISITOR_H
 
+#include <memory>
+
 #include "ItemsVisitor.h"
 
 class SingleSplatBugsVisitor : public ItemsVisitor
 {
 private:
+	std::shared_ptr<Item> mBug = nullptr;
 
 public:
+	/**
+	 * Constructor
+	 * @param bug
+	 */
+	 SingleSplatBugsVisitor(std::shared_ptr<Item> bug);
+
 	/**
 	 * Visit a Garbage bug
 	 * @param bug

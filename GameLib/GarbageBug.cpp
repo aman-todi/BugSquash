@@ -70,5 +70,4 @@ void GarbageBug::Draw(wxDC *dc)
 void GarbageBug::UpdateFrame()
 {
 	mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (GarbageBugNumSpriteImages - 1);
-	/// changed 'GarbageBugNumSpriteImages - 1' to 'GarbageBugNumSpriteImages' so it gets to all 6 images - aman
 }

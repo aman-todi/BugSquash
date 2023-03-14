@@ -9,23 +9,33 @@
 #include "NullBug.h"
 #include "FeatureBug.h"
 
+SingleSplatBugsVisitor::SingleSplatBugsVisitor(std::shared_ptr<Item> bug)
+{
+	mBug = bug;
+}
 
 void SingleSplatBugsVisitor::VisitGarbageBug(GarbageBug* bug)
 {
-	bug->SetSpeed(0,0);
-	bug->SetSplat();
+	if (bug == mBug.get()){
+		bug->SetSpeed(0,0);
+		bug->SetSplat();
+	}
 }
 
 void SingleSplatBugsVisitor::VisitNullBug(NullBug* bug)
 {
-	bug->SetSpeed(0,0);
-	bug->SetSplat();
+	if (bug == mBug.get()){
+		bug->SetSpeed(0,0);
+		bug->SetSplat();
+	}
 }
 
 void SingleSplatBugsVisitor::VisitFeatureBug(FeatureBug* bug)
 {
-	bug->SetSpeed(0,0);
-	bug->SetSplat();
+	if (bug == mBug.get()){
+		bug->SetSpeed(0,0);
+		bug->SetSplat();
+	}
 }
 
 void SingleSplatBugsVisitor::VisitRedundancyBug(RedundancyBug* bug)

@@ -63,6 +63,7 @@ void GameView::Initialize(wxFrame* parent)
 	Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
 	Bind(wxEVT_RIGHT_DOWN, &GameView::OnRightDown, this);
 	Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
+	Bind(wxEVT_RIGHT_UP, &GameView::OnRightUp, this);
 	Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
 	Bind(wxEVT_LEFT_DCLICK, &GameView::OnDoubleClick, this);
 	Bind(wxEVT_TIMER, &GameView::OnTimer1, this);
@@ -151,7 +152,7 @@ void GameView::OnLeftDown(wxMouseEvent &event)
 	if(mClickedItem != nullptr)
 	{
 		//mClickedItem->ClickedOn(); - how about we use a visitor to accomplish this
-		SingleSplatBugsVisitor visitor;
+		SingleSplatBugsVisitor visitor(mClickedItem);
 		mGame.Accept(&visitor);
 
 		//Moves the bug to the end of the list
@@ -171,7 +172,7 @@ void GameView::OnRightDown(wxMouseEvent &event)
 	if(mClickedItem != nullptr)
 	{
 		//mClickedItem->ClickedOn(); - how about we use a visitor to accomplish this
-		SingleSplatBugsVisitor visitor;
+		SingleSplatBugsVisitor visitor(mClickedItem);
 		mGame.Accept(&visitor);
 
 		//Moves the bug to the end of the list
@@ -185,6 +186,15 @@ void GameView::OnRightDown(wxMouseEvent &event)
 * @param event
 */
 void GameView::OnLeftUp(wxMouseEvent &event)
+{
+	OnMouseMove(event);
+}
+
+/**
+* Handle the left mouse button up event
+* @param event
+*/
+void GameView::OnRightUp(wxMouseEvent &event)
 {
 	OnMouseMove(event);
 }

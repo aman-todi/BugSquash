@@ -48,13 +48,18 @@ public:
 
 	void UpdateFrame();
 
-	virtual void ClickedOn() override;
+//	virtual void ClickedOn() override; - may want to remove this - @Aman
 
 	/**
 	* Accept a visitor
 	* @param visitor The visitor we accept
 	*/
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitNullBug(this); }
+
+	/**
+ 	 * Set the bug to splat
+ 	 */
+	void SetSplat(){ mSplat = true; }
 };
 
 #endif //GAME_GAME_GAMELIB_NULLBUG_H

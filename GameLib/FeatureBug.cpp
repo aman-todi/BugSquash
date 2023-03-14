@@ -69,6 +69,7 @@ void FeatureBug::Draw(wxDC *dc)
 void FeatureBug::UpdateFrame()
 {
 	mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (FeatureNumSpriteImages - 1);
+	/// changed 'FeatureBugNumSpriteImages - 1' to 'FeatureBugNumSpriteImages' so it gets to all 6 images - aman
 
 }
 

@@ -51,10 +51,15 @@ public:
 	//void OnTimer(wxTimerEvent &event);
 
 	/**
-	* Accept a visitor
-	* @param visitor The visitor we accept
-	*/
+	 * Accept a visitor
+	 * @param visitor The visitor we accept
+	 */
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitGarbageBug(this); }
+
+	/**
+	 * Set the bug to splat
+	 */
+	void SetSplat(){ mSplat = true; }
 
 };
 

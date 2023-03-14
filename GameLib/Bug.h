@@ -39,6 +39,12 @@ public:
 	 */
 	double GetSpeed(){return sqrt(mSpeedX*mSpeedX+mSpeedY*mSpeedY);}
 
+	/**
+ 	 * Set the speed of the bug
+ 	 * @param speedX, speedY speed of bug in X and Y directions
+ 	 */
+	void SetSpeed(double speedX, double speedY){ mSpeedX = speedX; mSpeedY = speedY; }
+
     /// Assignment operator
     void operator=(const Game &) = delete;
 
@@ -60,7 +66,8 @@ public:
 //	virtual bool HitTest(int x, int y);
 
 
-	void Update(double elapsed);
+	virtual void Update(double elapsed);
+	// I think this should be virtual - aman
     //made not virtual, not sure if it did anything
 
 	/**
@@ -68,6 +75,8 @@ public:
 	 * @param visitor The visitor we accept
 	 */
 	virtual void Accept(ItemsVisitor* visitor) = 0;
+
+
 
 
 protected:

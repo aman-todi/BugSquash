@@ -48,7 +48,6 @@ public:
 
 	void UpdateFrame();
 
-//	virtual void ClickedOn() override; - may want to remove this - @Aman
 
 	/**
 	* Accept a visitor

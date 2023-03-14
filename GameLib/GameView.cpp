@@ -65,7 +65,7 @@ void GameView::Initialize(wxFrame* parent)
 	Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
 	Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
 	Bind(wxEVT_LEFT_DCLICK, &GameView::OnDoubleClick, this);
-	Bind(wxEVT_TIMER, &GameView::OnTimer1, this,mTimerAnimation.GetId());
+	Bind(wxEVT_TIMER, &GameView::OnTimer1, this);
 	Bind(wxEVT_TIMER, &GameView::OnTimer2, this,mTimerBugMotion.GetId());
 
 

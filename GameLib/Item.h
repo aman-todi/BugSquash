@@ -69,7 +69,6 @@ public:
 
     // Functions ----
 
-
     virtual bool HitTest(int x, int y);
 
     double DistanceTo(std::shared_ptr<Item> item);

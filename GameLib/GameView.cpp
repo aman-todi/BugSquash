@@ -42,7 +42,6 @@ using namespace std;
  */
 void GameView::Initialize(wxFrame* parent)
 {
-
 	Create(parent, wxID_ANY,
             wxDefaultPosition, wxDefaultSize,
             wxFULL_REPAINT_ON_RESIZE);
@@ -53,6 +52,7 @@ void GameView::Initialize(wxFrame* parent)
 	Bind(wxEVT_PAINT, &GameView::OnPaint, this);
 	//parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnFileSaveAs, this, wxID_SAVEAS);
 	//parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnFileOpen, this, wxID_OPEN);
+    Bind(wxEVT_SIZE , &GameView::OnSize, this, IDM_RESIZE);
 	parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddGarbageBug, this, IDM_ADDGARBAGEBUG);
 	parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddNullBug, this, IDM_ADDNULLBUG);
 	parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddRedundancyBug, this, IDM_ADDREDUNDANCYBUG);
@@ -116,6 +116,15 @@ void GameView::OnPaint(wxPaintEvent& event)
     mGame.OnDraw(gc, &dc,rect.GetWidth(), rect.GetHeight());
 }
 
+/**
+ * Event handler for resizing the window
+ * @param event Size event
+ */
+void GameView::OnSize(wxSizeEvent& event)
+{
+    Refresh();
+    event.Skip();
+}
 
 /**
  * Event handler for wxEVT_TIMER for animation timer

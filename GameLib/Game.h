@@ -20,6 +20,8 @@
 
 class Scoreboard;
 class ItemsVisitor;
+class Program;
+
 /**
  * The main Game class
  */
@@ -34,6 +36,9 @@ private:
 
 	/// All of the bugs in game
 	std::vector<std::shared_ptr<Item> > mItems;
+
+    ///Program
+    std::shared_ptr<Program> mProgram;
 
     ///Game Scoreboard
     std::shared_ptr<Scoreboard> mScoreboard;

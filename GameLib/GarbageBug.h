@@ -48,6 +48,7 @@ public:
 
 	void UpdateFrame();
 
+	void ClickedOn(){mSplat=true;}
 	//void OnTimer(wxTimerEvent &event);
 
 	/**

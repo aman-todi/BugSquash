@@ -39,13 +39,6 @@ private:
 
 	void OnPaint(wxPaintEvent& event);
 
-
-	void OnAddGarbageBug(wxCommandEvent& event);
-	void OnAddNullBug(wxCommandEvent& event);
-	void OnAddRedundancyBug(wxCommandEvent& event);
-	void OnAddFeatureBug(wxCommandEvent& event);
-
-
 public:
 
 	void Initialize(wxFrame* );
@@ -64,10 +57,6 @@ public:
 //	void OnUpdateViewShrink(wxUpdateUIEvent &event);
 //	void AddLevelMenuOption(wxFrame* mainFrame, wxMenu* menu, int id, const std::wstring& text, const std::wstring& help);
 
-//	void OnAddGarbageBug(wxCommandEvent &event);
-//	void OnAddNullBug(wxCommandEvent &event);
-//	void OnAddRedundancyBug(wxCommandEvent &event);
-//	void OnAddFeatureBug(wxCommandEvent &event);
 };
 
 #endif //PROJECT1_GAMELIB_GAMEVIEW_H

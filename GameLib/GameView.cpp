@@ -52,10 +52,6 @@ void GameView::Initialize(wxFrame* parent)
 	//parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnFileSaveAs, this, wxID_SAVEAS);
 	//parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnFileOpen, this, wxID_OPEN);
     Bind(wxEVT_SIZE , &GameView::OnSize, this, IDM_RESIZE);
-	parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddGarbageBug, this, IDM_ADDGARBAGEBUG);
-	parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddNullBug, this, IDM_ADDNULLBUG);
-	parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddRedundancyBug, this, IDM_ADDREDUNDANCYBUG);
-	parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddFeatureBug, this, IDM_ADDFEATUREBUG);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnViewShrink, this, IDM_SHRINK);
 
 	// The mouse events
@@ -200,45 +196,6 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 	}
 }
 
-/**
- * Menu handler for Add Bug> Garbage Bug
- * @param event Menu event
- */
- void GameView::OnAddGarbageBug(wxCommandEvent &event) {
-	 auto bug = make_shared<GarbageBug>(&mGame);
-	 mGame.Add(bug);
-	 Refresh();
- }
-
-/**
-* Menu handler for Add Bug> Null Bug
-* @param event Menu event
-*/
-void GameView::OnAddNullBug(wxCommandEvent &event) {
-	auto bug = make_shared<NullBug>(&mGame);
-	mGame.Add(bug);
-	Refresh();
-}
-
-/**
- * Menu handler for Add Bug> Redundancy Bug
- * @param event Menu event
- */
-void GameView::OnAddRedundancyBug(wxCommandEvent &event) {
-	auto bug = make_shared<RedundancyBug>(&mGame);
-	mGame.Add(bug);
-	Refresh();
-}
-
-/**
- * Menu handler for Add Bug> Feature Bug
- * @param event Menu event
- */
-void GameView::OnAddFeatureBug(wxCommandEvent &event) {
-	auto bug = make_shared<FeatureBug>(&mGame);
-	mGame.Add(bug);
-	Refresh();
-}
 /**
  * Mea
  * @param event Menu event

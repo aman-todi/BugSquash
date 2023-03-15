@@ -39,6 +39,7 @@ private:
 
 	void OnPaint(wxPaintEvent& event);
 
+
 	void OnAddGarbageBug(wxCommandEvent& event);
 	void OnAddNullBug(wxCommandEvent& event);
 	void OnAddRedundancyBug(wxCommandEvent& event);
@@ -60,6 +61,7 @@ public:
 	void OnTimer2(wxTimerEvent &event);
 
 	void OnViewShrink(wxCommandEvent &event);
+    void OnSize(wxSizeEvent& event);
 //	void OnUpdateViewShrink(wxUpdateUIEvent &event);
 //	void AddLevelMenuOption(wxFrame* mainFrame, wxMenu* menu, int id, const std::wstring& text, const std::wstring& help);
 

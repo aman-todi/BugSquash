@@ -21,10 +21,10 @@
 using namespace std;
 
 /// Game area in virtual pixels
-const static int GameWidth = 1250;
+const static double GameWidth = 1250;
 
 /// Game area height in virtual pixels
-const static int GameHeight = 1000;
+const static double GameHeight = 1000;
 
 /// Shrink Scaler
 const static double ShrinkScale = .75;
@@ -92,8 +92,8 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,wxDC *dc ,int widt
     graphics->Translate(mXOffset, mYOffset);
     graphics->Scale(mScale, mScale);
 
-    int centerX = (GameWidth * mScale)/2;
-    int centerY = (GameHeight * mScale)/2;
+    double centerX = GameWidth/2;
+    double centerY = GameHeight/2;
 
     //
     // A rectangle for the virtual area we are drawing on
@@ -130,14 +130,14 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,wxDC *dc ,int widt
     graphics->DrawText((L"Fixed"), LeftScoreX - (widLabel/4), ScoreLabelY+(hgtLabel/2));
 
     graphics->GetTextExtent(L"Missed", &widLabel, &hgtLabel);
-    graphics->DrawText((L"Missed"), (GameWidth/2) - (widLabel/4), ScoreLabelY+(hgtLabel/2));
+    graphics->DrawText((L"Missed"), (GameWidth/2) - (widLabel/3), ScoreLabelY+(hgtLabel/2));
 
     graphics->GetTextExtent(L"Oops", &widLabel, &hgtLabel);
     graphics->DrawText((L"Oops"), (GameWidth-LeftScoreX) - (widLabel/4), ScoreLabelY+(hgtLabel/2));
 
 
     //Draw Laptop
-    graphics->DrawBitmap(mLaptopBitmap, centerX, centerY, laptopWid, laptopHgt);
+    graphics->DrawBitmap(mLaptopBitmap, centerX - laptopWid/3, centerY - laptopHgt/3, laptopWid, laptopHgt);
 
 	//This isn't being hit since there is no bug in mItems yet
 	for(auto bug : mItems)

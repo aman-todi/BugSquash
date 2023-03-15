@@ -309,3 +309,15 @@ void Game::UpdateList(std::shared_ptr<Item> item)
 	mItems.push_back(item);
 }
 
+std::shared_ptr<Item> Game::OnLeftDown(double x, double y)
+{
+	std::shared_ptr<Item> clicked = nullptr;
+	clicked = this->HitTest(x, y);
+
+	if (clicked != nullptr)
+	{
+		clicked->ClickedOn();
+	}
+	return clicked;
+}
+

@@ -18,7 +18,6 @@
 #include "NullBug.h"
 #include "RedundancyBug.h"
 #include "FeatureBug.h"
-#include "SingleSplatBugsVisitor.h"
 
 
 /// Frame duration in milliseconds
@@ -61,9 +60,7 @@ void GameView::Initialize(wxFrame* parent)
 
 	// The mouse events
 	Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
-	Bind(wxEVT_RIGHT_DOWN, &GameView::OnRightDown, this);
 	Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
-	Bind(wxEVT_RIGHT_UP, &GameView::OnRightUp, this);
 	Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
 	Bind(wxEVT_LEFT_DCLICK, &GameView::OnDoubleClick, this);
 	Bind(wxEVT_TIMER, &GameView::OnTimer1, this);
@@ -157,33 +154,9 @@ void GameView::OnTimer2(wxTimerEvent &event){
 void GameView::OnLeftDown(wxMouseEvent &event)
 {
 	//Check to see if we hit a bug
-	mClickedItem = mGame.HitTest(event.GetX(),event.GetY());
+	mClickedItem = mGame.OnLeftDown(event.GetX(),event.GetY());
 	if(mClickedItem != nullptr)
 	{
-		//mClickedItem->ClickedOn(); - how about we use a visitor to accomplish this
-		SingleSplatBugsVisitor visitor(mClickedItem);
-		mGame.Accept(&visitor);
-
-		//Moves the bug to the end of the list
-		mGame.UpdateList(mClickedItem);
-	}
-	Refresh();
-}
-
-/**
-* Handle the right mouse button down event
-* @param event
-*/
-void GameView::OnRightDown(wxMouseEvent &event)
-{
-	//Check to see if we hit a bug
-	mClickedItem = mGame.HitTest(event.GetX(),event.GetY());
-	if(mClickedItem != nullptr)
-	{
-		//mClickedItem->ClickedOn(); - how about we use a visitor to accomplish this
-		SingleSplatBugsVisitor visitor(mClickedItem);
-		mGame.Accept(&visitor);
-
 		//Moves the bug to the end of the list
 		mGame.UpdateList(mClickedItem);
 	}
@@ -195,15 +168,6 @@ void GameView::OnRightDown(wxMouseEvent &event)
 * @param event
 */
 void GameView::OnLeftUp(wxMouseEvent &event)
-{
-	OnMouseMove(event);
-}
-
-/**
-* Handle the left mouse button up event
-* @param event
-*/
-void GameView::OnRightUp(wxMouseEvent &event)
 {
 	OnMouseMove(event);
 }

@@ -53,8 +53,6 @@ public:
 	void OnMouseMove(wxMouseEvent &event);
 	void OnLeftUp(wxMouseEvent &event);
 	void OnLeftDown(wxMouseEvent &event);
-	void OnRightUp(wxMouseEvent &event);
-	void OnRightDown(wxMouseEvent &event);
 	void OnDoubleClick(wxMouseEvent &event);
 
 

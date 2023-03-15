@@ -48,7 +48,12 @@ public:
 
 	void UpdateFrame();
 
-	void ClickedOn(){mSplat=true;}
+	/**
+	 * Set the bug to splat
+	 */
+	void ClickedOn() override { mSplat=true; }
+
+
 	//void OnTimer(wxTimerEvent &event);
 
 	/**
@@ -56,11 +61,6 @@ public:
 	 * @param visitor The visitor we accept
 	 */
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitGarbageBug(this); }
-
-	/**
-	 * Set the bug to splat
-	 */
-	void SetSplat(){ mSplat = true; }
 
 };
 

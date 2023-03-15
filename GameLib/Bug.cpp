@@ -39,14 +39,13 @@ Bug::Bug(Game *game, const std::wstring &filename) :
  */
 void Bug::Update(double elapsed)
 {
-    SetLocation(GetX() + mSpeedX * elapsed,
-            GetY() + mSpeedY * elapsed);
-    //need to implement
-//    if (mSpeedX > 0 && GetX() >= GetGame()->GetWidth())
-//    {
-//        mSpeedX = -mSpeedX;
-//        SetMirror(true);
-//
+	//Need to do loction of program
+	auto angle = atan2(500-GetY(),625-GetX());
+	double speed = sqrt(mSpeedX*mSpeedX+mSpeedY*mSpeedY);
+	double newX = GetX() + elapsed * speed * cos(angle);
+	double newY = GetY() + elapsed * speed * sin(angle);
+	SetLocation(newX,newY);
+
 }
 
 ///**

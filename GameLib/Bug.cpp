@@ -57,6 +57,8 @@ void Bug::Update(double elapsed)
 bool Bug::HitTest(int x, int y)
 {
 	double wid = this->GetWidth();
+	// this is calling something that is 600 pixel tall which makes the hit test
+	// Much wider than needed
 	double hit = this->GetHeight();
 
 	// Make x and y relative to the top-left corner of the bitmap image

@@ -7,26 +7,21 @@
 #include "RedundancyBug.h"
 #include "Game.h"
 
-/// RedundancyBug image filename
-const std::wstring RedundancyBugImage = L"images/scarlet-gray-bug.png";
-
-/// RedundancyBug Splat image filename
-const std::wstring RedundancyBugSplatImage = L"images/scarlet-gray-splat.png";
 
 /// The bug base image
-const std::wstring RedundancyFlyImageName = L"redundancy-fly-base.png";
+const std::wstring RedundancyBugImage = L"images/redundancy-fly-base.png";
 
 /// The bug top image
-const std::wstring RedundancyFlyTopImageName = L"redundancy-fly-top.png";
+const std::wstring RedundancyFlyTopImageName = L"images/redundancy-fly-top.png";
 
 /// The left wing image
-const std::wstring RedundancyFlyLeftWingImageName = L"redundancy-fly-lwing.png";
+const std::wstring RedundancyFlyLeftWingImageName = L"images/redundancy-fly-lwing.png";
 
 /// The right wing image
-const std::wstring RedundancyFlyRightWingImageName = L"redundancy-fly-rwing.png";
+const std::wstring RedundancyFlyRightWingImageName = L"images/redundancy-fly-rwing.png";
 
 /// The splat image
-const std::wstring RedundancyFlySplatImageName = L"redundancy-fly-splat.png";
+const std::wstring RedundancyFlySplatImageName = L"images/redundancy-fly-splat.png";
 
 /// Wing flapping period in seconds
 const double WingPeriod = 0.2;
@@ -50,10 +45,62 @@ const int FirstWingSetX = -36;
 /// of this is the Y position for the left wings.
 const int WingSetY = 5;
 
+/// Number of sprite images
+const int RedundancyNumSpriteImages = 1;
+
 /**
  * RedundancyBug Constructor
  * @param game Game this bug is a member of
  */
 RedundancyBug::RedundancyBug(Game *game) : Bug(game, RedundancyBugImage)
 {
+    mBugBitmap = std::make_unique<wxBitmap>(RedundancyBugImage,wxBITMAP_TYPE_ANY);
+    mBugSplatBitmap = std::make_unique<wxBitmap>(RedundancyFlySplatImageName,wxBITMAP_TYPE_ANY);
+    wxImage spriteSheet(RedundancyBugImage, wxBITMAP_TYPE_ANY);
+
+    // Get the height of each image
+    double imageHeight = spriteSheet.GetHeight() / RedundancyNumSpriteImages;
+
+    for (int i = 0; i < RedundancyNumSpriteImages; i++)
+    {
+        auto image = spriteSheet.GetSubImage(wxRect(0, i * imageHeight, imageHeight, imageHeight));
+        mSpriteSheetFrames.push_back(std::make_unique<wxBitmap>(image));
+    }
+    // Put the standing sprite at index 0
+    std::reverse(mSpriteSheetFrames.begin(),mSpriteSheetFrames.end());
 }
+
+/**
+ * Draws the bug if it is either splat or moving
+ * @param dc The device context to draw on
+ */
+void RedundancyBug::Draw(wxDC *dc)
+{
+    if (!mSplat)
+    {
+        double wid = mBugBitmap->GetWidth();
+        double hit = mBugBitmap->GetHeight();
+
+        // Draw the bug image using the device context
+        dc->DrawBitmap(*(mSpriteSheetFrames[mCurrentFrameIndex]), int(GetX() - wid / 2),
+                int(GetY() - hit / 2));
+    }
+    else
+    {
+        double wid = mBugSplatBitmap->GetWidth();
+        double hit = mBugSplatBitmap->GetHeight();
+        dc->DrawBitmap(*mBugSplatBitmap,
+                int(GetX() - wid / 2),
+                int(GetY() - hit / 2));
+    }
+}
+
+/**
+ * Updates the value of current frame index
+ */
+void RedundancyBug::UpdateFrame()
+{
+    mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (RedundancyNumSpriteImages - 1);
+
+}
+

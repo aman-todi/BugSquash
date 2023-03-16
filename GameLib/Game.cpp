@@ -36,24 +36,6 @@ const std::wstring ProgramImage = L"images/laptop.png";
 /// Program name font size
 const int ProgramNameFontSize = 22;
 
-/// Score font size to use
-const int ScoreSize = 85;
-
-/// Lable for score font size to use
-const int LabelSize = 40;
-
-/// The font color to use
-const wxColour FontColor = wxColour(0, 200, 200);
-
-/// Left score X location. The right score is
-/// the width minus this value.
-const int LeftScoreX = 150;
-
-/// Score Y location
-const int ScoreY = 20;
-
-/// Score label Y location
-const int ScoreLabelY = 100;
 
 
 /**
@@ -95,42 +77,16 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,int width, int hei
     graphics->SetPen(*wxWHITE_PEN);
     graphics->DrawRectangle(0, 0, GameWidth, GameHeight);
 
-    //  Draw Scoreboard
-    //Score
-    wxFont fontScore(ScoreSize,
-            wxFONTFAMILY_SWISS,
-            wxFONTSTYLE_NORMAL,
-            wxFONTWEIGHT_BOLD);
 
-    wxFont fontLabel(LabelSize,
-            wxFONTFAMILY_SWISS,
-            wxFONTSTYLE_NORMAL,
-            wxFONTWEIGHT_BOLD);
-
-    graphics->SetFont(fontScore, FontColor);
-
-    graphics->DrawText(L"0", LeftScoreX, ScoreY);
-    graphics->DrawText(L"0", GameWidth/2, ScoreY);
-    graphics->DrawText(L"0", GameWidth-LeftScoreX, ScoreY);
-
-    //Label
-    graphics->SetFont(fontLabel, FontColor);
-
-    double widLabel, hgtLabel;
-    graphics->GetTextExtent(L"Fixed", &widLabel, &hgtLabel);
-    graphics->DrawText((L"Fixed"), LeftScoreX - (widLabel/4), ScoreLabelY+(hgtLabel/2));
-
-    graphics->GetTextExtent(L"Missed", &widLabel, &hgtLabel);
-    graphics->DrawText((L"Missed"), (GameWidth/2) - (widLabel/3), ScoreLabelY+(hgtLabel/2));
-
-    graphics->GetTextExtent(L"Oops", &widLabel, &hgtLabel);
-    graphics->DrawText((L"Oops"), (GameWidth-LeftScoreX) - (widLabel/4), ScoreLabelY+(hgtLabel/2));
 
 	//This isn't being hit since there is no bug in mItems yet
 	for(auto item : mItems)
 	{
         item->Draw(graphics);
 	}
+
+    //  Draw Scoreboard
+    mScoreboard->Draw(graphics);
 
     graphics->PopState();
 }

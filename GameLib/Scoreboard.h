@@ -36,8 +36,19 @@ public:
 	 */
     int GetOops() {return mOops;}
 
-
+    /**
+     * Update Score
+     * @param fix
+     * @param miss
+     * @param oop
+     */
     void KeepScore(int fix, int miss, int oop);
+
+    /**
+     * Draw Scoreboard
+     * @param gc
+     */
+    void Draw(std::shared_ptr<wxGraphicsContext> gc);
 };
 
 #endif //PROJECT1_SCOREBOARD_H

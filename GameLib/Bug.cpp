@@ -39,13 +39,12 @@ Bug::Bug(Game *game, const std::wstring &filename) :
  */
 void Bug::Update(double elapsed)
 {
-	//Need to do loction of program
-	auto angle = atan2(500-GetY(),625-GetX());
+	//Need to be location of program instead of 625,500
+	angle_rotation = atan2(500-GetY(),625-GetX());
 	double speed = sqrt(mSpeedX*mSpeedX+mSpeedY*mSpeedY);
-	double newX = GetX() + elapsed * speed * cos(angle);
-	double newY = GetY() + elapsed * speed * sin(angle);
+	double newX = GetX() + elapsed * speed * cos(angle_rotation);
+	double newY = GetY() + elapsed * speed * sin(angle_rotation);
 	SetLocation(newX,newY);
-
 }
 
 ///**

@@ -65,7 +65,7 @@ public:
 	 * Draw this Item
 	 * @param dc  Device context to draw on
 	 */
-	virtual void Draw(wxDC *dc){}
+	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics){}
 
     // Functions ----
 

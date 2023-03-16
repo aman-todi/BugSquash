@@ -1,6 +1,6 @@
 /**
  * @file GarbageBug.cpp
- * @author srira
+ * @author sriram
  */
 
 #include "pch.h"
@@ -23,8 +23,7 @@ const int GarbageBugNumSpriteImages = 6;
 GarbageBug::GarbageBug(Game *game) : Bug(game, GarbageBugSpriteImageName)
 {
 
-	mBugBitmap = std::make_unique<wxBitmap>(GarbageBugSpriteImageName,wxBITMAP_TYPE_ANY);
-	mBugSplatBitmap = std::make_unique<wxBitmap>(GarbageBugSplatImageName,wxBITMAP_TYPE_ANY);
+	mBugSplatBitmap = std::make_shared<wxBitmap>(GarbageBugSplatImageName,wxBITMAP_TYPE_ANY);
 	wxImage spriteSheet(GarbageBugSpriteImageName, wxBITMAP_TYPE_ANY);
 
 	// Get the height of each image
@@ -33,7 +32,7 @@ GarbageBug::GarbageBug(Game *game) : Bug(game, GarbageBugSpriteImageName)
 	for (int i = 0; i < GarbageBugNumSpriteImages; i++)
 	{
 		auto image = spriteSheet.GetSubImage(wxRect(0, i * imageHeight, imageHeight, imageHeight));
-		mSpriteSheetFrames.push_back(std::make_unique<wxBitmap>(image));
+		mSpriteSheetFrames.push_back(std::make_shared<wxImage>(image));
 	}
 	// Put the standing sprite at index 0
 	std::reverse(mSpriteSheetFrames.begin(),mSpriteSheetFrames.end());
@@ -43,24 +42,39 @@ GarbageBug::GarbageBug(Game *game) : Bug(game, GarbageBugSpriteImageName)
  * Draws the GarbageBug or splat GarbageBug
  * @param dc Device context to draw on
  */
-void GarbageBug::Draw(wxDC *dc)
+void GarbageBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
+
 	if (!mSplat)
 	{
-		double wid = mBugBitmap->GetWidth();
-		double hit = mBugBitmap->GetHeight();
+		auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];
+		 //Create a graphics context
+		//auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
+		auto currentBugBitmap = gc->CreateBitmapFromImage(*currentBugImage);
 
-		// Draw the bug image using the device context
-		dc->DrawBitmap(*(mSpriteSheetFrames[mCurrentFrameIndex]), int(GetX() - wid / 2),
-					   int(GetY() - hit / 2));
+		double wid = currentBugImage->GetWidth();
+		double hit = currentBugImage->GetHeight();
+
+		gc->PushState();
+		// Translate to the center of the image
+		gc->Translate(GetX(), GetY());
+
+		// Rotate the image by the specified angle
+		gc->Rotate(this->GetAngleToRotate());
+
+		gc->DrawBitmap(currentBugBitmap,
+					    - wid / 2, (- hit / 2), wid, hit);
+
+		gc->PopState();
+
 	}
 	else
 	{
 		double wid = mBugSplatBitmap->GetWidth();
 		double hit = mBugSplatBitmap->GetHeight();
-		dc->DrawBitmap(*mBugSplatBitmap,
+		gc->DrawBitmap(*mBugSplatBitmap,
 					   int(GetX() - wid / 2),
-					   int(GetY() - hit / 2));
+					   int(GetY() - hit / 2),wid,hit);
 	}
 }
 

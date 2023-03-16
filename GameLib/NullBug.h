@@ -17,16 +17,14 @@ class NullBug: public Bug
 {
 private:
 	/// array to hold individual frames of the animation
-	std::vector<std::unique_ptr<wxBitmap>> mSpriteSheetFrames;
+	std::vector<std::shared_ptr<wxImage>> mSpriteSheetFrames;
 
 	/// index of the current frame to draw
 	int mCurrentFrameIndex = 0;
 
-	/// The bitmap we can display for this Bug
-	std::unique_ptr<wxBitmap> mBugBitmap;
 
 	/// The bitmap we can display for this Bug splash
-	std::unique_ptr<wxBitmap> mBugSplatBitmap;
+	std::shared_ptr<wxBitmap> mBugSplatBitmap;
 
 	/// Has the bug been clicked on
 	bool mSplat = false;
@@ -42,7 +40,7 @@ public:
 	void operator=(const NullBug &) = delete;
 	NullBug(Game *game);
 
-	virtual void Draw(wxDC* dc) override;
+	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
 
 	//void OnTimer(wxTimerEvent &event);
 

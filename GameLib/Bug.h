@@ -25,6 +25,9 @@ private:
     /// in pixels per second
     double mSpeedY = 0;
 
+	///angle to rotation
+	double angle_rotation = 0;
+
 
 public:
     /// Default constructor (disabled)
@@ -52,7 +55,9 @@ public:
 	 * Draw this item
 	 * @param dc Device context to draw on
 	 */
-	virtual void Draw(wxDC *dc){}
+	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics){}
+
+	double GetAngleToRotate(){return angle_rotation;}
 	//virtual void Draw(wxDC *dc);
 
     // not sure if either of these did anything

@@ -312,8 +312,11 @@ void Game::UpdateList(std::shared_ptr<Item> item)
 std::shared_ptr<Item> Game::OnLeftDown(double x, double y)
 {
 	std::shared_ptr<Item> clicked = nullptr;
-	clicked = this->HitTest(x, y);
 
+    double oX = (x - mXOffset) / mScale;
+    double oY = (y - mYOffset) / mScale;
+
+    clicked = this->HitTest(oX, oY);
 	if (clicked != nullptr)
 	{
 		clicked->ClickedOn();

@@ -112,6 +112,12 @@ public:
 
 	/// visitor
 	void Accept(ItemsVisitor* visitor);
+
+	/**
+	 * Set the item single clicked to splat
+	 * @param x, y location which was clicked
+	 */
+	std::shared_ptr<Item> OnLeftDown(double x, double y);
 };
 
 #endif //PROJECT1_GAMELIB_GAME_H

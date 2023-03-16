@@ -133,7 +133,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,wxDC *dc ,int widt
 	//This isn't being hit since there is no bug in mItems yet
 	for(auto bug : mItems)
 	{
-		bug->Draw(graphics);
+		bug->Draw(dc);
 	}
 
     graphics->PopState();
@@ -148,28 +148,22 @@ Game::Game()
     mScoreboard = std::make_shared<Scoreboard>();
 
 	// Makes the bug
-	shared_ptr<Item> garbageBug1 = make_shared<GarbageBug>(this);
-	shared_ptr<Item> nullBug1 = make_shared<NullBug>(this);
-	shared_ptr<Item> feature1 = make_shared<FeatureBug>(this);
-	shared_ptr<Item> garbageBug2 = make_shared<GarbageBug>(this);
-	shared_ptr<Item> nullBug2 = make_shared<NullBug>(this);
-	shared_ptr<Item> feature2 = make_shared<FeatureBug>(this);
+	shared_ptr<Item> garbageBug = make_shared<GarbageBug>(this);
+	shared_ptr<Item> nullBug = make_shared<NullBug>(this);
+	shared_ptr<Item> feature = make_shared<FeatureBug>(this);
+    shared_ptr<Item> redundancyBug = make_shared<RedundancyBug>(this);
 
 	// Sets the location for the bugs
-	garbageBug1->SetLocation(400,50);
-	nullBug1->SetLocation(800,800);
-	feature1->SetLocation(400,800);
-	garbageBug2->SetLocation(0,0);
-	nullBug2->SetLocation(200,160);
-	feature2->SetLocation(60,360);
+	garbageBug->SetLocation(626,500);
+	nullBug->SetLocation(800,800);
+	feature->SetLocation(400,400);
+    redundancyBug->SetLocation(100,800);
 
 	// Pushed the bug onto Item
-	mItems.push_back(garbageBug1);
-	mItems.push_back(nullBug1);
-	mItems.push_back(feature1);
-	mItems.push_back(garbageBug2);
-	mItems.push_back(nullBug2);
-	mItems.push_back(feature2);
+	mItems.push_back(garbageBug);
+	mItems.push_back(nullBug);
+	mItems.push_back(feature);
+    mItems.push_back(redundancyBug);
 }
 
 /**
@@ -316,5 +310,20 @@ void Game::UpdateList(std::shared_ptr<Item> item)
 	}
 	//push the item back to the end of the list
 	mItems.push_back(item);
+}
+
+std::shared_ptr<Item> Game::OnLeftDown(double x, double y)
+{
+	std::shared_ptr<Item> clicked = nullptr;
+
+    double oX = (x - mXOffset) / mScale;
+    double oY = (y - mYOffset) / mScale;
+
+    clicked = this->HitTest(oX, oY);
+	if (clicked != nullptr)
+	{
+		clicked->ClickedOn();
+	}
+	return clicked;
 }
 

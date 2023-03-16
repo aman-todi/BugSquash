@@ -16,7 +16,20 @@
 class RedundancyBug: public Bug
 {
 private:
+    /// array to hold individual frames of the animation
+    std::vector<std::unique_ptr<wxBitmap>> mSpriteSheetFrames;
 
+    /// index of the current frame to draw
+    int mCurrentFrameIndex = 0;
+
+    /// The bitmap we can display for this Bug
+    std::unique_ptr<wxBitmap> mBugBitmap;
+
+    /// The bitmap we can display for this Bug splash
+    std::unique_ptr<wxBitmap> mBugSplatBitmap;
+
+    /// Has the bug been clicked on
+    bool mSplat = false;
 public:
 
 	/// Default constructor (disabled)
@@ -27,7 +40,19 @@ public:
 
 	/// Assignment operator
 	void operator=(const RedundancyBug &) = delete;
-	RedundancyBug(Game *game);
+
+    RedundancyBug(Game *game);
+
+    virtual void Draw(wxDC* dc) override;
+
+    void OnTimer(wxTimerEvent &event);
+
+    void UpdateFrame();
+
+    /**
+ 	 * Set the bug to splat
+	 */
+    void ClickedOn() override { mSplat=true; }
 
 	/**
 	* Accept a visitor

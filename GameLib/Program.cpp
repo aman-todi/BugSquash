@@ -28,7 +28,7 @@ Program::Program(Game* game) : Item(game, ProgramImage)
     double centerY = GameHeight/2;
 
 
-	this->SetLocation(625, 500);
+	this->SetLocation(centerX, centerY);
     mLaptopImage = std::make_shared<wxImage>(ProgramImage);
 }
 

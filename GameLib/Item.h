@@ -67,9 +67,31 @@ public:
 	 */
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics){}
 
-    // Functions ----
+	/**
+	 * virtual HitTest always returns false
+	 * @param x, y location clicked
+	 * @return bool
+	 */
+    virtual bool HitTest(int x, int y) { return false; };
 
-    virtual bool HitTest(int x, int y);
+	/**
+ 	 * Get item (bitmap) width
+ 	 * @return width in pixels
+ 	 */
+	double GetWidth() const {return mItemBitmap->GetWidth(); }
+
+	/**
+	 * Get item (bitmap) height
+	 * @return height in pixels
+	 */
+	double GetHeight() const {return mItemBitmap->GetHeight(); }
+
+	/**
+	 * Check if area is transparent
+	 * @param x, y
+	 * @return bool
+	 */
+	bool CheckTransparency(double x , double y) { return mItemImage->IsTransparent(int(x), int(y)); }
 
     double DistanceTo(std::shared_ptr<Item> item);
 

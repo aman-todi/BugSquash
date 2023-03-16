@@ -46,6 +46,10 @@ public:
 
 	void UpdateFrame();
 
+	/**
+ 	 * Set the bug to splat
+ 	 */
+	void ClickedOn() override { mSplat=true; }
 
 	/**
 	* Accept a visitor
@@ -53,10 +57,6 @@ public:
 	*/
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitNullBug(this); }
 
-	/**
- 	 * Set the bug to splat
- 	 */
-	void SetSplat(){ mSplat = true; }
 };
 
 #endif //GAME_GAME_GAMELIB_NULLBUG_H

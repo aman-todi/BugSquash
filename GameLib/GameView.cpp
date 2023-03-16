@@ -18,7 +18,6 @@
 #include "NullBug.h"
 #include "RedundancyBug.h"
 #include "FeatureBug.h"
-#include "SingleSplatBugsVisitor.h"
 
 
 /// Frame duration in milliseconds
@@ -53,15 +52,10 @@ void GameView::Initialize(wxFrame* parent)
 	//parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnFileSaveAs, this, wxID_SAVEAS);
 	//parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnFileOpen, this, wxID_OPEN);
     Bind(wxEVT_SIZE , &GameView::OnSize, this, IDM_RESIZE);
-	parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddGarbageBug, this, IDM_ADDGARBAGEBUG);
-	parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddNullBug, this, IDM_ADDNULLBUG);
-	parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddRedundancyBug, this, IDM_ADDREDUNDANCYBUG);
-	parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddFeatureBug, this, IDM_ADDFEATUREBUG);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnViewShrink, this, IDM_SHRINK);
 
 	// The mouse events
 	Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
-	Bind(wxEVT_RIGHT_DOWN, &GameView::OnRightDown, this);
 	Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
 	Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
 	Bind(wxEVT_LEFT_DCLICK, &GameView::OnDoubleClick, this);
@@ -156,33 +150,9 @@ void GameView::OnTimer2(wxTimerEvent &event){
 void GameView::OnLeftDown(wxMouseEvent &event)
 {
 	//Check to see if we hit a bug
-	mClickedItem = mGame.HitTest(event.GetX(),event.GetY());
+	mClickedItem = mGame.OnLeftDown(event.GetX(),event.GetY());
 	if(mClickedItem != nullptr)
 	{
-		//mClickedItem->ClickedOn(); - how about we use a visitor to accomplish this
-		SingleSplatBugsVisitor visitor;
-		mGame.Accept(&visitor);
-
-		//Moves the bug to the end of the list
-		mGame.UpdateList(mClickedItem);
-	}
-	Refresh();
-}
-
-/**
-* Handle the right mouse button down event
-* @param event
-*/
-void GameView::OnRightDown(wxMouseEvent &event)
-{
-	//Check to see if we hit a bug
-	mClickedItem = mGame.HitTest(event.GetX(),event.GetY());
-	if(mClickedItem != nullptr)
-	{
-		//mClickedItem->ClickedOn(); - how about we use a visitor to accomplish this
-		SingleSplatBugsVisitor visitor;
-		mGame.Accept(&visitor);
-
 		//Moves the bug to the end of the list
 		mGame.UpdateList(mClickedItem);
 	}
@@ -226,45 +196,6 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 	}
 }
 
-/**
- * Menu handler for Add Bug> Garbage Bug
- * @param event Menu event
- */
- void GameView::OnAddGarbageBug(wxCommandEvent &event) {
-	 auto bug = make_shared<GarbageBug>(&mGame);
-	 mGame.Add(bug);
-	 Refresh();
- }
-
-/**
-* Menu handler for Add Bug> Null Bug
-* @param event Menu event
-*/
-void GameView::OnAddNullBug(wxCommandEvent &event) {
-	auto bug = make_shared<NullBug>(&mGame);
-	mGame.Add(bug);
-	Refresh();
-}
-
-/**
- * Menu handler for Add Bug> Redundancy Bug
- * @param event Menu event
- */
-void GameView::OnAddRedundancyBug(wxCommandEvent &event) {
-	auto bug = make_shared<RedundancyBug>(&mGame);
-	mGame.Add(bug);
-	Refresh();
-}
-
-/**
- * Menu handler for Add Bug> Feature Bug
- * @param event Menu event
- */
-void GameView::OnAddFeatureBug(wxCommandEvent &event) {
-	auto bug = make_shared<FeatureBug>(&mGame);
-	mGame.Add(bug);
-	Refresh();
-}
 /**
  * Mea
  * @param event Menu event

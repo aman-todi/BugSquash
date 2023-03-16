@@ -25,6 +25,8 @@ private:
     /// in pixels per second
     double mSpeedY = 0;
 
+	double mAngleToRotate=0;
+
 
 public:
     /// Default constructor (disabled)
@@ -65,6 +67,7 @@ public:
 	virtual void Update(double elapsed) override;
 	// I think this should be virtual - aman
     //made not virtual, not sure if it did anything
+	double GetAngleToRotate(){return mAngleToRotate;}
 
 protected:
     Bug(Game* game, const std::wstring& filename);

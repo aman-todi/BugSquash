@@ -54,7 +54,6 @@ const int RedundancyNumSpriteImages = 1;
  */
 RedundancyBug::RedundancyBug(Game *game) : Bug(game, RedundancyBugImage)
 {
-    mBugBitmap = std::make_unique<wxBitmap>(RedundancyBugImage,wxBITMAP_TYPE_ANY);
     mBugSplatBitmap = std::make_unique<wxBitmap>(RedundancyFlySplatImageName,wxBITMAP_TYPE_ANY);
     wxImage spriteSheet(RedundancyBugImage, wxBITMAP_TYPE_ANY);
 
@@ -64,7 +63,7 @@ RedundancyBug::RedundancyBug(Game *game) : Bug(game, RedundancyBugImage)
     for (int i = 0; i < RedundancyNumSpriteImages; i++)
     {
         auto image = spriteSheet.GetSubImage(wxRect(0, i * imageHeight, imageHeight, imageHeight));
-        mSpriteSheetFrames.push_back(std::make_unique<wxBitmap>(image));
+        mSpriteSheetFrames.push_back(std::make_shared<wxImage>(image));
     }
     // Put the standing sprite at index 0
     std::reverse(mSpriteSheetFrames.begin(),mSpriteSheetFrames.end());
@@ -74,25 +73,39 @@ RedundancyBug::RedundancyBug(Game *game) : Bug(game, RedundancyBugImage)
  * Draws the bug if it is either splat or moving
  * @param dc The device context to draw on
  */
-void RedundancyBug::Draw(wxDC *dc)
+void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
-    if (!mSplat)
-    {
-        double wid = mBugBitmap->GetWidth();
-        double hit = mBugBitmap->GetHeight();
+	if (!mSplat)
+	{
+		auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];
+		//Create a graphics context
+		//auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
+		auto currentBugBitmap = gc->CreateBitmapFromImage(*currentBugImage);
 
-        // Draw the bug image using the device context
-        dc->DrawBitmap(*(mSpriteSheetFrames[mCurrentFrameIndex]), int(GetX() - wid / 2),
-                int(GetY() - hit / 2));
-    }
-    else
-    {
-        double wid = mBugSplatBitmap->GetWidth();
-        double hit = mBugSplatBitmap->GetHeight();
-        dc->DrawBitmap(*mBugSplatBitmap,
-                int(GetX() - wid / 2),
-                int(GetY() - hit / 2));
-    }
+		double wid = currentBugImage->GetWidth();
+		double hit = currentBugImage->GetHeight();
+
+		gc->PushState();
+		// Translate to the center of the image
+		gc->Translate(GetX(), GetY());
+
+		// Rotate the image by the specified angle
+		gc->Rotate(this->GetAngleToRotate());
+
+		gc->DrawBitmap(currentBugBitmap,
+					   - wid / 2, (- hit / 2), wid, hit);
+
+		gc->PopState();
+
+	}
+	else
+	{
+		double wid = mBugSplatBitmap->GetWidth();
+		double hit = mBugSplatBitmap->GetHeight();
+		gc->DrawBitmap(*mBugSplatBitmap,
+					   int(GetX() - wid / 2),
+					   int(GetY() - hit / 2),wid,hit);
+	}
 }
 
 /**

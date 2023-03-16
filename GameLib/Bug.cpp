@@ -40,24 +40,24 @@ Bug::Bug(Game *game, const std::wstring &filename) :
 void Bug::Update(double elapsed)
 {
 	//Need to do loction of program
-	auto angle = atan2(500-GetY(),625-GetX());
+	mAngleToRotate = atan2(500-GetY(),625-GetX());
 	double speed = sqrt(mSpeedX*mSpeedX+mSpeedY*mSpeedY);
-	double newX = GetX() + elapsed * speed * cos(angle);
-	double newY = GetY() + elapsed * speed * sin(angle);
+	double newX = GetX() + elapsed * speed * cos(mAngleToRotate);
+	double newY = GetY() + elapsed * speed * sin(mAngleToRotate);
 	SetLocation(newX,newY);
 
 }
 
-///**
-// * Hit test x,y to see if they are clicking on this bug.
-// * @param x X location in pixels
-// * @param y Y location in pixels
-// * @return true if clicked on bug
-// */
-//bool Bug::HitTest(int x, int y)
-//{
-//	double dx = x - GetX();
-//	double dy = y - GetY();
-//
-//	return sqrt(dx * dx + dy * dy) < 50;
-//}
+/**
+ * Hit test x,y to see if they are clicking on this bug.
+ * @param x X location in pixels
+ * @param y Y location in pixels
+ * @return true if clicked on bug
+ */
+bool Bug::HitTest(int x, int y)
+{
+	double dx = x - GetX();
+	double dy = y - GetY();
+
+	return sqrt(dx * dx + dy * dy) < 50;
+}

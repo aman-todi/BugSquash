@@ -76,7 +76,7 @@ public:
 	void DeleteBug(std::shared_ptr<Bug> item);
 
 
-	void OnDraw(std::shared_ptr<wxGraphicsContext> graphics,wxDC *dc,int width, int height);
+	void OnDraw(std::shared_ptr<wxGraphicsContext> graphics,int width, int height);
 
 	void Clear();
 

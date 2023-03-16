@@ -24,6 +24,11 @@ private:
     ///Laptop Bitmap
     wxGraphicsBitmap mLaptopBitmap;
 
+    /// Program Name
+    enum class Name {BugSquash, Receivables};
+
+    Name mName;
+
 public:
 	Program(Game* game);
 
@@ -33,7 +38,10 @@ public:
 	 */
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitProgram(this); }
 
-    void Draw(std::shared_ptr<wxGraphicsContext> gc);
+    void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
+
+    void SetLevelBugSquash() {mName = Name::BugSquash;}
+    void SetLevelReceivables() {mName = Name::Receivables;}
 };
 
 #endif //GAME_GAMELIB_PROGRAM_H

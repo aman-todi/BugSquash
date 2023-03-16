@@ -63,7 +63,7 @@ const int ScoreLabelY = 100;
  * @param width The width of the screen
  * @param height The height of the scree
  */
-void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,wxDC *dc ,int width, int height)
+void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,int width, int height)
 {
 
     //
@@ -126,14 +126,10 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,wxDC *dc ,int widt
     graphics->GetTextExtent(L"Oops", &widLabel, &hgtLabel);
     graphics->DrawText((L"Oops"), (GameWidth-LeftScoreX) - (widLabel/4), ScoreLabelY+(hgtLabel/2));
 
-
-    //Draw Laptop
-    mProgram->Draw(graphics);
-
 	//This isn't being hit since there is no bug in mItems yet
-	for(auto bug : mItems)
+	for(auto item : mItems)
 	{
-		bug->Draw(graphics);
+        item->Draw(graphics);
 	}
 
     graphics->PopState();
@@ -144,7 +140,8 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,wxDC *dc ,int widt
  */
 Game::Game()
 {
-    mProgram = std::make_shared<Program>(this);
+    shared_ptr<Item> program = std::make_shared<Program>(this);
+
     mScoreboard = std::make_shared<Scoreboard>();
 
 	// Makes the bug
@@ -166,6 +163,9 @@ Game::Game()
 	nullBug2->SetLocation(200,300);
 	feature2->SetLocation(400,40);
 	redundancyBug2->SetLocation(1,400);
+
+    // Push Program onto Item
+    mItems.push_back(program);
 
 	// Pushed the bug onto Item
 	mItems.push_back(garbageBug1);

@@ -18,6 +18,9 @@ const std::wstring ProgramImage = L"images/laptop.png";
 
 /// Program name font size
 const int ProgramNameFontSize = 22;
+
+const wxColour FontColor = wxColour(0, 200, 200);
+
 /**
  * Constructor
  * @param game Game this bug is a member of
@@ -26,7 +29,6 @@ Program::Program(Game* game) : Item(game, ProgramImage)
 {
     double centerX = GameWidth/2;
     double centerY = GameHeight/2;
-
 
 	this->SetLocation(centerX, centerY);
     mLaptopImage = std::make_shared<wxImage>(ProgramImage);
@@ -44,6 +46,27 @@ void Program::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
     //Draw Laptop
     gc->DrawBitmap(mLaptopBitmap, GetX() - laptopWid/3, GetY() - laptopHgt/3, laptopWid, laptopHgt);
+
+    //Draw Text
+    wxFont fontLabel(15,
+            wxFONTFAMILY_SWISS,
+            wxFONTSTYLE_NORMAL,
+            wxFONTWEIGHT_BOLD);
+
+    double wid, hit;
+
+    if (mName == Name::BugSquash) {
+        gc->GetTextExtent(L"Bug Squash", &wid, &hit);
+        gc->SetFont(fontLabel, FontColor);
+
+        gc->DrawText(L"Bug Squash", GetX()-wid/12, GetY());
+    } else if (mName == Name::Receivables) {
+        gc->GetTextExtent(L"Receivables", &wid, &hit);
+        gc->SetFont(fontLabel, FontColor);
+
+        gc->DrawText(L"Receivables", GetX()-wid/12, GetY() );
+    }
+
 }
 
 

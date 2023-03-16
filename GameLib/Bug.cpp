@@ -49,7 +49,6 @@ void Bug::Update(double elapsed)
 	double newX = GetX() + elapsed * speed * cos(mAngleToRotate);
 	double newY = GetY() + elapsed * speed * sin(mAngleToRotate);
 	SetLocation(newX,newY);
-
 }
 
 /**

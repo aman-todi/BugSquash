@@ -25,7 +25,7 @@ private:
     /// in pixels per second
     double mSpeedY = 0;
 
-	double mAngleToRotate=0;
+	double mAngleToRotate = 0;
 
 
 public:

@@ -54,6 +54,64 @@ protected:
 
 		return str;
 	}
+	/**
+	 * Test to ensure an aquarium .aqua file is empty
+	 * @param filename The name to the file
+	 */
+	void TestEmpty(wxString filename)
+	{
+		cout << "Temp file: " << filename << endl;
+
+		auto xml = ReadFile(filename);
+
+
+		ASSERT_TRUE(regex_search(xml, wregex(L"<\\?xml.*\\?>")));
+		ASSERT_TRUE(regex_search(xml, wregex(L"<aqua/>")));
+
+	}
+	/**
+	 *  Populate the game with Three NullBugs
+	 * @param game The game to populate the fish to
+	 */
+	void AddThreeNullBug(Game *game)
+	{
+
+		auto bug1 = make_shared<NullBug>(game);
+		game->Add(bug1);
+		bug1->SetLocation(500,500);
+
+
+		auto bug2 = make_shared<NullBug>(game);
+		game->Add(bug2);
+		bug2->SetLocation(750,700);
+
+		auto bug3 = make_shared<NullBug>(game);
+		game->Add(bug3);
+		bug3->SetLocation(300,800);
+
+	}
+	/**
+	 * Populates the game with one of each bug (missing the fact bugs)
+	 * @param game The game to populate the fish to
+	 */
+	void AddAllTypesOfBugs(Game *game)
+	{
+		auto nullBug = make_shared<NullBug>(game);
+		game->Add(nullBug);
+		nullBug->SetLocation(500,500);
+
+		auto garbageBug = make_shared<GarbageBug>(game);
+		game->Add(garbageBug);
+		garbageBug->SetLocation(600,250);
+
+		auto featureBug = make_shared<FeatureBug>(game);
+		game->Add(featureBug);
+		featureBug->SetLocation(400,250);
+
+		auto redundancyBug = make_shared<RedundancyBug>(game);
+		game->Add(redundancyBug);
+		redundancyBug->SetLocation(200,750);
+	}
 
 	/**
 	 * Check to make sure all the programs are being load in correct
@@ -127,17 +185,66 @@ protected:
 		ASSERT_TRUE(regex_search(xml,wregex(L"<Bug type.*  x=\"-100\" y=\"900\"")));
 	}
 
+	/**
+	 * Check to make Level one speed and Start time
+	 * was load in correctly
+	 * @param filename Name of the file read
+	 */
+	 void LevelOneBugsSpeedAndStartTime(wxString filename)
+	{
+		 auto xml = ReadFile(filename);
+
+		 //
+		 // Possible need a wild card on the Feature bugs
+		 //
+
+		// All these bugs got to the only program on the screen
+		ASSERT_TRUE(regex_search(xml,wregex(L"<Bug type.* speed=\"120\" start=\"0\"")));
+		ASSERT_TRUE(regex_search(xml,wregex(L"<Bug type.* speed=\"150\" start=\"3\"")));
+		ASSERT_TRUE(regex_search(xml,wregex(L"<Bug type.* speed=\"150\" start=\"5\"")));
+		ASSERT_TRUE(regex_search(xml,wregex(L"<Bug type.* speed=\"120\" start=\"8\"")));
+		// This one might need a wildcard in it
+		ASSERT_TRUE(regex_search(xml,wregex(L"<feature speed=\"120\" start=\"10\"")));
+
+		cout << "First Fat Bug " << endl;
+		ASSERT_TRUE(regex_search(xml,wregex(L"<Bug type.* speed=\"60\" start=\"10\"")));
+		ASSERT_TRUE(regex_search(xml,wregex(L"<Bug type.* speed=\"150\" start=\"12\"")));
+		ASSERT_TRUE(regex_search(xml,wregex(L"<feature speed=\"120\" start=\"13\"")));
+		ASSERT_TRUE(regex_search(xml,wregex(L"<Bug type.* speed=\"120\" start=\"15\"")));
+		cout << "Second Fat Bug" << endl;
+		ASSERT_TRUE(regex_search(xml,wregex(L"<Bug type.* speed=\"150\" start=\"18\"")));
+		ASSERT_TRUE(regex_search(xml,wregex(L"<Bug type.*  speed=\"120\" start=\"20\"")));
+
+		cout << "third Fat bug" << endl;
+		ASSERT_TRUE(regex_search(xml,wregex(L"<Bug type.*  speed=\"60\" start=\"23\"")));
+	}
 
 };
+
 TEST_F(GameTest,Construct)
 {
 	Game game;
 }
 
+TEST_F(GameTest,FatBugs)
+{
+	//Load(L"../Tests/test-data/garbage-bug-2.xml");
+
+}
+
+TEST(GameTest,ADD)
+{
+	Game game;
+
+
+}
+
 TEST_F(GameTest,Load)
 {
+	//This is not complete yet eather
 	auto path = TempPath();
 
+	Game game;
 
 }
 

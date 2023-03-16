@@ -75,3 +75,24 @@ TEST(NULLBug,GetterAndSetter)
 	// that might be where are error could be coming from
 	ASSERT_NEAR(nullBug.GetHeight(),100,.001);
 }
+TEST(NullBug,Update)
+{
+	Game game;
+	NullBug nullBug(&game);
+
+	nullBug.SetLocation(50,50);
+
+	// Check for time update
+	nullBug.Update(0);
+	ASSERT_NEAR(nullBug.GetX(),50,.1);
+	ASSERT_NEAR(nullBug.GetY(),50,.1);
+
+	nullBug.Update(2.0);
+	// These will need change once we are not hard coding the program
+	ASSERT_NEAR(nullBug.GetX(),104.6,.1);
+	ASSERT_NEAR(nullBug.GetY(),92.75,.1);
+
+	nullBug.Update(2.0);
+	ASSERT_NEAR(nullBug.GetX(),159.27,.1);
+	ASSERT_NEAR(nullBug.GetY(),135.51,.1);
+}

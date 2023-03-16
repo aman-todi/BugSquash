@@ -38,6 +38,7 @@ public:
 
 	/// Assignment operator
 	void operator=(const NullBug &) = delete;
+
 	NullBug(Game *game);
 
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;

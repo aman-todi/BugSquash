@@ -28,17 +28,8 @@ class Program;
 class Game
 {
 private:
-    /// The Laptop image
-    std::shared_ptr<wxImage> mLaptopImage;
-
-    ///Laptop Bitmap
-	wxGraphicsBitmap mLaptopBitmap;
-
 	/// All of the bugs in game
 	std::vector<std::shared_ptr<Item> > mItems;
-
-    ///Program
-    std::shared_ptr<Program> mProgram;
 
     ///Game Scoreboard
     std::shared_ptr<Scoreboard> mScoreboard;

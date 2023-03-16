@@ -53,15 +53,17 @@ void Program::Draw(std::shared_ptr<wxGraphicsContext> gc)
             wxFONTSTYLE_NORMAL,
             wxFONTWEIGHT_BOLD);
 
-    double wid, hit;
+    double wid = 0;
+	double hit = 0;
 
     if (mName == Name::BugSquash) {
-        gc->GetTextExtent(L"Bug Squash", &wid, &hit);
+		// This is breaking mac computers
+       // gc->GetTextExtent(L"Bug Squash", &wid, &hit);
         gc->SetFont(fontLabel, FontColor);
 
         gc->DrawText(L"Bug Squash", GetX()-wid/12, GetY());
     } else if (mName == Name::Receivables) {
-        gc->GetTextExtent(L"Receivables", &wid, &hit);
+        //gc->GetTextExtent(L"Receivables", &wid, &hit);
         gc->SetFont(fontLabel, FontColor);
 
         gc->DrawText(L"Receivables", GetX()-wid/12, GetY() );

@@ -54,6 +54,7 @@ protected:
 
 		return str;
 	}
+
 	/**
 	 * Check to make sure all the programs are being load in correct
 	 * @param filename Name of the file to read

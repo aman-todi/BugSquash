@@ -16,6 +16,10 @@ const double MaxSpeedX = 50;
 /// pixels per second
 const double MinSpeedX = 20;
 
+/// How close the user has click
+/// For the bug to splat
+const double HitRadius = 50;
+
 /**
  * Constructor
  * @param game The game we are in
@@ -59,5 +63,5 @@ bool Bug::HitTest(int x, int y)
 	double dx = x - GetX();
 	double dy = y - GetY();
 
-	return sqrt(dx * dx + dy * dy) < 50;
+	return sqrt(dx * dx + dy * dy) < HitRadius;
 }

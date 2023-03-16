@@ -11,9 +11,8 @@
 #include <fstream>
 #include <streambuf>
 #include <wx/filename.h>
-
-
 #include "gtest/gtest.h"
+
 //Bugs
 #include <NullBug.h>
 #include <FeatureBug.h>
@@ -24,7 +23,7 @@
 using namespace std;
 
 
-class GameTest : public :: testing ::Test{
+class GameTest : public ::testing::Test{
 protected:
 	/**
 	* Create a path to a place to put temporary files
@@ -232,12 +231,26 @@ TEST_F(GameTest,FatBugs)
 
 }
 
-TEST(GameTest,ADD)
+TEST_F(GameTest,ADD)
 {
 	Game game;
 
 
 }
+
+TEST_F(GameTest,OnLeftDown)
+{
+	Game game;
+
+	AddThreeNullBug(&game);
+
+	shared_ptr<Item> nullBug = game.OnLeftDown(500,500);
+
+//	ASSERT_NEAR(nullBug->GetY(),500,.01);
+//	ASSERT_NEAR(nullBug->GetX(),500,.01);
+
+}
+
 
 TEST_F(GameTest,Load)
 {

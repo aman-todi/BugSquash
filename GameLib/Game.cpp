@@ -278,6 +278,7 @@ void Game::UpdateList(std::shared_ptr<Item> item)
 	}
 	//push the item back to the end of the list
 	mItems.push_back(item);
+	//mItems.insert(mItems.begin(),item);
 }
 
 std::shared_ptr<Item> Game::OnLeftDown(double x, double y)

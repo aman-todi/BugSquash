@@ -58,12 +58,12 @@ void Program::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
     if (mName == Name::BugSquash) {
 		// This is breaking mac computers
-       // gc->GetTextExtent(L"Bug Squash", &wid, &hit);
+        //gc->GetTextExtent(L"Bug Squash", &wid, &hit);
         gc->SetFont(fontLabel, FontColor);
 
         gc->DrawText(L"Bug Squash", GetX()-wid/12, GetY());
     } else if (mName == Name::Receivables) {
-        //gc->GetTextExtent(L"Receivables", &wid, &hit);
+        gc->GetTextExtent(L"Receivables", &wid, &hit);
         gc->SetFont(fontLabel, FontColor);
 
         gc->DrawText(L"Receivables", GetX()-wid/12, GetY() );

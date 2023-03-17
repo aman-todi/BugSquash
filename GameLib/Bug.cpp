@@ -28,8 +28,7 @@ const double HitRadius = 50;
 Bug::Bug(Game *game, const std::wstring &filename) :
         Item(game, filename)
 {
-    std::uniform_real_distribution<> distribution(MinSpeedX, MaxSpeedX);
-    mSpeed = distribution(game->GetRandom());
+
 }
 
 /**

@@ -69,7 +69,7 @@ public:
 	virtual ~Game() = default;
 
 
-	void Add(std::shared_ptr<Bug> item);
+	void Add(std::shared_ptr<Item> item);
 	std::shared_ptr<Item> HitTest(int x, int y);
 //	void MoveToFront(std::shared_ptr<Bug> item);
 //	void MovetoEnd(std::shared_ptr<Bug> item);
@@ -118,7 +118,7 @@ public:
 	 * @param x, y location which was clicked
 	 */
 	std::shared_ptr<Item> OnLeftDown(double x, double y);
-	std::vector<wxXmlNode *> XmlBug(std::wstring FileName);
+	void XmlBug(std::wstring FileName);
 };
 
 #endif //PROJECT1_GAMELIB_GAME_H

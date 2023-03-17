@@ -67,7 +67,7 @@ public:
 	double GetAngleToRotate(){return mAngleToRotate;}
 
 protected:
-    Bug(Game* game, const std::wstring& filename);
+	Bug(Game* game,const std::wstring &filename);
 
 };
 

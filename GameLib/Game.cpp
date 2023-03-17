@@ -18,6 +18,7 @@
 #include "FeatureBug.h"
 #include "Program.h"
 #include "Scoreboard.h"
+#include "LevelLoader.h"
 
 using namespace std;
 
@@ -55,11 +56,18 @@ const int ScoreY = 20;
 /// Score label Y location
 const int ScoreLabelY = 100;
 
+
+/// The level0 XML
+const std::wstring LevelZeroXMLFileName = L"data/level0.xml";
+
 /// The level1 XML
 const std::wstring LevelOneXMLFileName = L"data/level1.xml";
 
-/// The level1 XML
-const std::wstring LevelZeroXMLFileName = L"data/level0.xml";
+/// The level2 XML
+const std::wstring LevelTwoXMLFileName = L"data/level2.xml";
+
+/// The level3 XML
+const std::wstring LevelThreeXMLFileName = L"data/level3.xml";
 
 /**
  * Draw the game
@@ -152,127 +160,19 @@ Game::Game()
     mProgram = std::make_shared<Program>(this);
     mScoreboard = std::make_shared<Scoreboard>();
 	wxInitAllImageHandlers();
-	// Makes the bug
-	shared_ptr<Item> garbageBug1 = make_shared<GarbageBug>(this);
-	shared_ptr<Item> nullBug1 = make_shared<NullBug>(this);
-	shared_ptr<Item> feature1 = make_shared<FeatureBug>(this);
-    shared_ptr<Item> redundancyBug1 = make_shared<RedundancyBug>(this);
-	shared_ptr<Item> garbageBug2 = make_shared<GarbageBug>(this);
-	shared_ptr<Item> nullBug2 = make_shared<NullBug>(this);
-	shared_ptr<Item> feature2 = make_shared<FeatureBug>(this);
-	shared_ptr<Item> redundancyBug2 = make_shared<RedundancyBug>(this);
 
-	// Sets the location for the bugs
-	garbageBug1->SetLocation(900,500);
-	nullBug1->SetLocation(800,800);
-	feature1->SetLocation(400,400);
-    redundancyBug1->SetLocation(100,800);
-	garbageBug2->SetLocation(0,50);
-	nullBug2->SetLocation(200,300);
-	feature2->SetLocation(400,40);
-	redundancyBug2->SetLocation(1,400);
-
-	// Pushed the bug onto Item
-	mItems.push_back(garbageBug1);
-	mItems.push_back(nullBug1);
-	mItems.push_back(feature1);
-    mItems.push_back(redundancyBug1);
-	mItems.push_back(garbageBug2);
-	mItems.push_back(nullBug2);
-	mItems.push_back(feature2);
-	mItems.push_back(redundancyBug2);
-
-
-//	auto bugNodes = XmlBug(LevelZeroXMLFileName);
-//	for (auto node:bugNodes)
-//	{
-//		wxString nodeName = node->GetName();
-//
-//		if(nodeName=="feature")
-//		{
-//			shared_ptr <Item> bug = make_shared<FeatureBug>(this);
-//			double x,y,speed;
-//			bug->SetLocation(node->GetAttribute("x").ToDouble(&x),
-//							 node->GetAttribute("y").ToDouble(&y));
-//			bug->SetSpeed(node->GetAttribute("speed").ToDouble(&speed));
-//			mItems.push_back(bug);
-//		}
-//
-//
-//		wxString bugType = node->GetAttribute("type");
-//
-//		if(bugType == "garbage")
-//		{
-//			shared_ptr <Item> bug = make_shared<GarbageBug>(this);
-//			double x,y,speed;
-//			bug->SetLocation(node->GetAttribute("x").ToDouble(&x),
-//							 node->GetAttribute("y").ToDouble(&y));
-//			bug->SetSpeed(node->GetAttribute("speed").ToDouble(&speed));
-//			mItems.push_back(bug);
-//		}
-//		else if(bugType == "null")
-//		{
-//			shared_ptr <Item> bug = make_shared<NullBug>(this);
-//			double x,y,speed;
-//			bug->SetLocation(node->GetAttribute("x").ToDouble(&x),
-//							 node->GetAttribute("y").ToDouble(&y));
-//			bug->SetSpeed(node->GetAttribute("speed").ToDouble(&speed));
-//			mItems.push_back(bug);
-//		}
-//		else if(bugType == "redundancy")
-//		{
-//			shared_ptr <Item> bug = make_shared<RedundancyBug>(this);
-//			double x,y,speed;
-//			bug->SetLocation(node->GetAttribute("x").ToDouble(&x),
-//							 node->GetAttribute("y").ToDouble(&y));
-//			bug->SetSpeed(node->GetAttribute("speed").ToDouble(&speed));
-//			mItems.push_back(bug);
-//		}
-//	}
+	LevelLoader level2(this,LevelTwoXMLFileName);
 
 }
 
 
-///**
-// * Handle a node of type bug.
-// * @param node XML node
-// */
-std::vector<wxXmlNode*> Game::XmlBug(std::wstring FileName)
-{
-	// Load the XML file
-	wxXmlDocument doc;
-
-	// Create a vector to store the bugs
-	std::vector<wxXmlNode*> bugs;
-
-	doc.Load(FileName);
-	// Get the root element
-	wxXmlNode *game = doc.GetRoot();
-
-	// Access the program element and its attributes
-	wxXmlNode* program = game->GetChildren();
-
-	// Access the bug elements and their attributes
-	wxXmlNode* bugNode = program->GetChildren();
-
-	while(bugNode!=NULL)
-	{
-		// Check if the child is a "bug" element
-		if(bugNode->GetName() == "bug" || bugNode->GetName() == "feature")
-		{
-			bugs.push_back(bugNode);
-		}
-		bugNode = bugNode->GetNext();
-	}
-	return bugs;
-}
 
 
 /**
  * Add an bug to the game
  * @param bug New bug to add
  */
-void Game::Add(std::shared_ptr<Bug> bug)
+void Game::Add(std::shared_ptr<Item> bug)
 {
 	//Use Bug visitor to get list of bugs
 	//bug->SetLocation(X, Y);

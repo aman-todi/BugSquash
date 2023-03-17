@@ -26,8 +26,6 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 	// Load the XML file
 	wxXmlDocument doc;
 
-	// Create a vector to store the bugs
-	std::vector<wxXmlNode*> bugs;
 
 	doc.Load(fileName);
 	// Get the root element
@@ -40,6 +38,9 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 	{
 		// Access the bug elements and their attributes
 		wxXmlNode *bugNode = program->GetChildren();
+
+		// Create a vector to store the bugs
+		std::vector<wxXmlNode*> bugs;
 
 		while(bugNode != NULL)
 		{
@@ -103,6 +104,12 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 				game->Add(bug);
 			}
 		}
+		shared_ptr <Item> laptop = make_shared<Program>(game);
+		double x, y;
+		bool xa = program->GetAttribute("x").ToDouble(&x);
+		bool ya = program->GetAttribute("y").ToDouble(&y);
+		laptop->SetLocation(x,y);
+		game->Add(laptop);
 		program = program->GetNext();
 	}
 }

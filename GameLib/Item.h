@@ -121,6 +121,7 @@ public:
 
 	/// Register if the bug has been clicked on
 	virtual void ClickedOn(){};
+	virtual void SetName(std::string name){}
 
     //void SetMirror(bool m);   still need to implement this
 protected:

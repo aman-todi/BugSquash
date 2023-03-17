@@ -30,6 +30,8 @@ private:
     /// Program/Level Name
     Name mName;
 
+	///program name
+	std::string mNameString;
 public:
 
     /**
@@ -55,6 +57,8 @@ public:
      */
     void SetLevelBugSquash() {mName = Name::BugSquash;}
     void SetLevelReceivables() {mName = Name::Receivables;}
+
+	void SetName(std::string name){mNameString=name;}
 };
 
 #endif //GAME_GAMELIB_PROGRAM_H

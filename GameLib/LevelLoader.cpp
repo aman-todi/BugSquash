@@ -106,9 +106,13 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 		}
 		shared_ptr <Item> laptop = make_shared<Program>(game);
 		double x, y;
+
 		bool xa = program->GetAttribute("x").ToDouble(&x);
 		bool ya = program->GetAttribute("y").ToDouble(&y);
+		std::string name= program->GetAttribute("name").ToStdString();
+
 		laptop->SetLocation(x,y);
+		laptop->SetName(name);
 		game->Add(laptop);
 		program = program->GetNext();
 	}

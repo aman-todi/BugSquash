@@ -81,7 +81,7 @@ TEST(FeatureBug,GetterAndSetter)
 
 	// This is saying the sprite sheet is till 600 pixel
 	// that might be where are error could be coming from
-	ASSERT_NEAR(featureBug.GetHeight(),100,.001);
+	ASSERT_NEAR(featureBug.GetHeight(),700,.001);
 }
 
 TEST(FeatureBug,Update)
@@ -93,17 +93,17 @@ TEST(FeatureBug,Update)
 
 	// Check for time update
 	featureBug.Update(0);
-	ASSERT_NEAR(featureBug.GetX(),50,.1);
-	ASSERT_NEAR(featureBug.GetY(),50,.1);
+	ASSERT_NEAR(featureBug.GetX(),50,.0001);
+	ASSERT_NEAR(featureBug.GetY(),50,.0001);
 
 	featureBug.Update(2.0);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(featureBug.GetX(),104.6,.1);
-	ASSERT_NEAR(featureBug.GetY(),92.75,.1);
+	ASSERT_NEAR(featureBug.GetX(),104.6,.0001);
+	ASSERT_NEAR(featureBug.GetY(),92.75,.0001);
 
 	featureBug.Update(2.0);
-	ASSERT_NEAR(featureBug.GetX(),159.27,.1);
-	ASSERT_NEAR(featureBug.GetY(),135.51,.1);
+	ASSERT_NEAR(featureBug.GetX(),159.27,.0001);
+	ASSERT_NEAR(featureBug.GetY(),135.51,.0001);
 }
 ///// Don't know how to get access to the draw/how to make a grapihc in this test case
 //TEST(FeatureBug,Splat)

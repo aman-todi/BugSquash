@@ -58,5 +58,4 @@ TEST(CodeTest, SolGetterSetter){
 
 TEST(CodeTest, Passes) {
     Code code;
-
 }

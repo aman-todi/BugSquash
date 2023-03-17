@@ -63,9 +63,8 @@ protected:
 
 		auto xml = ReadFile(filename);
 
-
 		ASSERT_TRUE(regex_search(xml, wregex(L"<\\?xml.*\\?>")));
-		ASSERT_TRUE(regex_search(xml, wregex(L"<aqua/>")));
+		ASSERT_TRUE(regex_search(xml, wregex(L"</bug-squash>")));
 
 	}
 	/**
@@ -225,31 +224,24 @@ TEST_F(GameTest,Construct)
 	Game game;
 }
 
-TEST_F(GameTest,FatBugs)
-{
-	//Load(L"../Tests/test-data/garbage-bug-2.xml");
+//TEST_F(GameTest,ADD)
+//{
+//	Game game;
+//
+//}
 
-}
-
-TEST_F(GameTest,ADD)
-{
-	Game game;
-
-
-}
-
-TEST_F(GameTest,OnLeftDown)
-{
-	Game game;
-
-	AddThreeNullBug(&game);
-
-	shared_ptr<Item> nullBug = game.OnLeftDown(500,500);
-
-//	ASSERT_NEAR(nullBug->GetY(),500,.01);
-//	ASSERT_NEAR(nullBug->GetX(),500,.01);
-
-}
+//TEST_F(GameTest,OnLeftDown)
+//{
+//	Game game;
+//
+//	AddThreeNullBug(&game);
+//
+//	shared_ptr<Item> nullBug = game.OnLeftDown(500,500);
+//
+////	ASSERT_NEAR(nullBug->GetY(),500,.01);
+////	ASSERT_NEAR(nullBug->GetX(),500,.01);
+//
+//}
 
 
 TEST_F(GameTest,Load)
@@ -258,6 +250,8 @@ TEST_F(GameTest,Load)
 	auto path = TempPath();
 
 	Game game;
+
+
 
 }
 

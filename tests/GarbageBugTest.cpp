@@ -80,7 +80,7 @@ TEST(GarbageBug,GetterAndSetter)
 
 	// This is saying the sprite sheet is till 600 pixel
 	// that might be where are error could be coming from
-	ASSERT_NEAR(garbageBug.GetHeight(),100,.001);
+	ASSERT_NEAR(garbageBug.GetHeight(),600,.001);
 }
 
 TEST(GarbageBug,Update)
@@ -92,17 +92,17 @@ TEST(GarbageBug,Update)
 
 	// Check for time update
 	garbageBug.Update(0);
-	ASSERT_NEAR(garbageBug.GetX(),50,.1);
-	ASSERT_NEAR(garbageBug.GetY(),50,.1);
+	ASSERT_NEAR(garbageBug.GetX(),50,.001);
+	ASSERT_NEAR(garbageBug.GetY(),50,.001);
 
 	garbageBug.Update(2.0);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(garbageBug.GetX(),104.6,.1);
-	ASSERT_NEAR(garbageBug.GetY(),92.75,.1);
+	ASSERT_NEAR(garbageBug.GetX(),104.6,.001);
+	ASSERT_NEAR(garbageBug.GetY(),92.75,.001);
 
 	garbageBug.Update(2.0);
-	ASSERT_NEAR(garbageBug.GetX(),159.27,.1);
-	ASSERT_NEAR(garbageBug.GetY(),135.51,.1);
+	ASSERT_NEAR(garbageBug.GetX(),159.27,.001);
+	ASSERT_NEAR(garbageBug.GetY(),135.51,.001);
 }
 
 

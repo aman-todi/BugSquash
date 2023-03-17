@@ -54,7 +54,7 @@ protected:
 		return str;
 	}
 	/**
-	 * Test to ensure an aquarium .aqua file is empty
+	 * Test to ensure an level .xml file is empty
 	 * @param filename The name to the file
 	 */
 	void TestEmpty(wxString filename)

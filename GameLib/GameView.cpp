@@ -64,10 +64,10 @@ void GameView::Initialize(wxFrame* parent)
 	//parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnFileOpen, this, wxID_OPEN);
     Bind(wxEVT_SIZE , &GameView::OnSize, this, IDM_RESIZE);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnViewShrink, this, IDM_SHRINK);
-    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelOne, this, IDM_LEVELZERO);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelZero, this, IDM_LEVELZERO);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelOne, this, IDM_LEVELONE);
-    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelOne, this, IDM_LEVELTWO);
-    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelOne, this, IDM_LEVELTHREE);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelTwo, this, IDM_LEVELTWO);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelThree, this, IDM_LEVELTHREE);
 
 	// The mouse events
 	Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);

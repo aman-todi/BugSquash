@@ -111,10 +111,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics ,int width, int he
     //  Draw Scoreboard
     mScoreboard->Draw(graphics);
 
-
-    //Draw Laptop
-    mProgram->Draw(graphics);
-
 	//This isn't being hit since there is no bug in mItems yet
 	for(auto bug : mItems)
 	{
@@ -129,7 +125,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics ,int width, int he
  */
 Game::Game()
 {
-    mProgram = std::make_shared<Program>(this);
     mScoreboard = std::make_shared<Scoreboard>();
 	wxInitAllImageHandlers();
 

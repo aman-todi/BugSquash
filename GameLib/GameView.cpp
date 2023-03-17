@@ -223,21 +223,25 @@ void GameView::OnViewShrink(wxCommandEvent& event)
 
 void GameView::OnLevelZero(wxCommandEvent& event)
 {
+	mGame.Clear();
     LevelLoader level0(&mGame,LevelZeroXMLFileName);
 }
 
 void GameView::OnLevelOne(wxCommandEvent& event)
 {
+	mGame.Clear();
     LevelLoader level1(&mGame,LevelOneXMLFileName);
 }
 
 void GameView::OnLevelTwo(wxCommandEvent& event)
 {
+	mGame.Clear();
     LevelLoader level2(&mGame,LevelTwoXMLFileName);
 }
 
 void GameView::OnLevelThree(wxCommandEvent& event)
 {
+	mGame.Clear();
     LevelLoader level3(&mGame,LevelThreeXMLFileName);
 }
 

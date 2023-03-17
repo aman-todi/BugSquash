@@ -18,7 +18,11 @@
 #include <FeatureBug.h>
 #include <GarbageBug.h>
 #include <RedundancyBug.h>
+#include <LevelLoader.h>
+#include <Program.h>
 
+/// The level1 XML
+const std::wstring LevelZeroXMLFileName = L"data/level0.xml";
 
 using namespace std;
 
@@ -244,13 +248,19 @@ TEST_F(GameTest,Construct)
 //}
 
 
-TEST_F(GameTest,Load)
+TEST_F(GameTest,LevelLoader)
 {
 	//This is not complete yet eather
 	auto path = TempPath();
 
-	Game game;
+	Game game1, gameSol;
 
+    LevelLoader levelLoad(&gameSol, LevelZeroXMLFileName);
+
+    auto program = make_shared<Program>(&game1);
+
+    game1.Add(program);
+    AddThreeNullBug(&game1);
 
 
 }

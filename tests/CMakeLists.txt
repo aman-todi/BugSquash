@@ -6,7 +6,7 @@ set(TEST_FILES
         GameTest.cpp
         NullBugTest.cpp
         ItemTest.cpp
-        ScoreBoardTest.cpp GarbageBugTest.cpp FeatureBugTest.cpp)
+        ScoreBoardTest.cpp GarbageBugTest.cpp FeatureBugTest.cpp CodeTest.cpp)
 
 # Get Google Tests
 include(FetchContent)

@@ -133,7 +133,7 @@ Game::Game()
     mScoreboard = std::make_shared<Scoreboard>();
 	wxInitAllImageHandlers();
 
-	LevelLoader level2(this,LevelTwoXMLFileName);
+	//LevelLoader level2(this,LevelTwoXMLFileName);
 
 }
 

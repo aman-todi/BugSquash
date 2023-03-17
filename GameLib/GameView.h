@@ -54,6 +54,12 @@ public:
 
 	void OnViewShrink(wxCommandEvent &event);
     void OnSize(wxSizeEvent& event);
+
+    void OnLevelZero(wxCommandEvent& event);
+    void OnLevelOne(wxCommandEvent& event);
+    void OnLevelTwo(wxCommandEvent& event);
+    void OnLevelThree(wxCommandEvent& event);
+
 //	void OnUpdateViewShrink(wxUpdateUIEvent &event);
 //	void AddLevelMenuOption(wxFrame* mainFrame, wxMenu* menu, int id, const std::wstring& text, const std::wstring& help);
 

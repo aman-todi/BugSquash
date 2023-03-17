@@ -18,7 +18,7 @@
 #include "NullBug.h"
 #include "RedundancyBug.h"
 #include "FeatureBug.h"
-
+#include "LevelLoader.h"
 
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
@@ -32,6 +32,17 @@ const static int GameHeight = 1000;
 ///Bug speed in virtual pixels per second
 const static int BugSpeed = 10;
 
+/// The level0 XML
+const std::wstring LevelZeroXMLFileName = L"data/level0.xml";
+
+/// The level1 XML
+const std::wstring LevelOneXMLFileName = L"data/level1.xml";
+
+/// The level2 XML
+const std::wstring LevelTwoXMLFileName = L"data/level2.xml";
+
+/// The level3 XML
+const std::wstring LevelThreeXMLFileName = L"data/level3.xml";
 
 using namespace std;
 
@@ -53,6 +64,10 @@ void GameView::Initialize(wxFrame* parent)
 	//parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnFileOpen, this, wxID_OPEN);
     Bind(wxEVT_SIZE , &GameView::OnSize, this, IDM_RESIZE);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnViewShrink, this, IDM_SHRINK);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelOne, this, IDM_LEVELZERO);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelOne, this, IDM_LEVELONE);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelOne, this, IDM_LEVELTWO);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelOne, this, IDM_LEVELTHREE);
 
 	// The mouse events
 	Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
@@ -205,6 +220,28 @@ void GameView::OnViewShrink(wxCommandEvent& event)
     mGame.Shrink();
     Refresh();
 }
+
+void GameView::OnLevelZero(wxCommandEvent& event)
+{
+    LevelLoader level0(&mGame,LevelZeroXMLFileName);
+}
+
+void GameView::OnLevelOne(wxCommandEvent& event)
+{
+    LevelLoader level1(&mGame,LevelOneXMLFileName);
+}
+
+void GameView::OnLevelTwo(wxCommandEvent& event)
+{
+    LevelLoader level2(&mGame,LevelTwoXMLFileName);
+}
+
+void GameView::OnLevelThree(wxCommandEvent& event)
+{
+    LevelLoader level3(&mGame,LevelThreeXMLFileName);
+}
+
+
 
 
 ///**

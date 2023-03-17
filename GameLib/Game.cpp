@@ -109,35 +109,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics ,int width, int he
     graphics->DrawRectangle(0, 0, GameWidth, GameHeight);
 
     //  Draw Scoreboard
-    //Score
-    wxFont fontScore(ScoreSize,
-            wxFONTFAMILY_SWISS,
-            wxFONTSTYLE_NORMAL,
-            wxFONTWEIGHT_BOLD);
-
-    wxFont fontLabel(LabelSize,
-            wxFONTFAMILY_SWISS,
-            wxFONTSTYLE_NORMAL,
-            wxFONTWEIGHT_BOLD);
-
-    graphics->SetFont(fontScore, FontColor);
-
-    graphics->DrawText(L"0", LeftScoreX, ScoreY);
-    graphics->DrawText(L"0", GameWidth/2, ScoreY);
-    graphics->DrawText(L"0", GameWidth-LeftScoreX, ScoreY);
-
-    //Label
-    graphics->SetFont(fontLabel, FontColor);
-
-    double widLabel, hgtLabel;
-    graphics->GetTextExtent(L"Fixed", &widLabel, &hgtLabel);
-    graphics->DrawText((L"Fixed"), LeftScoreX - (widLabel/4), ScoreLabelY+(hgtLabel/2));
-
-    graphics->GetTextExtent(L"Missed", &widLabel, &hgtLabel);
-    graphics->DrawText((L"Missed"), (GameWidth/2) - (widLabel/3), ScoreLabelY+(hgtLabel/2));
-
-    graphics->GetTextExtent(L"Oops", &widLabel, &hgtLabel);
-    graphics->DrawText((L"Oops"), (GameWidth-LeftScoreX) - (widLabel/4), ScoreLabelY+(hgtLabel/2));
+    mScoreboard->Draw(graphics);
 
 
     //Draw Laptop

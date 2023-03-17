@@ -22,7 +22,7 @@
 #include <Program.h>
 
 /// The level1 XML
-const std::wstring LevelZeroXMLFileName = L"data/level0.xml";
+const std::wstring LevelZeroXMLFileName = L"data/level1.xml";
 
 using namespace std;
 
@@ -92,6 +92,30 @@ protected:
 		bug3->SetLocation(300,800);
 
 	}
+
+    /**
+     * Add Level One Bugs
+     * @param game the game instance
+     */
+    void AddLevelOneItems(Game *game) {
+        auto program = make_shared<Program>(game);
+        program->SetName("Bug Squash");
+        game->Add(program);
+
+        auto bug1 = make_shared<GarbageBug>(game);
+        bug1->SetLocation(500, -100);
+        bug1->SetSpeed(120);
+        game->Add(bug1);
+
+        auto bug2 = make_shared<GarbageBug>(game);
+        bug2->SetLocation(1350, -100);
+        bug2->SetSpeed(150);
+        game->Add(bug2);
+
+
+
+    }
+
 	/**
 	 * Populates the game with one of each bug (missing the fact bugs)
 	 * @param game The game to populate the fish to
@@ -250,7 +274,6 @@ TEST_F(GameTest,Construct)
 
 TEST_F(GameTest,LevelLoader)
 {
-	//This is not complete yet eather
 	auto path = TempPath();
 
 	Game game1, gameSol;
@@ -258,9 +281,27 @@ TEST_F(GameTest,LevelLoader)
     LevelLoader levelLoad(&gameSol, LevelZeroXMLFileName);
 
     auto program = make_shared<Program>(&game1);
-
     game1.Add(program);
-    AddThreeNullBug(&game1);
+    AddLevelOneItems(&game1);
+
+    auto itm1 = game1.HitTest(500, -100);
+    auto itm1Sol = gameSol.HitTest(500, -100);
+
+    ASSERT_EQ(itm1->GetX(), itm1Sol->GetX());
+    ASSERT_EQ(itm1->GetY(), itm1Sol->GetY());
+
+    auto itm2 = game1.HitTest(750, 700);
+    auto itm2Sol = game1.HitTest(750, 700);
+
+    ASSERT_EQ(itm2->GetX(), itm2Sol->GetX());
+    ASSERT_EQ(itm2->GetY(), itm2Sol->GetY());
+
+    auto itm3 = game1.HitTest(300, 800);
+    auto itm3Sol = game1.HitTest(750, 700);
+
+    ASSERT_EQ(itm3->GetX(), itm3Sol->GetX());
+    ASSERT_EQ(itm3->GetY(), itm3Sol->GetY());
+
 
 
 }

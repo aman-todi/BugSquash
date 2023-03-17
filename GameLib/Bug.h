@@ -17,13 +17,10 @@ class Game;
  */
 class Bug : public Item {
 private:
-    /// Bug speed in the X direction
+    /// Bug speed
     /// in pixels per second
-    double mSpeedX = 0;
+    double mSpeed = 0;
 
-    /// Bug speed in the Y direction
-    /// in pixels per second
-    double mSpeedY = 0;
 
 	double mAngleToRotate = 0;
 
@@ -39,13 +36,13 @@ public:
 	 * Calculate the speed of the bug
 	 * @return the speed of the bug
 	 */
-	double GetSpeed(){return sqrt(mSpeedX*mSpeedX+mSpeedY*mSpeedY);}
+	double GetSpeed(){return sqrt(mSpeed);}
 
 	/**
  	 * Set the speed of the bug
  	 * @param speedX, speedY speed of bug in X and Y directions
  	 */
-	void SetSpeed(double speedX, double speedY){ mSpeedX = speedX; mSpeedY = speedY; }
+	virtual void SetSpeed(double speed){ mSpeed=speed; }
 
     /// Assignment operator
     void operator=(const Game &) = delete;

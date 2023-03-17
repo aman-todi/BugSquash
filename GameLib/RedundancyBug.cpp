@@ -103,7 +103,7 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 		gc->DrawBitmap(*mBugSplatBitmap,
 					   int(GetX() - wid / 2),
 					   int(GetY() - hit / 2),wid,hit);
-		this->SetSpeed(0,0);
+		this->SetSpeed(0);
 	}
 }
 

@@ -15,7 +15,8 @@ set(SOURCE_FILES
         FeatureBug.h FeatureBug.cpp
         Program.h Program.cpp
         Scoreboard.cpp Scoreboard.h
-        ItemsVisitor.h ItemsVisitor.cpp)
+        ItemsVisitor.h ItemsVisitor.cpp
+        LoadLevelOne.h LoadLevelOne.cpp)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)

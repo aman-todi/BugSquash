@@ -53,6 +53,8 @@ public:
      */
     void SetLocation(double x, double y) { mX = x; mY = y; }
 
+	virtual void SetSpeed(double speed){}
+
     /// Default constructor (disabled)
     Item() = delete;
 

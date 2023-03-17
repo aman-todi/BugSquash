@@ -29,8 +29,7 @@ Bug::Bug(Game *game, const std::wstring &filename) :
         Item(game, filename)
 {
     std::uniform_real_distribution<> distribution(MinSpeedX, MaxSpeedX);
-    mSpeedX = distribution(game->GetRandom());
-    mSpeedY = 0;
+    mSpeed = distribution(game->GetRandom());
 }
 
 /**
@@ -45,9 +44,8 @@ void Bug::Update(double elapsed)
 {
 	//Need to do loction of program
 	mAngleToRotate = atan2(500-GetY(),625-GetX());
-	double speed = sqrt(mSpeedX*mSpeedX+mSpeedY*mSpeedY);
-	double newX = GetX() + elapsed * speed * cos(mAngleToRotate);
-	double newY = GetY() + elapsed * speed * sin(mAngleToRotate);
+	double newX = GetX() + elapsed * mSpeed * cos(mAngleToRotate);
+	double newY = GetY() + elapsed * mSpeed * sin(mAngleToRotate);
 	SetLocation(newX,newY);
 }
 

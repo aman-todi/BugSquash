@@ -28,8 +28,17 @@ class Program;
 class Game
 {
 private:
+    /// The Laptop image
+    std::shared_ptr<wxImage> mLaptopImage;
+
+    ///Laptop Bitmap
+	wxGraphicsBitmap mLaptopBitmap;
+
 	/// All of the bugs in game
 	std::vector<std::shared_ptr<Item> > mItems;
+
+    ///Program
+    std::shared_ptr<Program> mProgram;
 
     ///Game Scoreboard
     std::shared_ptr<Scoreboard> mScoreboard;
@@ -109,6 +118,7 @@ public:
 	 * @param x, y location which was clicked
 	 */
 	std::shared_ptr<Item> OnLeftDown(double x, double y);
+	std::vector<wxXmlNode *> XmlBug(std::wstring FileName);
 };
 
 #endif //PROJECT1_GAMELIB_GAME_H

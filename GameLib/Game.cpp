@@ -36,7 +36,30 @@ const std::wstring ProgramImage = L"images/laptop.png";
 /// Program name font size
 const int ProgramNameFontSize = 22;
 
+/// Score font size to use
+const int ScoreSize = 85;
 
+/// Lable for score font size to use
+const int LabelSize = 40;
+
+/// The font color to use
+const wxColour FontColor = wxColour(0, 200, 200);
+
+/// Left score X location. The right score is
+/// the width minus this value.
+const int LeftScoreX = 150;
+
+/// Score Y location
+const int ScoreY = 20;
+
+/// Score label Y location
+const int ScoreLabelY = 100;
+
+/// The level1 XML
+const std::wstring LevelOneXMLFileName = L"data/level1.xml";
+
+/// The level1 XML
+const std::wstring LevelZeroXMLFileName = L"data/level0.xml";
 
 /**
  * Draw the game
@@ -45,7 +68,7 @@ const int ProgramNameFontSize = 22;
  * @param width The width of the screen
  * @param height The height of the scree
  */
-void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,int width, int height)
+void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics ,int width, int height)
 {
 
     //
@@ -77,16 +100,46 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,int width, int hei
     graphics->SetPen(*wxWHITE_PEN);
     graphics->DrawRectangle(0, 0, GameWidth, GameHeight);
 
+    //  Draw Scoreboard
+    //Score
+    wxFont fontScore(ScoreSize,
+            wxFONTFAMILY_SWISS,
+            wxFONTSTYLE_NORMAL,
+            wxFONTWEIGHT_BOLD);
 
+    wxFont fontLabel(LabelSize,
+            wxFONTFAMILY_SWISS,
+            wxFONTSTYLE_NORMAL,
+            wxFONTWEIGHT_BOLD);
+
+    graphics->SetFont(fontScore, FontColor);
+
+    graphics->DrawText(L"0", LeftScoreX, ScoreY);
+    graphics->DrawText(L"0", GameWidth/2, ScoreY);
+    graphics->DrawText(L"0", GameWidth-LeftScoreX, ScoreY);
+
+    //Label
+    graphics->SetFont(fontLabel, FontColor);
+
+    double widLabel, hgtLabel;
+    graphics->GetTextExtent(L"Fixed", &widLabel, &hgtLabel);
+    graphics->DrawText((L"Fixed"), LeftScoreX - (widLabel/4), ScoreLabelY+(hgtLabel/2));
+
+    graphics->GetTextExtent(L"Missed", &widLabel, &hgtLabel);
+    graphics->DrawText((L"Missed"), (GameWidth/2) - (widLabel/3), ScoreLabelY+(hgtLabel/2));
+
+    graphics->GetTextExtent(L"Oops", &widLabel, &hgtLabel);
+    graphics->DrawText((L"Oops"), (GameWidth-LeftScoreX) - (widLabel/4), ScoreLabelY+(hgtLabel/2));
+
+
+    //Draw Laptop
+    mProgram->Draw(graphics);
 
 	//This isn't being hit since there is no bug in mItems yet
-	for(auto item : mItems)
+	for(auto bug : mItems)
 	{
-        item->Draw(graphics);
+		bug->Draw(graphics);
 	}
-
-    //  Draw Scoreboard
-    mScoreboard->Draw(graphics);
 
     graphics->PopState();
 }
@@ -96,10 +149,9 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics,int width, int hei
  */
 Game::Game()
 {
-    shared_ptr<Item> program = std::make_shared<Program>(this);
-
+    mProgram = std::make_shared<Program>(this);
     mScoreboard = std::make_shared<Scoreboard>();
-
+	wxInitAllImageHandlers();
 	// Makes the bug
 	shared_ptr<Item> garbageBug1 = make_shared<GarbageBug>(this);
 	shared_ptr<Item> nullBug1 = make_shared<NullBug>(this);
@@ -120,9 +172,6 @@ Game::Game()
 	feature2->SetLocation(400,40);
 	redundancyBug2->SetLocation(1,400);
 
-    // Push Program onto Item
-    mItems.push_back(program);
-
 	// Pushed the bug onto Item
 	mItems.push_back(garbageBug1);
 	mItems.push_back(nullBug1);
@@ -132,7 +181,92 @@ Game::Game()
 	mItems.push_back(nullBug2);
 	mItems.push_back(feature2);
 	mItems.push_back(redundancyBug2);
+
+
+//	auto bugNodes = XmlBug(LevelZeroXMLFileName);
+//	for (auto node:bugNodes)
+//	{
+//		wxString nodeName = node->GetName();
+//
+//		if(nodeName=="feature")
+//		{
+//			shared_ptr <Item> bug = make_shared<FeatureBug>(this);
+//			double x,y,speed;
+//			bug->SetLocation(node->GetAttribute("x").ToDouble(&x),
+//							 node->GetAttribute("y").ToDouble(&y));
+//			bug->SetSpeed(node->GetAttribute("speed").ToDouble(&speed));
+//			mItems.push_back(bug);
+//		}
+//
+//
+//		wxString bugType = node->GetAttribute("type");
+//
+//		if(bugType == "garbage")
+//		{
+//			shared_ptr <Item> bug = make_shared<GarbageBug>(this);
+//			double x,y,speed;
+//			bug->SetLocation(node->GetAttribute("x").ToDouble(&x),
+//							 node->GetAttribute("y").ToDouble(&y));
+//			bug->SetSpeed(node->GetAttribute("speed").ToDouble(&speed));
+//			mItems.push_back(bug);
+//		}
+//		else if(bugType == "null")
+//		{
+//			shared_ptr <Item> bug = make_shared<NullBug>(this);
+//			double x,y,speed;
+//			bug->SetLocation(node->GetAttribute("x").ToDouble(&x),
+//							 node->GetAttribute("y").ToDouble(&y));
+//			bug->SetSpeed(node->GetAttribute("speed").ToDouble(&speed));
+//			mItems.push_back(bug);
+//		}
+//		else if(bugType == "redundancy")
+//		{
+//			shared_ptr <Item> bug = make_shared<RedundancyBug>(this);
+//			double x,y,speed;
+//			bug->SetLocation(node->GetAttribute("x").ToDouble(&x),
+//							 node->GetAttribute("y").ToDouble(&y));
+//			bug->SetSpeed(node->GetAttribute("speed").ToDouble(&speed));
+//			mItems.push_back(bug);
+//		}
+//	}
+
 }
+
+
+///**
+// * Handle a node of type bug.
+// * @param node XML node
+// */
+std::vector<wxXmlNode*> Game::XmlBug(std::wstring FileName)
+{
+	// Load the XML file
+	wxXmlDocument doc;
+
+	// Create a vector to store the bugs
+	std::vector<wxXmlNode*> bugs;
+
+	doc.Load(FileName);
+	// Get the root element
+	wxXmlNode *game = doc.GetRoot();
+
+	// Access the program element and its attributes
+	wxXmlNode* program = game->GetChildren();
+
+	// Access the bug elements and their attributes
+	wxXmlNode* bugNode = program->GetChildren();
+
+	while(bugNode!=NULL)
+	{
+		// Check if the child is a "bug" element
+		if(bugNode->GetName() == "bug" || bugNode->GetName() == "feature")
+		{
+			bugs.push_back(bugNode);
+		}
+		bugNode = bugNode->GetNext();
+	}
+	return bugs;
+}
+
 
 /**
  * Add an bug to the game
@@ -141,7 +275,7 @@ Game::Game()
 void Game::Add(std::shared_ptr<Bug> bug)
 {
 	//Use Bug visitor to get list of bugs
-	//bug->SetLocation(bug., Y);
+	//bug->SetLocation(X, Y);
 	mItems.push_back(bug);
 }
 
@@ -167,44 +301,6 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
 	return nullptr;
 }
 
-
-
-
-///**
-// * Handle a node of type bug.
-// * @param node XML node
-// */
-//void Game::XmlBug(wxXmlNode *node)
-//{
-//	// A pointer for the item we are loading
-//	shared_ptr<Bug> bug;
-//
-//	// We have a bug. What type?
-//	auto type = node->GetAttribute(L"type");
-//	if(type == L"garbage")
-//	{
-//		bug = make_shared<GarbageBug>(this);
-//	}
-//	else if(type == L"null")
-//	{
-//		bug = make_shared<NullBug>(this);
-//	}
-//	else if(type == L"redundancy")
-//	{
-//		bug = make_shared<RedundancyBug>(this);
-//	}
-//	else if(type == L"feature")
-//	{
-//		bug = make_shared<FeatureBug>(this);
-//	}
-//
-//	if(bug != nullptr)
-//	{
-//		Add(bug);
-//		bug->XmlLoad(node);
-//	}
-//
-//}
 
 /**
  * Clear the game data.
@@ -278,7 +374,6 @@ void Game::UpdateList(std::shared_ptr<Item> item)
 	}
 	//push the item back to the end of the list
 	mItems.push_back(item);
-	//mItems.insert(mItems.begin(),item);
 }
 
 std::shared_ptr<Item> Game::OnLeftDown(double x, double y)

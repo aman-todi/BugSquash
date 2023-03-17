@@ -112,8 +112,10 @@ protected:
         bug2->SetSpeed(150);
         game->Add(bug2);
 
-
-
+        auto bug3 = make_shared<NullBug>(game);
+        bug3->SetLocation(-100, 500);
+        bug3->SetSpeed(150);
+        game->Add(bug3);
     }
 
 	/**
@@ -290,14 +292,14 @@ TEST_F(GameTest,LevelLoader)
     ASSERT_EQ(itm1->GetX(), itm1Sol->GetX());
     ASSERT_EQ(itm1->GetY(), itm1Sol->GetY());
 
-    auto itm2 = game1.HitTest(750, 700);
-    auto itm2Sol = game1.HitTest(750, 700);
+    auto itm2 = game1.HitTest(1350, 100);
+    auto itm2Sol = game1.HitTest(1350, 100);
 
     ASSERT_EQ(itm2->GetX(), itm2Sol->GetX());
     ASSERT_EQ(itm2->GetY(), itm2Sol->GetY());
 
-    auto itm3 = game1.HitTest(300, 800);
-    auto itm3Sol = game1.HitTest(750, 700);
+    auto itm3 = game1.HitTest(-100, 500);
+    auto itm3Sol = game1.HitTest(-100, 500);
 
     ASSERT_EQ(itm3->GetX(), itm3Sol->GetX());
     ASSERT_EQ(itm3->GetY(), itm3Sol->GetY());

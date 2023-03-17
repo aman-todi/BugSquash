@@ -87,22 +87,25 @@ TEST(GarbageBug,Update)
 {
 	Game game;
 	GarbageBug garbageBug(&game);
+	//NullBug programLocation(&game);
 
 	garbageBug.SetLocation(50,50);
+	garbageBug.SetSpeed(5);
+	garbageBug.SetProgramLocation(300,350);
 
 	// Check for time update
 	garbageBug.Update(0);
-	ASSERT_NEAR(garbageBug.GetX(),50,.001);
-	ASSERT_NEAR(garbageBug.GetY(),50,.001);
+	ASSERT_NEAR(garbageBug.GetX(),50,.0001);
+	ASSERT_NEAR(garbageBug.GetY(),50,.0001);
 
 	garbageBug.Update(2.0);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(garbageBug.GetX(),104.6,.001);
-	ASSERT_NEAR(garbageBug.GetY(),92.75,.001);
+	ASSERT_NEAR(garbageBug.GetX(),56.40,.01);
+	ASSERT_NEAR(garbageBug.GetY(),57.68,.01);
 
 	garbageBug.Update(2.0);
-	ASSERT_NEAR(garbageBug.GetX(),159.27,.001);
-	ASSERT_NEAR(garbageBug.GetY(),135.51,.001);
+	ASSERT_NEAR(garbageBug.GetX(),62.80,.01);
+	ASSERT_NEAR(garbageBug.GetY(),65.36,.01);
 }
 
 

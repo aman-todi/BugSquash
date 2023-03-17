@@ -80,21 +80,23 @@ TEST(NullBug,Update)
 {
 	Game game;
 	NullBug nullBug(&game);
-	//Program program(&game);
+	//NullBug programLocation(&game);
 
 	nullBug.SetLocation(50,50);
+	nullBug.SetSpeed(5);
+	nullBug.SetProgramLocation(300,350);
 
 	// Check for time update
 	nullBug.Update(0);
-	ASSERT_NEAR(nullBug.GetX(),0,.0001);
-	ASSERT_NEAR(nullBug.GetY(),0,.0001);
-
-	nullBug.Update(2.0);
-	// These will need change once we are not hard coding the program
 	ASSERT_NEAR(nullBug.GetX(),50,.0001);
 	ASSERT_NEAR(nullBug.GetY(),50,.0001);
 
-//	nullBug.Update(2.0);
-//	ASSERT_NEAR(nullBug.GetX(),159.27,.0001);
-//	ASSERT_NEAR(nullBug.GetY(),135.51,.0001);
+	nullBug.Update(2.0);
+	// These will need change once we are not hard coding the program
+	ASSERT_NEAR(nullBug.GetX(),56.40,.01);
+	ASSERT_NEAR(nullBug.GetY(),57.68,.01);
+
+	nullBug.Update(2.0);
+	ASSERT_NEAR(nullBug.GetX(),62.80,.01);
+	ASSERT_NEAR(nullBug.GetY(),65.36,.01);
 }

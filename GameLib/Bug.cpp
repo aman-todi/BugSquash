@@ -41,7 +41,6 @@ Bug::Bug(Game *game, const std::wstring &filename) :
  */
 void Bug::Update(double elapsed)
 {
-	//Need to do loction of program
 	mAngleToRotate = atan2(GetProgramY()-GetY(),GetProgramX()-GetX());
 	double newX = GetX() + elapsed * mSpeed * cos(mAngleToRotate);
 	double newY = GetY() + elapsed * mSpeed * sin(mAngleToRotate);

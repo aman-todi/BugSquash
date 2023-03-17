@@ -88,8 +88,11 @@ TEST(FeatureBug,Update)
 {
 	Game game;
 	FeatureBug featureBug(&game);
+	//NullBug programLocation(&game);
 
 	featureBug.SetLocation(50,50);
+	featureBug.SetSpeed(5);
+	featureBug.SetProgramLocation(300,350);
 
 	// Check for time update
 	featureBug.Update(0);
@@ -98,12 +101,12 @@ TEST(FeatureBug,Update)
 
 	featureBug.Update(2.0);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(featureBug.GetX(),104.6,.0001);
-	ASSERT_NEAR(featureBug.GetY(),92.75,.0001);
+	ASSERT_NEAR(featureBug.GetX(),56.40,.01);
+	ASSERT_NEAR(featureBug.GetY(),57.68,.01);
 
 	featureBug.Update(2.0);
-	ASSERT_NEAR(featureBug.GetX(),159.27,.0001);
-	ASSERT_NEAR(featureBug.GetY(),135.51,.0001);
+	ASSERT_NEAR(featureBug.GetX(),62.80,.01);
+	ASSERT_NEAR(featureBug.GetY(),65.36,.01);
 }
 ///// Don't know how to get access to the draw/how to make a grapihc in this test case
 //TEST(FeatureBug,Splat)

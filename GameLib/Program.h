@@ -53,12 +53,20 @@ public:
     void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
 
     /**
+     * HitTest
+     * @param x, y (x,y) coords
+     */
+    virtual bool HitTest(int x, int y) override;
+
+    /**
      * Set level Name
      */
     void SetLevelBugSquash() {mName = Name::BugSquash;}
     void SetLevelReceivables() {mName = Name::Receivables;}
 
 	void SetName(std::string name){mNameString=name;}
+
+    std::string GetName() {return mNameString;}
 };
 
 #endif //GAME_GAMELIB_PROGRAM_H

@@ -283,8 +283,17 @@ TEST_F(GameTest,LevelLoader)
     LevelLoader levelLoad(&gameSol, LevelZeroXMLFileName);
 
     auto program = make_shared<Program>(&game1);
+    program->SetName("Bug Squash");
+    program->SetLocation(625, 500);
+
     game1.Add(program);
     AddLevelOneItems(&game1);
+
+    auto programSol = gameSol.HitTest(625, 500);
+    ASSERT_EQ(program->GetX(), programSol->GetX());
+    ASSERT_EQ(program->GetY(), programSol->GetY());
+    //ASSERT_EQ(program->GetName(), programSol->GetName());
+
 
     auto itm1 = game1.HitTest(500, -100);
     auto itm1Sol = gameSol.HitTest(500, -100);

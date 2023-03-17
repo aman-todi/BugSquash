@@ -16,6 +16,10 @@ const static double GameHeight = 1000;
 /// Program image filename
 const std::wstring ProgramImage = L"images/laptop.png";
 
+/// How close the user has click
+/// For the bug to splat
+const double HitRadius = 50;
+
 /// Program name font size
 const int ProgramNameFontSize = 22;
 
@@ -68,6 +72,14 @@ void Program::Draw(std::shared_ptr<wxGraphicsContext> gc)
         gc->DrawText(L"Receivables", GetX()-wid/12, GetY() );
     }
 
+}
+
+bool Program::HitTest(int x, int y)
+{
+    double dx = x - GetX();
+    double dy = y - GetY();
+
+    return sqrt(dx * dx + dy * dy) < HitRadius;
 }
 
 

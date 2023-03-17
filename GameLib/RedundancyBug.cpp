@@ -45,7 +45,6 @@ const int FirstWingSetX = -36;
 /// of this is the Y position for the left wings.
 const int WingSetY = 5;
 
-/// Number of sprite images
 const int RedundancyNumSpriteImages = 1;
 
 /**
@@ -56,17 +55,16 @@ RedundancyBug::RedundancyBug(Game *game) : Bug(game, RedundancyBugImage)
 {
     mBugSplatBitmap = std::make_unique<wxBitmap>(RedundancyFlySplatImageName,wxBITMAP_TYPE_ANY);
     wxImage spriteSheet(RedundancyBugImage, wxBITMAP_TYPE_ANY);
+	// Get the height of each image
+	double imageHeight = spriteSheet.GetHeight() / RedundancyNumSpriteImages;
 
-    // Get the height of each image
-    double imageHeight = spriteSheet.GetHeight() / RedundancyNumSpriteImages;
-
-    for (int i = 0; i < RedundancyNumSpriteImages; i++)
-    {
-        auto image = spriteSheet.GetSubImage(wxRect(0, i * imageHeight, imageHeight, imageHeight));
-        mSpriteSheetFrames.push_back(std::make_shared<wxImage>(image));
-    }
-    // Put the standing sprite at index 0
-    std::reverse(mSpriteSheetFrames.begin(),mSpriteSheetFrames.end());
+	for (int i = 0; i < RedundancyNumSpriteImages; i++)
+	{
+		auto image = spriteSheet.GetSubImage(wxRect(0, i * imageHeight, imageHeight, imageHeight));
+		mSpriteSheetFrames.push_back(std::make_shared<wxImage>(image));
+	}
+	// Put the standing sprite at index 0
+	std::reverse(mSpriteSheetFrames.begin(),mSpriteSheetFrames.end());
 }
 
 /**
@@ -114,7 +112,6 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
  */
 void RedundancyBug::UpdateFrame()
 {
-    mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (RedundancyNumSpriteImages - 1);
 
 }
 

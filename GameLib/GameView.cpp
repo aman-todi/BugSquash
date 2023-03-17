@@ -116,7 +116,7 @@ void GameView::OnPaint(wxPaintEvent& event)
 void GameView::OnSize(wxSizeEvent& event)
 {
     Refresh();
-    event.Skip();
+	event.Skip();
 }
 
 /**

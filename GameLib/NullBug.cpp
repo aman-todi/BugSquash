@@ -46,6 +46,7 @@ NullBug::NullBug(Game *game) : Bug(game, NullBugSpriteImageName)
  */
 void NullBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
+
 	if (!mSplat)
 	{
 		auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];

@@ -73,6 +73,7 @@ RedundancyBug::RedundancyBug(Game *game) : Bug(game, RedundancyBugImage)
  */
 void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
+
 	if (!mSplat)
 	{
 		auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];

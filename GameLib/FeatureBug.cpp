@@ -44,7 +44,8 @@ FeatureBug::FeatureBug(Game *game) : Bug(game, FeatureImageName)
  */
 void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
-		if (!mSplat)
+
+	if (!mSplat)
 	{
 		auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];
 		 //Create a graphics context

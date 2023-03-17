@@ -21,7 +21,13 @@ private:
     /// in pixels per second
     double mSpeed = 0;
 
+	///X location of program associated with bug
+	double mProgramX = 0;
 
+	///Y location of program associated with bug
+	double mProgramY = 0;
+
+	///Angle to rotate
 	double mAngleToRotate = 0;
 
 
@@ -46,6 +52,25 @@ public:
 
     /// Assignment operator
     void operator=(const Game &) = delete;
+
+	/**
+	 * sets program location assocaited with this bug
+	 * @param x x location
+	 * @param y y location
+	 */
+	 virtual void SetProgramLocation(double x, double y){mProgramX=x; mProgramY=y;}
+
+	 /**
+	  * getter for program x location
+	  * @return
+	  */
+	 virtual double GetProgramX(){return mProgramX;}
+
+	 /**
+	  * getter for program y location
+	  * @return
+	  */
+	 virtual double GetProgramY(){return mProgramY;}
 
 	/**
 	 * Draw this item

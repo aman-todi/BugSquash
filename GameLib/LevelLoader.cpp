@@ -39,6 +39,17 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 		// Access the bug elements and their attributes
 		wxXmlNode *bugNode = program->GetChildren();
 
+		shared_ptr <Item> laptop = make_shared<Program>(game);
+		double programX, programY;
+
+		bool xConvert = program->GetAttribute("x").ToDouble(&programX);
+		bool yConvert = program->GetAttribute("y").ToDouble(&programY);
+		std::string name= program->GetAttribute("name").ToStdString();
+
+		laptop->SetLocation(programX,programY);
+		laptop->SetName(name);
+		game->Add(laptop);
+
 		// Create a vector to store the bugs
 		std::vector<wxXmlNode*> bugs;
 
@@ -56,64 +67,33 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 		{
 			wxString nodeName = node->GetName();
 
-			if(nodeName == "feature")
-			{
-				shared_ptr <Bug> bug = make_shared<FeatureBug>(game);
-				double x, y, speed;
-				bool xa = node->GetAttribute("x").ToDouble(&x);
-				bool ya = node->GetAttribute("y").ToDouble(&y);
-				bool sp = node->GetAttribute("speed").ToDouble(&speed);
-				bug->SetLocation(x,y);
-				bug->SetSpeed(speed);
-				game->Add(bug);
-			}
+			shared_ptr <Bug> bug = make_shared<FeatureBug>(game);
 
 			wxString bugType = node->GetAttribute("type");
 
 			if(bugType == "garbage")
 			{
-				shared_ptr <Bug> bug = make_shared<GarbageBug>(game);
-				double x, y, speed;
-				bool xa = node->GetAttribute("x").ToDouble(&x);
-				bool ya = node->GetAttribute("y").ToDouble(&y);
-				bool sp = node->GetAttribute("speed").ToDouble(&speed);
-				bug->SetLocation(x,y);
-				bug->SetSpeed(speed);
-				game->Add(bug);
+				bug = make_shared<GarbageBug>(game);
 			}
 			else if(bugType == "null")
 			{
-				shared_ptr <Bug> bug = make_shared<NullBug>(game);
-				double x, y, speed;
-				bool xa = node->GetAttribute("x").ToDouble(&x);
-				bool ya = node->GetAttribute("y").ToDouble(&y);
-				bool sp = node->GetAttribute("speed").ToDouble(&speed);
-				bug->SetLocation(x,y);
-				bug->SetSpeed(speed);
-				game->Add(bug);
+				bug = make_shared<NullBug>(game);
 			}
 			else if(bugType == "redundancy")
 			{
-				shared_ptr <Bug> bug = make_shared<RedundancyBug>(game);
-				double x, y, speed;
-				bool xa = node->GetAttribute("x").ToDouble(&x);
-				bool ya = node->GetAttribute("y").ToDouble(&y);
-				bool sp = node->GetAttribute("speed").ToDouble(&speed);
-				bug->SetLocation(x,y);
-				bug->SetSpeed(speed);
-				game->Add(bug);
+				bug = make_shared<RedundancyBug>(game);
+
 			}
+			double bugX, bugY, speed;
+			bool xConvert = node->GetAttribute("x").ToDouble(&bugX);
+			bool yConvert = node->GetAttribute("y").ToDouble(&bugY);
+			bool speedConvert = node->GetAttribute("speed").ToDouble(&speed);
+			bug->SetLocation(bugX,bugY);
+			bug->SetSpeed(speed);
+			bug->SetProgramLocation(programX,programY);
+			game->Add(bug);
+
 		}
-		shared_ptr <Item> laptop = make_shared<Program>(game);
-		double x, y;
-
-		bool xa = program->GetAttribute("x").ToDouble(&x);
-		bool ya = program->GetAttribute("y").ToDouble(&y);
-		std::string name= program->GetAttribute("name").ToStdString();
-
-		laptop->SetLocation(x,y);
-		laptop->SetName(name);
-		game->Add(laptop);
-		program = program->GetNext();
+			program = program->GetNext();
 	}
 }

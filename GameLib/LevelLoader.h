@@ -7,7 +7,7 @@
 
 #ifndef PROJECT1_GAMELIB_LEVELLOADER_H
 #define PROJECT1_GAMELIB_LEVELLOADER_H
-#include "game.h"
+#include "Game.h"
 class LevelLoader
 {
 private:

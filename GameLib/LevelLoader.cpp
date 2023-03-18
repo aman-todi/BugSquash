@@ -94,6 +94,6 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 			game->Add(bug);
 
 		}
-			program = program->GetNext();
+		program = program->GetNext();
 	}
 }

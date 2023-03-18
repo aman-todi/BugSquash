@@ -16,6 +16,9 @@
 class RedundancyBug: public Bug
 {
 private:
+    /// array to hold each part of the bug
+    std::vector<std::shared_ptr<wxImage>> mBugPartsSpriteSheet;
+
 	/// array to hold individual frames of the animation
 	std::vector<std::shared_ptr<wxImage>> mSpriteSheetFrames;
 
@@ -28,6 +31,10 @@ private:
 
     /// Has the bug been clicked on
     bool mSplat = false;
+
+    /// Has this bug been clicked on twice
+    bool mSplatSecond = false;
+
 public:
 
 	/// Default constructor (disabled)
@@ -57,6 +64,8 @@ public:
 	* @param visitor The visitor we accept
 	*/
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitRedundancyBug(this); }
+
+    bool IsRedundancy() override {return true;};
 
 };
 

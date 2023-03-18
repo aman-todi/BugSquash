@@ -64,7 +64,7 @@ public:
     void SetLevelBugSquash() {mName = Name::BugSquash;}
     void SetLevelReceivables() {mName = Name::Receivables;}
 
-	void SetName(std::string name){mNameString=name;}
+	void SetName(std::string name) override {mNameString=name;}
 
     std::string GetName() {return mNameString;}
 };

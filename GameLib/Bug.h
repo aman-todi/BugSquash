@@ -48,7 +48,7 @@ public:
  	 * Set the speed of the bug
  	 * @param speedX, speedY speed of bug in X and Y directions
  	 */
-	virtual void SetSpeed(double speed){ mSpeed=speed; }
+	virtual void SetSpeed(double speed) { mSpeed=speed; }
 
     /// Assignment operator
     void operator=(const Game &) = delete;

@@ -69,6 +69,8 @@ void NullBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 		gc->PopState();
 
+		this->UpdateFrame();
+
 	}
 	else
 	{

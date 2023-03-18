@@ -280,26 +280,35 @@ TEST_F(GameTest,LevelLoader)
 
 	Game game1, gameSol;
 
+    // Load Level into Game gameSol - this is our solution that we are testing
     LevelLoader levelLoad(&gameSol, LevelZeroXMLFileName);
 
+    // Create a program for the manually assembled Game game
     auto program = make_shared<Program>(&game1);
     program->SetName("Bug Squash");
     program->SetLocation(625, 500);
 
+    // Add program and LevelOne Items with already know attributes
     game1.Add(program);
     AddLevelOneItems(&game1);
 
+    // Hit test our solution
     auto programSol = gameSol.HitTest(625, 500);
+
+    // Check to see if items are found at both locations, and attributes match
     ASSERT_EQ(program->GetX(), programSol->GetX());
     ASSERT_EQ(program->GetY(), programSol->GetY());
     //ASSERT_EQ(program->GetName(), programSol->GetName());
 
-
+    // Hit 1st Bug
     auto itm1 = game1.HitTest(500, -100);
     auto itm1Sol = gameSol.HitTest(500, -100);
 
+    // Compare Attributes
     ASSERT_EQ(itm1->GetX(), itm1Sol->GetX());
     ASSERT_EQ(itm1->GetY(), itm1Sol->GetY());
+
+    // We need to implement something to determine item type - most likely using visitors
 
     auto itm2 = game1.HitTest(1350, 100);
     auto itm2Sol = game1.HitTest(1350, 100);
@@ -313,8 +322,8 @@ TEST_F(GameTest,LevelLoader)
     ASSERT_EQ(itm3->GetX(), itm3Sol->GetX());
     ASSERT_EQ(itm3->GetY(), itm3Sol->GetY());
 
-
-
+    // Test currently shows that level loader does in fact load items at the correct locations
+    // but we haven't proven that the items are identical
 }
 
 

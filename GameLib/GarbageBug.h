@@ -29,6 +29,9 @@ private:
 	/// Has the bug been clicked on
 	bool mSplat = false;
 
+	/// Bool helper to slow down moving through the sprite
+	bool mSpriteShift = false;
+
 	//wxTimer mTimer;
 public:
 	/// Default constructor (disabled)

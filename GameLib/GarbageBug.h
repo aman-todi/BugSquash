@@ -32,7 +32,6 @@ private:
 	/// Bool helper to slow down moving through the sprite
 	bool mSpriteShift = false;
 
-	//wxTimer mTimer;
 public:
 	/// Default constructor (disabled)
 	GarbageBug() = delete;

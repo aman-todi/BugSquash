@@ -31,6 +31,8 @@ private:
 	double mAngleToRotate = 0;
 
 
+
+
 public:
     /// Default constructor (disabled)
     Bug() = delete;
@@ -72,16 +74,6 @@ public:
 	  */
 	 virtual double GetProgramY(){return mProgramY;}
 
-	/**
-	 * Draw this item
-	 * @param dc Device context to draw on
-	 */
-	//virtual void Draw(wxDC *dc){}
-	//virtual void Draw(wxDC *dc);
-
-    // not sure if either of these did anything
-
-	//virtual void XmlLoad(wxXmlNode *node);
 
 	virtual bool HitTest(int x, int y) override;
 

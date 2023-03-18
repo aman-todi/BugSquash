@@ -60,3 +60,6 @@ bool Bug::HitTest(int x, int y)
 
 	return sqrt(dx * dx + dy * dy) < HitRadius;
 }
+
+
+

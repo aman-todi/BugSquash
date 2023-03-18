@@ -65,7 +65,6 @@ public:
 	*/
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitRedundancyBug(this); }
 
-    bool IsRedundancy() override {return true;};
 
 };
 

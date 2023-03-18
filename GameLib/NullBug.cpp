@@ -71,6 +71,10 @@ void NullBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 		this->UpdateFrame();
 
+		if (mSpriteShift){ mSpriteShift = false; }
+
+		else { mSpriteShift = true; }
+
 	}
 	else
 	{
@@ -88,6 +92,9 @@ void NullBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
  */
 void NullBug::UpdateFrame()
 {
-	mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (NullBugNumSpriteImages - 1);
+	if (mSpriteShift)
+	{
+		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (NullBugNumSpriteImages - 1);
+	}
 }
 

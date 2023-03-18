@@ -69,6 +69,10 @@ void GarbageBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 		this->UpdateFrame();
 
+		if (mSpriteShift){ mSpriteShift = false; }
+
+		else { mSpriteShift = true; }
+
 	}
 	else
 	{
@@ -86,5 +90,8 @@ void GarbageBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
  */
 void GarbageBug::UpdateFrame()
 {
-	mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (GarbageBugNumSpriteImages - 1);
+	if (mSpriteShift)
+	{
+		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (GarbageBugNumSpriteImages - 1);
+	}
 }

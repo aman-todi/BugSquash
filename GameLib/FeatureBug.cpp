@@ -69,16 +69,20 @@ void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 		this->UpdateFrame();
 
+		if (mSpriteShift){ mSpriteShift = false; }
+
+		else { mSpriteShift = true; }
+
 	}
 	else
-		{
-			double wid = mBugSplatBitmap->GetWidth();
-			double hit = mBugSplatBitmap->GetHeight();
-			gc->DrawBitmap(*mBugSplatBitmap,
-						   int(GetX() - wid / 2),
-						   int(GetY() - hit / 2), wid, hit);
-			this->SetSpeed(0);
-		}
+	{
+		double wid = mBugSplatBitmap->GetWidth();
+		double hit = mBugSplatBitmap->GetHeight();
+		gc->DrawBitmap(*mBugSplatBitmap,
+					   int(GetX() - wid / 2),
+					   int(GetY() - hit / 2), wid, hit);
+		this->SetSpeed(0);
+	}
 }
 
 /**
@@ -86,7 +90,10 @@ void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
  */
 void FeatureBug::UpdateFrame()
 {
-	mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (FeatureNumSpriteImages - 1);
+	if (mSpriteShift)
+	{
+		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (FeatureNumSpriteImages - 1);
+	}
 
 }
 

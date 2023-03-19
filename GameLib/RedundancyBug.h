@@ -19,6 +19,10 @@ private:
     /// array to hold each part of the bug
     std::vector<std::shared_ptr<wxImage>> mBugPartsSpriteSheet;
 
+    double rotation = 0;
+    bool decreasing = false;
+
+
 	/// array to hold individual frames of the animation
 	std::vector<std::shared_ptr<wxImage>> mSpriteSheetFrames;
 
@@ -32,8 +36,6 @@ private:
     /// Has the bug been clicked on
     bool mSplat = false;
 
-    /// Has this bug been clicked on twice
-    bool mSplatSecond = false;
 
 public:
 
@@ -52,7 +54,7 @@ public:
 
     void OnTimer(wxTimerEvent &event);
 
-    void UpdateFrame();
+    void UpdateFrame(std::shared_ptr<wxGraphicsContext> gc, bool isLeft);
 
     /**
  	 * Set the bug to splat
@@ -64,7 +66,6 @@ public:
 	* @param visitor The visitor we accept
 	*/
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitRedundancyBug(this); }
-
 
 };
 

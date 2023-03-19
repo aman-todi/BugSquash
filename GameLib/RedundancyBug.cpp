@@ -69,7 +69,7 @@ RedundancyBug::RedundancyBug(Game *game) : Bug(game, RedundancyBugImage)
 
 /**
  * Draws the bug if it is either splat or moving
- * @param dc The device context to draw on
+ * @param gc The device context to draw on
  */
 void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
@@ -90,6 +90,10 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 		double wid = BugBase->GetWidth();
 		double hit = BugBase->GetHeight();
+        double widL = BugWingL->GetWidth();
+        double widR = BugWingR->GetWidth();
+        double hitL = BugWingL->GetHeight();
+        double hitR = BugWingR->GetHeight();
 
 		gc->PushState();
 		// Translate to the center of the image
@@ -98,25 +102,31 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 		// Rotate the image by the specified angle
 		gc->Rotate(this->GetAngleToRotate());
 
+        auto X = gc->GetTransform();
+
         // Draw Base
 		gc->DrawBitmap(BugBaseBitmap,
 					   - wid / 2, (- hit / 2), wid, hit);
 
         // Draw Wings
-        for(int i = 0; i < NumberOfSetsOfWings; i++)
+        for(int i = 0; i < 4; i++)
         {
+            this->UpdateFrame(gc, true);
             gc->DrawBitmap(BugWingLBitmap,
-                    - wid / 2 + FirstWingSetX + WingSetXOffset * i, (- hit / 2) - WingSetY, wid, hit);
+                    - widL / 2 + FirstWingSetX + WingSetXOffset * i, (- hitL / 2) - WingSetY, widL, hitL);
+            gc->SetTransform(X);
+
+            this->UpdateFrame(gc, false);
             gc->DrawBitmap(BugWingRBitmap,
-                    - wid / 2 + FirstWingSetX + WingSetXOffset * i, (- hit / 2) + WingSetY, wid, hit);
+                    - wid / 2 + FirstWingSetX + WingSetXOffset * i, (- hit / 2) + WingSetY, widR, hitR);
+            gc->SetTransform(X);
         }
 
         // Draw Top
         gc->DrawBitmap(BugTopBitmap,
                 - wid / 2, (- hit / 2), wid, hit);
 
-		gc->PopState();
-
+        gc->PopState();
 	}
     else
     {
@@ -130,9 +140,45 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 }
 
 /**
- * Updates the value of current frame index
+ * Updates Rotation of Wings
  */
-void RedundancyBug::UpdateFrame()
+void RedundancyBug::UpdateFrame(std::shared_ptr<wxGraphicsContext> gc, bool isLeft)
+{
+    if (isLeft)
+    {
+        if (rotation>1.5) {
+            decreasing = true;
+        }
+        else if (rotation<0) {
+            decreasing = false;
+        }
+        if (!decreasing) {
+            rotation += 0.02;
+        }
+        else {
+            rotation -= 0.02;
+        }
+        gc->Rotate(rotation);
+    }
+    else
+    {
+        if (rotation>1.5) {
+            decreasing = true;
+        }
+        else if (rotation<0) {
+            decreasing = false;
+        }
+        if (!decreasing) {
+            rotation += 0.02;
+        }
+        else {
+            rotation -= 0.02;
+        }
+        gc->Rotate(-rotation);
+    }
+}
+
+void RedundancyBug::OnTimer(wxTimerEvent &event)
 {
 
 }

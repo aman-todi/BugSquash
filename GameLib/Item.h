@@ -121,10 +121,10 @@ public:
 	virtual void ClickedOn(){};
 	virtual void SetName(std::string name){}
 
+	//virtual std::wstring GetCode(){};
     //void SetMirror(bool m);   still need to implement this
 protected:
     Item(Game *game, const std::wstring &filename);
-
 
 };
 

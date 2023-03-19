@@ -31,9 +31,6 @@ private:
 	/// Has the bug been clicked on
 	bool mSplat = false;
 
-	/// Bool helper to slow down moving through the sprite
-	bool mSpriteShift = false;
-
 public:
 	/// Default constructor (disabled)
 	FeatureBug() = delete;
@@ -55,7 +52,7 @@ public:
 	/**
  	 * Set the bug to splat
 	 */
-	void ClickedOn() override { mSplat=true; }
+	void ClickedOn() override;
 
 	/**
 	* Accept a visitor

@@ -106,10 +106,12 @@ public:
 	void Accept(ItemsVisitor* visitor);
 
 	/**
-	 * Set the item single clicked to splat
+	 * Set the item to splat if single-clicked
 	 * @param x, y location which was clicked
+	 * @param bool checks if click is single or double
 	 */
-	std::shared_ptr<Item> OnLeftDown(double x, double y);
+	std::shared_ptr<Item> Game::OnClick(double x, double y,bool doubleCLick);
+
 	void XmlBug(std::wstring FileName);
 };
 

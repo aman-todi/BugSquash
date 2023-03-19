@@ -137,3 +137,12 @@ void RedundancyBug::UpdateFrame()
 
 }
 
+void RedundancyBug::ClickedOn()
+{
+	if (!this->IsFatbug())
+	{
+		mSplat=true;
+	}
+}
+
+

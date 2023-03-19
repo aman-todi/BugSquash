@@ -165,13 +165,13 @@ void GameView::OnTimer2(wxTimerEvent &event){
 void GameView::OnLeftDown(wxMouseEvent &event)
 {
 	//Check to see if we hit a bug
-	mClickedItem = mGame.OnLeftDown(event.GetX(),event.GetY());
+	mClickedItem = mGame.OnClick(event.GetX(),event.GetY(),false);
 	if(mClickedItem != nullptr)
 	{
 		//Moves the bug to the end of the list
 		mGame.UpdateList(mClickedItem);
+		Refresh();
 	}
-	Refresh();
 }
 
 /**
@@ -199,14 +199,14 @@ void GameView::OnMouseMove(wxMouseEvent &event)
 
 void GameView::OnDoubleClick(wxMouseEvent &event)
 {
-	mClickedItem  = mGame.HitTest(event.GetX(), event.GetY());
+	//Check to see if we hit a bug
+	mClickedItem = mGame.OnClick(event.GetX(),event.GetY(),true);
 
-	//ADD THIS: Use Bug visitor to check if mClickedItem is bug
 	if (mClickedItem != nullptr )
 	{
-		// DO BUG SQUASH
-		// DELETE BUG AND PAINT SQUASH
-		//ADD COUNTER
+		//auto code = mClickedItem->GetCode();
+		//Codedlg dlg(this, code);
+		//dlg.ShowModal();
 		Refresh();
 	}
 }
@@ -244,60 +244,3 @@ void GameView::OnLevelThree(wxCommandEvent& event)
 	mGame.Clear();
     LevelLoader level3(&mGame,LevelThreeXMLFileName);
 }
-
-
-
-
-///**
-// * Add menus specific to the view
-// * @param mainFrame The main frame that owns the menu bar
-// * @param menuBar The menu bar to add menus to
-// * @param fileMenu The file menu, so we can add to it if we wish
-// * @param viewMenu The view menu, so we can add to it if we wish
-// */
-//
-//void GameView::AddMenus(wxFrame* mainFrame, wxMenuBar *menuBar, wxMenu* fileMenu, wxMenu* viewMenu)
-//{
-//	auto levelMenu = new wxMenu();
-//
-//
-//	// Options added to the view menu
-//	viewMenu->Append(IDM_VIEW_SHRINK, L"&Shrink", L"Enable to disable shrink", wxITEM_CHECK);
-//
-//	mainFrame->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnViewShrink, this, IDM_VIEW_SHRINK);
-//	mainFrame->Bind(wxEVT_UPDATE_UI, &CityView::OnUpdateViewShrink, this, IDM_VIEW_SHRINK);
-//
-//	//
-//	// Level menu options
-//	//
-//	AddLevelMenuOption(mainFrame, levelMenu, IDM_LEVEL0, L"&Level 0", L"Play Level 0");
-//	AddLevelMenuOption(mainFrame, levelMenu, IDM_LEVEL1, L"&Level 1", L"Play Level 1");
-//	AddLevelMenuOption(mainFrame, levelMenu, IDM_LEVEL2, L"&Level 2", L"Play Level 2");
-//	AddLevelMenuOption(mainFrame, levelMenu, IDM_LEVEL3, L"&Level 3", L"Play Level 3");
-//
-//	//
-//	// Append the menus to the menubar
-//	//
-//	menuBar->Append(levelMenu, L"Level" );
-//}
-//
-//
-///**
-// * Append an option to a menu and bind it to the function GameView::OnAddLevelMenuOption
-// *
-// * All of the menu options to add a tile use the same menu handler, which uses
-// * a switch based on the ID to determine which option to make.
-// *
-// * @param mainFrame The MainFrame object that owns the menu
-// * @param menu The Menu we are adding the option to
-// * @param id The Menu option ID
-// * @param text Text for the menu option
-// * @param help Help for the menu option
-// */
-//void GameView::AddLevelMenuOption(wxFrame *mainFrame, wxMenu *menu, int id,
-//								  const std::wstring& text, const std::wstring& help)
-//{
-//	menu->Append(id, text, help);
-//	mainFrame->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddLevelMenuOption, this, id);
-//}
-

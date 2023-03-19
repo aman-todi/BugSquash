@@ -69,9 +69,6 @@ void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 		this->UpdateFrame();
 
-		if (mSpriteShift){ mSpriteShift = false; }
-
-		else { mSpriteShift = true; }
 
 	}
 	else
@@ -90,11 +87,16 @@ void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
  */
 void FeatureBug::UpdateFrame()
 {
-	if (mSpriteShift)
-	{
+
 		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (FeatureNumSpriteImages - 1);
-	}
 
 }
 
+void FeatureBug::ClickedOn()
+{
+	if (!this->IsFatbug())
+	{
+		mSplat=true;
+	}
+}
 

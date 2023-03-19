@@ -9,6 +9,7 @@
 #define GAME_GAME_GAMELIB_BUG_H
 
 #include "Item.h"
+#include "Code.h"
 
 
 class Game;
@@ -30,8 +31,8 @@ private:
 	///Angle to rotate
 	double mAngleToRotate = 0;
 
-
-
+	///code associated with this bug
+	std::shared_ptr<Code> mCode=nullptr;
 
 public:
     /// Default constructor (disabled)
@@ -74,14 +75,26 @@ public:
 	  */
 	 virtual double GetProgramY(){return mProgramY;}
 
+	/**
+	 * getter for angle to rotate
+	 * @return angle to rotate the image
+	 */
+	virtual double GetAngleToRotate(){return mAngleToRotate;}
+
+	/**
+	 * checks if bug has code associated with it
+	 */
+	virtual bool IsFatbug(){return mCode!=nullptr;}
+
+	virtual std::wstring GetCode(){return mCode->GetCode();}
 
 	virtual bool HitTest(int x, int y) override;
 
-
 	virtual void Update(double elapsed) override;
-	// I think this should be virtual - aman
-    //made not virtual, not sure if it did anything
-	double GetAngleToRotate(){return mAngleToRotate;}
+
+	virtual void SetCode(std::wstring codeData, std::wstring solData);
+
+
 
 protected:
 	Bug(Game* game,const std::wstring &filename);

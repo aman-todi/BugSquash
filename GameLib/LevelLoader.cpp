@@ -26,7 +26,6 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 	// Load the XML file
 	wxXmlDocument doc;
 
-
 	doc.Load(fileName);
 	// Get the root element
 	wxXmlNode *bugSquash = doc.GetRoot();
@@ -82,6 +81,19 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 			else if(bugType == "redundancy")
 			{
 				bug = make_shared<RedundancyBug>(game);
+
+			}
+			if(node->GetChildren()!=nullptr)
+			{
+				auto code = node->GetChildren();
+
+				auto solData = code->GetAttribute("pass");
+				auto cDataNode = code->GetChildren();
+				if (cDataNode->GetType()==wxXML_CDATA_SECTION_NODE)
+				{
+					auto cData = cDataNode->GetContent();
+					bug->SetCode(solData.ToStdWstring(),cData.ToStdWstring());
+				}
 
 			}
 			double bugX, bugY, speed;

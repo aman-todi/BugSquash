@@ -12,17 +12,17 @@ class Code {
 private:
 
     /// The current string value of the code
-    std::wstring mCode;
+    std::wstring mCodeData;
 
     /// The Solution (Loaded via XML)
     std::wstring mSolution;
 public:
 
-    bool Passes() {return (mCode == mSolution);}
+    bool Passes() {return (mCodeData == mSolution);}
 
-    void SetCode(std::wstring code) {mCode = code;}
+    void SetCode(std::wstring code) {mCodeData = code;}
 
-    std::wstring GetCode() {return mCode;}
+    std::wstring GetCode() {return mCodeData;}
 
     void SetSolution(std::wstring sol) {mSolution = sol;}
     std::wstring GetSol() {return mSolution;}

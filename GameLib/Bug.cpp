@@ -61,5 +61,15 @@ bool Bug::HitTest(int x, int y)
 	return sqrt(dx * dx + dy * dy) < HitRadius;
 }
 
+/**
+ * sets the code for the bug if it is a fatbug
+ * @param codeData
+ * @param solData
+ */
+void Bug::SetCode(std::wstring codeData, std::wstring solData)
+{
+//	mCode->SetCode(codeData);
+//	mCode->SetSolution(solData);
+}
 
 

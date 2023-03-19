@@ -2,11 +2,7 @@
 <bug-squash level="Spider Level">
   <program name="Spider " x="625" y="500">
 
-    <!--
-    Should I put the spider in here. So, it can
-    have a list of all the bugs when it loads in?
-    Like how the program has a list of all the bug going to it?
-    -->
+    <!--<bug type="spider" x="500" y="500" start=0/> -->
     <bug type="garbage" x="-100" y="-100" speed="120" start="1"/>
     <bug type="null" x="1350" y="1500" speed="96" start="3"/>
 

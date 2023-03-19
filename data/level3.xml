@@ -1,6 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<bug-squash level="Your Level">
-  <program name="Your Level" x="625" y="500">
+<bug-squash level="Spider Level">
+  <program name="Spider " x="625" y="500">
+
+    <!--
+    Should I put the spider in here. So, it can
+    have a list of all the bugs when it loads in?
+    Like how the program has a list of all the bug going to it?
+    -->
     <bug type="garbage" x="-100" y="-100" speed="120" start="1"/>
+    <bug type="null" x="1350" y="1500" speed="96" start="3"/>
+
+    <bug type="redundancy" x="-100" y="-100" speed="140" start="5"/>
+
+    <bug type="garbage" x="-800" y="10" speed="60" start="7">
+      <code pass="double.*mSprite.*=.*[0-9]*.*;"><![CDATA[/**
+ * The game scoreboard/scoring area
+ */
+class Bug
+{
+private:
+    /// The current Sprite image
+    double mSprite;
+
+public:
+    void Draw(std::shared_ptr<wxGraphicsContext> graphics);
+};
+]]></code>
+
+    </bug>
+
+    <feature x="800" y="-800" speed="120" start="9"/>
+
+    <bug type="redundancy" x="900" y="1300" speed="120" start="12"/>
+    <bug type="null" x="-500" y="-100" speed="150" start="12"/>
+    <bug type="garbage" x="700" y="-100" speed="100" start="14"/>
+
+    <feature x="600" y="1400" speed="120" start="15"/>
+
+    <bug type="redundancy" x="900" y="-400" speed="135" start="17"/>
+    <bug type="garbage" x="-250" y="100" speed="120" start="19"/>
+    <bug type="garbage" x="200" y="1350" speed="135" start="20"/>
+
+    <feature x="600" y="-100" speed="120" start="22"/>
+
   </program>
 </bug-squash>

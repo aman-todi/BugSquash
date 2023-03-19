@@ -257,4 +257,3 @@ std::shared_ptr<Item> Game::OnClick(double x, double y,bool doubleCLick)
 	}
 	return clicked;
 }
-

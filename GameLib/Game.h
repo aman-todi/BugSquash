@@ -72,9 +72,6 @@ public:
 
 	void Clear();
 
-	// I don't think we can have this
-	//std::vector<std::shared_ptr<Item>> GetItems(){return mItems;}
-
 
     /**
      * Shrink The Game Window
@@ -110,9 +107,8 @@ public:
 	 * @param x, y location which was clicked
 	 * @param bool checks if click is single or double
 	 */
-	std::shared_ptr<Item> Game::OnClick(double x, double y,bool doubleCLick);
+	std::shared_ptr<Item> OnClick(double x, double y,bool doubleCLick);
 
 	void XmlBug(std::wstring FileName);
 };
-
 #endif //PROJECT1_GAMELIB_GAME_H

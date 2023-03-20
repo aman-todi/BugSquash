@@ -23,6 +23,9 @@
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
 
+/// Animation timer duration in milliseconds
+const int AnimationDuration = 5;
+
 /// Game area in virtual pixels
 const static int GameWidth = 1250;
 
@@ -75,13 +78,17 @@ void GameView::Initialize(wxFrame* parent)
 	Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
 	Bind(wxEVT_LEFT_DCLICK, &GameView::OnDoubleClick, this);
 	Bind(wxEVT_TIMER, &GameView::OnTimer1, this);
-	Bind(wxEVT_TIMER, &GameView::OnTimer2, this,mTimerBugMotion.GetId());
+	Bind(wxEVT_TIMER, &GameView::OnTimer2, this);
 
 
 	// The timer for animation
 	mTimerAnimation.SetOwner(this);
 	mTimerAnimation.Start(FrameDuration);
 	mStopWatch.Start();
+
+	// The timer for bug motion
+	mTimerBugMotion.SetOwner(this);
+	mTimerBugMotion.Start(AnimationDuration);
 }
 
 
@@ -148,12 +155,8 @@ void GameView::OnTimer1(wxTimerEvent &event){
  */
 void GameView::OnTimer2(wxTimerEvent &event){
 
-	//loop through each bug and update frame index
-//	for (auto item : mGame.GetItems())
-//	{
-//		///Make sure its a bug using visitor
-//		///visit each bug and update frame index
-//	}
+	// Calls game to update animation timer for each bug
+	mGame.UpdateAnimationTime();
 	Refresh();
 }
 

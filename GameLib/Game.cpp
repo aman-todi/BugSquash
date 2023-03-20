@@ -243,6 +243,18 @@ void Game::UpdateList(std::shared_ptr<Item> item)
 	mItems.push_back(item);
 }
 
+/**
+ * Update the animation timer in each bug (item)
+ *
+ */
+void Game::UpdateAnimationTime()
+{
+	for (auto item : mItems)
+	{
+		item->AddTime();
+	}
+}
+
 std::shared_ptr<Item> Game::OnClick(double x, double y,bool doubleCLick)
 {
 	std::shared_ptr<Item> clicked = nullptr;

@@ -47,6 +47,8 @@ void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 	if (!mSplat)
 	{
+		this->UpdateFrame();
+
 		auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];
 		 //Create a graphics context
 		//auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
@@ -66,11 +68,8 @@ void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 					    - wid / 2, (- hit / 2), wid, hit);
 
 		gc->PopState();
-
-		this->UpdateFrame();
-
-
 	}
+
 	else
 	{
 		double wid = mBugSplatBitmap->GetWidth();
@@ -87,16 +86,9 @@ void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
  */
 void FeatureBug::UpdateFrame()
 {
-
-		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (FeatureNumSpriteImages - 1);
-
-}
-
-void FeatureBug::ClickedOn()
-{
-	if (!this->IsFatbug())
+	if (GetTime() >= (3000/GetSpeed()))
 	{
-		mSplat=true;
+		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (FeatureNumSpriteImages - 1);
+		ResetTime();
 	}
 }
-

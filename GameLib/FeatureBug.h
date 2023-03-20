@@ -45,14 +45,12 @@ public:
 
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
 
-	void OnTimer(wxTimerEvent &event);
-
 	void UpdateFrame();
 
 	/**
  	 * Set the bug to splat
 	 */
-	void ClickedOn() override;
+	void ClickedOn() override { mSplat = true; };
 
 	/**
 	* Accept a visitor

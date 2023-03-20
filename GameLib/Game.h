@@ -73,6 +73,12 @@ public:
 	void Clear();
 
 
+	/**
+	 * Items getter
+	 * @return pointer to mItems
+	 */
+	std::vector<std::shared_ptr<Item> >* GetItems() { return &mItems; }
+
     /**
      * Shrink The Game Window
      */
@@ -88,6 +94,8 @@ public:
 	//void SortBugs();
 
 	void UpdateList(std::shared_ptr<Item> item);
+
+	void UpdateAnimationTime();
 
 	/**
      * Get the random number generator

@@ -47,6 +47,8 @@ void GarbageBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 	if (!mSplat)
 	{
+		this->UpdateFrame();
+
 		auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];
 		 //Create a graphics context
 		//auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
@@ -66,10 +68,8 @@ void GarbageBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 					    - wid / 2, (- hit / 2), wid, hit);
 
 		gc->PopState();
-
-		this->UpdateFrame();
-
 	}
+
 	else
 	{
 		double wid = mBugSplatBitmap->GetWidth();
@@ -86,10 +86,16 @@ void GarbageBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
  */
 void GarbageBug::UpdateFrame()
 {
+	if (GetTime() >= (3000/GetSpeed()))
+	{
 		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (GarbageBugNumSpriteImages - 1);
+		ResetTime();
+	}
 }
 
-
+/**
+ * Set the bug to splat
+ */
 void GarbageBug::ClickedOn()
 {
 	if (!this->IsFatbug())

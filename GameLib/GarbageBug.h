@@ -45,13 +45,7 @@ public:
 
 	void UpdateFrame();
 
-	/**
-	 * Set the bug to splat
-	 */
 	void ClickedOn() override;
-
-
-	//void OnTimer(wxTimerEvent &event);
 
 	/**
 	 * Accept a visitor

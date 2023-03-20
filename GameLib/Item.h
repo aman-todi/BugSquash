@@ -13,7 +13,7 @@
 
 class Game;
 /**
- * ase class for any item in our Game
+ * base class for any item in our Game
  */
 class Item {
 private:
@@ -31,6 +31,9 @@ private:
     std::unique_ptr<wxBitmap> mItemBitmap;
 
     bool mMirror = false;   ///< True mirrors the item image
+
+	/// Time variable to help animation
+	long mKeepTime = 0;
 
 public:
     virtual ~Item();
@@ -98,6 +101,22 @@ public:
     virtual wxXmlNode* XmlSave(wxXmlNode* node);
 
     virtual void XmlLoad(wxXmlNode* node);
+
+	/**
+	 * Animation Time Getter
+	 * @return time in milliseconds
+	 */
+	long GetTime() { return mKeepTime; }
+
+	/**
+ 	 * Reset animation time to 0
+ 	 */
+	void ResetTime() { mKeepTime = 0; }
+
+	/**
+     * Add to animation time
+     */
+	void AddTime() { mKeepTime += 5; }
 
     /**
      * Handle updates for animation

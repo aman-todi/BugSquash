@@ -312,9 +312,35 @@ TEST_F(GameTest,LevelLoader)
 
     ASSERT_EQ(itm3->GetX(), itm3Sol->GetX());
     ASSERT_EQ(itm3->GetY(), itm3Sol->GetY());
+}
 
+TEST_F(GameTest,LevelLoader2)
+{
+	Game gameSol;
+	LevelLoader levelLoad(&gameSol, LevelZeroXMLFileName);
 
+	//
+	// Check to make sure that the bug
+	// Being load are in the right location
+	//
+	auto nullOne = gameSol.HitTest(500,500);
+	ASSERT_EQ(nullOne->GetX(),500);
+	ASSERT_EQ(nullOne->GetY(),500);
 
+	auto nullTwo = gameSol.HitTest(750,700);
+	ASSERT_EQ(nullTwo->GetX(),750);
+	ASSERT_EQ(nullTwo->GetY(),700);
+
+	auto nullThree = gameSol.HitTest(300,800);
+	ASSERT_EQ(nullThree->GetY(),300);
+	ASSERT_EQ(nullThree->GetX(),800);
+
+	//
+	// Check the program location
+	//
+	auto program = gameSol.HitTest(625,500);
+	ASSERT_EQ(program->GetY(),500);
+	ASSERT_EQ(program->GetX(),625);
 }
 
 

@@ -289,8 +289,11 @@ TEST_F(GameTest,LevelLoader)
     game1.Add(program);
     AddLevelOneItems(&game1);
 
+	//
+	// The bugs
+	//
     auto programSol = gameSol.HitTest(625, 500);
-    ASSERT_EQ(program->GetX(), programSol->GetX());
+    ASSERT_EQ(programSol->GetX(), program->GetX());
     ASSERT_EQ(program->GetY(), programSol->GetY());
     //ASSERT_EQ(program->GetName(), programSol->GetName());
 

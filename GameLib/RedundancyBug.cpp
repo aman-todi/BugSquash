@@ -144,36 +144,26 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
  */
 void RedundancyBug::UpdateFrame(std::shared_ptr<wxGraphicsContext> gc, bool isLeft)
 {
+	if (rotation>1.5) {
+		decreasing = true;
+	}
+	else if (rotation<0) {
+		decreasing = false;
+	}
+	if (!decreasing) {
+		rotation += 0.02;
+	}
+	else {
+		rotation -= 0.02;
+	}
+
+
     if (isLeft)
     {
-        if (rotation>1.5) {
-            decreasing = true;
-        }
-        else if (rotation<0) {
-            decreasing = false;
-        }
-        if (!decreasing) {
-            rotation += 0.02;
-        }
-        else {
-            rotation -= 0.02;
-        }
         gc->Rotate(rotation);
     }
     else
     {
-        if (rotation>1.5) {
-            decreasing = true;
-        }
-        else if (rotation<0) {
-            decreasing = false;
-        }
-        if (!decreasing) {
-            rotation += 0.02;
-        }
-        else {
-            rotation -= 0.02;
-        }
         gc->Rotate(-rotation);
     }
 }

@@ -38,6 +38,7 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 		// Access the bug elements and their attributes
 		wxXmlNode *bugNode = program->GetChildren();
 
+		mNumPrograms++;
 		shared_ptr <Item> laptop = make_shared<Program>(game);
 		double programX, programY;
 
@@ -58,6 +59,7 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 			if(bugNode->GetName() == "bug" || bugNode->GetName() == "feature")
 			{
 				bugs.push_back(bugNode);
+				mNumBugs++;
 			}
 			bugNode = bugNode->GetNext();
 		}
@@ -83,6 +85,8 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 				bug = make_shared<RedundancyBug>(game);
 
 			}
+
+			//load the "code" if fatbug
 			if(node->GetChildren()!=nullptr)
 			{
 				auto code = node->GetChildren();
@@ -92,7 +96,7 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 				if (cDataNode->GetType()==wxXML_CDATA_SECTION_NODE)
 				{
 					auto cData = cDataNode->GetContent();
-					bug->SetCode(solData.ToStdWstring(),cData.ToStdWstring());
+					bug->SetCode(cData.ToStdWstring(),solData.ToStdWstring());
 				}
 
 			}

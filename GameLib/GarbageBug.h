@@ -53,6 +53,7 @@ public:
 	 */
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitGarbageBug(this); }
 
+	bool AtProgram() override;
 };
 
 #endif //GAME_GAME_GAMELIB_GARBAGEBUG_H

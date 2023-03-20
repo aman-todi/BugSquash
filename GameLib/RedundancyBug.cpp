@@ -48,6 +48,8 @@ const int WingSetY = 5;
 /// Number of sprite images
 const int RedundancyNumSpriteImages = 1;
 
+/// The range of the program to consider at it
+const double ProgramRange = 50;
 /**
  * RedundancyBug Constructor
  * @param game Game this bug is a member of
@@ -181,4 +183,13 @@ void RedundancyBug::ClickedOn()
 	}
 }
 
+/**
+ * See if the bug is at the program
+ */
+bool RedundancyBug::AtProgram()
+{
+	double distanceX = this->GetX() - GetProgramX();
+	double distanceY = this->GetY() - GetProgramY();
+	return sqrt(distanceX * distanceX + distanceY * distanceY) <= ProgramRange;
+}
 

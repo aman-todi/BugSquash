@@ -187,19 +187,34 @@ void Game::Clear()
  */
 void Game::Update(double elapsed)
 {
+	vector<shared_ptr<Item>> bugToRemove;
 	for (auto bug : mItems)
 	{
+		// Check to see if the bugs are at the program
+		if(bug->AtProgram())
+		{
+			bugToRemove.push_back(bug);
+			//This could be where add the missed and stuff
+		}
+		// Calling update on a null pointer
 		bug->Update(elapsed);
 	}
+
+	// this for loop is used to remove all the bugs at the program
+	for(auto bug: bugToRemove)
+	{
+		DeleteBug(bug);
+	}
+	// Destroy the vector temp vector
+	bugToRemove.clear();
 }
 
 /**  Delete an bug from the game
 *
 * @param bug The item to delete.
 */
-void Game::DeleteBug(std::shared_ptr<Bug> bug)
+void Game::DeleteBug(std::shared_ptr<Item> bug)
 {
-
 	auto loc = find(std::begin(mItems), std::end(mItems), bug);
 	if (loc != std::end(mItems))
 	{

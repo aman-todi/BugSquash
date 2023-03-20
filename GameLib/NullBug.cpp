@@ -16,6 +16,8 @@ const std::wstring NullBugSplatImageName = L"images/scarlet-gray-splat.png";
 /// Number of sprite images
 const int NullBugNumSpriteImages = 7;
 
+/// The range of the program to consider at it
+const double ProgramRange = 50;
 /**
  * NullBug Constructor
  * @param game Game this bug is a member of
@@ -104,6 +106,16 @@ void NullBug::ClickedOn()
 	{
 		mSplat=true;
 	}
+}
+
+/**
+ * See if the bug is at the program
+ */
+bool NullBug::AtProgram()
+{
+	double distanceX = this->GetX() - GetProgramX();
+	double distanceY = this->GetY() - GetProgramY();
+	return sqrt(distanceX * distanceX + distanceY * distanceY) <= ProgramRange;
 }
 
 

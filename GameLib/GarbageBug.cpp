@@ -16,6 +16,8 @@ const std::wstring GarbageBugSplatImageName = L"images/blue-maize-splat.png";
 /// Number of sprite images
 const int GarbageBugNumSpriteImages = 6;
 
+/// The range of the program to consider at it
+const double ProgramRange = 50;
 /**
  * GarbageBug Constructor
  * @param game Game this bug is a member of
@@ -102,4 +104,14 @@ void GarbageBug::ClickedOn()
 	{
 		mSplat=true;
 	}
+}
+
+/**
+ * See if the bug is at the program
+ */
+bool GarbageBug::AtProgram()
+{
+	double distanceX = this->GetX() - GetProgramX();
+	double distanceY = this->GetY() - GetProgramY();
+	return sqrt(distanceX * distanceX + distanceY * distanceY) <= ProgramRange;
 }

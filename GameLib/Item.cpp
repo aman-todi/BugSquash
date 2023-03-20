@@ -9,6 +9,7 @@
 #include "ItemsVisitor.h"
 
 
+
 using namespace std;
 
 /**
@@ -54,7 +55,7 @@ double Item::DistanceTo(std::shared_ptr<Item> item)
 {
     auto dx = item->GetX() - GetX();
     auto dy = item->GetY() - GetY();
-    return sqrt(dx * dx + dy * dy);
+	return sqrt(dx * dx + dy * dy) ;
 }
 
 /**

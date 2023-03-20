@@ -65,7 +65,7 @@ public:
 	std::shared_ptr<Item> HitTest(int x, int y);
 //	void MoveToFront(std::shared_ptr<Bug> item);
 //	void MovetoEnd(std::shared_ptr<Bug> item);
-	void DeleteBug(std::shared_ptr<Bug> item);
+	void DeleteBug(std::shared_ptr<Item> item);
 
 
 	void OnDraw(std::shared_ptr<wxGraphicsContext> graphics,int width, int height);

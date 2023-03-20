@@ -16,6 +16,9 @@ const std::wstring FeatureSplatImageName = L"images/feature-splat.png";
 /// Number of sprite images
 const int FeatureNumSpriteImages = 7;
 
+/// The range of the program to consider at it
+const double ProgramRange = 50;
+
 /**
  * FeatureBug Constructor
  * @param game Game this bug is a member of
@@ -44,7 +47,6 @@ FeatureBug::FeatureBug(Game *game) : Bug(game, FeatureImageName)
  */
 void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
-
 	if (!mSplat)
 	{
 		this->UpdateFrame();
@@ -91,4 +93,14 @@ void FeatureBug::UpdateFrame()
 		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (FeatureNumSpriteImages - 1);
 		ResetTime();
 	}
+}
+
+/**
+ * See if the bug is at the program
+ */
+bool FeatureBug::AtProgram()
+{
+	double distanceX = this->GetX() - GetProgramX();
+	double distanceY = this->GetY() - GetProgramY();
+	return sqrt(distanceX * distanceX + distanceY * distanceY) <= ProgramRange;
 }

@@ -42,7 +42,7 @@ NullBug::NullBug(Game *game) : Bug(game, NullBugSpriteImageName)
 
 /**
  * Draws the bug if it is either splat or moving
- * @param dc The device context to draw on
+ * @param gc The device context to draw on
  */
 void NullBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {

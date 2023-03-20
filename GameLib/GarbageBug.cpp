@@ -40,7 +40,7 @@ GarbageBug::GarbageBug(Game *game) : Bug(game, GarbageBugSpriteImageName)
 
 /**
  * Draws the GarbageBug or splat GarbageBug
- * @param dc Device context to draw on
+ * @param gc Device context to draw on
  */
 void GarbageBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {

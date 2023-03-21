@@ -205,7 +205,7 @@ void Game::Update(double elapsed)
 	{
 		DeleteBug(bug);
 	}
-	// Destroy the vector temp vector
+	// Destroy the vector
 	bugToRemove.clear();
 }
 

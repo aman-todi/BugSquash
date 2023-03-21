@@ -139,7 +139,7 @@ public:
 	/// Register if the bug has been clicked on
 	virtual void ClickedOn(){};
 	virtual void SetName(std::string name){};
-	virtual bool AtProgram(){};
+	virtual bool AtProgram(){return false;};
 
 	//virtual std::wstring GetCode(){};
     //void SetMirror(bool m);   still need to implement this

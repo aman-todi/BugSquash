@@ -27,10 +27,6 @@ private:
 	/// The bitmap we can display for this Bug splash
 	std::shared_ptr<wxBitmap> mBugSplatBitmap;
 
-
-	/// Has the bug been clicked on
-	bool mSplat = false;
-
 public:
 	/// Default constructor (disabled)
 	FeatureBug() = delete;
@@ -50,7 +46,7 @@ public:
 	/**
  	 * Set the bug to splat
 	 */
-	void ClickedOn() override { mSplat = true; };
+	void ClickedOn() override { SetSplat(); };
 
 	/**
 	* Accept a visitor

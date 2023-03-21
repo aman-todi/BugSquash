@@ -76,7 +76,7 @@ RedundancyBug::RedundancyBug(Game *game) : Bug(game, RedundancyBugImage)
 void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
 
-	if (!mSplat)
+	if (!GetSplat())
 	{
 		auto BugBase = mBugPartsSpriteSheet[mCurrentFrameIndex];
         auto BugTop = mBugPartsSpriteSheet[mCurrentFrameIndex+1];
@@ -179,7 +179,7 @@ void RedundancyBug::ClickedOn()
 {
 	if (!this->IsFatbug())
 	{
-		mSplat=true;
+		SetSplat();
 	}
 }
 

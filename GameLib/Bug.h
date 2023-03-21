@@ -34,6 +34,9 @@ private:
 	///code associated with this bug
 	std::shared_ptr<Code> mCode=nullptr;
 
+    /// Has the bug been clicked on
+    bool mSplat = false;
+
 public:
     /// Default constructor (disabled)
     Bug() = delete;
@@ -94,6 +97,9 @@ public:
 
 	virtual void SetCode(std::wstring codeData, std::wstring solData);
 
+    bool GetSplat() {return mSplat;}
+
+    void SetSplat() {mSplat = true;}
 
 
 protected:

@@ -47,7 +47,7 @@ GarbageBug::GarbageBug(Game *game) : Bug(game, GarbageBugSpriteImageName)
 void GarbageBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
 
-	if (!mSplat)
+	if (!GetSplat())
 	{
 		this->UpdateFrame();
 
@@ -102,7 +102,7 @@ void GarbageBug::ClickedOn()
 {
 	if (!this->IsFatbug())
 	{
-		mSplat=true;
+		SetSplat();
 	}
 }
 

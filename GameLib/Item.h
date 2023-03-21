@@ -66,7 +66,7 @@ public:
     void operator=(const Item &) = delete;
 	/**
 	 * Draw this Item
-	 * @param dc  Device context to draw on
+	 * @param graphics  Device context to draw on
 	 */
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics){}
 
@@ -138,9 +138,20 @@ public:
 
 	/// Register if the bug has been clicked on
 	virtual void ClickedOn(){};
+	/**
+	 * Set the name of the program
+	 * @param name The name of that program
+	 */
 	virtual void SetName(std::string name){};
+	/**
+	 * Checks to see if the bug has reached the program
+	 * @return false
+	 */
 	virtual bool AtProgram(){return false;};
-
+	/**
+	 * Get the code that is associated with the bug
+	 * @return The code that is associated with the bug
+	 */
 	virtual std::wstring GetCode(){wxString check = "NO"; return check.ToStdWstring();}
     //void SetMirror(bool m);   still need to implement this
 protected:

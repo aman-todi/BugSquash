@@ -72,7 +72,6 @@ const std::wstring LevelThreeXMLFileName = L"data/level3.xml";
 /**
  * Draw the game
  * @param graphics The graphic of the screen
- * @param dc The device context to draw on
  * @param width The width of the screen
  * @param height The height of the scree
  */
@@ -260,7 +259,6 @@ void Game::UpdateList(std::shared_ptr<Item> item)
 
 /**
  * Update the animation timer in each bug (item)
- *
  */
 void Game::UpdateAnimationTime()
 {
@@ -270,6 +268,13 @@ void Game::UpdateAnimationTime()
 	}
 }
 
+ /**
+  * Set the item to splat if single-clicked
+  * @param x The X location which was clicked
+  * @param y  The Y location which was clicked
+  * @param doubleCLick checks if click is single or double
+  * @return The Item that was clicked on
+  */
 std::shared_ptr<Item> Game::OnClick(double x, double y,bool doubleCLick)
 {
 	std::shared_ptr<Item> clicked = nullptr;

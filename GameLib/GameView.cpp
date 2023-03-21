@@ -216,7 +216,7 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 }
 
 /**
- * Mea
+ * Turns or off the no clipping
  * @param event Menu event
  */
 void GameView::OnViewShrink(wxCommandEvent& event)
@@ -224,25 +224,37 @@ void GameView::OnViewShrink(wxCommandEvent& event)
     mGame.Shrink();
     Refresh();
 }
-
+/**
+ * Loads in level Zero
+ * @param event Menu event
+ */
 void GameView::OnLevelZero(wxCommandEvent& event)
 {
 	mGame.Clear();
     LevelLoader level0(&mGame,LevelZeroXMLFileName);
 }
-
+/**
+ * Loads in level One
+ * @param event Menu event
+ */
 void GameView::OnLevelOne(wxCommandEvent& event)
 {
 	mGame.Clear();
     LevelLoader level1(&mGame,LevelOneXMLFileName);
 }
-
+/**
+ * Loads in level Two
+ * @param event Menu event
+ */
 void GameView::OnLevelTwo(wxCommandEvent& event)
 {
 	mGame.Clear();
     LevelLoader level2(&mGame,LevelTwoXMLFileName);
 }
-
+/**
+ * Loads in level Three
+ * @param event Menu event
+ */
 void GameView::OnLevelThree(wxCommandEvent& event)
 {
 	mGame.Clear();

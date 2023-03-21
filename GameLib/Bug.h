@@ -54,7 +54,7 @@ public:
 
 	/**
  	 * Set the speed of the bug
- 	 * @param speedX, speedY speed of bug in X and Y directions
+ 	 * @param speed The speed of bug in X and Y directions
  	 */
 	virtual void SetSpeed(double speed) { mSpeed=speed; }
 
@@ -80,10 +80,15 @@ public:
 	virtual double GetAngleToRotate(){return mAngleToRotate;}
 
 	/**
-	 * checks if bug has code associated with it
+	 *  Check to see if code it associated with it
+	 * @return True if code it associated else false
 	 */
 	virtual bool IsFatbug(){return mCode!=nullptr;}
 
+	/**
+	 * Get the code that is associated with fat bug
+	 * @return The code for fat bug
+	 */
 	virtual std::wstring GetCode() override {return mCode->GetCode();}
 
 	virtual bool HitTest(int x, int y) override;
@@ -92,9 +97,15 @@ public:
 
 	virtual void SetCode(std::wstring codeData, std::wstring solData);
 
-
+	/**
+	 * Get if the bug has been splat or not
+	 * @return If the bug has been splat or not
+	 */
     bool GetSplat() {return mSplat;}
 
+	/**
+	 * Set if the bug has been clicked on
+	 */
     void SetSplat() {mSplat = true;}
 
     bool AtProgram() override;

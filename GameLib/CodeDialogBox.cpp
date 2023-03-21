@@ -6,8 +6,13 @@
 #include "pch.h"
 #include "CodeDialogBox.h"
 
+/// The title to the pop up window
 const wxString& name = "Bug Squash IDE";
-
+/**
+ * Constructor
+ * @param parent The bug that is associated with is
+ * @param code The text in the box
+ */
 CodeDialogBox::CodeDialogBox(wxWindow *parent, const wxString& code)
 	: wxDialog(parent, wxID_ANY, name)
 {
@@ -26,17 +31,26 @@ CodeDialogBox::CodeDialogBox(wxWindow *parent, const wxString& code)
 
 	SetSizerAndFit(sizer);
 }
-
+/**
+ * Gets the text that appears in the pop up box
+ * @return The text in the pop up box
+ */
 wxString CodeDialogBox::GetText() const
 {
 	return m_textCtrl->GetValue();
 }
-
+/**
+ * The handler for the "Ok" option
+ * @param event Mouse event
+ */
 void CodeDialogBox::OnOK(wxCommandEvent& event)
 {
 	EndModal(wxID_OK);
 }
-
+/**
+ * The handler for the "Cancel" option
+ * @param event Mouse event
+ */
 void CodeDialogBox::OnCancel(wxCommandEvent& event)
 {
 	EndModal(wxID_CANCEL);

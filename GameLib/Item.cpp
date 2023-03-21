@@ -32,10 +32,10 @@ Item::Item(Game *game, const std::wstring &filename) : mGame(game)
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 }
 
-/**
- * Draw this bug
- * @param dc Device context to draw on
- */
+///**
+// * Draw this bug
+// * @param dc Device context to draw on
+// */
 //void Item::Draw(wxDC *dc)
 //{
 //    double wid = mItemBitmap->GetWidth();

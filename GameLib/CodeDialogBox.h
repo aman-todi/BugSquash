@@ -9,10 +9,13 @@
 #define PROJECT1_GAMELIB_CODEDIALOGBOX_H
 
 #include "pch.h"
-
+/**
+ * The Fat Bug code box
+ */
 class CodeDialogBox: public wxDialog
 {
 private:
+	/// The text that appears in the pop box
 	wxTextCtrl *m_textCtrl;
 
 public:

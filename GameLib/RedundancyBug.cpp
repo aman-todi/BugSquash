@@ -143,6 +143,7 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 /**
  * Updates Rotation of Wings
+ *  @param gc The images of bug
  */
 void RedundancyBug::UpdateFrame(std::shared_ptr<wxGraphicsContext> gc, bool isLeft)
 {
@@ -170,10 +171,10 @@ void RedundancyBug::UpdateFrame(std::shared_ptr<wxGraphicsContext> gc, bool isLe
     }
 }
 
-void RedundancyBug::OnTimer(wxTimerEvent &event)
-{
-
-}
+//void RedundancyBug::OnTimer(wxTimerEvent &event)
+//{
+//
+//}
 
 void RedundancyBug::ClickedOn()
 {

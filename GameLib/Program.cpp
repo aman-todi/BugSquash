@@ -23,11 +23,13 @@ const double HitRadius = 50;
 /// Program name font size
 const int ProgramNameFontSize = 22;
 
+/// The color of the Text on the program
 const wxColour FontColor = wxColour(0, 200, 200);
 
 /**
  * Constructor
  * @param game Game this bug is a member of
+ * @param program The program info
  */
 Program::Program(Game* game,wxXmlNode* program) : Item(game, ProgramImage)
 {
@@ -76,14 +78,20 @@ void Program::Draw(std::shared_ptr<wxGraphicsContext> gc)
     }
 
 }
-
-bool Program::HitTest(int x, int y)
-{
-    double dx = x - GetX();
-    double dy = y - GetY();
-
-    return sqrt(dx * dx + dy * dy) < HitRadius;
-}
+/**
+	* HitTest
+	* @param x, y (x,y) coords
+ 	* @return if the Hit is within the radius
+	*/
+//bool Program::HitTest(int x, int y)
+//{
+//
+////    double dx = x - GetX();
+////    double dy = y - GetY();
+////
+////    return sqrt(dx * dx + dy * dy) < HitRadius;
+//	return false;
+//}
 
 
 

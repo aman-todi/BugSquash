@@ -21,6 +21,8 @@ const double ProgramRange = 50;
 /**
  * NullBug Constructor
  * @param game Game this bug is a member of
+ * @param program he program the bug is associated with
+ * @param bug The inform associated with the bug
  */
 NullBug::NullBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program, bug,NullBugSpriteImageName)
 {

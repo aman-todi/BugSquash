@@ -47,6 +47,7 @@ Bug::Bug(Game *game,wxXmlNode* program,wxXmlNode* bug, const std::wstring &filen
 	//load the "code" if fatbug
 	if(bug->GetChildren()!=nullptr)
 	{
+		mFatbug = true;
 		auto code = bug->GetChildren();
 
 		auto solData = code->GetAttribute("pass");
@@ -54,7 +55,8 @@ Bug::Bug(Game *game,wxXmlNode* program,wxXmlNode* bug, const std::wstring &filen
 		if (cDataNode->GetType()==wxXML_CDATA_SECTION_NODE)
 		{
 			auto cData = cDataNode->GetContent();
-			SetCode(cData.ToStdWstring(),solData.ToStdWstring());
+			mCodeData = cData.ToStdString();
+			mSolution = solData.ToStdString();
 		}
 	}
 }
@@ -90,16 +92,6 @@ bool Bug::HitTest(int x, int y)
 	return sqrt(dx * dx + dy * dy) < HitRadius;
 }
 
-/**
- * sets the code for the bug if it is a fatbug
- * @param codeData
- * @param solData
- */
-void Bug::SetCode(std::wstring codeData, std::wstring solData)
-{
-//	mCode->SetCode(codeData);
-//	mCode->SetSolution(solData);
-}
 
 /**
  * Check to see if the bug reached the program

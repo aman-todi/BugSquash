@@ -20,6 +20,7 @@
 #include "FeatureBug.h"
 #include "LevelLoader.h"
 #include "CodeDialogBox.h"
+#include "BugVisitor.h"
 
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
@@ -206,10 +207,12 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 	//Check to see if we hit a bug
 	mClickedItem = mGame.OnClick(event.GetX(),event.GetY(),true);
 
-	if (mClickedItem != nullptr )
+	BugVisitor visitor;
+	mClickedItem->Accept(&visitor);
+	if (mClickedItem != nullptr && visitor.Fatbug())
 	{
-		//auto code = mClickedItem->GetCode();
-		CodeDialogBox dlg(this, "codeskjbskjbhsbhsk bn");
+		auto code = mClickedItem->GetCode();
+		CodeDialogBox dlg(this, code);
 		dlg.ShowModal();
 		Refresh();
 	}

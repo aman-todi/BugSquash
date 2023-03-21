@@ -63,7 +63,7 @@ public:
 	 * Sets the name of the progrma
 	 * @param name The name of the program
 	 */
-	void SetName(std::string name) override {mNameString=name;}
+	void SetName(std::string name)  {mNameString=name;}
 	/**
 	 * The name of the program
 	 * @return The name of the program

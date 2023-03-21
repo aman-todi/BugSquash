@@ -24,7 +24,7 @@ public:
 	wxString GetText() const;
 
 	void OnOK(wxCommandEvent& event);
-	void OnCancel(wxCommandEvent& event);
+
 
 protected:
 	//wxDECLARE_EVENT_TABLE();

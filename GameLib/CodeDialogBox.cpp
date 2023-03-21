@@ -14,22 +14,29 @@ const wxString& name = "Bug Squash IDE";
  * @param code The text in the box
  */
 CodeDialogBox::CodeDialogBox(wxWindow *parent, const wxString& code)
-	: wxDialog(parent, wxID_ANY, name)
+	: wxDialog(parent, wxID_ANY, name, wxDefaultPosition, wxSize(600, 800))
 {
 	wxBoxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
 	// Create the text control and set its initial text.
-	m_textCtrl = new wxTextCtrl(this, wxID_ANY, code);
-	sizer->Add(m_textCtrl, wxSizerFlags().Expand().Border());
+	m_textCtrl = new wxTextCtrl(this, wxID_ANY, code, wxDefaultPosition,
+								wxDefaultSize, wxTE_MULTILINE|wxTE_DONTWRAP|wxTE_READONLY);
+	sizer->SetMinSize(wxSize(400, 500));
 
-	wxBoxSizer *buttonSizer = new wxBoxSizer(wxHORIZONTAL);
-	wxButton *okButton = new wxButton(this, wxID_OK, "OK");
-	wxButton *cancelButton = new wxButton(this, wxID_CANCEL, "Cancel");
-	buttonSizer->Add(okButton, wxSizerFlags().Border(wxRIGHT));
-	buttonSizer->Add(cancelButton);
-	sizer->Add(buttonSizer, wxSizerFlags().Align(wxALIGN_RIGHT).Border(wxTOP|wxRIGHT|wxBOTTOM));
+	sizer->Add(m_textCtrl, 1, wxEXPAND|wxALL, 10);
+
+	// Create the sizer for the OK button.
+	wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
+
+	// Add the OK button to the sizer.
+	wxButton* okButton = new wxButton(this, wxID_OK, "OK");
+	buttonSizer->Add(okButton, 0, wxALL, 10);
+
+	// Add the button sizer to the main sizer.
+	sizer->Add(buttonSizer, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 10);
 
 	SetSizerAndFit(sizer);
+	CenterOnParent();
 }
 /**
  * Gets the text that appears in the pop up box
@@ -47,11 +54,4 @@ void CodeDialogBox::OnOK(wxCommandEvent& event)
 {
 	EndModal(wxID_OK);
 }
-/**
- * The handler for the "Cancel" option
- * @param event Mouse event
- */
-void CodeDialogBox::OnCancel(wxCommandEvent& event)
-{
-	EndModal(wxID_CANCEL);
-}
+

@@ -138,11 +138,7 @@ public:
 
 	/// Register if the bug has been clicked on
 	virtual void ClickedOn(){};
-	/**
-	 * Set the name of the program
-	 * @param name The name of that program
-	 */
-	virtual void SetName(std::string name){};
+
 	/**
 	 * Checks to see if the bug has reached the program
 	 * @return false
@@ -152,8 +148,10 @@ public:
 	 * Get the code that is associated with the bug
 	 * @return The code that is associated with the bug
 	 */
-	virtual std::wstring GetCode(){wxString check = "NO"; return check.ToStdWstring();}
+	virtual std::string GetCode(){std::string check = "NO"; return check;}
     //void SetMirror(bool m);   still need to implement this
+
+	virtual bool IsFatbug(){return false;}
 protected:
     Item(Game *game, const std::wstring &filename);
 

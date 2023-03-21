@@ -10,6 +10,7 @@
 
 #include "Bug.h"
 #include "Game.h"
+#include "ItemsVisitor.h"
 
 /**
  * Class for a bug type FeatureBug
@@ -40,6 +41,12 @@ public:
 	 * Runs through the frames of the spider
 	 */
 	void UpdateFrame();
+
+	/**
+     * Accept a visitor
+     * @param visitor The visitor we accept
+     */
+	void Accept(ItemsVisitor* visitor) override { visitor->VisitSpider(this); }
 
 };
 

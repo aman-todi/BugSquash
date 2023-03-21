@@ -16,6 +16,7 @@ class NullBug;
 class RedundancyBug;
 class FeatureBug;
 class Program;
+class Spider;
 
 /** Items visitor base class */
 class ItemsVisitor
@@ -59,6 +60,11 @@ public:
 	 * @param bug
 	 */
 	virtual void VisitProgram(Program* bug) {}
+
+	/**
+	 * visit spider
+	 */
+	virtual void VisitSpider (Spider* bug){}
 
 };
 

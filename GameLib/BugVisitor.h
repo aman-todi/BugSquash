@@ -14,7 +14,7 @@ class GarbageBug;
 class FeatureBug;
 class NullBug;
 class RedundancyBug;
-class SpiderBug;
+class Spider;
 
 
 class BugVisitor :public ItemsVisitor
@@ -53,8 +53,10 @@ public:
 	 */
 	void VisitFeatureBug (FeatureBug* bug) override ;
 
-
-
+	/**
+	 * visit spider
+	 */
+	void VisitSpider (Spider* bug) override ;
 };
 
 #endif //PROJECT1_GAMELIB_BUGVISITOR_H

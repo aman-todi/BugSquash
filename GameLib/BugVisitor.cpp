@@ -9,6 +9,7 @@
 #include "NullBug.h"
 #include "RedundancyBug.h"
 #include "FeatureBug.h"
+#include "Spider.h"
 
 
 /**
@@ -43,6 +44,11 @@ void BugVisitor::VisitRedundancyBug(RedundancyBug* bug)
  * @param bug
  */
 void BugVisitor::VisitFeatureBug(FeatureBug* bug)
+{
+	mIsFatbug = bug->IsFatbug();
+}
+
+void BugVisitor::VisitSpider (Spider* bug)
 {
 	mIsFatbug = bug->IsFatbug();
 }

@@ -63,8 +63,6 @@ public:
 	* @param visitor The visitor we accept
 	*/
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitRedundancyBug(this); }
-
-	bool AtProgram() override;
 };
 
 #endif //GAME_GAME_GAMELIB_REDUNDANCYBUG_H

@@ -101,6 +101,10 @@ public:
 
     void SetSplat() {mSplat = true;}
 
+    bool AtProgram() override;
+
+    void MissProgram();
+
 
 protected:
 	Bug(Game* game,const std::wstring &filename);

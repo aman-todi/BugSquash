@@ -281,9 +281,7 @@ std::shared_ptr<Item> Game::OnClick(double x, double y,bool doubleCLick)
 	if (clicked != nullptr && !doubleCLick)
 	{
 		clicked->ClickedOn();
-	} else if (clicked == nullptr) {
-        mScoreboard->IncMissed();
-    }
+	}
 
 	return clicked;
 }

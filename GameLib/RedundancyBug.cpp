@@ -182,14 +182,3 @@ void RedundancyBug::ClickedOn()
 		SetSplat();
 	}
 }
-
-/**
- * See if the bug is at the program
- */
-bool RedundancyBug::AtProgram()
-{
-	double distanceX = this->GetX() - GetProgramX();
-	double distanceY = this->GetY() - GetProgramY();
-	return sqrt(distanceX * distanceX + distanceY * distanceY) <= ProgramRange;
-}
-

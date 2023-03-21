@@ -108,14 +108,4 @@ void NullBug::ClickedOn()
 	}
 }
 
-/**
- * See if the bug is at the program
- */
-bool NullBug::AtProgram()
-{
-	double distanceX = this->GetX() - GetProgramX();
-	double distanceY = this->GetY() - GetProgramY();
-	return sqrt(distanceX * distanceX + distanceY * distanceY) <= ProgramRange;
-}
-
 

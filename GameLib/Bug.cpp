@@ -7,6 +7,7 @@
 #include "Bug.h"
 #include <random>
 #include "Game.h"
+#include "Scoreboard.h"
 
 /// Maximum speed in the X direction in
 /// in pixels per second
@@ -19,6 +20,9 @@ const double MinSpeedX = 20;
 /// How close the user has click
 /// For the bug to splat
 const double HitRadius = 50;
+
+/// The range of the program to consider at it
+const double ProgramRange = 50;
 
 /**
  * Constructor
@@ -45,6 +49,7 @@ void Bug::Update(double elapsed)
 	double newX = GetX() + elapsed * mSpeed * cos(mAngleToRotate);
 	double newY = GetY() + elapsed * mSpeed * sin(mAngleToRotate);
 	SetLocation(newX,newY);
+    MissProgram();
 }
 
 /**
@@ -70,6 +75,21 @@ void Bug::SetCode(std::wstring codeData, std::wstring solData)
 {
 //	mCode->SetCode(codeData);
 //	mCode->SetSolution(solData);
+}
+
+bool Bug::AtProgram()
+{
+    double distanceX = this->GetX() - GetProgramX();
+    double distanceY = this->GetY() - GetProgramY();
+    return sqrt(distanceX * distanceX + distanceY * distanceY) <= ProgramRange;
+}
+
+void Bug::MissProgram()
+{
+    if (AtProgram()) {
+        auto scoreboard = GetGame()->GetScoreboard();
+        scoreboard->IncMissed();
+    }
 }
 
 

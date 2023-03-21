@@ -174,7 +174,7 @@ void GameView::OnLeftDown(wxMouseEvent &event)
 	if(mClickedItem != nullptr)
 	{
 		//Moves the bug to the end of the list
-		mGame.UpdateList(mClickedItem);
+		//mGame.UpdateList(mClickedItem);
 		Refresh();
 	}
 }

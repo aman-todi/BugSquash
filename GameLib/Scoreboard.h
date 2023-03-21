@@ -37,12 +37,19 @@ public:
     int GetOops() {return mOops;}
 
     /**
-     * Update Score
-     * @param fix
-     * @param miss
-     * @param oop
+     * Increment Fixed Value
      */
-    void KeepScore(int fix, int miss, int oop);
+    void IncFixed() {mFixed++;}
+
+    /**
+     * Increment Missed Value
+     */
+    void IncMissed() {mMissed++;}
+
+    /**
+     * Increment Oops Feature Bug Value
+     */
+    void IncOops() {mOops++;}
 
     /**
      * Draw Scoreboard

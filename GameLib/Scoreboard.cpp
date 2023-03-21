@@ -38,13 +38,6 @@ Scoreboard::Scoreboard()
     mOops = 0;
 }
 
-void Scoreboard::KeepScore(int fix, int miss, int oop)
-{
-    mFixed += fix;
-    mMissed += miss;
-    mOops += oop;
-}
-
 void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {
     //Score
@@ -60,9 +53,14 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
     gc->SetFont(fontScore, FontColor);
 
-    gc->DrawText(L"0", LeftScoreX, ScoreY);
-    gc->DrawText(L"0", GameWidth/2, ScoreY);
-    gc->DrawText(L"0", GameWidth-LeftScoreX, ScoreY);
+    wxString fix = wxString::Format(wxT("%i"),mFixed);
+    wxString miss = wxString::Format(wxT("%i"),mMissed);
+    wxString oops = wxString::Format(wxT("%i"),mOops);
+
+
+    gc->DrawText(fix, LeftScoreX, ScoreY);
+    gc->DrawText(miss, GameWidth/2, ScoreY);
+    gc->DrawText(oops, GameWidth-LeftScoreX, ScoreY);
 
     //Label
     gc->SetFont(fontLabel, FontColor);

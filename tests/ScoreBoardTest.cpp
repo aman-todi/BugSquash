@@ -27,32 +27,37 @@ TEST(Scoreboard,GetterAndSetter)
 	//
 	// Checks to make sure keep score is working
 	//
-	s.KeepScore(5,6,7);
+    s.IncFixed();
+    s.IncMissed();
+    s.IncOops();
 
-	ASSERT_EQ(s.GetFixed(),5);
-	ASSERT_EQ(s.GetMissed(),6);
-	ASSERT_EQ(s.GetOops(),7);
+	ASSERT_EQ(s.GetFixed(),1);
+	ASSERT_EQ(s.GetMissed(),1);
+	ASSERT_EQ(s.GetOops(),1);
 
 	//Just changing Fix
-	s.KeepScore(5,0,0);
+    s.IncFixed();
+    s.IncFixed();
 
-	ASSERT_EQ(s.GetFixed(),10);
-	ASSERT_EQ(s.GetMissed(),6);
-	ASSERT_EQ(s.GetOops(),7);
-
-	//Just changing Miss
-	s.KeepScore(0,5,0);
-
-	ASSERT_EQ(s.GetFixed(),10);
-	ASSERT_EQ(s.GetMissed(),11);
-	ASSERT_EQ(s.GetOops(),7);
+	ASSERT_EQ(s.GetFixed(),3);
+	ASSERT_EQ(s.GetMissed(),1);
+	ASSERT_EQ(s.GetOops(),1);
 
 	//Just changing Miss
-	s.KeepScore(0,0,1);
+    s.IncMissed();
 
-	ASSERT_EQ(s.GetFixed(),10);
-	ASSERT_EQ(s.GetMissed(),11);
-	ASSERT_EQ(s.GetOops(),8);
+	ASSERT_EQ(s.GetFixed(),3);
+	ASSERT_EQ(s.GetMissed(),2);
+	ASSERT_EQ(s.GetOops(),1);
+
+	//Just changing Oops
+    s.IncOops();
+    s.IncOops();
+    s.IncOops();
+
+	ASSERT_EQ(s.GetFixed(),3);
+	ASSERT_EQ(s.GetMissed(),2);
+	ASSERT_EQ(s.GetOops(),4);
 
 	// There need to add to the Setters as well
 

@@ -36,7 +36,7 @@ public:
 	/// Assignment operator
 	void operator=(const GarbageBug &) = delete;
 
-	GarbageBug(Game *game);
+	GarbageBug(Game *game,wxXmlNode* program,wxXmlNode* bug);
 
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
 

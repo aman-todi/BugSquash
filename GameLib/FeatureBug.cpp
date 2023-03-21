@@ -24,7 +24,7 @@ const double ProgramRange = 50;
  * FeatureBug Constructor
  * @param game Game this bug is a member of
  */
-FeatureBug::FeatureBug(Game *game) : Bug(game, FeatureImageName)
+FeatureBug::FeatureBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game, program, bug,FeatureImageName)
 {
 
 	mBugSplatBitmap = std::make_unique<wxBitmap>(FeatureSplatImageName,wxBITMAP_TYPE_ANY);

@@ -54,7 +54,7 @@ const double ProgramRange = 50;
  * RedundancyBug Constructor
  * @param game Game this bug is a member of
  */
-RedundancyBug::RedundancyBug(Game *game) : Bug(game, RedundancyBugImage)
+RedundancyBug::RedundancyBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game, program, bug,RedundancyBugImage)
 {
     mBugSplatBitmap = std::make_unique<wxBitmap>(RedundancyFlySplatImageName,wxBITMAP_TYPE_ANY);
     wxImage FlyImageBase(RedundancyBugImage, wxBITMAP_TYPE_ANY);

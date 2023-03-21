@@ -11,7 +11,6 @@
 #include "Item.h"
 #include "Code.h"
 
-
 class Game;
 /**
  * Base Class for Bug
@@ -37,6 +36,9 @@ private:
     /// Has the bug been clicked on
     bool mSplat = false;
 
+	///start time
+
+	double mStartTime = 0;
 public:
     /// Default constructor (disabled)
     Bug() = delete;
@@ -48,7 +50,7 @@ public:
 	 * Calculate the speed of the bug
 	 * @return the speed of the bug
 	 */
-	double GetSpeed(){return sqrt(mSpeed);}
+	double GetSpeed(){return mSpeed;}
 
 	/**
  	 * Set the speed of the bug
@@ -58,13 +60,6 @@ public:
 
     /// Assignment operator
     void operator=(const Game &) = delete;
-
-	/**
-	 * sets program location assocaited with this bug
-	 * @param x x location
-	 * @param y y location
-	 */
-	 virtual void SetProgramLocation(double x, double y){mProgramX=x; mProgramY=y;}
 
 	 /**
 	  * getter for program x location
@@ -105,10 +100,9 @@ public:
 
     void MissProgram();
 
-
 protected:
-	Bug(Game* game,const std::wstring &filename);
 
+	Bug(Game* game,wxXmlNode* program,wxXmlNode* bug,const std::wstring &filename);
 };
 
 #endif //GAME_GAME_GAMELIB_BUG_H

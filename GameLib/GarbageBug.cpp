@@ -22,7 +22,7 @@ const double ProgramRange = 50;
  * GarbageBug Constructor
  * @param game Game this bug is a member of
  */
-GarbageBug::GarbageBug(Game *game) : Bug(game, GarbageBugSpriteImageName)
+GarbageBug::GarbageBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program,bug, GarbageBugSpriteImageName)
 {
 
 	mBugSplatBitmap = std::make_shared<wxBitmap>(GarbageBugSplatImageName,wxBITMAP_TYPE_ANY);

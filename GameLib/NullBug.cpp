@@ -22,9 +22,8 @@ const double ProgramRange = 50;
  * NullBug Constructor
  * @param game Game this bug is a member of
  */
-NullBug::NullBug(Game *game) : Bug(game, NullBugSpriteImageName)
+NullBug::NullBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program, bug,NullBugSpriteImageName)
 {
-
 	mBugSplatBitmap = std::make_unique<wxBitmap>(NullBugSplatImageName,wxBITMAP_TYPE_ANY);
 	wxImage spriteSheet(NullBugSpriteImageName, wxBITMAP_TYPE_ANY);
 

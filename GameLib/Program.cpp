@@ -29,12 +29,15 @@ const wxColour FontColor = wxColour(0, 200, 200);
  * Constructor
  * @param game Game this bug is a member of
  */
-Program::Program(Game* game) : Item(game, ProgramImage)
+Program::Program(Game* game,wxXmlNode* program) : Item(game, ProgramImage)
 {
-    double centerX = GameWidth/2;
-    double centerY = GameHeight/2;
+	double programX, programY;
+	bool xConvert = program->GetAttribute("x").ToDouble(&programX);
+	bool yConvert = program->GetAttribute("y").ToDouble(&programY);
+	mNameString= program->GetAttribute("name").ToStdString();
 
-	this->SetLocation(centerX, centerY);
+	SetLocation(programX,programY);
+
     mLaptopImage = std::make_shared<wxImage>(ProgramImage);
 }
 

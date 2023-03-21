@@ -29,10 +29,32 @@ const double ProgramRange = 50;
  * @param game The game we are in
  * @param filename Filename for the image we use
  */
-Bug::Bug(Game *game, const std::wstring &filename) :
+Bug::Bug(Game *game,wxXmlNode* program,wxXmlNode* bug, const std::wstring &filename) :
         Item(game, filename)
 {
 
+	double bugX, bugY;
+	bool xConvert = bug->GetAttribute("x").ToDouble(&bugX);
+	bool yConvert = bug->GetAttribute("y").ToDouble(&bugY);
+	bool speedConvert = bug->GetAttribute("speed").ToDouble(&mSpeed);
+	bool timeConvert = bug->GetAttribute("start").ToDouble(&mStartTime);
+	bool programXConvert = program->GetAttribute("x").ToDouble(&mProgramX);
+	bool programYConvert = program->GetAttribute("y").ToDouble(&mProgramY);
+	SetLocation(bugX,bugY);
+
+	//load the "code" if fatbug
+	if(bug->GetChildren()!=nullptr)
+	{
+		auto code = bug->GetChildren();
+
+		auto solData = code->GetAttribute("pass");
+		auto cDataNode = code->GetChildren();
+		if (cDataNode->GetType()==wxXML_CDATA_SECTION_NODE)
+		{
+			auto cData = cDataNode->GetContent();
+			SetCode(cData.ToStdWstring(),solData.ToStdWstring());
+		}
+	}
 }
 
 /**
@@ -45,7 +67,7 @@ Bug::Bug(Game *game, const std::wstring &filename) :
  */
 void Bug::Update(double elapsed)
 {
-	mAngleToRotate = atan2(GetProgramY()-GetY(),GetProgramX()-GetX());
+	mAngleToRotate = atan2(mProgramY-GetY(),mProgramX-GetX());
 	double newX = GetX() + elapsed * mSpeed * cos(mAngleToRotate);
 	double newY = GetY() + elapsed * mSpeed * sin(mAngleToRotate);
 	SetLocation(newX,newY);
@@ -91,5 +113,6 @@ void Bug::MissProgram()
         scoreboard->IncMissed();
     }
 }
+
 
 

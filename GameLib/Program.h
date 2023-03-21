@@ -38,7 +38,7 @@ public:
      * Contructor
      * @param game
      */
-	Program(Game* game);
+	Program(Game* game,wxXmlNode* program);
 
 	/**
 	 * Accept a visitor

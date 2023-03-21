@@ -14,7 +14,7 @@ const std::wstring SpiderImageName = L"images/spider.png";
  * Spider Constructor
  * @param game Game this bug is a member of
  */
-Spider::Spider(Game *game) : Bug(game, SpiderImageName) {}
+Spider::Spider(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program,bug,SpiderImageName) {}
 
 /**
  * Draws the spider for level 3

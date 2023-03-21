@@ -118,5 +118,8 @@ public:
 	std::shared_ptr<Item> OnClick(double x, double y,bool doubleCLick);
 
 	void XmlBug(std::wstring FileName);
+
+    std::shared_ptr<Scoreboard> GetScoreboard() {return mScoreboard;}
+
 };
 #endif //PROJECT1_GAMELIB_GAME_H

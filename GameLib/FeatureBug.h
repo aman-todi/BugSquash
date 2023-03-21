@@ -46,7 +46,7 @@ public:
 	/**
  	 * Set the bug to splat
 	 */
-	void ClickedOn() override { SetSplat(); };
+	void ClickedOn() override;
 
 	/**
 	* Accept a visitor

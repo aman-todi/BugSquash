@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "FeatureBug.h"
 #include "Game.h"
+#include "Scoreboard.h"
 
 /// The feature sprite image
 const std::wstring FeatureImageName = L"images/feature.png";
@@ -103,4 +104,11 @@ bool FeatureBug::AtProgram()
 	double distanceX = this->GetX() - GetProgramX();
 	double distanceY = this->GetY() - GetProgramY();
 	return sqrt(distanceX * distanceX + distanceY * distanceY) <= ProgramRange;
+}
+
+void FeatureBug::ClickedOn()
+{
+    SetSplat();
+    auto scoreboard = GetGame()->GetScoreboard();
+    scoreboard->IncOops();
 }

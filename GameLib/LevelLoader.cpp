@@ -22,6 +22,8 @@ using namespace std;
 
 LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 {
+    // Reset Score On Load
+    game->GetScoreboard()->ResetScore();
 
 	// Load the XML file
 	wxXmlDocument doc;

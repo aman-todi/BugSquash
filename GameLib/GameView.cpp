@@ -207,14 +207,21 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 	//Check to see if we hit a bug
 	mClickedItem = mGame.OnClick(event.GetX(),event.GetY(),true);
 
-	BugVisitor visitor;
-	mClickedItem->Accept(&visitor);
-	if (mClickedItem != nullptr && visitor.Fatbug())
+	if (mClickedItem != nullptr)
 	{
-		auto code = mClickedItem->GetCode();
-		CodeDialogBox dlg(this, code);
-		dlg.ShowModal();
-		Refresh();
+		BugVisitor visitor;
+		mClickedItem->Accept(&visitor);
+
+		if(visitor.Fatbug())
+		{
+			auto code = visitor.GetCode();
+			auto solution = visitor.GetSolution();
+
+			CodeDialogBox dlg(this, code,solution);
+			// Show the dialog box as a modal dialog
+			dlg.ShowModal();
+
+		}
 	}
 }
 

@@ -141,7 +141,7 @@ public:
 	virtual void SetName(std::string name){};
 	virtual bool AtProgram(){return false;};
 
-	//virtual std::wstring GetCode(){};
+	virtual std::wstring GetCode(){wxString check = "NO"; return check.ToStdWstring();}
     //void SetMirror(bool m);   still need to implement this
 protected:
     Item(Game *game, const std::wstring &filename);

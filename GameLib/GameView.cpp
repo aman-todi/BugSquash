@@ -19,6 +19,7 @@
 #include "RedundancyBug.h"
 #include "FeatureBug.h"
 #include "LevelLoader.h"
+#include "CodeDialogBox.h"
 
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
@@ -208,8 +209,8 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 	if (mClickedItem != nullptr )
 	{
 		//auto code = mClickedItem->GetCode();
-		//Codedlg dlg(this, code);
-		//dlg.ShowModal();
+		CodeDialogBox dlg(this, "codeskjbskjbhsbhsk bn");
+		dlg.ShowModal();
 		Refresh();
 	}
 }

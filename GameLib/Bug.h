@@ -84,13 +84,14 @@ public:
 	 */
 	virtual bool IsFatbug(){return mCode!=nullptr;}
 
-	virtual std::wstring GetCode(){return mCode->GetCode();}
+	virtual std::wstring GetCode() override {return mCode->GetCode();}
 
 	virtual bool HitTest(int x, int y) override;
 
 	virtual void Update(double elapsed) override;
 
 	virtual void SetCode(std::wstring codeData, std::wstring solData);
+
 
     bool GetSplat() {return mSplat;}
 

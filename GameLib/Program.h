@@ -67,6 +67,7 @@ public:
 	void SetName(std::string name) override {mNameString=name;}
 
     std::string GetName() {return mNameString;}
+
 };
 
 #endif //GAME_GAMELIB_PROGRAM_H

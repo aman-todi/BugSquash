@@ -182,7 +182,7 @@ void Game::Clear()
 /**
  * Handle updates for animation
  * @param elapsed The time since the last update
- * @param TimeInSec The time the level been running
+ * @param timeInSec The time the level been running
  */
 void Game::Update(double elapsed, double timeInSec)
 {

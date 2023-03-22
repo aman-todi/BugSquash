@@ -9,6 +9,7 @@
 #ifndef PROJECT1_GAMELIB_GAMEVIEW_H
 #define PROJECT1_GAMELIB_GAMEVIEW_H
 
+#include <memory>
 #include "Game.h"
 #include "Item.h"
 
@@ -36,6 +37,9 @@ private:
 
 	/// The last stopwatch time
 	long mTime = 0;
+
+	/// level number
+	int mLevel = -1;
 
 	void OnPaint(wxPaintEvent& event);
 

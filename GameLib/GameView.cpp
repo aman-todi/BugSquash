@@ -21,6 +21,7 @@
 #include "LevelLoader.h"
 #include "CodeDialogBox.h"
 #include "BugVisitor.h"
+#include "Scoreboard.h"
 
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
@@ -153,6 +154,37 @@ void GameView::OnSize(wxSizeEvent& event)
  * @param event Timer event
  */
 void GameView::OnTimer1(wxTimerEvent &event){
+
+	// Auto load the next level
+	if (mLevel == 0){
+		if (mGame.GetScoreboard()->GetTotalScore() == 3){
+			mGame.Clear();
+			mGame.GetScoreboard()->ResetScore();
+			mLevel = 1;
+			LevelLoader level1(&mGame,LevelOneXMLFileName);
+			mStopWatch.Start(0);
+		}
+	}
+	else if (mLevel == 1){
+		if (mGame.GetScoreboard()->GetTotalScore() == 12){
+			mGame.Clear();
+			mGame.GetScoreboard()->ResetScore();
+			mLevel = 2;
+			LevelLoader level2(&mGame,LevelTwoXMLFileName);
+			mStopWatch.Start(0);
+		}
+	}
+
+	else if (mLevel == 2){
+		if (mGame.GetScoreboard()->GetTotalScore() == 24){
+			mGame.Clear();
+			mGame.GetScoreboard()->ResetScore();
+			mLevel = 3;
+			LevelLoader level2(&mGame,LevelThreeXMLFileName);
+			mStopWatch.Start(0);
+		}
+	}
+
 	Refresh();
 }
 
@@ -246,6 +278,7 @@ void GameView::OnViewShrink(wxCommandEvent& event)
 void GameView::OnLevelZero(wxCommandEvent& event)
 {
 	mGame.Clear();
+	mLevel = 0;
     LevelLoader level0(&mGame,LevelZeroXMLFileName);
 }
 /**
@@ -255,6 +288,7 @@ void GameView::OnLevelZero(wxCommandEvent& event)
 void GameView::OnLevelOne(wxCommandEvent& event)
 {
 	mGame.Clear();
+	mLevel = 1;
     LevelLoader level1(&mGame,LevelOneXMLFileName);
 	mStopWatch.Start(0);
 }
@@ -265,6 +299,7 @@ void GameView::OnLevelOne(wxCommandEvent& event)
 void GameView::OnLevelTwo(wxCommandEvent& event)
 {
 	mGame.Clear();
+	mLevel = 2;
     LevelLoader level2(&mGame,LevelTwoXMLFileName);
 	mStopWatch.Start(0);
 }
@@ -275,6 +310,7 @@ void GameView::OnLevelTwo(wxCommandEvent& event)
 void GameView::OnLevelThree(wxCommandEvent& event)
 {
 	mGame.Clear();
+	mLevel = 3;
     LevelLoader level3(&mGame,LevelThreeXMLFileName);
 	mStopWatch.Start(0);
 }

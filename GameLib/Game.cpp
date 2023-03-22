@@ -134,7 +134,7 @@ Game::Game()
 
 
 /**
- * Add an bug to the game
+ * Add a bug to the game
  * @param bug New bug to add
  */
 void Game::Add(std::shared_ptr<Item> bug)

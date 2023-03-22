@@ -183,5 +183,6 @@ void RedundancyBug::ClickedOn()
 	{
 		SetSplat();
         GetGame()->GetScoreboard()->IncFixed();
+		GetGame()->GetScoreboard()->IncTotalScore();
 	}
 }

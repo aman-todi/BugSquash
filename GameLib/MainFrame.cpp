@@ -12,7 +12,7 @@
  */
 void MainFrame::Initialize()
 {
-	// To make the intial fram bigger change the xx and yyo
+	// To make the initial frame bigger change the xx and yyo
 	Create(nullptr,wxID_ANY,L"Bug Squash",
 		   	wxDefaultPosition,wxSize(1000,800));
 

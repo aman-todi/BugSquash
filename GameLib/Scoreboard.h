@@ -18,6 +18,9 @@ private:
     int mMissed = 0;
 	/// Score of squashed Feature bugs
     int mOops = 0;
+	/// Total Score
+	int mTotalScore = 0;
+
 public:
     Scoreboard();
 	/**
@@ -35,6 +38,11 @@ public:
 	 * @return the score of mOops
 	 */
     int GetOops() {return mOops;}
+	/**
+ 	 * Getter for the Total score
+  	 * @return the total score
+	 */
+	int GetTotalScore() {return mTotalScore;}
 
     /**
      * Increment Fixed Value
@@ -51,10 +59,15 @@ public:
      */
     void IncOops() {mOops++;}
 
+	/**
+     * Increment Total Score Value
+     */
+	void IncTotalScore() {mTotalScore++;}
+
     /**
      * Reset Scoreboard
      */
-     void ResetScore() {mFixed = 0; mMissed = 0; mOops = 0;}
+     void ResetScore() {mFixed = 0; mMissed = 0; mOops = 0; mTotalScore = 0; }
 
     /**
      * Draw Scoreboard

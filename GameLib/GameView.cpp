@@ -248,7 +248,7 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 	{
 		BugVisitor visitor;
 		mClickedItem->Accept(&visitor);
-
+		
 		if(visitor.Fatbug())
 		{
 			auto code = visitor.GetCode();
@@ -258,6 +258,13 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 			// Show the dialog box as a modal dialog
 			dlg.ShowModal();
 
+			//increase fixed score by 1
+			bool passed = dlg.PassCheck();
+			if (passed)
+			{
+				visitor.SetSplat();
+			}
+			Refresh();
 		}
 	}
 }

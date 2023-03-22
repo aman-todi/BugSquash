@@ -9,6 +9,7 @@
 #define PROJECT1_GAMELIB_BUGVISITOR_H
 
 #include "ItemsVisitor.h"
+#include "Bug.h"
 
 class GarbageBug;
 class FeatureBug;
@@ -26,10 +27,12 @@ private:
 	bool mIsFatbug = false;
 
 	/// The current string value of the code
-	std::string mCodeData;
+	std::wstring mCodeData;
 
 	/// The Solution (Loaded via XML)
-	std::string mSolution;
+	std::wstring mSolution;
+
+	Bug* mBug;
 
 public:
 
@@ -43,13 +46,18 @@ public:
 	 * getter for code
 	 * @return code
 	 */
-	 std::string GetCode(){return mCodeData;}
+	 std::wstring GetCode(){return mCodeData;}
 
 	/**
 	* getter for solution
 	* @return solution
 	*/
-	std::string GetSolution(){return mSolution;}
+	std::wstring GetSolution(){return mSolution;}
+
+	/**
+	 * sets the mSplat for bug
+	 */
+	void SetSplat(){mBug->SetSplat();}
 
 	void VisitGarbageBug(GarbageBug* bug) override;
 

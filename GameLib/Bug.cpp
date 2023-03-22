@@ -68,14 +68,18 @@ Bug::Bug(Game *game,wxXmlNode* program,wxXmlNode* bug, const std::wstring &filen
  * move our bug. We add our speed times the amount
  * of time that has elapsed.
  * @param elapsed Time elapsed since the class call
+ * @param timeInSec How long the level been running for
  */
-void Bug::Update(double elapsed)
+void Bug::Update(double elapsed, double timeInSec)
 {
-	mAngleToRotate = atan2(mProgramY-GetY(),mProgramX-GetX());
-	double newX = GetX() + elapsed * mSpeed * cos(mAngleToRotate);
-	double newY = GetY() + elapsed * mSpeed * sin(mAngleToRotate);
-	SetLocation(newX,newY);
-    MissProgram();
+	if(timeInSec > GetStartTime())
+	{
+		mAngleToRotate = atan2(mProgramY - GetY(), mProgramX - GetX());
+		double newX = GetX() + elapsed * mSpeed * cos(mAngleToRotate);
+		double newY = GetY() + elapsed * mSpeed * sin(mAngleToRotate);
+		SetLocation(newX, newY);
+		MissProgram();
+	}
 }
 
 /**

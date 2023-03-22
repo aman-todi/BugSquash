@@ -121,8 +121,9 @@ public:
     /**
      * Handle updates for animation
      * @param elapsed The time since the last update
+     * @param TimeInSec How long the level has been running for
      */
-    virtual void Update(double elapsed) {}
+    virtual void Update(double elapsed, double timeInSec) {}
 
 	/**
 	 * Accept a visitor

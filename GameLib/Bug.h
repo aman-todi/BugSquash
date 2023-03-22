@@ -98,7 +98,7 @@ public:
 
 	virtual bool HitTest(int x, int y) override;
 
-	virtual void Update(double elapsed) override;
+	virtual void Update(double elapsed, double timeInSec) override;
 
 	/**
 	 * Get if the bug has been splat or not

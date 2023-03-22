@@ -37,6 +37,9 @@ const static int GameHeight = 1000;
 ///Bug speed in virtual pixels per second
 const static int BugSpeed = 10;
 
+/// To convert milliseconds to seconds
+const static double MsToSec = 1000;
+
 /// The level0 XML
 const std::wstring LevelZeroXMLFileName = L"data/level0.xml";
 
@@ -115,7 +118,9 @@ void GameView::OnPaint(wxPaintEvent& event)
     auto elapsed = (double)(newTime - mTime) * 0.001;
     mTime = newTime;
 
-    mGame.Update(elapsed);
+	//convert the time to seconds
+	double TimeInSec = double(mTime) / MsToSec;
+	mGame.Update(elapsed, TimeInSec);
 
     // Create a graphics context
     auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
@@ -251,6 +256,7 @@ void GameView::OnLevelOne(wxCommandEvent& event)
 {
 	mGame.Clear();
     LevelLoader level1(&mGame,LevelOneXMLFileName);
+	mStopWatch.Start(0);
 }
 /**
  * Loads in level Two
@@ -260,6 +266,7 @@ void GameView::OnLevelTwo(wxCommandEvent& event)
 {
 	mGame.Clear();
     LevelLoader level2(&mGame,LevelTwoXMLFileName);
+	mStopWatch.Start(0);
 }
 /**
  * Loads in level Three
@@ -269,4 +276,5 @@ void GameView::OnLevelThree(wxCommandEvent& event)
 {
 	mGame.Clear();
     LevelLoader level3(&mGame,LevelThreeXMLFileName);
+	mStopWatch.Start(0);
 }

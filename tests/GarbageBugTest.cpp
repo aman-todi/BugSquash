@@ -102,16 +102,16 @@ TEST(GarbageBug,Update)
 	//garbageBug.SetProgramLocation(300,350);
 
 	// Check for time update
-	garbageBug.Update(0);
+	garbageBug.Update(0, 0);
 	ASSERT_NEAR(garbageBug.GetX(),50,.0001);
 	ASSERT_NEAR(garbageBug.GetY(),50,.0001);
 
-	garbageBug.Update(2.0);
+	garbageBug.Update(2.0, 0);
 	// These will need change once we are not hard coding the program
 	ASSERT_NEAR(garbageBug.GetX(),69.87,.1);
 	ASSERT_NEAR(garbageBug.GetY(),57.68,.01);
 
-	garbageBug.Update(2.0);
+	garbageBug.Update(2.0, 0);
 	ASSERT_NEAR(garbageBug.GetX(),62.80,.01);
 	ASSERT_NEAR(garbageBug.GetY(),65.36,.01);
 }

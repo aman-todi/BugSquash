@@ -95,16 +95,16 @@ TEST(NullBug,Update)
 	//nullBug.SetProgramLocation(300,350);
 
 	// Check for time update
-	nullBug.Update(0);
+	nullBug.Update(0, 0);
 	ASSERT_NEAR(nullBug.GetX(),50,.0001);
 	ASSERT_NEAR(nullBug.GetY(),50,.0001);
 
-	nullBug.Update(2.0);
+	nullBug.Update(2.0, 0);
 	// These will need change once we are not hard coding the program
 	ASSERT_NEAR(nullBug.GetX(),42.93,.01);
 	ASSERT_NEAR(nullBug.GetY(),57.68,.01);
 
-	nullBug.Update(2.0);
+	nullBug.Update(2.0, 0);
 	ASSERT_NEAR(nullBug.GetX(),62.80,.01);
 	ASSERT_NEAR(nullBug.GetY(),65.36,.01);
 }

@@ -183,8 +183,9 @@ void Game::Clear()
 /**
  * Handle updates for animation
  * @param elapsed The time since the last update
+ * @param TimeInSec The time the level been running
  */
-void Game::Update(double elapsed)
+void Game::Update(double elapsed, double timeInSec)
 {
 	vector<shared_ptr<Item>> bugToRemove;
 	for (auto bug : mItems)
@@ -196,7 +197,7 @@ void Game::Update(double elapsed)
 			//This could be where add the missed and stuff
 		}
 		// Calling update on a null pointer
-		bug->Update(elapsed);
+		bug->Update(elapsed, timeInSec);
 	}
 
 	// this for loop is used to remove all the bugs at the program

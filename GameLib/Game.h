@@ -90,7 +90,7 @@ public:
      */
     bool IsShrunk() {return mShrinked;}
 
-	void Update(double elapsed);
+	void Update(double elapsed, double Time);
 	//void SortBugs();
 
 	void UpdateList(std::shared_ptr<Item> item);

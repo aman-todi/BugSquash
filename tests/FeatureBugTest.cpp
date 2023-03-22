@@ -103,16 +103,16 @@ TEST(FeatureBug,Update)
 	//featureBug.SetProgramLocation(300,350);
 
 	// Check for time update
-	featureBug.Update(0);
+	featureBug.Update(0, 0);
 	ASSERT_NEAR(featureBug.GetX(),50,.0001);
 	ASSERT_NEAR(featureBug.GetY(),50,.0001);
 
-	featureBug.Update(2.0);
+	featureBug.Update(2.0, 0);
 	// These will need change once we are not hard coding the program
 	ASSERT_NEAR(featureBug.GetX(),42.93,.01);
 	ASSERT_NEAR(featureBug.GetY(),57.68,.01);
 
-	featureBug.Update(2.0);
+	featureBug.Update(2.0, 0);
 	ASSERT_NEAR(featureBug.GetX(),62.80,.01);
 	ASSERT_NEAR(featureBug.GetY(),65.36,.01);
 }

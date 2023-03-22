@@ -94,7 +94,7 @@ void FeatureBug::UpdateFrame()
 		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (FeatureNumSpriteImages - 1);
 		ResetTime();
 	}
-}
+}  
 
 void FeatureBug::ClickedOn()
 {

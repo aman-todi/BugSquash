@@ -60,8 +60,14 @@ void GarbageBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 		//auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
 		auto currentBugBitmap = gc->CreateBitmapFromImage(*currentBugImage);
 
-		double wid = currentBugImage->GetWidth();
-		double hit = currentBugImage->GetHeight();
+		int multplierImage = 1;
+		if (this->IsFatbug())
+		{
+			///for fatbugs
+			multplierImage = 1.25;
+		}
+		double wid = currentBugImage->GetWidth()*multplierImage;
+		double hit = currentBugImage->GetHeight()*multplierImage;
 
 		gc->PushState();
 		// Translate to the center of the image

@@ -21,7 +21,7 @@ const std::wstring ProgramImage = L"images/laptop.png";
 const double HitRadius = 50;
 
 /// Program name font size
-const int ProgramNameFontSize = 22;
+const int ProgramNameFontSize = 15;
 
 /// The color of the Text on the program
 const wxColour FontColor = wxColour(0, 200, 200);
@@ -34,9 +34,9 @@ const wxColour FontColor = wxColour(0, 200, 200);
 Program::Program(Game* game,wxXmlNode* program) : Item(game, ProgramImage)
 {
 	double programX, programY;
-	bool xConvert = program->GetAttribute("x").ToDouble(&programX);
-	bool yConvert = program->GetAttribute("y").ToDouble(&programY);
-	mNameString= program->GetAttribute("name").ToStdString();
+	program->GetAttribute("x").ToDouble(&programX);
+	program->GetAttribute("y").ToDouble(&programY);
+	mNameString= program->GetAttribute("name");
 
 	SetLocation(programX,programY);
 
@@ -57,26 +57,16 @@ void Program::Draw(std::shared_ptr<wxGraphicsContext> gc)
     gc->DrawBitmap(mLaptopBitmap, GetX() - laptopWid/3, GetY() - laptopHgt/3, laptopWid, laptopHgt);
 
     //Draw Text
-    wxFont fontLabel(15,
+    wxFont fontLabel(ProgramNameFontSize,
             wxFONTFAMILY_SWISS,
             wxFONTSTYLE_NORMAL,
             wxFONTWEIGHT_BOLD);
 
-    double wid = 0;
-	double hit = 0;
+    double wid, hit;
 
-    if (mName == Name::BugSquash) {
-		gc->SetFont(fontLabel, FontColor);
-        gc->GetTextExtent(L"Bug Squash", &wid, &hit);
-        gc->DrawText(L"Bug Squash", GetX()-wid/12, GetY());
-    }
-
-	else if (mName == Name::Receivables) {
-		gc->SetFont(fontLabel, FontColor);
-        gc->GetTextExtent(L"Receivables", &wid, &hit);
-        gc->DrawText(L"Receivables", GetX()-wid/12, GetY() );
-    }
-
+    gc->SetFont(fontLabel, FontColor);
+    gc->GetTextExtent(mNameString, &wid, &hit);
+    gc->DrawText(mNameString, GetX() - wid/4 + 6, GetY() - hit/2);
 }
 /**
 	* HitTest

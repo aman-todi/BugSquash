@@ -24,14 +24,8 @@ private:
     /// Laptop Bitmap
     wxGraphicsBitmap mLaptopBitmap;
 
-    /// Program Name enum
-    enum class Name {BugSquash, Receivables};
-
-    /// Program/Level Name
-    Name mName;
-
 	///program name
-	std::string mNameString;
+	wxString mNameString;
 public:
 
 	Program(Game* game,wxXmlNode* program);
@@ -52,24 +46,11 @@ public:
     //virtual bool HitTest(int x, int y) override;
 
     /**
-     * Set Program Name
-     */
-    void SetLevelBugSquash() {mName = Name::BugSquash;}
-	/**
-	 * Set Program Name
-	 */
-    void SetLevelReceivables() {mName = Name::Receivables;}
 	/**
 	 * Sets the name of the progrma
 	 * @param name The name of the program
 	 */
 	void SetName(std::string name)  {mNameString=name;}
-	/**
-	 * The name of the program
-	 * @return The name of the program
-	 */
-    std::string GetName() {return mNameString;}
-
 };
 
 #endif //GAME_GAMELIB_PROGRAM_H

@@ -99,12 +99,12 @@ TEST(NullBug,Update)
 	ASSERT_NEAR(nullBug.GetX(),50,.0001);
 	ASSERT_NEAR(nullBug.GetY(),50,.0001);
 
-	nullBug.Update(2.0, 0);
+	nullBug.Update(2.0, 2);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(nullBug.GetX(),42.93,.01);
-	ASSERT_NEAR(nullBug.GetY(),57.68,.01);
+	ASSERT_NEAR(nullBug.GetX(),42.92,.01);
+	ASSERT_NEAR(nullBug.GetY(),42.92,.01);
 
-	nullBug.Update(2.0, 0);
-	ASSERT_NEAR(nullBug.GetX(),62.80,.01);
-	ASSERT_NEAR(nullBug.GetY(),65.36,.01);
+	nullBug.Update(2.0, 4);
+	ASSERT_NEAR(nullBug.GetX(),35.86,.01);
+	ASSERT_NEAR(nullBug.GetY(),35.86,.01);
 }

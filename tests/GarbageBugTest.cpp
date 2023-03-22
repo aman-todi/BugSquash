@@ -106,14 +106,14 @@ TEST(GarbageBug,Update)
 	ASSERT_NEAR(garbageBug.GetX(),50,.0001);
 	ASSERT_NEAR(garbageBug.GetY(),50,.0001);
 
-	garbageBug.Update(2.0, 0);
+	garbageBug.Update(2.0, 2);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(garbageBug.GetX(),69.87,.1);
-	ASSERT_NEAR(garbageBug.GetY(),57.68,.01);
+	ASSERT_NEAR(garbageBug.GetX(),42.92,.1);
+	ASSERT_NEAR(garbageBug.GetY(),42.92,.01);
 
-	garbageBug.Update(2.0, 0);
-	ASSERT_NEAR(garbageBug.GetX(),62.80,.01);
-	ASSERT_NEAR(garbageBug.GetY(),65.36,.01);
+	garbageBug.Update(2.0, 4);
+	ASSERT_NEAR(garbageBug.GetX(),35.86,.01);
+	ASSERT_NEAR(garbageBug.GetY(),35.86,.01);
 }
 
 

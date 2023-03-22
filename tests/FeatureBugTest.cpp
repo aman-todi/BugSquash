@@ -107,14 +107,14 @@ TEST(FeatureBug,Update)
 	ASSERT_NEAR(featureBug.GetX(),50,.0001);
 	ASSERT_NEAR(featureBug.GetY(),50,.0001);
 
-	featureBug.Update(2.0, 0);
+	featureBug.Update(2.0, 2);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(featureBug.GetX(),42.93,.01);
-	ASSERT_NEAR(featureBug.GetY(),57.68,.01);
+	ASSERT_NEAR(featureBug.GetX(),42.92,.01);
+	ASSERT_NEAR(featureBug.GetY(),42.92,.01);
 
-	featureBug.Update(2.0, 0);
-	ASSERT_NEAR(featureBug.GetX(),62.80,.01);
-	ASSERT_NEAR(featureBug.GetY(),65.36,.01);
+	featureBug.Update(2.0, 4);
+	ASSERT_NEAR(featureBug.GetX(),35.86,.01);
+	ASSERT_NEAR(featureBug.GetY(),35.86,.01);
 }
 ///// Don't know how to get access to the draw/how to make a grapihc in this test case
 //TEST(FeatureBug,Splat)

@@ -15,8 +15,9 @@ class FeatureBug;
 class NullBug;
 class RedundancyBug;
 class Spider;
-
-
+/**
+ * Visits all the bugs and checks if it is a FatBug
+ */
 class BugVisitor :public ItemsVisitor
 {
 private:
@@ -32,7 +33,10 @@ private:
 
 public:
 
-	///getter for bool
+	/**
+	 * Get if it is a fat bug
+	 * @return True if Fatbug, else false
+	 */
 	bool Fatbug(){return mIsFatbug;}
 
 	/**
@@ -47,32 +51,20 @@ public:
 	*/
 	std::string GetSolution(){return mSolution;}
 
-	/**
-	 * Visit a Garbage bug
-	 * @param bug
-	 */
 	void VisitGarbageBug(GarbageBug* bug) override;
 
-	/**
-	 * Visit a Null bug
-	 * @param bug
-	 */
+
 	void VisitNullBug(NullBug* bug) override;
 
-	/**
-	 * Visit a Redundancy bug
-	 * @param bug
-	 */
+
 	void VisitRedundancyBug (RedundancyBug* bug) override;
 
-	/**
-	 * Visit a Feature bug
-	 * @param bug
-	 */
+
 	void VisitFeatureBug (FeatureBug* bug) override ;
 
 	/**
-	 * visit spider
+	 * Visit a Spider bug
+	 * @param bug  The bug being checked
 	 */
 	void VisitSpider (Spider* bug) override ;
 };

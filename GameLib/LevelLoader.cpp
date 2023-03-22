@@ -18,7 +18,11 @@
 
 using namespace std;
 
-
+/**
+ * Loads the level
+ * @param game The game being loaded too
+ * @param fileName The file being loaded in
+ */
 
 LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 {
@@ -35,7 +39,7 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 	// Access the program element and its attributes
 	wxXmlNode* program = bugSquash->GetChildren();
 
-	/// All of the bugs in game
+	// All the bugs in game
 	std::vector<std::shared_ptr<Item> > bugItems;
 
 	while (program!=NULL)

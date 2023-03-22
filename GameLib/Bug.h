@@ -58,6 +58,11 @@ public:
 	double GetSpeed(){return mSpeed;}
 
 	/**
+	 * Get the start time for the bug
+	 * @return the time the bug starts
+	 */
+	double GetStartTime(){return mStartTime;}
+	/**
  	 * Set the speed of the bug
  	 * @param speed The speed of bug in X and Y directions
  	 */

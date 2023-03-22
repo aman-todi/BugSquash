@@ -27,8 +27,12 @@ public:
 	CodeDialogBox(wxWindow *parent, const wxString& code,const wxString& solution);
 
 	wxString GetText() const;
-
+	/**
+	 * Get if the solution is correct or not
+	 * @return True if passed, else false
+	 */
 	bool PassCheck(){return mPassed;}
+
 	void OnOK(wxCommandEvent& event);
 
 protected:

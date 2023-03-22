@@ -45,7 +45,6 @@ public:
 
     //virtual bool HitTest(int x, int y) override;
 
-    /**
 	/**
 	 * Sets the name of the progrma
 	 * @param name The name of the program

@@ -22,7 +22,7 @@ const double MinSpeedX = 20;
 const double HitRadius = 50;
 
 /// The range of the program to consider at it
-const double ProgramRange = 50;
+const double ProgramRange = 5;
 
 /**
  * Constructor

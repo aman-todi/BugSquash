@@ -8,10 +8,12 @@
 
 /// The title to the pop up window
 const wxString& name = "Bug Squash IDE";
+
 /**
  * Constructor
  * @param parent The bug that is associated with is
  * @param code The text in the box
+ * @param solution The solution of to the code
  */
 CodeDialogBox::CodeDialogBox(wxWindow *parent, const wxString& code,const wxString& solution)
 	: wxDialog(parent, wxID_ANY, name, wxDefaultPosition, wxSize(600, 800)),mSol(solution)
@@ -75,7 +77,8 @@ void CodeDialogBox::OnOK(wxCommandEvent& event)
 
 
 /**
- * checks if solution is right
+ * Checks if the user input is correct
+ * @return True if the input correct else false 
  */
 bool CodeDialogBox::SolutionChecker()
 {

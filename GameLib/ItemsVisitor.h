@@ -33,36 +33,37 @@ public:
 
 	/**
 	 * Visit a Garbage bug
-	 * @param bug
+	 * @param bug The bug being visited
 	 */
 	virtual void VisitGarbageBug(GarbageBug* bug) {}
 
 	/**
 	 * Visit a Null bug
-	 * @param bug
+	 * @param bug The bug being visited
 	 */
 	virtual void VisitNullBug(NullBug* bug) {}
 
 	/**
 	 * Visit a Redundancy bug
-	 * @param bug
+	 * @param bug The bug being visited
 	 */
 	virtual void VisitRedundancyBug(RedundancyBug* bug) {}
 
 	/**
 	 * Visit a Feature bug
-	 * @param bug
+	 * @param bug The bug being visited
 	 */
 	virtual void VisitFeatureBug(FeatureBug* bug) {}
 
 	/**
 	 * Visit a Program
-	 * @param bug
+	 * @param bug The bug being visited
 	 */
 	virtual void VisitProgram(Program* bug) {}
 
 	/**
-	 * visit spider
+	 * Visit a Spider
+	 * @param bug The bug being visited
 	 */
 	virtual void VisitSpider (Spider* bug){}
 

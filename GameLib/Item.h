@@ -151,6 +151,10 @@ public:
 	virtual std::string GetCode(){std::string check = "NO"; return check;}
     //void SetMirror(bool m);   still need to implement this
 
+	/**
+	 * Check to see if it is fatbug
+	 * @return True if fatbug else, false
+	 */
 	virtual bool IsFatbug(){return false;}
 protected:
     Item(Game *game, const std::wstring &filename);

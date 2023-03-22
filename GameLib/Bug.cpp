@@ -27,6 +27,8 @@ const double ProgramRange = 50;
 /**
  * Constructor
  * @param game The game we are in
+ * @param program The bug is associated with
+ * @param bug The bugs information
  * @param filename Filename for the image we use
  */
 Bug::Bug(Game *game,wxXmlNode* program,wxXmlNode* bug, const std::wstring &filename) :
@@ -45,6 +47,7 @@ Bug::Bug(Game *game,wxXmlNode* program,wxXmlNode* bug, const std::wstring &filen
 	//load the "code" if fatbug
 	if(bug->GetChildren()!=nullptr)
 	{
+		mFatbug = true;
 		auto code = bug->GetChildren();
 
 		auto solData = code->GetAttribute("pass");
@@ -52,7 +55,8 @@ Bug::Bug(Game *game,wxXmlNode* program,wxXmlNode* bug, const std::wstring &filen
 		if (cDataNode->GetType()==wxXML_CDATA_SECTION_NODE)
 		{
 			auto cData = cDataNode->GetContent();
-			SetCode(cData.ToStdWstring(),solData.ToStdWstring());
+			mCodeData = cData.ToStdString();
+			mSolution = solData.ToStdString();
 		}
 	}
 }
@@ -88,24 +92,21 @@ bool Bug::HitTest(int x, int y)
 	return sqrt(dx * dx + dy * dy) < HitRadius;
 }
 
-/**
- * sets the code for the bug if it is a fatbug
- * @param codeData
- * @param solData
- */
-void Bug::SetCode(std::wstring codeData, std::wstring solData)
-{
-//	mCode->SetCode(codeData);
-//	mCode->SetSolution(solData);
-}
 
+/**
+ * Check to see if the bug reached the program
+ * @return True if the bug has reached the program, else false
+ */
 bool Bug::AtProgram()
 {
     double distanceX = this->GetX() - GetProgramX();
     double distanceY = this->GetY() - GetProgramY();
     return sqrt(distanceX * distanceX + distanceY * distanceY) <= ProgramRange;
 }
-
+/**
+ * If the Bug has reached the program
+ * increase the Miss score
+ */
 void Bug::MissProgram()
 {
     if (AtProgram()) {

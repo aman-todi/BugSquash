@@ -81,17 +81,18 @@ protected:
 	 */
 	void AddThreeNullBug(Game *game)
 	{
-
-		auto bug1 = make_shared<NullBug>(game);
+		wxXmlNode* program;
+		wxXmlNode* bug;
+		auto bug1 = make_shared<NullBug>(game,program,bug);
 		game->Add(bug1);
 		bug1->SetLocation(500,500);
 
 
-		auto bug2 = make_shared<NullBug>(game);
+		auto bug2 = make_shared<NullBug>(game,program,bug);
 		game->Add(bug2);
 		bug2->SetLocation(750,700);
 
-		auto bug3 = make_shared<NullBug>(game);
+		auto bug3 = make_shared<NullBug>(game,program,bug);
 		game->Add(bug3);
 		bug3->SetLocation(300,800);
 
@@ -102,21 +103,23 @@ protected:
      * @param game the game instance
      */
     void AddLevelOneItems(Game *game) {
-        auto program = make_shared<Program>(game);
+		wxXmlNode* programNode;
+		wxXmlNode* bug;
+        auto program = make_shared<Program>(game,programNode);
         program->SetName("Bug Squash");
         game->Add(program);
 
-        auto bug1 = make_shared<GarbageBug>(game);
+        auto bug1 = make_shared<GarbageBug>(game,programNode,bug);
         bug1->SetLocation(500, -100);
         bug1->SetSpeed(120);
         game->Add(bug1);
 
-        auto bug2 = make_shared<GarbageBug>(game);
+        auto bug2 = make_shared<GarbageBug>(game,programNode,bug);
         bug2->SetLocation(1350, -100);
         bug2->SetSpeed(150);
         game->Add(bug2);
 
-        auto bug3 = make_shared<NullBug>(game);
+        auto bug3 = make_shared<NullBug>(game,programNode,bug);
         bug3->SetLocation(-100, 500);
         bug3->SetSpeed(150);
         game->Add(bug3);
@@ -128,19 +131,21 @@ protected:
 	 */
 	void AddAllTypesOfBugs(Game *game)
 	{
-		auto nullBug = make_shared<NullBug>(game);
+		wxXmlNode* programNode;
+		wxXmlNode* bug;
+		auto nullBug = make_shared<NullBug>(game,programNode,bug);
 		game->Add(nullBug);
 		nullBug->SetLocation(500,500);
 
-		auto garbageBug = make_shared<GarbageBug>(game);
+		auto garbageBug = make_shared<GarbageBug>(game,programNode,bug);
 		game->Add(garbageBug);
 		garbageBug->SetLocation(600,250);
 
-		auto featureBug = make_shared<FeatureBug>(game);
+		auto featureBug = make_shared<FeatureBug>(game,programNode,bug);
 		game->Add(featureBug);
 		featureBug->SetLocation(400,250);
 
-		auto redundancyBug = make_shared<RedundancyBug>(game);
+		auto redundancyBug = make_shared<RedundancyBug>(game,programNode,bug);
 		game->Add(redundancyBug);
 		redundancyBug->SetLocation(200,750);
 	}

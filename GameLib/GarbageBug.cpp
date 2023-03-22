@@ -18,9 +18,12 @@ const int GarbageBugNumSpriteImages = 6;
 
 /// The range of the program to consider at it
 const double ProgramRange = 50;
+
 /**
  * GarbageBug Constructor
  * @param game Game this bug is a member of
+ * @param program he program the bug is associated with
+ * @param bug The inform associated with the bug
  */
 GarbageBug::GarbageBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program,bug, GarbageBugSpriteImageName)
 {

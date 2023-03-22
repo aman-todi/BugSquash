@@ -23,6 +23,8 @@ const double ProgramRange = 50;
 /**
  * FeatureBug Constructor
  * @param game Game this bug is a member of
+ * @param program The program the bug is associated with
+ * @param bug The inform associated with the bug
  */
 FeatureBug::FeatureBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game, program, bug,FeatureImageName)
 {
@@ -44,7 +46,7 @@ FeatureBug::FeatureBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,
 
 /**
  * Draws the bug if it is either splat or moving
- * @param dc The device context to draw on
+ * @param gc The graphic context to draw on
  */
 void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 {

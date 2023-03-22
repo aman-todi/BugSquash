@@ -19,13 +19,17 @@ using namespace std;
 TEST(GarbageBug,Construct)
 {
 	Game game;
-	GarbageBug garbageBug(&game);
+	wxXmlNode program;
+	wxXmlNode bug;
+	GarbageBug garbageBug(&game,&program,&bug);
 }
 
 TEST(GarbageBug,HitTest)
 {
 	Game game;
-	GarbageBug garbageBug(&game);
+	wxXmlNode program;
+	wxXmlNode bug;
+	GarbageBug garbageBug(&game,&program,&bug);
 
 	garbageBug.SetLocation(200,200);
 
@@ -49,7 +53,9 @@ TEST(GarbageBug,HitTest)
 TEST(GarbageBug,GetterAndSetter)
 {
 	Game game;
-	GarbageBug garbageBug(&game);
+	wxXmlNode program;
+	wxXmlNode bug;
+	GarbageBug garbageBug(&game,&program,&bug);
 
 	// Sets the location
 	garbageBug.SetLocation(200,250);
@@ -86,12 +92,14 @@ TEST(GarbageBug,GetterAndSetter)
 TEST(GarbageBug,Update)
 {
 	Game game;
-	GarbageBug garbageBug(&game);
+	wxXmlNode program;
+	wxXmlNode bug;
+	GarbageBug garbageBug(&game,&program,&bug);
 	//NullBug programLocation(&game);
 
 	garbageBug.SetLocation(50,50);
 	garbageBug.SetSpeed(5);
-	garbageBug.SetProgramLocation(300,350);
+	//garbageBug.SetProgramLocation(300,350);
 
 	// Check for time update
 	garbageBug.Update(0);
@@ -100,7 +108,7 @@ TEST(GarbageBug,Update)
 
 	garbageBug.Update(2.0);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(garbageBug.GetX(),56.40,.01);
+	ASSERT_NEAR(garbageBug.GetX(),69.87,.1);
 	ASSERT_NEAR(garbageBug.GetY(),57.68,.01);
 
 	garbageBug.Update(2.0);

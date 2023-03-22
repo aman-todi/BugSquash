@@ -19,6 +19,8 @@
 #include "RedundancyBug.h"
 #include "FeatureBug.h"
 #include "LevelLoader.h"
+#include "CodeDialogBox.h"
+#include "BugVisitor.h"
 
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
@@ -172,7 +174,7 @@ void GameView::OnLeftDown(wxMouseEvent &event)
 	if(mClickedItem != nullptr)
 	{
 		//Moves the bug to the end of the list
-		mGame.UpdateList(mClickedItem);
+		//mGame.UpdateList(mClickedItem);
 		Refresh();
 	}
 }
@@ -205,17 +207,26 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 	//Check to see if we hit a bug
 	mClickedItem = mGame.OnClick(event.GetX(),event.GetY(),true);
 
-	if (mClickedItem != nullptr )
+	if (mClickedItem != nullptr)
 	{
-		//auto code = mClickedItem->GetCode();
-		//Codedlg dlg(this, code);
-		//dlg.ShowModal();
-		Refresh();
+		BugVisitor visitor;
+		mClickedItem->Accept(&visitor);
+
+		if(visitor.Fatbug())
+		{
+			auto code = visitor.GetCode();
+			auto solution = visitor.GetSolution();
+
+			CodeDialogBox dlg(this, code,solution);
+			// Show the dialog box as a modal dialog
+			dlg.ShowModal();
+
+		}
 	}
 }
 
 /**
- * Mea
+ * Turns or off the no clipping
  * @param event Menu event
  */
 void GameView::OnViewShrink(wxCommandEvent& event)
@@ -223,25 +234,37 @@ void GameView::OnViewShrink(wxCommandEvent& event)
     mGame.Shrink();
     Refresh();
 }
-
+/**
+ * Loads in level Zero
+ * @param event Menu event
+ */
 void GameView::OnLevelZero(wxCommandEvent& event)
 {
 	mGame.Clear();
     LevelLoader level0(&mGame,LevelZeroXMLFileName);
 }
-
+/**
+ * Loads in level One
+ * @param event Menu event
+ */
 void GameView::OnLevelOne(wxCommandEvent& event)
 {
 	mGame.Clear();
     LevelLoader level1(&mGame,LevelOneXMLFileName);
 }
-
+/**
+ * Loads in level Two
+ * @param event Menu event
+ */
 void GameView::OnLevelTwo(wxCommandEvent& event)
 {
 	mGame.Clear();
     LevelLoader level2(&mGame,LevelTwoXMLFileName);
 }
-
+/**
+ * Loads in level Three
+ * @param event Menu event
+ */
 void GameView::OnLevelThree(wxCommandEvent& event)
 {
 	mGame.Clear();

@@ -8,6 +8,9 @@
 #ifndef PROJECT1_GAMELIB_LEVELLOADER_H
 #define PROJECT1_GAMELIB_LEVELLOADER_H
 #include "Game.h"
+/**
+ * Loads in the levels
+ */
 class LevelLoader
 {
 private:

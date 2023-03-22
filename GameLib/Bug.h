@@ -30,15 +30,20 @@ private:
 	///Angle to rotate
 	double mAngleToRotate = 0;
 
-	///code associated with this bug
-	std::shared_ptr<Code> mCode=nullptr;
-
     /// Has the bug been clicked on
     bool mSplat = false;
 
 	///start time
-
 	double mStartTime = 0;
+
+	/// The current string value of the code
+	std::string mCodeData;
+
+	/// The Solution (Loaded via XML)
+	std::string mSolution;
+
+	///checks if this bug is fatbug
+	bool mFatbug = false;
 public:
     /// Default constructor (disabled)
     Bug() = delete;
@@ -54,7 +59,7 @@ public:
 
 	/**
  	 * Set the speed of the bug
- 	 * @param speedX, speedY speed of bug in X and Y directions
+ 	 * @param speed The speed of bug in X and Y directions
  	 */
 	virtual void SetSpeed(double speed) { mSpeed=speed; }
 
@@ -80,25 +85,48 @@ public:
 	virtual double GetAngleToRotate(){return mAngleToRotate;}
 
 	/**
-	 * checks if bug has code associated with it
+	 *  Check to see if code it associated with it
+	 * @return True if code it associated else false
 	 */
-	virtual bool IsFatbug(){return mCode!=nullptr;}
+	virtual bool IsFatbug() override{return mFatbug;}
 
-	virtual std::wstring GetCode(){return mCode->GetCode();}
 
 	virtual bool HitTest(int x, int y) override;
 
 	virtual void Update(double elapsed) override;
 
-	virtual void SetCode(std::wstring codeData, std::wstring solData);
-
+	/**
+	 * Get if the bug has been splat or not
+	 * @return If the bug has been splat or not
+	 */
     bool GetSplat() {return mSplat;}
 
+	/**
+	 * Set if the bug has been clicked on
+	 */
     void SetSplat() {mSplat = true;}
 
     bool AtProgram() override;
 
     void MissProgram();
+
+	/**
+	 * Accept a visitor
+	 * @param visitor The visitor we accept
+	 */
+	virtual void Accept(ItemsVisitor* visitor) {};
+
+	/**
+	 * Gets the code for Fat Bug
+	 * @return the code for Fat Bug
+	 */
+	std::string GetCode() override{return mCodeData;}
+
+	/**
+	 * Get the solution to the fat bug
+	 * @return The solution to the Fat Bug
+	 */
+	std::string GetSol() {return mSolution;}
 
 protected:
 

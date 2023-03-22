@@ -34,10 +34,6 @@ private:
 	std::string mNameString;
 public:
 
-    /**
-     * Contructor
-     * @param game
-     */
 	Program(Game* game,wxXmlNode* program);
 
 	/**
@@ -52,21 +48,28 @@ public:
      */
     void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
 
-    /**
-     * HitTest
-     * @param x, y (x,y) coords
-     */
-    virtual bool HitTest(int x, int y) override;
+
+    //virtual bool HitTest(int x, int y) override;
 
     /**
-     * Set level Name
+     * Set Program Name
      */
     void SetLevelBugSquash() {mName = Name::BugSquash;}
+	/**
+	 * Set Program Name
+	 */
     void SetLevelReceivables() {mName = Name::Receivables;}
-
-	void SetName(std::string name) override {mNameString=name;}
-
+	/**
+	 * Sets the name of the progrma
+	 * @param name The name of the program
+	 */
+	void SetName(std::string name)  {mNameString=name;}
+	/**
+	 * The name of the program
+	 * @return The name of the program
+	 */
     std::string GetName() {return mNameString;}
+
 };
 
 #endif //GAME_GAMELIB_PROGRAM_H

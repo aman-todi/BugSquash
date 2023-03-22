@@ -66,7 +66,7 @@ public:
     void operator=(const Item &) = delete;
 	/**
 	 * Draw this Item
-	 * @param dc  Device context to draw on
+	 * @param graphics  Device context to draw on
 	 */
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics){}
 
@@ -138,11 +138,20 @@ public:
 
 	/// Register if the bug has been clicked on
 	virtual void ClickedOn(){};
-	virtual void SetName(std::string name){};
-	virtual bool AtProgram(){return false;};
 
-	//virtual std::wstring GetCode(){};
+	/**
+	 * Checks to see if the bug has reached the program
+	 * @return false
+	 */
+	virtual bool AtProgram(){return false;};
+	/**
+	 * Get the code that is associated with the bug
+	 * @return The code that is associated with the bug
+	 */
+	virtual std::string GetCode(){std::string check = "NO"; return check;}
     //void SetMirror(bool m);   still need to implement this
+
+	virtual bool IsFatbug(){return false;}
 protected:
     Item(Game *game, const std::wstring &filename);
 

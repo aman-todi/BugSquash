@@ -10,6 +10,7 @@
 
 #include "Bug.h"
 #include "Game.h"
+#include "ItemsVisitor.h"
 
 /**
  * Class for a bug type FeatureBug
@@ -36,8 +37,16 @@ public:
 	Spider(Game *game,wxXmlNode* program,wxXmlNode* bug);
 
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
-
+	/**
+	 * Runs through the frames of the spider
+	 */
 	void UpdateFrame();
+
+	/**
+     * Accept a visitor
+     * @param visitor The visitor we accept
+     */
+	void Accept(ItemsVisitor* visitor) override { visitor->VisitSpider(this); }
 
 };
 

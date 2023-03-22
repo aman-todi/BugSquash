@@ -110,15 +110,13 @@ public:
 	/// visitor
 	void Accept(ItemsVisitor* visitor);
 
-	/**
-	 * Set the item to splat if single-clicked
-	 * @param x, y location which was clicked
-	 * @param bool checks if click is single or double
-	 */
 	std::shared_ptr<Item> OnClick(double x, double y,bool doubleCLick);
 
-	void XmlBug(std::wstring FileName);
-
+	//void XmlBug(std::wstring FileName);
+	/**
+	 * Gets the scoreboard
+	 * @return The scoreboard
+	 */
     std::shared_ptr<Scoreboard> GetScoreboard() {return mScoreboard;}
 
 };

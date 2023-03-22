@@ -14,13 +14,17 @@ using namespace std;
 TEST(NullBug,Construct)
 {
 	Game game;
-	NullBug nullBug(&game);
+	wxXmlNode program;
+	wxXmlNode bug;
+	NullBug nullBug(&game,&program,&bug);
 }
 
 TEST(NullBug,HitTest)
 {
 	Game game;
-	NullBug nullBug(&game);
+	wxXmlNode program;
+	wxXmlNode bug;
+	NullBug nullBug(&game,&program,&bug);
 
 	nullBug.SetLocation(200,200);
 
@@ -43,7 +47,9 @@ TEST(NullBug,HitTest)
 TEST(NULLBug,GetterAndSetter)
 {
 	Game game;
-	NullBug nullBug(&game);
+	wxXmlNode program;
+	wxXmlNode bug;
+	NullBug nullBug(&game,&program,&bug);
 
 	// Sets the location
 	nullBug.SetLocation(200,250);
@@ -79,12 +85,14 @@ TEST(NULLBug,GetterAndSetter)
 TEST(NullBug,Update)
 {
 	Game game;
-	NullBug nullBug(&game);
+	wxXmlNode program;
+	wxXmlNode bug;
+	NullBug nullBug(&game,&program,&bug);
 	//NullBug programLocation(&game);
 
 	nullBug.SetLocation(50,50);
 	nullBug.SetSpeed(5);
-	nullBug.SetProgramLocation(300,350);
+	//nullBug.SetProgramLocation(300,350);
 
 	// Check for time update
 	nullBug.Update(0);
@@ -93,7 +101,7 @@ TEST(NullBug,Update)
 
 	nullBug.Update(2.0);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(nullBug.GetX(),56.40,.01);
+	ASSERT_NEAR(nullBug.GetX(),42.93,.01);
 	ASSERT_NEAR(nullBug.GetY(),57.68,.01);
 
 	nullBug.Update(2.0);

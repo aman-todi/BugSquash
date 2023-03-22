@@ -19,7 +19,9 @@ private:
     /// array to hold each part of the bug
     std::vector<std::shared_ptr<wxImage>> mBugPartsSpriteSheet;
 
+
     double rotation = 0;
+
     bool decreasing = false;
 
 
@@ -49,7 +51,7 @@ public:
 
     virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
 
-    void OnTimer(wxTimerEvent &event);
+    //void OnTimer(wxTimerEvent &event);
 
     void UpdateFrame(std::shared_ptr<wxGraphicsContext> gc, bool isLeft);
 

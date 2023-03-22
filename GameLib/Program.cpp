@@ -66,7 +66,7 @@ void Program::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
     gc->SetFont(fontLabel, FontColor);
     gc->GetTextExtent(mNameString, &wid, &hit);
-    gc->DrawText(mNameString, GetX() - wid/4 + 6, GetY() - hit/2);
+    gc->DrawText(mNameString, GetX() - wid/4, GetY() - hit/3);
 }
 /**
 	* HitTest

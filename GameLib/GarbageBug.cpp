@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "GarbageBug.h"
 #include "Game.h"
+#include "Scoreboard.h"
 
 /// The bug sprite image
 const std::wstring GarbageBugSpriteImageName = L"images/blue-maize-bug.png";
@@ -106,5 +107,6 @@ void GarbageBug::ClickedOn()
 	if (!this->IsFatbug())
 	{
 		SetSplat();
+        GetGame()->GetScoreboard()->IncFixed();
 	}
 }

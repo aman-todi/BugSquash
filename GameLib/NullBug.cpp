@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "NullBug.h"
 #include "Game.h"
+#include "Scoreboard.h"
 
 /// The bug sprite image
 const std::wstring NullBugSpriteImageName = L"images/scarlet-gray-bug.png";
@@ -106,6 +107,7 @@ void NullBug::ClickedOn()
 	if (!this->IsFatbug())
 	{
 		SetSplat();
+        GetGame()->GetScoreboard()->IncFixed();
 	}
 }
 

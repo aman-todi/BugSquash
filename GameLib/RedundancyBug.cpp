@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "RedundancyBug.h"
 #include "Game.h"
+#include "Scoreboard.h"
 
 
 /// The bug base image
@@ -181,5 +182,6 @@ void RedundancyBug::ClickedOn()
 	if (!this->IsFatbug())
 	{
 		SetSplat();
+        GetGame()->GetScoreboard()->IncFixed();
 	}
 }

@@ -125,7 +125,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics ,int width, int he
 Game::Game()
 {
     mScoreboard = std::make_shared<Scoreboard>();
-	wxInitAllImageHandlers();
 
 	LevelLoader level1(this,LevelOneXMLFileName);
 

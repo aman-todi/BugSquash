@@ -42,6 +42,18 @@ const static int BugSpeed = 10;
 /// To convert milliseconds to seconds
 const static double MsToSec = 1000;
 
+/// Level Zero
+const static int LevelZero = 0;
+
+/// Level One
+const static int LevelOne = 1;
+
+/// Level Two
+const static int LevelTwo = 2;
+
+/// Level Three
+const static int LevelThree = 3;
+
 /// The level0 XML
 const std::wstring LevelZeroXMLFileName = L"data/level0.xml";
 
@@ -217,35 +229,36 @@ void GameView::OnTimer1(wxTimerEvent &event){
  */
 void GameView::OnTimer2(wxTimerEvent &event){
 
-	// Calls game to update animation timer for each bug
-	if (mLevel == 0){
-		if (mGame.GetScoreboard()->GetTotalScore() == 3){
+	// If the total score equals the number of on that level start the next level
+	if (mGame.GetScoreboard()->GetTotalScore() == 3 && mLevel == LevelZero){
 			mGame.Clear();
 			mGame.GetScoreboard()->ResetScore();
-			mLevel = 1;
+			mLevel = LevelOne;
 			LevelLoader level1(&mGame,LevelOneXMLFileName);
 			mStopWatch.Start(0);
-		}
 	}
-	else if (mLevel == 1){
-		if (mGame.GetScoreboard()->GetTotalScore() == 12){
+	if (mGame.GetScoreboard()->GetTotalScore() == 12 && mLevel == LevelOne){
 			mGame.Clear();
 			mGame.GetScoreboard()->ResetScore();
-			mLevel = 2;
+			mLevel = LevelTwo;
 			LevelLoader level2(&mGame,LevelTwoXMLFileName);
 			mStopWatch.Start(0);
-		}
 	}
-
-	else if (mLevel == 2){
-		if (mGame.GetScoreboard()->GetTotalScore() == 24){
+	if (mGame.GetScoreboard()->GetTotalScore() == 24 && mLevel == LevelTwo){
 			mGame.Clear();
 			mGame.GetScoreboard()->ResetScore();
-			mLevel = 3;
+			mLevel = LevelThree;
 			LevelLoader level2(&mGame,LevelThreeXMLFileName);
 			mStopWatch.Start(0);
-		}
 	}
+	if (mGame.GetScoreboard()->GetTotalScore() == 24 && mLevel == LevelThree)
+	{
+		mGame.Clear();
+		mGame.GetScoreboard()->ResetScore();
+		mLevel = LevelThree;
+		LevelLoader level3(&mGame,LevelThreeXMLFileName);
+	}
+	// Calls game to update animation timer for each bug
 	mGame.UpdateAnimationTime();
 	Refresh();
 }

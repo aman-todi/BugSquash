@@ -40,7 +40,7 @@ public:
      * Draw program
      * @param gc
      */
-    void Draw(std::shared_ptr<wxGraphicsContext> gc) override;
+	void Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec) override;
 
 
     //virtual bool HitTest(int x, int y) override;

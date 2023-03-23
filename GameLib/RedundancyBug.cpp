@@ -72,7 +72,7 @@ RedundancyBug::RedundancyBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug
  * Draws the bug if it is either splat or moving
  * @param gc The device context to draw on
  */
-void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
+void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
 
 	if (!GetSplat())

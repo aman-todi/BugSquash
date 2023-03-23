@@ -74,7 +74,7 @@ public:
 	 * Draw this Item
 	 * @param graphics  Device context to draw on
 	 */
-	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics){}
+	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, double timeInSec) {}
 
 	/**
 	 * virtual HitTest always returns false

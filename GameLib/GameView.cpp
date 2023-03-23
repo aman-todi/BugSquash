@@ -155,7 +155,7 @@ void GameView::OnPaint(wxPaintEvent& event)
         return;
     }
 
-    mGame.OnDraw(gc,rect.GetWidth(), rect.GetHeight());
+    mGame.OnDraw(gc,rect.GetWidth(), rect.GetHeight(),TimeInSec);
 
     gc->PushState();
 
@@ -235,6 +235,8 @@ void GameView::OnTimer2(wxTimerEvent &event){
 			mGame.GetScoreboard()->ResetScore();
 			mLevel = LevelOne;
 			LevelLoader level1(&mGame,LevelOneXMLFileName);
+//			mNumberOfBugsPerLevel = level1.GetNumPrograms();
+//			mNumberOfProgramsPerLevel = level1.GetNumPrograms();
 			mStopWatch.Start(0);
 	}
 	if (mGame.GetScoreboard()->GetTotalScore() == 12 && mLevel == LevelOne){

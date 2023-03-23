@@ -47,13 +47,14 @@ NullBug::NullBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,progra
 /**
  * Draws the bug if it is either splat or moving
  * @param gc The device context to draw on
+ * @param timeInSec How long the game has been running for
  */
-void NullBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
+void NullBug::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
 
 	if (!GetSplat())
 	{
-		this->UpdateFrame();
+		this->UpdateFrame(timeInSec);
 
 		auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];
 		//Create a graphics context
@@ -90,10 +91,11 @@ void NullBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 }
 /**
  * Updates the value of current frame index
+ * @param timeInSec How long the game has been running for
  */
-void NullBug::UpdateFrame()
+void NullBug::UpdateFrame(double timeInSec)
 {
-	if (GetTime() >= (3000/GetSpeed()))
+	if (GetTime() >= (3000/GetSpeed()) && timeInSec > this->GetStartTime())
 	{
 		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (NullBugNumSpriteImages - 1);
 		ResetTime();

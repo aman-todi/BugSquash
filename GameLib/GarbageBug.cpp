@@ -47,13 +47,14 @@ GarbageBug::GarbageBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,
 /**
  * Draws the GarbageBug or splat GarbageBug
  * @param gc Device context to draw on
+ * @param timeInSec How long the game has been running for
  */
-void GarbageBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
+void GarbageBug::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
 
 	if (!GetSplat())
 	{
-		this->UpdateFrame();
+		this->UpdateFrame(timeInSec);
 
 		auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];
 		 //Create a graphics context
@@ -90,10 +91,11 @@ void GarbageBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 /**
  * Updates the value of current frame index
+ * @param timeInSec How long the game has been running for
  */
-void GarbageBug::UpdateFrame()
+void GarbageBug::UpdateFrame(double timeInSec)
 {
-	if (GetTime() >= (3000/GetSpeed()))
+	if (GetTime() >= (3000/GetSpeed()) && timeInSec > this->GetStartTime())
 	{
 		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (GarbageBugNumSpriteImages - 1);
 		ResetTime();

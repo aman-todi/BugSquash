@@ -55,6 +55,9 @@ void BugVisitor::VisitRedundancyBug(RedundancyBug* bug)
 		mCodeData = bug->GetCode();
 		mSolution = bug->GetSol();
 	}
+    mProgX = bug->GetProgramX();
+    mProgY = bug->GetProgramY();
+    mOldSpeed = bug->GetOldSpeed();
 }
 
 /**

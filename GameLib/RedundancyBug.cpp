@@ -8,7 +8,6 @@
 #include "Game.h"
 #include "Scoreboard.h"
 
-
 /// The bug base image
 const std::wstring RedundancyBugImage = L"images/redundancy-fly-base.png";
 
@@ -27,10 +26,10 @@ const std::wstring RedundancyFlySplatImageName = L"images/redundancy-fly-splat.p
 /// Wing flapping period in seconds
 const double WingPeriod = 0.2;
 
-/// Starting rotation angle for wings in radians
+/// Starting mRotation angle for wings in radians
 const double WingRotateStart = 0.0;
 
-/// End rotation angle for wings in radians
+/// End mRotation angle for wings in radians
 const double WingRotateEnd = 1.5;
 
 /// How many sets of wings does this bug have?
@@ -46,11 +45,10 @@ const int FirstWingSetX = -36;
 /// of this is the Y position for the left wings.
 const int WingSetY = 5;
 
-/// Number of sprite images
-const int RedundancyNumSpriteImages = 1;
 
 /// The range of the program to consider at it
 const double ProgramRange = 50;
+
 /**
  * RedundancyBug Constructor
  * @param game Game this bug is a member of
@@ -91,7 +89,7 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
         auto BugWingLBitmap = gc->CreateBitmapFromImage(*BugWingL);
         auto BugWingRBitmap = gc->CreateBitmapFromImage(*BugWingR);
 
-		double multplierImage = this->IsFatbug() ? 1.25 : 1.0;
+        double multplierImage = this->IsFatbug() ? 1.25 : 1.0;
 		double wid = BugBase->GetWidth()*multplierImage;
 		double hit = BugBase->GetHeight()*multplierImage;
         double widL = BugWingL->GetWidth()*multplierImage;
@@ -112,25 +110,32 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 		gc->DrawBitmap(BugBaseBitmap,
 					   - wid / 2, (- hit / 2), wid, hit);
 
+
+
         // Draw Wings
+        this->UpdateFrame(gc);
         for(int i = 0; i < 4; i++)
         {
-            this->UpdateFrame(gc, true);
+            gc->SetTransform(X);
+            gc->Translate(-WingSetXOffset * i,0);
+            gc->Rotate(mRotation);
             gc->DrawBitmap(BugWingLBitmap,
-                    - widL / 2 + FirstWingSetX + WingSetXOffset * i, (- hitL / 2) - WingSetY, widL, hitL);
-            gc->SetTransform(X);
+                    - widL / 2 , (- hitL / 2) - WingSetY, widL, hitL);
 
-            this->UpdateFrame(gc, false);
-            gc->DrawBitmap(BugWingRBitmap,
-                    - wid / 2 + FirstWingSetX + WingSetXOffset * i, (- hit / 2) + WingSetY, widR, hitR);
             gc->SetTransform(X);
+            gc->Translate(-WingSetXOffset * i,0);
+            gc->Rotate(-mRotation);
+            gc->DrawBitmap(BugWingRBitmap,
+                    - widR / 2 , (- hitL / 2) + WingSetY, widR, hitR);
         }
 
+        gc->SetTransform(X);
         // Draw Top
         gc->DrawBitmap(BugTopBitmap,
                 - wid / 2, (- hit / 2), wid, hit);
 
         gc->PopState();
+        mOldSpeed = this->GetSpeed();
 	}
     else
     {
@@ -144,33 +149,24 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 }
 
 /**
- * Updates Rotation of Wings
+ * Updates Rotation amount of Wings
  *  @param gc The images of bug
  */
-void RedundancyBug::UpdateFrame(std::shared_ptr<wxGraphicsContext> gc, bool isLeft)
+void RedundancyBug::UpdateFrame(std::shared_ptr<wxGraphicsContext> gc)
 {
-	if (rotation>1.5) {
-		decreasing = true;
+	if (mRotation>WingRotateEnd) {
+		mDecreasing = true;
 	}
-	else if (rotation<0) {
-		decreasing = false;
+	else if (mRotation<WingRotateStart) {
+		mDecreasing = false;
 	}
-	if (!decreasing) {
-		rotation += 0.02;
+	if (!mDecreasing) {
+		mRotation += WingPeriod;
 	}
 	else {
-		rotation -= 0.02;
+		mRotation -= WingPeriod;
 	}
 
-
-    if (isLeft)
-    {
-        gc->Rotate(rotation);
-    }
-    else
-    {
-        gc->Rotate(-rotation);
-    }
 }
 
 //void RedundancyBug::OnTimer(wxTimerEvent &event)
@@ -183,7 +179,5 @@ void RedundancyBug::ClickedOn()
 	if (!this->IsFatbug())
 	{
 		SetSplat();
-        GetGame()->GetScoreboard()->IncFixed();
 	}
-
 }

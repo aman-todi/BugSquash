@@ -43,6 +43,8 @@ public:
      */
     double GetX() const { return mX; }
 
+    virtual std::string Name(){return "none";};
+
     /**
      * The Y location of the item
      * @return Y location in pixels

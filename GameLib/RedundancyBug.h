@@ -16,13 +16,21 @@
 class RedundancyBug: public Bug
 {
 private:
+
+
+
     /// array to hold each part of the bug
     std::vector<std::shared_ptr<wxImage>> mBugPartsSpriteSheet;
 
+    /// Angle currently rotating at
+    double mRotation = 0;
+    /// Bool if the wings are decreasing or increasing in angle
+    bool mDecreasing = false;
+    /// Speed of bug before being set to 0
+    double mOldSpeed = 0;
 
-    double rotation = 0;
-
-    bool decreasing = false;
+    /// Name of this type of bug
+    std::string Name() override {return "Redundancy";};
 
 
 	/// array to hold individual frames of the animation
@@ -37,6 +45,7 @@ private:
 
 
 public:
+
 
 	/// Default constructor (disabled)
 	RedundancyBug() = delete;
@@ -53,7 +62,7 @@ public:
 
     //void OnTimer(wxTimerEvent &event);
 
-    void UpdateFrame(std::shared_ptr<wxGraphicsContext> gc, bool isLeft);
+    void UpdateFrame(std::shared_ptr<wxGraphicsContext> gc);
 
     /**
  	 * Set the bug to splat
@@ -65,6 +74,12 @@ public:
 	* @param visitor The visitor we accept
 	*/
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitRedundancyBug(this); }
+
+    /**
+	* Getter for the old speed
+	* @return mOldSpeed The original speed
+	*/
+    double GetOldSpeed(){return mOldSpeed;}
 };
 
 #endif //GAME_GAME_GAMELIB_REDUNDANCYBUG_H

@@ -17,6 +17,7 @@
 #include "GarbageBug.h"
 #include "NullBug.h"
 #include "RedundancyBug.h"
+#include "RedundancySplitBug.h"
 #include "FeatureBug.h"
 #include "LevelLoader.h"
 #include "CodeDialogBox.h"
@@ -260,6 +261,16 @@ void GameView::OnLeftDown(wxMouseEvent &event)
 	mClickedItem = mGame.OnClick(event.GetX(),event.GetY(),false);
 	if(mClickedItem != nullptr)
 	{
+        if (mClickedItem->Name() == "Redundancy")
+        {
+            int bugCount = rand() % 3 + 3;
+            for (int i = 0; i < bugCount; i++)
+            {
+                auto RedBug = mGame.AddRed(mClickedItem);
+            }
+            mGame.DeleteBug(mClickedItem);
+        }
+
 		//Moves the bug to the end of the list
 		//mGame.UpdateList(mClickedItem);
 		Refresh();

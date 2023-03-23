@@ -152,5 +152,11 @@ public:
      */
     double GetYOffSet() {return mYOffset;}
 
+    /**
+     * Add Split Redundancy Bug to the game
+     * @param item redundancy bug item object
+     * @return RedBug redundancy split bug object
+     */
+    std::shared_ptr<Bug> AddRed(std::shared_ptr<Item> item);
 };
 #endif //PROJECT1_GAMELIB_GAME_H

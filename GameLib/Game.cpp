@@ -13,8 +13,10 @@
 #include <sstream>
 #include "Bug.h"
 #include "GarbageBug.h"
+#include "BugVisitor.h"
 #include "NullBug.h"
 #include "RedundancyBug.h"
+#include "RedundancySplitBug.h"
 #include "FeatureBug.h"
 #include "Program.h"
 #include "Scoreboard.h"
@@ -142,6 +144,34 @@ void Game::Add(std::shared_ptr<Item> bug)
 	//Use Bug visitor to get list of bugs
 	//bug->SetLocation(X, Y);
 	mItems.push_back(bug);
+
+}
+
+shared_ptr<Bug> Game::AddRed(std::shared_ptr<Item> bug)
+{
+    double X = bug->GetX();
+    double Y = bug->GetY();
+
+    BugVisitor visitor;
+    bug->Accept(&visitor);
+    double programX = visitor.GetProgX();
+    double programY = visitor.GetProgY();
+    double speed = visitor.GetOldSpeed();
+
+
+    shared_ptr <Bug> RedBug = make_shared<RedundancySplitBug>(this);
+
+    RedBug->SetProgramX(programX);
+    RedBug->SetProgramY(programY);
+
+    int randomNum = rand() % 401 + (-200);
+
+    RedBug->SetLocation(X+randomNum,Y+randomNum);
+    RedBug->SetSpeed(speed);
+
+    mItems.push_back(RedBug);
+    return RedBug;
+
 }
 
 

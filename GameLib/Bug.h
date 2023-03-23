@@ -43,6 +43,9 @@ private:
 
 	///checks if this bug is fatbug
 	bool mFatbug = false;
+
+    ///Position to set the bug to
+    double bugX, bugY;
 public:
     /// Default constructor (disabled)
     Bug() = delete;
@@ -82,6 +85,18 @@ public:
 	  * @return
 	  */
 	 virtual double GetProgramY(){return mProgramY;}
+
+    /**
+     * setter for program x location
+     *
+     */
+    void SetProgramX(double X){mProgramX = X;}
+
+    /**
+     * setter for program y location
+     *
+     */
+    void SetProgramY(double Y){mProgramY = Y;}
 
 	/**
 	 * getter for angle to rotate

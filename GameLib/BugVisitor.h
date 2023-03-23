@@ -32,6 +32,15 @@ private:
 	/// The Solution (Loaded via XML)
 	std::wstring mSolution;
 
+    /// Program X location
+    double mProgX;
+
+    /// Program Y location
+    double mProgY;
+
+    /// Bugs old speed before set to 0
+    double mOldSpeed;
+
 	Bug* mBug;
 
 public:
@@ -53,6 +62,25 @@ public:
 	* @return solution
 	*/
 	std::wstring GetSolution(){return mSolution;}
+
+    /**
+	* getter for mprogX
+	* @return solution
+	*/
+    double GetProgX(){return mProgX;}
+
+    /**
+	* getter for mprogY
+	* @return solution
+	*/
+    double GetProgY(){return mProgY;}
+
+    /**
+	* getter for mOldSpeed
+	* @return solution
+	*/
+    double GetOldSpeed(){return mOldSpeed;}
+
 
 	/**
 	 * sets the mSplat for bug

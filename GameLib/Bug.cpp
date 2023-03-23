@@ -34,31 +34,34 @@ const double ProgramRange = 5;
 Bug::Bug(Game *game,wxXmlNode* program,wxXmlNode* bug, const std::wstring &filename) :
         Item(game, filename)
 {
+    if (program != nullptr)
+    {
+        bool xConvert = bug->GetAttribute("x").ToDouble(&bugX);
+        bool yConvert = bug->GetAttribute("y").ToDouble(&bugY);
+        bool speedConvert = bug->GetAttribute("speed").ToDouble(&mSpeed);
+        bool timeConvert = bug->GetAttribute("start").ToDouble(&mStartTime);
+        bool programXConvert = program->GetAttribute("x").ToDouble(&mProgramX);
+        bool programYConvert = program->GetAttribute("y").ToDouble(&mProgramY);
+        SetLocation(bugX, bugY);
 
-	double bugX, bugY;
-	bool xConvert = bug->GetAttribute("x").ToDouble(&bugX);
-	bool yConvert = bug->GetAttribute("y").ToDouble(&bugY);
-	bool speedConvert = bug->GetAttribute("speed").ToDouble(&mSpeed);
-	bool timeConvert = bug->GetAttribute("start").ToDouble(&mStartTime);
-	bool programXConvert = program->GetAttribute("x").ToDouble(&mProgramX);
-	bool programYConvert = program->GetAttribute("y").ToDouble(&mProgramY);
-	SetLocation(bugX,bugY);
+        //load the "code" if fatbug
+        if (bug->GetChildren()!=nullptr) {
+            mFatbug = true;
+            auto code = bug->GetChildren();
 
-	//load the "code" if fatbug
-	if(bug->GetChildren()!=nullptr)
-	{
-		mFatbug = true;
-		auto code = bug->GetChildren();
-
-		auto solData = code->GetAttribute("pass");
-		auto cDataNode = code->GetChildren();
-		if (cDataNode->GetType()==wxXML_CDATA_SECTION_NODE)
-		{
-			auto cData = cDataNode->GetContent();
-			mCodeData = cData.ToStdWstring();
-			mSolution = solData.ToStdWstring();
-		}
-	}
+            auto solData = code->GetAttribute("pass");
+            auto cDataNode = code->GetChildren();
+            if (cDataNode->GetType()==wxXML_CDATA_SECTION_NODE) {
+                auto cData = cDataNode->GetContent();
+                mCodeData = cData.ToStdWstring();
+                mSolution = solData.ToStdWstring();
+            }
+        }
+    }
+    else
+    {
+        SetLocation(bugX, bugY);
+    }
 }
 
 /**

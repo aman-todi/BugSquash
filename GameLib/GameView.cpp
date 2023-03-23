@@ -177,7 +177,46 @@ void GameView::OnSize(wxSizeEvent& event)
  */
 void GameView::OnTimer1(wxTimerEvent &event){
 
-	// Auto load the next level
+//	// Auto load the next level
+//	if (mLevel == 0){
+//		if (mGame.GetScoreboard()->GetTotalScore() == 3){
+//			mGame.Clear();
+//			mGame.GetScoreboard()->ResetScore();
+//			mLevel = 1;
+//			LevelLoader level1(&mGame,LevelOneXMLFileName);
+//			mStopWatch.Start(0);
+//		}
+//	}
+//	else if (mLevel == 1){
+//		if (mGame.GetScoreboard()->GetTotalScore() == 24){
+//			mGame.Clear();
+//			mGame.GetScoreboard()->ResetScore();
+//			mLevel = 2;
+//			LevelLoader level2(&mGame,LevelTwoXMLFileName);
+//			mStopWatch.Start(0);
+//		}
+//	}
+//
+//	else if (mLevel == 2){
+//		if (mGame.GetScoreboard()->GetTotalScore() == 24){
+//			mGame.Clear();
+//			mGame.GetScoreboard()->ResetScore();
+//			mLevel = 3;
+//			LevelLoader level2(&mGame,LevelThreeXMLFileName);
+//			mStopWatch.Start(0);
+//		}
+//	}
+//
+//	Refresh();
+}
+
+/**
+ * Event handler for wxEVT_TIMER for bug motion timer
+ * @param event Timer event
+ */
+void GameView::OnTimer2(wxTimerEvent &event){
+
+	// Calls game to update animation timer for each bug
 	if (mLevel == 0){
 		if (mGame.GetScoreboard()->GetTotalScore() == 3){
 			mGame.Clear();
@@ -206,17 +245,6 @@ void GameView::OnTimer1(wxTimerEvent &event){
 			mStopWatch.Start(0);
 		}
 	}
-
-	Refresh();
-}
-
-/**
- * Event handler for wxEVT_TIMER for bug motion timer
- * @param event Timer event
- */
-void GameView::OnTimer2(wxTimerEvent &event){
-
-	// Calls game to update animation timer for each bug
 	mGame.UpdateAnimationTime();
 	Refresh();
 }

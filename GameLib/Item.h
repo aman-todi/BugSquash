@@ -148,6 +148,7 @@ public:
 	 */
 	virtual bool AtProgram(){return false;};
 
+	virtual bool GetSplat() {return false;}
 
 
 protected:

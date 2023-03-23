@@ -189,7 +189,7 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
 	//Use Bug visitor to get list of bugs
 	for(auto i = mItems.rbegin(); i != mItems.rend(); i++)
 	{
-		if((*i)->HitTest(x, y))
+		if((*i)->HitTest(x, y) && !(*i)->GetSplat())
 		{
 			return *i;
 		}

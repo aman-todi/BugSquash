@@ -285,6 +285,7 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 			if (passed)
 			{
 				visitor.SetSplat();
+				mGame.GetScoreboard()->IncFixed();
 			}
 			Refresh();
 		}

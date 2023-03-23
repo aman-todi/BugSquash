@@ -47,12 +47,14 @@ FeatureBug::FeatureBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,
 /**
  * Draws the bug if it is either splat or moving
  * @param gc The graphic context to draw on
+ * @param timeInSec How long the game has been running for
  */
-void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
+void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
 	if (!GetSplat())
 	{
-		this->UpdateFrame();
+
+		this->UpdateFrame(timeInSec);
 
 		auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];
 		 //Create a graphics context
@@ -76,7 +78,6 @@ void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 		gc->PopState();
 	}
-
 	else
 	{
 		double wid = mBugSplatBitmap->GetWidth();
@@ -90,10 +91,11 @@ void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
 /**
  * Updates the value of current frame index
+ * @param timeInSec How long the game has been running for
  */
-void FeatureBug::UpdateFrame()
+void FeatureBug::UpdateFrame(double timeInSec)
 {
-	if (GetTime() >= (3000/GetSpeed()))
+	if (GetTime() >= (3000/GetSpeed()) && timeInSec > this->GetStartTime())
 	{
 		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (FeatureNumSpriteImages - 1);
 		ResetTime();

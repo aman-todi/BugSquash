@@ -36,7 +36,7 @@ public:
 
 	Spider(Game *game,wxXmlNode* program,wxXmlNode* bug);
 
-	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
+	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, double timeInSec) override;
 	/**
 	 * Runs through the frames of the spider
 	 */

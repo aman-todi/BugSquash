@@ -43,7 +43,7 @@ Program::Program(Game* game,wxXmlNode* program) : Item(game, ProgramImage)
     mLaptopImage = std::make_shared<wxImage>(ProgramImage);
 }
 
-void Program::Draw(std::shared_ptr<wxGraphicsContext> gc)
+void Program::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
     //Create Image Bitmap
     if (mLaptopBitmap.IsNull()) {

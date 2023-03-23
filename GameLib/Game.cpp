@@ -77,7 +77,7 @@ const std::wstring LevelThreeXMLFileName = L"data/level3.xml";
  * @param width The width of the screen
  * @param height The height of the scree
  */
-void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics ,int width, int height)
+void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics ,int width, int height,double timeInSec)
 {
 
     //
@@ -115,7 +115,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics ,int width, int he
 	//This isn't being hit since there is no bug in mItems yet
 	for(auto bug : mItems)
 	{
-		bug->Draw(graphics);
+		bug->Draw(graphics, timeInSec);
 	}
 
     graphics->PopState();

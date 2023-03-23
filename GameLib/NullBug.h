@@ -39,9 +39,9 @@ public:
 
 	NullBug(Game *game,wxXmlNode* program,wxXmlNode* bug);
 
-	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
+	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, double timeInSec) override;
 
-	void UpdateFrame();
+	void UpdateFrame(double timeInSec);
 
 	void ClickedOn() override;
 

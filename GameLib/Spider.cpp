@@ -40,6 +40,6 @@ Spider::Spider(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program,
  * @param gc The device context to draw on
  *
  */
-void Spider::Draw(std::shared_ptr<wxGraphicsContext> gc)
+void Spider::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
 }

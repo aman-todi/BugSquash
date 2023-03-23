@@ -21,6 +21,7 @@
 #include "Program.h"
 #include "Scoreboard.h"
 #include "LevelLoader.h"
+#include "BugScoreboardVisitor.h"
 
 using namespace std;
 
@@ -229,10 +230,14 @@ void Game::Update(double elapsed, double timeInSec)
 		bug->Update(elapsed, timeInSec);
 	}
 
+    BugScoreboardVisitor visitor;
+    visitor.SetScoreboard(GetScoreboard());
+
 	// this for loop is used to remove all the bugs at the program
 	for(auto bug: bugToRemove)
 	{
 		DeleteBug(bug);
+        bug->Accept(&visitor);
 	}
 	// Destroy the vector
 	bugToRemove.clear();

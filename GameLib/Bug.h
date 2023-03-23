@@ -130,8 +130,6 @@ public:
 
     bool AtProgram() override;
 
-    virtual void MissProgram();
-
 	/**
 	 * Accept a visitor
 	 * @param visitor The visitor we accept

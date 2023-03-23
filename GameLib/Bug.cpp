@@ -81,7 +81,6 @@ void Bug::Update(double elapsed, double timeInSec)
 		double newX = GetX() + elapsed * mSpeed * cos(mAngleToRotate);
 		double newY = GetY() + elapsed * mSpeed * sin(mAngleToRotate);
 		SetLocation(newX, newY);
-		MissProgram();
 	}
 }
 
@@ -109,17 +108,6 @@ bool Bug::AtProgram()
     double distanceX = this->GetX() - GetProgramX();
     double distanceY = this->GetY() - GetProgramY();
     return sqrt(distanceX * distanceX + distanceY * distanceY) <= ProgramRange;
-}
-/**
- * If the Bug has reached the program
- * increase the Miss score
- */
-void Bug::MissProgram()
-{
-    if (AtProgram()) {
-        auto scoreboard = GetGame()->GetScoreboard();
-        scoreboard->IncMissed();
-    }
 }
 
 

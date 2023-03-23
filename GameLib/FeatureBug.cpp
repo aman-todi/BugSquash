@@ -106,8 +106,3 @@ void FeatureBug::ClickedOn()
     auto scoreboard = GetGame()->GetScoreboard();
     scoreboard->IncOops();
 }
-
-void FeatureBug::MissProgram()
-{
-
-}

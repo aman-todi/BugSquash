@@ -113,7 +113,7 @@ public:
 
     bool AtProgram() override;
 
-    void MissProgram();
+    virtual void MissProgram();
 
 	/**
 	 * Accept a visitor

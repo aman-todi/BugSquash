@@ -107,3 +107,8 @@ void FeatureBug::ClickedOn()
     scoreboard->IncOops();
 	scoreboard->IncTotalScore();
 }
+
+void FeatureBug::MissProgram()
+{
+
+}

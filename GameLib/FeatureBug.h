@@ -54,6 +54,8 @@ public:
 	*/
 	virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitFeatureBug(this); }
 
+    void MissProgram() override;
+
 };
 
 #endif //GAME_GAME_GAMELIB_FEATUREBUG_H

@@ -116,7 +116,6 @@ void Bug::MissProgram()
     if (AtProgram()) {
         auto scoreboard = GetGame()->GetScoreboard();
         scoreboard->IncMissed();
-		scoreboard->IncTotalScore();
     }
 }
 

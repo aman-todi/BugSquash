@@ -105,7 +105,6 @@ void FeatureBug::ClickedOn()
     SetSplat();
     auto scoreboard = GetGame()->GetScoreboard();
     scoreboard->IncOops();
-	scoreboard->IncTotalScore();
 }
 
 void FeatureBug::MissProgram()

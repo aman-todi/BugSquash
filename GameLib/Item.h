@@ -20,7 +20,7 @@ private:
     /// The game this item is contained in
     Game *mGame = nullptr;
 
-    // Item location in the game
+
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
 
@@ -43,6 +43,10 @@ public:
      */
     double GetX() const { return mX; }
 
+	/**
+	 * Gets the name of the bug
+	 * @return
+	 */
     virtual std::string Name(){return "none";};
 
     /**

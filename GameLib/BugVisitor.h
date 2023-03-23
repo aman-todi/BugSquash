@@ -33,15 +33,16 @@ private:
 	std::wstring mSolution;
 
     /// Program X location
-    double mProgX;
+    double mProgX = 0 ;
 
     /// Program Y location
-    double mProgY;
+    double mProgY = 0;
 
     /// Bugs old speed before set to 0
-    double mOldSpeed;
+    double mOldSpeed = 0;
 
-	Bug* mBug;
+	/// A pointer to the bug
+	Bug* mBug = nullptr;
 
 public:
 

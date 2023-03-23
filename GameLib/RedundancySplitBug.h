@@ -22,7 +22,10 @@ private:
 
     bool decreasing = false;
 
-
+	/**
+	 * Name of this type of bug
+	 * @return The name of this type of bug
+	 */
     std::string Name() override {return "RedundancySplit";};
 
 

@@ -17,7 +17,7 @@ class CodeDialogBox: public wxDialog
 {
 private:
 	/// The text that appears in the pop box
-	wxTextCtrl *m_textCtrl;
+	wxTextCtrl * m_textCtrl = nullptr;
 
 	///solution
 	std::wstring mSol;
@@ -26,7 +26,7 @@ private:
 	bool mPassed = false;
 
 	///Parent view of this dialog box
-	GameView* mGameView;
+	GameView* mGameView = nullptr;
 public:
 	CodeDialogBox(GameView *parent, const std::wstring code,const std::wstring solution);
 

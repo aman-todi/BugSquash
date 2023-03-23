@@ -29,7 +29,11 @@ private:
     /// Speed of bug before being set to 0
     double mOldSpeed = 0;
 
-    /// Name of this type of bug
+
+    /**
+     * Name of this type of bug
+     * @return The name of this type of bug
+     */
     std::string Name() override {return "Redundancy";};
 
 

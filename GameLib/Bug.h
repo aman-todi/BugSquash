@@ -44,8 +44,10 @@ private:
 	///checks if this bug is fatbug
 	bool mFatbug = false;
 
-    ///Position to set the bug to
-    double bugX, bugY;
+    ///X position to set the bug to
+    double bugX = 0;
+	///Y position to set the bug to
+	double bugY = 0;
 public:
     /// Default constructor (disabled)
     Bug() = delete;
@@ -53,7 +55,7 @@ public:
     /// Copy constructor (disabled)
     Bug(const Bug &) = delete;
 
-	void SetProgramLoc(double x, double y){mProgramX=x;mProgramY=y;}
+	//void SetProgramLoc(double x, double y){mProgramX=x;mProgramY=y;}
 	/**
 	 * Calculate the speed of the bug
 	 * @return the speed of the bug
@@ -75,26 +77,26 @@ public:
     void operator=(const Game &) = delete;
 
 	 /**
-	  * getter for program x location
-	  * @return
+	  * Getter for program x location
+	  * @return The X location of the program
 	  */
 	 virtual double GetProgramX(){return mProgramX;}
 
 	 /**
-	  * getter for program y location
-	  * @return
+	  * Getter for program y location
+	  * @return The Y location of the program
 	  */
 	 virtual double GetProgramY(){return mProgramY;}
 
     /**
-     * setter for program x location
-     *
+     * Setter for program x location
+     *	@param X The X location of the program
      */
     void SetProgramX(double X){mProgramX = X;}
 
     /**
-     * setter for program y location
-     *
+     * Setter for program Y location
+     * @param Y The Y location of the program
      */
     void SetProgramY(double Y){mProgramY = Y;}
 

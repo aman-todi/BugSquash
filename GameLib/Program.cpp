@@ -24,7 +24,7 @@ const double HitRadius = 50;
 const int ProgramNameFontSize = 15;
 
 /// The color of the Text on the program
-const wxColour FontColor = wxColour(0, 200, 200);
+const wxColour FontColor = wxColour(255, 255, 255);
 
 /**
  * Constructor
@@ -66,7 +66,7 @@ void Program::Draw(std::shared_ptr<wxGraphicsContext> gc)
 
     gc->SetFont(fontLabel, FontColor);
     gc->GetTextExtent(mNameString, &wid, &hit);
-    gc->DrawText(mNameString, GetX() - wid/4, GetY() - hit/3);
+    gc->DrawText(mNameString, GetX() - wid/5, GetY());
 }
 /**
 	* HitTest

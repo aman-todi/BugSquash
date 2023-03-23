@@ -50,6 +50,7 @@ public:
     /// Copy constructor (disabled)
     Bug(const Bug &) = delete;
 
+	void SetProgramLoc(double x, double y){mProgramX=x;mProgramY=y;}
 	/**
 	 * Calculate the speed of the bug
 	 * @return the speed of the bug

@@ -1,12 +1,13 @@
 /**
  * @file CodeDialogBox.cpp
- * @author srira
+ * @author sriram
  */
 
 #include "pch.h"
 #include "CodeDialogBox.h"
 #include "GameView.h"
-#include <regex>
+#include <wx/regex.h>
+
 
 /// The title to the pop up window
 const wxString& name = "Bug Squash IDE";
@@ -68,6 +69,6 @@ void CodeDialogBox::OnOK(wxCommandEvent& event)
 void CodeDialogBox::OnTextChange(wxCommandEvent& event)
 {
 	auto editedCode = m_textCtrl->GetValue().ToStdWstring();
-	std::wregex pattern(mSol);
-	mPassed = std::regex_match(editedCode,pattern);
+	wxRegEx pattern(mSol);
+	mPassed = pattern.Matches(mSol);
 }

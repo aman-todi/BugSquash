@@ -192,4 +192,5 @@ void RedundancyBug::ClickedOn()
         GetGame()->GetScoreboard()->IncFixed();
 		GetGame()->GetScoreboard()->IncTotalScore();
 	}
+
 }

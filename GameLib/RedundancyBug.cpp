@@ -91,13 +91,7 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
         auto BugWingLBitmap = gc->CreateBitmapFromImage(*BugWingL);
         auto BugWingRBitmap = gc->CreateBitmapFromImage(*BugWingR);
 
-		int multplierImage = 1;
-		if (this->IsFatbug())
-		{
-			///for fatbugs
-			multplierImage = 1.25;
-		}
-
+		double multplierImage = this->IsFatbug() ? 1.25 : 1.0;
 		double wid = BugBase->GetWidth()*multplierImage;
 		double hit = BugBase->GetHeight()*multplierImage;
         double widL = BugWingL->GetWidth()*multplierImage;

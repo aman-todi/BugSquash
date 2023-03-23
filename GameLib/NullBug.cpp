@@ -60,14 +60,9 @@ void NullBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 		//auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
 		auto currentBugBitmap = gc->CreateBitmapFromImage(*currentBugImage);
 
-		int multplierImage = 1;
-		if (this->IsFatbug())
-		{
-			///for fatbugs
-			multplierImage = 1.25;
-		}
-		double wid = currentBugImage->GetWidth()*multplierImage;
-		double hit = currentBugImage->GetHeight()*multplierImage;
+		double multiplierImage = this->IsFatbug() ? 1.25 : 1.0;
+		double wid = currentBugImage->GetWidth()*multiplierImage;
+		double hit = currentBugImage->GetHeight()*multiplierImage;
 
 		gc->PushState();
 		// Translate to the center of the image

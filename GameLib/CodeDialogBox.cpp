@@ -5,6 +5,7 @@
 
 #include "pch.h"
 #include "CodeDialogBox.h"
+#include "GameView.h"
 #include <regex>
 
 /// The title to the pop up window
@@ -16,9 +17,10 @@ const wxString& name = "Bug Squash IDE";
  * @param code The text in the box
  * @param solution The solution of to the code
  */
-CodeDialogBox::CodeDialogBox(wxWindow *parent, const std::wstring code,const std::wstring solution)
-	: wxDialog(parent, wxID_ANY, name, wxDefaultPosition, wxSize(600, 800)),mSol(solution)
+CodeDialogBox::CodeDialogBox(GameView *parent, const std::wstring code,const std::wstring solution)
+	: wxDialog(parent, wxID_ANY, name, wxDefaultPosition, wxSize(600, 800)),mSol(solution),mView(parent)
 {
+	mView->GamePause();
 	wxBoxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
 	// Create the text control and set its initial text.
@@ -37,6 +39,7 @@ CodeDialogBox::CodeDialogBox(wxWindow *parent, const std::wstring code,const std
 	// Add the OK button to the sizer.
 	wxButton* okButton = new wxButton(this, wxID_OK, "OK");
 
+	okButton->Bind(wxEVT_BUTTON, &CodeDialogBox::OnOK,this);
 	buttonSizer->Add(okButton, 0, wxALL, 10);
 
 	// Add the button sizer to the main sizer.
@@ -53,6 +56,7 @@ CodeDialogBox::CodeDialogBox(wxWindow *parent, const std::wstring code,const std
  */
 void CodeDialogBox::OnOK(wxCommandEvent& event)
 {
+	mView->GameResume();
 	EndModal(wxID_OK);
 }
 

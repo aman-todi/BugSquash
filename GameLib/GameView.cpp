@@ -321,3 +321,23 @@ void GameView::OnLevelThree(wxCommandEvent& event)
     LevelLoader level3(&mGame,LevelThreeXMLFileName);
 	mStopWatch.Start(0);
 }
+
+/**
+ * Pause the game
+ */
+void GameView::GamePause()
+{
+	mStopWatch.Pause();
+	mTimerBugMotion.Stop();
+	mTimerAnimation.Stop();
+}
+
+/**
+ * Resume  the game
+ */
+void GameView::GameResume()
+{
+	mStopWatch.Resume();
+	mTimerBugMotion.Start(5);
+	mTimerAnimation.Start(30);
+}

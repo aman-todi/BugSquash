@@ -64,6 +64,8 @@ public:
     void OnLevelTwo(wxCommandEvent& event);
     void OnLevelThree(wxCommandEvent& event);
 
+	void GamePause();
+	void GameResume();
 //	void OnUpdateViewShrink(wxUpdateUIEvent &event);
 
 };

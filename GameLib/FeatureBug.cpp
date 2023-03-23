@@ -65,6 +65,7 @@ void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc)
 			///for fatbugs
 			multplierImage = 1.25;
 		}
+		
 		double wid = currentBugImage->GetWidth()*multplierImage;
 		double hit = currentBugImage->GetHeight()*multplierImage;
 

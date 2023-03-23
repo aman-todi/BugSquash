@@ -9,6 +9,7 @@
 #define PROJECT1_GAMELIB_CODEDIALOGBOX_H
 
 #include "pch.h"
+#include "GameView.h"
 /**
  * The Fat Bug code box
  */
@@ -23,8 +24,10 @@ private:
 
 	///checks if solution is right
 	bool mPassed = false;
+
+	GameView* mView;
 public:
-	CodeDialogBox(wxWindow *parent, const std::wstring code,const std::wstring solution);
+	CodeDialogBox(GameView *parent, const std::wstring code,const std::wstring solution);
 
 	/**
 	 * Get if the solution is correct or not

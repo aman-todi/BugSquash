@@ -55,8 +55,8 @@ Bug::Bug(Game *game,wxXmlNode* program,wxXmlNode* bug, const std::wstring &filen
 		if (cDataNode->GetType()==wxXML_CDATA_SECTION_NODE)
 		{
 			auto cData = cDataNode->GetContent();
-			mCodeData = cData.ToStdString();
-			mSolution = solData.ToStdString();
+			mCodeData = cData.ToStdWstring();
+			mSolution = solData.ToStdWstring();
 		}
 	}
 }

@@ -10,7 +10,7 @@
 
 #include "Item.h"
 #include "Code.h"
-
+#include "regex"
 class Game;
 /**
  * Base Class for Bug
@@ -37,10 +37,10 @@ private:
 	double mStartTime = 0;
 
 	/// The current string value of the code
-	std::string mCodeData;
+	std::wstring mCodeData;
 
 	/// The Solution (Loaded via XML)
-	std::string mSolution;
+	std::wstring mSolution;
 
 	///checks if this bug is fatbug
 	bool mFatbug = false;
@@ -93,7 +93,7 @@ public:
 	 *  Check to see if code it associated with it
 	 * @return True if code it associated else false
 	 */
-	virtual bool IsFatbug() override{return mFatbug;}
+	virtual bool IsFatbug() {return mFatbug;}
 
 
 	virtual bool HitTest(int x, int y) override;
@@ -125,13 +125,13 @@ public:
 	 * Gets the code for Fat Bug
 	 * @return the code for Fat Bug
 	 */
-	std::string GetCode() override{return mCodeData;}
+	std::wstring GetCode() {return mCodeData;}
 
 	/**
 	 * Get the solution to the fat bug
 	 * @return The solution to the Fat Bug
 	 */
-	std::string GetSol() {return mSolution;}
+	std::wstring GetSol() {return mSolution;}
 
 protected:
 

@@ -98,10 +98,6 @@ public:
 
     double DistanceTo(std::shared_ptr<Item> item);
 
-    virtual wxXmlNode* XmlSave(wxXmlNode* node);
-
-    virtual void XmlLoad(wxXmlNode* node);
-
 	/**
 	 * Animation Time Getter
 	 * @return time in milliseconds
@@ -121,7 +117,7 @@ public:
     /**
      * Handle updates for animation
      * @param elapsed The time since the last update
-     * @param TimeInSec How long the level has been running for
+     * @param timeInSec How long the level has been running for
      */
     virtual void Update(double elapsed, double timeInSec) {}
 
@@ -145,18 +141,9 @@ public:
 	 * @return false
 	 */
 	virtual bool AtProgram(){return false;};
-	/**
-	 * Get the code that is associated with the bug
-	 * @return The code that is associated with the bug
-	 */
-	virtual std::string GetCode(){std::string check = "NO"; return check;}
-    //void SetMirror(bool m);   still need to implement this
 
-	/**
-	 * Check to see if it is fatbug
-	 * @return True if fatbug else, false
-	 */
-	virtual bool IsFatbug(){return false;}
+
+
 protected:
     Item(Game *game, const std::wstring &filename);
 

@@ -9,6 +9,7 @@
 #define PROJECT1_GAMELIB_CODEDIALOGBOX_H
 
 #include "pch.h"
+#include "GameView.h"
 /**
  * The Fat Bug code box
  */
@@ -19,14 +20,15 @@ private:
 	wxTextCtrl *m_textCtrl;
 
 	///solution
-	std::string mSol;
+	std::wstring mSol;
 
 	///checks if solution is right
 	bool mPassed = false;
-public:
-	CodeDialogBox(wxWindow *parent, const wxString& code,const wxString& solution);
 
-	wxString GetText() const;
+	GameView* mView;
+public:
+	CodeDialogBox(GameView *parent, const std::wstring code,const std::wstring solution);
+
 	/**
 	 * Get if the solution is correct or not
 	 * @return True if passed, else false
@@ -35,10 +37,9 @@ public:
 
 	void OnOK(wxCommandEvent& event);
 
+	void OnTextChange(wxCommandEvent& event);
 protected:
-	//wxDECLARE_EVENT_TABLE();
-	bool SolutionChecker();
-	void OnTextChanged();
+
 };
 
 #endif //PROJECT1_GAMELIB_CODEDIALOGBOX_H

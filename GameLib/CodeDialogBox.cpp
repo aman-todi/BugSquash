@@ -5,6 +5,8 @@
 
 #include "pch.h"
 #include "CodeDialogBox.h"
+#include "GameView.h"
+#include <regex>
 
 /// The title to the pop up window
 const wxString& name = "Bug Squash IDE";
@@ -15,17 +17,17 @@ const wxString& name = "Bug Squash IDE";
  * @param code The text in the box
  * @param solution The solution of to the code
  */
-CodeDialogBox::CodeDialogBox(wxWindow *parent, const wxString& code,const wxString& solution)
-	: wxDialog(parent, wxID_ANY, name, wxDefaultPosition, wxSize(600, 800)),mSol(solution)
+CodeDialogBox::CodeDialogBox(GameView *parent, const std::wstring code,const std::wstring solution)
+	: wxDialog(parent, wxID_ANY, name, wxDefaultPosition, wxSize(600, 800)),mSol(solution),mView(parent)
 {
+	mView->GamePause();
 	wxBoxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
 	// Create the text control and set its initial text.
 	m_textCtrl = new wxTextCtrl(this, wxID_ANY, code, wxDefaultPosition,
 								wxDefaultSize, wxTE_MULTILINE|wxTE_DONTWRAP);
 
-	// Bind the wxTextCtrl to an event handler for text modification events.
-	//m_textCtrl->Bind(wxEVT_TEXT, &CodeDialogBox::OnTextChanged, this);
+	m_textCtrl->Bind(wxEVT_TEXT, &CodeDialogBox::OnTextChange, this);
 
 	sizer->SetMinSize(wxSize(400, 400));
 
@@ -37,6 +39,7 @@ CodeDialogBox::CodeDialogBox(wxWindow *parent, const wxString& code,const wxStri
 	// Add the OK button to the sizer.
 	wxButton* okButton = new wxButton(this, wxID_OK, "OK");
 
+	okButton->Bind(wxEVT_BUTTON, &CodeDialogBox::OnOK,this);
 	buttonSizer->Add(okButton, 0, wxALL, 10);
 
 	// Add the button sizer to the main sizer.
@@ -45,21 +48,7 @@ CodeDialogBox::CodeDialogBox(wxWindow *parent, const wxString& code,const wxStri
 	SetSizerAndFit(sizer);
 	CenterOnParent();
 }
-/**
- * Gets the text that appears in the pop up box
- * @return The text in the pop up box
- */
-wxString CodeDialogBox::GetText() const
-{
-	return m_textCtrl->GetValue();
-}
 
-/**
- *
- */
-void CodeDialogBox::OnTextChanged()
-{
-}
 
 /**
  * The handler for the "Ok" option
@@ -67,30 +56,17 @@ void CodeDialogBox::OnTextChanged()
  */
 void CodeDialogBox::OnOK(wxCommandEvent& event)
 {
-
-	if (SolutionChecker())
-	{
-		mPassed = true;
-	}
+	mView->GameResume();
 	EndModal(wxID_OK);
 }
-
 
 /**
  * Checks if the user input is correct
  * @return True if the input correct else false
  */
-bool CodeDialogBox::SolutionChecker()
+void CodeDialogBox::OnTextChange(wxCommandEvent& event)
 {
-	auto editedCode = GetText();
-
-	if(editedCode.find(mSol) != std::string::npos)
-	{
-		return false;
-	}
-	else
-	{
-		return false;
-	}
-
+	auto editedCode = m_textCtrl->GetValue().ToStdWstring();
+	std::wregex pattern(mSol);
+	mPassed = std::regex_match(editedCode,pattern);
 }

@@ -248,7 +248,7 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 	{
 		BugVisitor visitor;
 		mClickedItem->Accept(&visitor);
-
+		
 		if(visitor.Fatbug())
 		{
 			auto code = visitor.GetCode();
@@ -258,6 +258,13 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 			// Show the dialog box as a modal dialog
 			dlg.ShowModal();
 
+			//increase fixed score by 1
+			bool passed = dlg.PassCheck();
+			if (passed)
+			{
+				visitor.SetSplat();
+			}
+			Refresh();
 		}
 	}
 }
@@ -313,4 +320,24 @@ void GameView::OnLevelThree(wxCommandEvent& event)
 	mLevel = 3;
     LevelLoader level3(&mGame,LevelThreeXMLFileName);
 	mStopWatch.Start(0);
+}
+
+/**
+ * Pause the game
+ */
+void GameView::GamePause()
+{
+	mStopWatch.Pause();
+	mTimerBugMotion.Stop();
+	mTimerAnimation.Stop();
+}
+
+/**
+ * Resume  the game
+ */
+void GameView::GameResume()
+{
+	mStopWatch.Resume();
+	mTimerBugMotion.Start(5);
+	mTimerAnimation.Start(30);
 }

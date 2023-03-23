@@ -64,7 +64,7 @@ void CodeDialogBox::OnOK(wxCommandEvent& event)
 
 /**
  * Checks if the user input is correct
- * @param event Mouse event
+ * @return True if the input correct else false
  */
 void CodeDialogBox::OnTextChange(wxCommandEvent& event)
 {

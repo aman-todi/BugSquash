@@ -113,7 +113,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics ,int width, int he
     //  Draw Scoreboard
     mScoreboard->Draw(graphics);
 
-	//This isn't being hit since there is no bug in mItems yet
 	for(auto bug : mItems)
 	{
 		bug->Draw(graphics, timeInSec);
@@ -132,8 +131,6 @@ Game::Game()
 	LevelLoader level1(this,LevelOneXMLFileName);
 
 }
-
-
 
 
 /**

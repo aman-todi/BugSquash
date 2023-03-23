@@ -35,6 +35,9 @@ private:
     ///Game Scoreboard
     std::shared_ptr<Scoreboard> mScoreboard;
 
+    /// Level Name
+    wxString mLevelName;
+
 	//void XmlBug(wxXmlNode *node);
 
 	/// Random number generator
@@ -118,6 +121,36 @@ public:
 	 * @return The scoreboard
 	 */
     std::shared_ptr<Scoreboard> GetScoreboard() {return mScoreboard;}
+
+    /**
+     * Get Level Name
+     * @return wxString
+     */
+    wxString GetLevelName() {return mLevelName;}
+
+    /**
+     * Set Level Name
+     * @param lv new level name
+     */
+    void SetLevelName(wxString lv) {mLevelName = lv;}
+
+    /**
+     * Get Scale
+     * @return mScale
+     */
+    double GetScale() {return mScale;}
+
+    /**
+     * Get X Offset
+     * @return
+     */
+    double GetXOffSet() {return mXOffset;}
+
+    /**
+     * Get Y Offset
+     * @return
+     */
+    double GetYOffSet() {return mYOffset;}
 
 };
 #endif //PROJECT1_GAMELIB_GAME_H

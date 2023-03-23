@@ -36,6 +36,9 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 	// Get the root element
 	wxXmlNode *bugSquash = doc.GetRoot();
 
+    auto levelName = bugSquash->GetAttribute(L"level");
+    game->SetLevelName(levelName);
+
 	// Access the program element and its attributes
 	wxXmlNode* program = bugSquash->GetChildren();
 

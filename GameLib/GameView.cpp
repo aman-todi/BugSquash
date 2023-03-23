@@ -53,6 +53,12 @@ const std::wstring LevelTwoXMLFileName = L"data/level2.xml";
 /// The level3 XML
 const std::wstring LevelThreeXMLFileName = L"data/level3.xml";
 
+/// The font color to use
+const wxColour FontColor = wxColour(225, 0, 0);
+
+/// Score font size to use
+const int ScoreSize = 85;
+
 using namespace std;
 
 /**
@@ -137,6 +143,22 @@ void GameView::OnPaint(wxPaintEvent& event)
     }
 
     mGame.OnDraw(gc,rect.GetWidth(), rect.GetHeight());
+
+    gc->PushState();
+
+    // Draw Level Name
+    /*wxFont fontScore(ScoreSize,
+            wxFONTFAMILY_SWISS,
+            wxFONTSTYLE_NORMAL,
+            wxFONTWEIGHT_BOLD);
+
+    gc->SetFont(fontScore, FontColor);
+
+    double wid, hgt;
+    gc->GetTextExtent(mGame.GetLevelName(), &wid, &hgt);
+    gc->DrawText(mGame.GetLevelName(), ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((GameHeight/2)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
+    gc->PopState();*/
+
 }
 
 /**

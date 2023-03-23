@@ -18,9 +18,10 @@ const wxString& name = "Bug Squash IDE";
  * @param solution The solution of to the code
  */
 CodeDialogBox::CodeDialogBox(GameView *parent, const std::wstring code,const std::wstring solution)
-	: wxDialog(parent, wxID_ANY, name, wxDefaultPosition, wxSize(600, 800)),mSol(solution),mView(parent)
+	: wxDialog(parent, wxID_ANY, name, wxDefaultPosition,
+			   wxSize(600, 800)),mSol(solution),mGameView(parent)
 {
-	mView->GamePause();
+	mGameView->GamePause();
 	wxBoxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
 	// Create the text control and set its initial text.
@@ -56,7 +57,7 @@ CodeDialogBox::CodeDialogBox(GameView *parent, const std::wstring code,const std
  */
 void CodeDialogBox::OnOK(wxCommandEvent& event)
 {
-	mView->GameResume();
+	mGameView->GameResume();
 	EndModal(wxID_OK);
 }
 

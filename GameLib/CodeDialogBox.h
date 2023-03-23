@@ -25,7 +25,8 @@ private:
 	///checks if solution is right
 	bool mPassed = false;
 
-	GameView* mView;
+	///Parent view of this dialog box
+	GameView* mGameView;
 public:
 	CodeDialogBox(GameView *parent, const std::wstring code,const std::wstring solution);
 

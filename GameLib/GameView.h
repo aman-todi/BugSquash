@@ -39,7 +39,7 @@ private:
 	long mTime = 0;
 
 	/// level number
-	int mLevel = -1;
+	int mLevel = 1;
 
 	int mNumberOfBugsPerLevel = 0;
 

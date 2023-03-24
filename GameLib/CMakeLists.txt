@@ -19,7 +19,10 @@ set(SOURCE_FILES
         LevelLoader.h LevelLoader.cpp
         Spider.h Spider.cpp
         CodeDialogBox.h CodeDialogBox.cpp
-        BugVisitor.h BugVisitor.cpp RedundancySplitBug.cpp RedundancySplitBug.h BugScoreboardVisitor.cpp BugScoreboardVisitor.h)
+        BugVisitor.h BugVisitor.cpp
+        RedundancySplitBug.cpp RedundancySplitBug.h
+        BugScoreboardVisitor.cpp BugScoreboardVisitor.h
+        ActiveBugsCounter.h ActiveBugsCounter.cpp)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)

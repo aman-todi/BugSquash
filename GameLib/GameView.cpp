@@ -23,6 +23,7 @@
 #include "CodeDialogBox.h"
 #include "BugVisitor.h"
 #include "Scoreboard.h"
+#include "ActiveBugsCounter.h"
 
 /// Frame duration in milliseconds
 const int FrameDuration = 30;
@@ -190,36 +191,6 @@ void GameView::OnSize(wxSizeEvent& event)
  */
 void GameView::OnTimer1(wxTimerEvent &event){
 
-//	// Auto load the next level
-//	if (mLevel == 0){
-//		if (mGame.GetScoreboard()->GetTotalScore() == 3){
-//			mGame.Clear();
-//			mGame.GetScoreboard()->ResetScore();
-//			mLevel = 1;
-//			LevelLoader level1(&mGame,LevelOneXMLFileName);
-//			mStopWatch.Start(0);
-//		}
-//	}
-//	else if (mLevel == 1){
-//		if (mGame.GetScoreboard()->GetTotalScore() == 24){
-//			mGame.Clear();
-//			mGame.GetScoreboard()->ResetScore();
-//			mLevel = 2;
-//			LevelLoader level2(&mGame,LevelTwoXMLFileName);
-//			mStopWatch.Start(0);
-//		}
-//	}
-//
-//	else if (mLevel == 2){
-//		if (mGame.GetScoreboard()->GetTotalScore() == 24){
-//			mGame.Clear();
-//			mGame.GetScoreboard()->ResetScore();
-//			mLevel = 3;
-//			LevelLoader level2(&mGame,LevelThreeXMLFileName);
-//			mStopWatch.Start(0);
-//		}
-//	}
-//
 //	Refresh();
 }
 
@@ -229,37 +200,40 @@ void GameView::OnTimer1(wxTimerEvent &event){
  */
 void GameView::OnTimer2(wxTimerEvent &event){
 
-	// If the total score equals the number of on that level start the next level
-	if (mGame.GetScoreboard()->GetTotalScore() == 3 && mLevel == LevelZero){
-			mGame.Clear();
-			mGame.GetScoreboard()->ResetScore();
-			mLevel = LevelOne;
-			LevelLoader level1(&mGame,LevelOneXMLFileName);
-//			mNumberOfBugsPerLevel = level1.GetNumPrograms();
-//			mNumberOfProgramsPerLevel = level1.GetNumPrograms();
-			mStopWatch.Start(0);
+	ActiveBugsCounter livingBugsCounter;
+	mGame.Accept(&livingBugsCounter);
+	int activeBugsCount = livingBugsCounter.GetActiveBugs();
+
+	// If there are no active bugs in the game, go to next level
+
+	if (activeBugsCount == 0 && mLevel == LevelZero){
+		mGame.Clear();
+		mGame.GetScoreboard()->ResetScore();
+		mLevel = LevelOne;
+		LevelLoader level1(&mGame,LevelOneXMLFileName);
+		mStopWatch.Start(0);
 	}
-	if (mGame.GetScoreboard()->GetTotalScore() == 12 && mLevel == LevelOne){
-			mGame.Clear();
-			mGame.GetScoreboard()->ResetScore();
-			mLevel = LevelTwo;
-			LevelLoader level2(&mGame,LevelTwoXMLFileName);
-			mStopWatch.Start(0);
+	else if (activeBugsCount == 0 && mLevel == LevelOne){
+		mGame.Clear();
+		mGame.GetScoreboard()->ResetScore();
+		mLevel = LevelTwo;
+		LevelLoader level2(&mGame,LevelTwoXMLFileName);
+		mStopWatch.Start(0);
 	}
-	if (mGame.GetScoreboard()->GetTotalScore() == 24 && mLevel == LevelTwo){
-			mGame.Clear();
-			mGame.GetScoreboard()->ResetScore();
-			mLevel = LevelThree;
-			LevelLoader level2(&mGame,LevelThreeXMLFileName);
-			mStopWatch.Start(0);
-	}
-	if (mGame.GetScoreboard()->GetTotalScore() == 24 && mLevel == LevelThree)
-	{
+	else if (activeBugsCount == 0 && mLevel == LevelTwo){
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
 		mLevel = LevelThree;
 		LevelLoader level3(&mGame,LevelThreeXMLFileName);
+		mStopWatch.Start(0);
 	}
+//	if (activeBugsCount == 0 && mLevel == LevelThree)
+//	{
+//		mGame.Clear();
+//		mGame.GetScoreboard()->ResetScore();
+//		mLevel = LevelThree;
+//		LevelLoader level3(&mGame,LevelThreeXMLFileName);
+//	}
 	// Calls game to update animation timer for each bug
 	mGame.UpdateAnimationTime();
 	Refresh();

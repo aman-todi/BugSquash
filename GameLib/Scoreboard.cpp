@@ -76,3 +76,12 @@ void Scoreboard::Draw(std::shared_ptr<wxGraphicsContext> gc)
     gc->DrawText((L"Oops"), (GameWidth-LeftScoreX) - (widLabel/4), ScoreLabelY+(hgtLabel/2));
 
 }
+
+/**
+ * Reset Scoreboard
+ */
+void Scoreboard::ResetScore() {
+	mFixed = 0;
+	mMissed = 0;
+	mOops = 0;
+}

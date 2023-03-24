@@ -57,10 +57,7 @@ public:
      */
     void IncOops() {mOops++;}
 
-    /**
-     * Reset Scoreboard
-     */
-     void ResetScore() {mFixed = 0; mMissed = 0; mOops = 0;}
+     void ResetScore();
 
     /**
      * Draw Scoreboard

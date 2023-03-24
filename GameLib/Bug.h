@@ -121,7 +121,7 @@ public:
 	 * Get if the bug has been splat or not
 	 * @return If the bug has been splat or not
 	 */
-    bool GetSplat() {return mSplat;}
+    bool GetSplat() override {return mSplat;}
 
 	/**
 	 * Set if the bug has been clicked on

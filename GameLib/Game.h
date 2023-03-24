@@ -101,12 +101,6 @@ public:
 	void UpdateAnimationTime();
 
 	/**
-	 * Get number of items
-	 * @return int
-	 */
-	int GetNumItems() { return mItems.size(); }
-
-	/**
      * Get the random number generator
      * @return Pointer to the random number generator
      */

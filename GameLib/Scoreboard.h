@@ -36,11 +36,6 @@ public:
 	 * @return the score of mOops
 	 */
     int GetOops() {return mOops;}
-	/**
- 	 * Getter for the Total score
-  	 * @return the total score
-	 */
-	int GetTotalScore() {return mFixed + mMissed + mOops;}
 
     /**
      * Increment Fixed Value

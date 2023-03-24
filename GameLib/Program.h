@@ -39,6 +39,7 @@ public:
     /**
      * Draw program
      * @param gc
+     * @param timeInSec how long the game has been running for
      */
 	void Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec) override;
 

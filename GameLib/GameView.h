@@ -41,10 +41,6 @@ private:
 	/// level number
 	int mLevel = 1;
 
-	int mNumberOfBugsPerLevel = 0;
-
-	int mNumberOfProgramsPerLevel = 0;
-
 	void OnPaint(wxPaintEvent& event);
 
 public:

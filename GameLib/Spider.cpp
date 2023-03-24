@@ -38,7 +38,7 @@ Spider::Spider(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program,
 /**
  * Draws the spider for level 3
  * @param gc The device context to draw on
- *
+ * @param timeInSec How long the game has been running for
  */
 void Spider::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {

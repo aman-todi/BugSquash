@@ -227,13 +227,16 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		LevelLoader level3(&mGame,LevelThreeXMLFileName);
 		mStopWatch.Start(0);
 	}
-//	if (activeBugsCount == 0 && mLevel == LevelThree)
-//	{
-//		mGame.Clear();
-//		mGame.GetScoreboard()->ResetScore();
-//		mLevel = LevelThree;
-//		LevelLoader level3(&mGame,LevelThreeXMLFileName);
-//	}
+	// if at last level reload that level
+	if (activeBugsCount == 0 && mLevel == LevelThree)
+	{
+		mGame.Clear();
+		mGame.GetScoreboard()->ResetScore();
+		mLevel = LevelThree;
+		LevelLoader level3(&mGame,LevelThreeXMLFileName);
+		mStopWatch.Start(0);
+
+	}
 	// Calls game to update animation timer for each bug
 	mGame.UpdateAnimationTime();
 	Refresh();

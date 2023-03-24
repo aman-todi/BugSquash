@@ -73,6 +73,7 @@ public:
 	/**
 	 * Draw this Item
 	 * @param graphics  Device context to draw on
+	 * @param timeInSec how long the game has been running for
 	 */
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, double timeInSec) {}
 
@@ -147,7 +148,10 @@ public:
 	 * @return false
 	 */
 	virtual bool AtProgram(){return false;};
-
+	/**
+	 * Check to see if the bug has been click on
+	 * @return false
+	 */
 	virtual bool GetSplat() {return false;}
 
 

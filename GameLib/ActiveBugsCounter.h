@@ -17,7 +17,9 @@ class GarbageBug;
 class FeatureBug;
 class NullBug;
 class RedundancyBug;
-
+/**
+ * `Sees how many bugs there are left in the game
+ */
 class ActiveBugsCounter : public ItemsVisitor {
 private:
 	/// Count the number of living bugs on the screen
@@ -27,6 +29,7 @@ public:
 
 	/**
 	 * Get the count of active bugs
+	 * @return The number of bugs left
 	 */
 	int GetActiveBugs() { return mCount; }
 

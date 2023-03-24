@@ -77,6 +77,7 @@ const std::wstring LevelThreeXMLFileName = L"data/level3.xml";
  * @param graphics The graphic of the screen
  * @param width The width of the screen
  * @param height The height of the scree
+ * @param timeInSec How long the game has been running for int seconds
  */
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics ,int width, int height,double timeInSec)
 {

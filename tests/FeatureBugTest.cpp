@@ -116,26 +116,5 @@ TEST(FeatureBug,Update)
 	ASSERT_NEAR(featureBug.GetX(),35.86,.01);
 	ASSERT_NEAR(featureBug.GetY(),35.86,.01);
 }
-///// Don't know how to get access to the draw/how to make a grapihc in this test case
-//TEST(FeatureBug,Splat)
-//{
-//	Game game;
-//	FeatureBug featureBug(&game);
-//
-//	featureBug.SetSpeed(50,50);
-//
-//	ASSERT_NEAR(featureBug.GetSpeed(),70.71,.001);
-//
-//	wxAutoBufferedPaintDC dc(this);
-//
-//	auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
-//
-//	garbageBug.ClickedOn(gc);
-//
-//	ASSERT_NEAR(featureBug.GetSpeed(),0,.0001);
-//
-//
-//}
-//
-//
+
 

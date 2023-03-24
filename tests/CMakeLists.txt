@@ -1,12 +1,11 @@
 project(Tests)
 
 set(TEST_FILES
-    gtest_main.cpp
-    EmptyTest.cpp
-        GameTest.cpp
-        NullBugTest.cpp
-        ItemTest.cpp
-        ScoreBoardTest.cpp GarbageBugTest.cpp FeatureBugTest.cpp)
+    gtest_main.cpp EmptyTest.cpp
+    GameTest.cpp NullBugTest.cpp
+    ItemTest.cpp ScoreBoardTest.cpp
+    GarbageBugTest.cpp FeatureBugTest.cpp
+    RedundancyButTest.cpp SpiderTest.cpp)
 
 # Get Google Tests
 include(FetchContent)

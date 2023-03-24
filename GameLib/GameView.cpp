@@ -55,6 +55,9 @@ const static int LevelTwo = 2;
 /// Level Three
 const static int LevelThree = 3;
 
+/// The amount of time before the Game the game starts
+const static double GameDelay = 2;
+
 /// The level0 XML
 const std::wstring LevelZeroXMLFileName = L"data/level0.xml";
 
@@ -140,7 +143,7 @@ void GameView::OnPaint(wxPaintEvent& event)
     mTime = newTime;
 
 	//convert the time to seconds
-	double TimeInSec = double(mTime) / MsToSec;
+	double TimeInSec = (double(mTime) / MsToSec) - GameDelay;
 	mGame.Update(elapsed, TimeInSec);
 
     // Create a graphics context

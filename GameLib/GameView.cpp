@@ -202,7 +202,7 @@ void GameView::OnPaint(wxPaintEvent& event)
 
             gc->SetFont(fontScore, FontColor);
 
-            wxString final = L"Level Complete";
+            wxString final = L"Level Complete!";
 
             double wid, hgt;
             gc->GetTextExtent(final, &wid, &hgt);

@@ -13,6 +13,7 @@
 #include "Spider.h"
 #include "ShapeShifterBug.h"
 
+
 void ActiveBugsCounter::VisitGarbageBug(GarbageBug* bug)
 {
 	if (bug->GetSplat() == false) { mCount++; }

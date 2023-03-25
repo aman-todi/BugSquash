@@ -49,12 +49,6 @@ public:
     void VisitFeatureBug (FeatureBug* bug) override ;
 
     /**
-     * Visit a Spider bug
-     * @param bug  The bug being checked
-     */
-    void VisitSpider (Spider* bug) override ;
-
-    /**
      * Set Scoreboard Pointer to Game Scoreboard
      * @param sb
      */

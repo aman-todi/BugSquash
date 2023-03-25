@@ -76,9 +76,6 @@ const wxColour FontColor = wxColour(225, 0, 0);
 /// Score font size to use
 const int ScoreSize = 85;
 
-/// Level change time delay
-const int LevelDelay = 5;
-
 using namespace std;
 
 /**
@@ -242,8 +239,9 @@ void GameView::OnTimer2(wxTimerEvent &event){
 	int activeBugsCount = livingBugsCounter.GetActiveBugs();
 
 	// If there are no active bugs in the game, go to next level
+
 	if (activeBugsCount == 0 && mLevel == LevelZero){
-        wxSleep(LevelDelay);
+		wxSleep(GameDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
 		mLevel = LevelOne;
@@ -253,8 +251,7 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		mStopWatch.Start(0);
 	}
 	else if (activeBugsCount == 0 && mLevel == LevelOne){
-
-		wxSleep(LevelDelay);
+		wxSleep(GameDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
 		mLevel = LevelTwo;
@@ -264,7 +261,7 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		mStopWatch.Start(0);
 	}
 	else if (activeBugsCount == 0 && mLevel == LevelTwo){
-		wxSleep(LevelDelay);
+		wxSleep(GameDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
 		mLevel = LevelThree;
@@ -276,7 +273,7 @@ void GameView::OnTimer2(wxTimerEvent &event){
 	// if at last level reload that level
 	if (activeBugsCount == 0 && mLevel == LevelThree)
 	{
-		wxSleep(LevelDelay);
+		wxSleep(GameDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
 		mLevel = LevelThree;

@@ -5,7 +5,7 @@
 
 #include "pch.h"
 #include "Spider.h"
-#include "Game.h"
+#include "Scoreboard.h"
 
 /// The Spider image
 const std::wstring SpiderImageName = L"images/spider.png";
@@ -42,4 +42,39 @@ Spider::Spider(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program,
  */
 void Spider::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
+
+	this->UpdateFrame(timeInSec);
+
+	auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];
+	//Create a graphics context
+	//auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
+	auto currentBugBitmap = gc->CreateBitmapFromImage(*currentBugImage);
+
+	double wid = currentBugImage->GetWidth();
+	double hit = currentBugImage->GetHeight();
+
+	gc->PushState();
+	// Translate to the center of the image
+	gc->Translate(GetX(), GetY());
+
+	// Rotate the image by the specified angle
+	gc->Rotate(this->GetAngleToRotate());
+
+	gc->DrawBitmap(currentBugBitmap,
+				   - wid / 2, (- hit / 2), wid, hit);
+
+	gc->PopState();
+}
+
+/**
+ * Updates the value of current frame index
+ * @param timeInSec How long the game has been running for
+ */
+void Spider::UpdateFrame(double timeInSec)
+{
+	if (GetTime() >= (3000/GetSpeed()) && timeInSec > this->GetStartTime())
+	{
+		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (SpiderNumSpriteImages - 1);
+		ResetTime();
+	}
 }

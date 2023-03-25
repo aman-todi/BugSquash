@@ -10,7 +10,6 @@
 
 #include "Bug.h"
 #include "Game.h"
-#include "ItemsVisitor.h"
 
 /**
  * Class for a bug type FeatureBug
@@ -40,7 +39,7 @@ public:
 	/**
 	 * Runs through the frames of the spider
 	 */
-	void UpdateFrame();
+	void UpdateFrame(double timeInSec);
 
 	/**
      * Accept a visitor

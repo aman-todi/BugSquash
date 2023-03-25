@@ -14,6 +14,7 @@
 #include "FeatureBug.h"
 #include "Program.h"
 #include "Scoreboard.h"
+#include "Spider.h"
 
 /// The feature sprite image
 const std::wstring FeatureBugImageName = L"images/feature.png";
@@ -204,7 +205,7 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 
 					game->AddItemBitmap(bugType,bitmaps);
 				}
-				shared_ptr <Bug> bug = make_shared<FeatureBug>(game,laptop,node);
+				shared_ptr <Bug> bug = make_shared<Spider>(game,laptop,node);
 				bugItems.push_back(bug);
 			}
 			else{

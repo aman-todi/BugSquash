@@ -148,6 +148,7 @@ void GameView::OnPaint(wxPaintEvent& event)
 	//convert the time to seconds
 	double TimeInSec = (double(mTime) / MsToSec) - GameDelay;
 	mGame.Update(elapsed, TimeInSec);
+    mDisplayDuration += elapsed;
 
     // Create a graphics context
     auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
@@ -164,21 +165,26 @@ void GameView::OnPaint(wxPaintEvent& event)
 
     mGame.OnDraw(gc,rect.GetWidth(), rect.GetHeight(),TimeInSec);
 
-    gc->PushState();
+    if (mDisplayDuration < 2) {
+        if (mState == State::LevelStart){
+            // Draw Level Name
+            gc->PushState();
 
-    // Draw Level Name
-    /*wxFont fontScore(ScoreSize,
-            wxFONTFAMILY_SWISS,
-            wxFONTSTYLE_NORMAL,
-            wxFONTWEIGHT_BOLD);
+            wxFont fontScore(ScoreSize,
+                    wxFONTFAMILY_SWISS,
+                    wxFONTSTYLE_NORMAL,
+                    wxFONTWEIGHT_BOLD);
 
-    gc->SetFont(fontScore, FontColor);
+            gc->SetFont(fontScore, FontColor);
 
-    double wid, hgt;
-    gc->GetTextExtent(mGame.GetLevelName(), &wid, &hgt);
-    gc->DrawText(mGame.GetLevelName(), ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((GameHeight/2)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
-    gc->PopState();*/
+            double wid, hgt;
+            gc->GetTextExtent(mGame.GetLevelName(), &wid, &hgt);
+            gc->DrawText(mGame.GetLevelName(), ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((GameHeight/2)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
+            gc->PopState();
 
+
+        }
+    }
 }
 
 /**

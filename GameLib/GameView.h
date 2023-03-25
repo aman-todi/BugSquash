@@ -32,6 +32,14 @@ private:
 	/// Stopwatch used to measure elapsed time
 	wxStopWatch mStopWatch;
 
+    /// Enum class to keep track of game state
+    enum class State {LevelStart, LevelRunning, LevelEnd};
+
+    State mState = State::LevelStart;
+
+    /// double used to track duration of display
+    double mDisplayDuration = 0;
+
 	/// Any bug we are currently dragging
 	std::shared_ptr<Item> mClickedItem;
 
@@ -66,6 +74,22 @@ public:
 
 	void GamePause();
 	void GameResume();
+
+    /**
+     * Set Level State to Start
+     */
+    void SetLevelStart() {mState=State::LevelStart;}
+
+    /**
+     * Set level State to Running
+     */
+    void SetLevelRunning() {mState=State::LevelRunning;}
+
+    /**
+     * Set level State to End
+     */
+    void SetLevelEnd() {mState=State::LevelEnd;}
+
 //	void OnUpdateViewShrink(wxUpdateUIEvent &event);
 
 };

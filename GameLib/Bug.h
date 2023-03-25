@@ -42,10 +42,6 @@ private:
 	///checks if this bug is fatbug
 	bool mFatbug = false;
 
-    ///X position to set the bug to
-    double bugX = 0;
-	///Y position to set the bug to
-	double bugY = 0;
 public:
     /// Default constructor (disabled)
     Bug() = delete;
@@ -85,8 +81,16 @@ public:
 	  */
 	 virtual double GetProgramY(){return mProgram->GetY();}
 
+	 /**
+	  * getter for program
+	  * @return program
+	  */
 	 virtual std::shared_ptr<Item> GetProgram(){return mProgram;}
 
+	 /**
+	  * setter for program
+	  * @param program
+	  */
 	virtual void SetProgram(std::shared_ptr<Item> program){mProgram=program;}
 	/**
 	 * getter for angle to rotate

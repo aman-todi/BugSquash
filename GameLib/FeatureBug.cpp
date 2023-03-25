@@ -56,7 +56,8 @@ void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 				gc->Rotate(this->GetAngleToRotate());
 
 				double multiplierImage = this->IsFatbug() ? 1.25 : 1.0;
-				wid,hit = wid*multiplierImage,hit*multiplierImage;
+				wid = wid*multiplierImage;
+				hit = hit*multiplierImage;
 				gc->DrawBitmap(currentBitmap,
 							   - wid / 2, (- hit / 2), wid, hit);
 				gc->PopState();

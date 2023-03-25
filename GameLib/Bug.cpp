@@ -36,6 +36,7 @@ Bug::Bug(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) :
 {
     if (program != nullptr)
     {
+		double bugX,bugY;
 		mProgram = program;
         bool xConvert = bug->GetAttribute("x").ToDouble(&bugX);
         bool yConvert = bug->GetAttribute("y").ToDouble(&bugY);
@@ -59,7 +60,7 @@ Bug::Bug(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) :
     }
     else
     {
-        SetLocation(bugX, bugY);
+        SetLocation(0, 0);
     }
 }
 

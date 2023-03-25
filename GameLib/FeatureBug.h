@@ -33,7 +33,7 @@ public:
 	/// Assignment operator
 	void operator=(const FeatureBug &) = delete;
 
-	FeatureBug(Game *game,wxXmlNode* program,wxXmlNode* bug);
+	FeatureBug(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug);
 
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, double timeInSec) override;
 

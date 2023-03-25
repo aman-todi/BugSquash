@@ -20,6 +20,7 @@ void BugVisitor::VisitGarbageBug(GarbageBug* bug)
 {
 	mIsFatbug = bug->IsFatbug();
 	mBug = bug;
+	mProgram = bug->GetProgram();
 	if (mIsFatbug)
 	{
 		mCodeData = bug->GetCode();
@@ -35,6 +36,7 @@ void BugVisitor::VisitNullBug(NullBug* bug)
 {
 	mIsFatbug = bug->IsFatbug();
 	mBug = bug;
+	mProgram = bug->GetProgram();
 	if (mIsFatbug)
 	{
 		mCodeData = bug->GetCode();
@@ -50,13 +52,13 @@ void BugVisitor::VisitRedundancyBug(RedundancyBug* bug)
 {
 	mIsFatbug = bug->IsFatbug();
 	mBug = bug;
+	mProgram = bug->GetProgram();
 	if (mIsFatbug)
 	{
 		mCodeData = bug->GetCode();
 		mSolution = bug->GetSol();
 	}
-    mProgX = bug->GetProgramX();
-    mProgY = bug->GetProgramY();
+
     mOldSpeed = bug->GetOldSpeed();
 }
 
@@ -68,6 +70,7 @@ void BugVisitor::VisitFeatureBug(FeatureBug* bug)
 {
 	mIsFatbug = bug->IsFatbug();
 	mBug = bug;
+	mProgram = bug->GetProgram();
 	if (mIsFatbug)
 
 	{
@@ -83,6 +86,7 @@ void BugVisitor::VisitSpider (Spider* bug)
 {
 	mIsFatbug = bug->IsFatbug();
 	mBug = bug;
+	mProgram = bug->GetProgram();
 	if (mIsFatbug)
 	{
 		mCodeData = bug->GetCode();

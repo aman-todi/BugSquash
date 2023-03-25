@@ -21,7 +21,7 @@ const double ProgramRange = 50;
  * @param program The program the bug is associated with
  * @param bug The inform associated with the bug
  */
-FeatureBug::FeatureBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game, program, bug)
+FeatureBug::FeatureBug(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) : Bug(game, program, bug)
 {
 
 	mBitmaps = game->GetItemBitmaps("feature");

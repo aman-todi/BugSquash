@@ -153,15 +153,13 @@ shared_ptr<Bug> Game::AddRed(std::shared_ptr<Item> bug)
 
     BugVisitor visitor;
     bug->Accept(&visitor);
-    double programX = visitor.GetProgX();
-    double programY = visitor.GetProgY();
+    auto program = visitor.GetProgram();
     double speed = visitor.GetOldSpeed();
 
 
     shared_ptr <Bug> RedBug = make_shared<RedundancySplitBug>(this);
 
-    RedBug->SetProgramX(programX);
-    RedBug->SetProgramY(programY);
+    RedBug->SetProgram(program);
 
     int randomNum = rand() % 401 + (-200);
 
@@ -170,7 +168,6 @@ shared_ptr<Bug> Game::AddRed(std::shared_ptr<Item> bug)
 
     mItems.push_back(RedBug);
     return RedBug;
-
 }
 
 
@@ -324,9 +321,9 @@ std::shared_ptr<Item> Game::OnClick(double x, double y,bool doubleCLick)
 	return clicked;
 }
 
-std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> Game::GetItemBitmaps(wxString bugType)
+std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> Game::GetItemBitmaps(wxString itemType)
 {
-	auto it = mItemBitmaps.find(bugType);
+	auto it = mItemBitmaps.find(itemType);
 	// Return the vector for bugType.
 	if (it != mItemBitmaps.end())
 	{
@@ -343,7 +340,7 @@ std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> Game::GetItemBitmaps
  * @param bugType type of bug
  * @param bitmaps all the bitmaps associated with it
  */
-void Game::AddItemBitmap(wxString bugType, std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> bitmaps)
+void Game::AddItemBitmap(wxString itemType, std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> bitmaps)
 {
-	mItemBitmaps[bugType] = bitmaps;
+	mItemBitmaps[itemType] = bitmaps;
 }

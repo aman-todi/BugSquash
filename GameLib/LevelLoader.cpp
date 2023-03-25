@@ -81,7 +81,7 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 	wxXmlNode* program = bugSquash->GetChildren();
 
 	// All the bugs in game
-	std::vector<std::shared_ptr<Item> > bugItems;
+	vector<shared_ptr<Item> > bugItems;
 
 	while (program!=NULL)
 	{
@@ -90,9 +90,9 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 
 		if (game->GetItemBitmaps("program").empty())
 		{
-			auto programBitmap = std::make_shared<wxBitmap>(ProgramImage,
+			auto programBitmap = make_shared<wxBitmap>(ProgramImage,
 															wxBITMAP_TYPE_ANY);
-			std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> bitmaps;
+			vector<pair<wxString, shared_ptr<wxBitmap>>> bitmaps;
 			bitmaps.push_back(std::make_pair("program",programBitmap));
 			game->AddItemBitmap("program",bitmaps);
 		}
@@ -103,7 +103,7 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 		game->AddItem(laptop);
 
 		// Create a vector to store the bugs
-		std::vector<wxXmlNode*> bugs;
+		vector<wxXmlNode*> bugs;
 
 		while(bugNode != NULL)
 		{
@@ -125,17 +125,17 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 				if (game->GetItemBitmaps(bugType).empty())
 
 				{
-					auto splatBitmap = std::make_shared<wxBitmap>(GarbageBugSplatImageName,
+					auto splatBitmap = make_shared<wxBitmap>(GarbageBugSplatImageName,
 																  wxBITMAP_TYPE_ANY);
-					auto spriteBitmap = std::make_shared<wxBitmap>(GarbageBugSpriteImageName
+					auto spriteBitmap = make_shared<wxBitmap>(GarbageBugSpriteImageName
 																,wxBITMAP_TYPE_ANY);
-					std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> bitmaps;
+					vector<pair<wxString, shared_ptr<wxBitmap>>> bitmaps;
 					bitmaps.push_back(std::make_pair("Splat",splatBitmap));
 					bitmaps.push_back(std::make_pair("SpriteSheet",spriteBitmap));
 					game->AddItemBitmap(bugType,bitmaps);
 				}
 
-				shared_ptr <Bug> bug = make_shared<GarbageBug>(game,program,node);
+				shared_ptr <Bug> bug = make_shared<GarbageBug>(game,laptop,node);
 				bugItems.push_back(bug);
 			}
 
@@ -144,17 +144,17 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 
 				if (game->GetItemBitmaps(bugType).empty())
 				{
-					auto splatBitmap = std::make_shared<wxBitmap>(NullBugSplatImageName,
+					auto splatBitmap = make_shared<wxBitmap>(NullBugSplatImageName,
 																  wxBITMAP_TYPE_ANY);
-					auto spriteBitmap = std::make_shared<wxBitmap>(NullBugSpriteImageName
+					auto spriteBitmap = make_shared<wxBitmap>(NullBugSpriteImageName
 						,wxBITMAP_TYPE_ANY);
-					std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> bitmaps;
+					vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> bitmaps;
 					bitmaps.push_back(std::make_pair("Splat",splatBitmap));
 					bitmaps.push_back(std::make_pair("SpriteSheet",spriteBitmap));
 					game->AddItemBitmap(bugType,bitmaps);
 				}
 
-				shared_ptr <Bug> bug = make_shared<NullBug>(game,program,node);
+				shared_ptr <Bug> bug = make_shared<NullBug>(game,laptop,node);
 				bugItems.push_back(bug);
 			}
 			else if(bugType == "redundancy")
@@ -162,20 +162,20 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 
 				if (game->GetItemBitmaps(bugType).empty())
 				{
-					auto splatBitmap = std::make_shared<wxBitmap>(RedundancyFlySplatImageName,
+					auto splatBitmap = make_shared<wxBitmap>(RedundancyFlySplatImageName,
 																  wxBITMAP_TYPE_ANY);
-					auto baseBitmap = std::make_shared<wxBitmap>(RedundancyBugImage
+					auto baseBitmap = make_shared<wxBitmap>(RedundancyBugImage
 						,wxBITMAP_TYPE_ANY);
-					auto topBitmap = std::make_shared<wxBitmap>(RedundancyFlyTopImageName
-						,wxBITMAP_TYPE_ANY);
-
-					auto rightWingBitmap = std::make_shared<wxBitmap>(RedundancyFlyRightWingImageName
+					auto topBitmap = make_shared<wxBitmap>(RedundancyFlyTopImageName
 						,wxBITMAP_TYPE_ANY);
 
-					auto leftWingBitmap = std::make_shared<wxBitmap>(RedundancyFlyLeftWingImageName
+					auto rightWingBitmap = make_shared<wxBitmap>(RedundancyFlyRightWingImageName
 						,wxBITMAP_TYPE_ANY);
 
-					std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> bitmaps;
+					auto leftWingBitmap = make_shared<wxBitmap>(RedundancyFlyLeftWingImageName
+						,wxBITMAP_TYPE_ANY);
+
+					vector<std::pair<wxString, shared_ptr<wxBitmap>>> bitmaps;
 
 					bitmaps.push_back(std::make_pair("Splat",splatBitmap));
 					bitmaps.push_back(std::make_pair("Base",baseBitmap));
@@ -186,25 +186,25 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 					game->AddItemBitmap(bugType,bitmaps);
 				}
 
-				shared_ptr <Bug> bug = make_shared<RedundancyBug>(game,program,node);
+				shared_ptr <Bug> bug = make_shared<RedundancyBug>(game,laptop,node);
 				bugItems.push_back(bug);
 			}
 			else
 			{
 				if (game->GetItemBitmaps(bugType).empty())
 				{
-					auto splatBitmap = std::make_shared<wxBitmap>(FeatureBugSplatImageName,
+					auto splatBitmap = make_shared<wxBitmap>(FeatureBugSplatImageName,
 																  wxBITMAP_TYPE_ANY);
-					auto spriteBitmap = std::make_shared<wxBitmap>(FeatureBugImageName
+					auto spriteBitmap = make_shared<wxBitmap>(FeatureBugImageName
 						,wxBITMAP_TYPE_ANY);
 
-					std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> bitmaps;
+					vector<std::pair<wxString, shared_ptr<wxBitmap>>> bitmaps;
 					bitmaps.push_back(std::make_pair("Splat",splatBitmap));
 					bitmaps.push_back(std::make_pair("SpriteSheet",spriteBitmap));
 
 					game->AddItemBitmap("feature",bitmaps);
 				}
-				shared_ptr <Bug> bug = make_shared<FeatureBug>(game,program,node);
+				shared_ptr <Bug> bug = make_shared<FeatureBug>(game,laptop,node);
 				bugItems.push_back(bug);
 			}
 

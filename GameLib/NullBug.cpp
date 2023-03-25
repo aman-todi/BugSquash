@@ -21,7 +21,7 @@ const double ProgramRange = 50;
  * @param program he program the bug is associated with
  * @param bug The inform associated with the bug
  */
-NullBug::NullBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program, bug)
+NullBug::NullBug(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) : Bug(game,program, bug)
 {
 	mBitmaps = game->GetItemBitmaps("null");
 }

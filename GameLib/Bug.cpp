@@ -31,17 +31,16 @@ const double ProgramRange = 5;
  * @param bug The bugs information
  * @param filename Filename for the image we use
  */
-Bug::Bug(Game *game,wxXmlNode* program,wxXmlNode* bug) :
+Bug::Bug(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) :
         Item(game)
 {
     if (program != nullptr)
     {
+		mProgram = program;
         bool xConvert = bug->GetAttribute("x").ToDouble(&bugX);
         bool yConvert = bug->GetAttribute("y").ToDouble(&bugY);
         bool speedConvert = bug->GetAttribute("speed").ToDouble(&mSpeed);
         bool timeConvert = bug->GetAttribute("start").ToDouble(&mStartTime);
-        bool programXConvert = program->GetAttribute("x").ToDouble(&mProgramX);
-        bool programYConvert = program->GetAttribute("y").ToDouble(&mProgramY);
         SetLocation(bugX, bugY);
 
         //load the "code" if fatbug
@@ -77,7 +76,7 @@ void Bug::Update(double elapsed, double timeInSec)
 {
 	if(timeInSec > GetStartTime())
 	{
-		mAngleToRotate = atan2(mProgramY - GetY(), mProgramX - GetX());
+		mAngleToRotate = atan2(GetProgramY() - GetY(), GetProgramX() - GetX());
 		double newX = GetX() + elapsed * mSpeed * cos(mAngleToRotate);
 		double newY = GetY() + elapsed * mSpeed * sin(mAngleToRotate);
 		SetLocation(newX, newY);

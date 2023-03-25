@@ -41,7 +41,7 @@ const double ProgramRange = 50;
  * RedundancyBug Constructor
  * @param game Game this bug is a member of
  */
-RedundancyBug::RedundancyBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game, program, bug)
+RedundancyBug::RedundancyBug(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) : Bug(game, program, bug)
 {
 	mBitmaps = game->GetItemBitmaps("redundancy");
 }

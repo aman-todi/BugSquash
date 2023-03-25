@@ -33,7 +33,7 @@ public:
 	/// Assignment operator
 	void operator=(const Spider &) = delete;
 
-	Spider(Game *game,wxXmlNode* program,wxXmlNode* bug);
+	Spider(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug);
 
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, double timeInSec) override;
 	/**

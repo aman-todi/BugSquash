@@ -32,11 +32,8 @@ private:
 	/// The Solution (Loaded via XML)
 	std::wstring mSolution;
 
-    /// Program X location
-    double mProgX = 0 ;
-
-    /// Program Y location
-    double mProgY = 0;
+	///program, bug associated with
+	std::shared_ptr<Item> mProgram;
 
     /// Bugs old speed before set to 0
     double mOldSpeed = 0;
@@ -64,17 +61,7 @@ public:
 	*/
 	std::wstring GetSolution(){return mSolution;}
 
-    /**
-	* getter for mprogX
-	* @return solution
-	*/
-    double GetProgX(){return mProgX;}
-
-    /**
-	* getter for mprogY
-	* @return solution
-	*/
-    double GetProgY(){return mProgY;}
+	std::shared_ptr<Item> GetProgram(){return mProgram;}
 
     /**
 	* getter for mOldSpeed

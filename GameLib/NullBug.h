@@ -32,7 +32,7 @@ public:
 	/// Assignment operator
 	void operator=(const NullBug &) = delete;
 
-	NullBug(Game *game,wxXmlNode* program,wxXmlNode* bug);
+	NullBug(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug);
 
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, double timeInSec) override;
 

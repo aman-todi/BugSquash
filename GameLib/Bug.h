@@ -10,6 +10,7 @@
 
 #include "Item.h"
 #include "regex"
+#include "Program.h"
 class Game;
 /**
  * Base Class for Bug
@@ -20,11 +21,8 @@ private:
     /// in pixels per second
     double mSpeed = 0;
 
-	///X location of program associated with bug
-	double mProgramX = 0;
-
-	///Y location of program associated with bug
-	double mProgramY = 0;
+	///program, bug associated with
+	std::shared_ptr<Item> mProgram;
 
 	///Angle to rotate
 	double mAngleToRotate = 0;
@@ -55,7 +53,6 @@ public:
     /// Copy constructor (disabled)
     Bug(const Bug &) = delete;
 
-	//void SetProgramLoc(double x, double y){mProgramX=x;mProgramY=y;}
 	/**
 	 * Calculate the speed of the bug
 	 * @return the speed of the bug
@@ -80,26 +77,17 @@ public:
 	  * Getter for program x location
 	  * @return The X location of the program
 	  */
-	 virtual double GetProgramX(){return mProgramX;}
+	 virtual double GetProgramX(){return mProgram->GetX();}
 
 	 /**
 	  * Getter for program y location
 	  * @return The Y location of the program
 	  */
-	 virtual double GetProgramY(){return mProgramY;}
+	 virtual double GetProgramY(){return mProgram->GetY();}
 
-    /**
-     * Setter for program x location
-     *	@param X The X location of the program
-     */
-    void SetProgramX(double X){mProgramX = X;}
+	 virtual std::shared_ptr<Item> GetProgram(){return mProgram;}
 
-    /**
-     * Setter for program Y location
-     * @param Y The Y location of the program
-     */
-    void SetProgramY(double Y){mProgramY = Y;}
-
+	virtual void SetProgram(std::shared_ptr<Item> program){mProgram=program;}
 	/**
 	 * getter for angle to rotate
 	 * @return angle to rotate the image
@@ -150,7 +138,7 @@ public:
 
 protected:
 
-	Bug(Game* game,wxXmlNode* program,wxXmlNode* bug);
+	Bug(Game* game,std::shared_ptr<Item> program,wxXmlNode* bug);
 };
 
 #endif //GAME_GAME_GAMELIB_BUG_H

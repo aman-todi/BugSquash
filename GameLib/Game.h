@@ -76,7 +76,7 @@ public:
 //	void MovetoEnd(std::shared_ptr<Bug> item);
 	void DeleteBug(std::shared_ptr<Item> item);
 
-	vector<pair<wxString,shared_ptr<wxBitmap>>> GetItemBitmaps(wxString bugType);
+	vector<pair<wxString,shared_ptr<wxBitmap>>> GetItemBitmaps(wxString ItemType);
 
 	void OnDraw(std::shared_ptr<wxGraphicsContext> graphics,int width, int height,double timeInSec);
 

@@ -111,13 +111,13 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics ,int width, int he
     graphics->SetPen(*wxWHITE_PEN);
     graphics->DrawRectangle(0, 0, GameWidth, GameHeight);
 
-    //  Draw Scoreboard
-    mScoreboard->Draw(graphics);
-
 	for(auto bug : mItems)
 	{
 		bug->Draw(graphics, timeInSec);
 	}
+
+    //  Draw Scoreboard
+    mScoreboard->Draw(graphics);
 
     graphics->PopState();
 }

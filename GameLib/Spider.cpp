@@ -74,27 +74,27 @@ void Spider::Update(double elapsed, double timeInSec)
 		/// Make Spider Perimeter the Aquarium
 
 		/// While moving in X direction
-		if (mSpeedX > 0 && GetX() >= 935)
+		if (mSpeedX > 0 && GetX() >= 900)
 		{
 			mSpeedX = 0;
 			mSpeedY = GetSpeed();
-			SetAngleToRotate(90);
+			SetAngleToRotate(1.5708);
 		}
-		else if (mSpeedX < 0 && GetX() <= 315)
+		else if (mSpeedX < 0 && GetX() <= 350)
 		{
 			mSpeedX = 0;
 			mSpeedY = -GetSpeed();
-			SetAngleToRotate(270);
+			SetAngleToRotate(4.7124);
 		}
 
 		/// While moving in Y direction
-		if (mSpeedY > 0 && GetY() >= 750)
+		if (mSpeedY > 0 && GetY() >= 715)
 		{
 			mSpeedX = -GetSpeed();
 			mSpeedY = 0;
-			SetAngleToRotate(180);
+			SetAngleToRotate(3.1416);
 		}
-		else if (mSpeedY < 0 && GetY() <= 250)
+		else if (mSpeedY < 0 && GetY() <= 285)
 		{
 			mSpeedX = GetSpeed();
 			mSpeedY = 0;

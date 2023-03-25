@@ -57,7 +57,7 @@ private:
     <bug type="redundancy" x="900" y="-400" speed="135" start="17"/>
     <bug type="garbage" x="-250" y="100" speed="120" start="19"/>
     <bug type="garbage" x="200" y="1350" speed="135" start="20"/>
-    <bug type="spider" x="800" y="-250" speed="100" start="4"/>
+    <bug type="spider" x="350" y="285" speed="100" start="4"/>
 
     <feature x="250" y="-800" speed="120" start="22"/>
 

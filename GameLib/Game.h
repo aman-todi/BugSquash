@@ -17,6 +17,7 @@
 #include "Item.h"
 #include <random>
 #include <wx/graphics.h>
+#include <unordered_map>
 
 using namespace std;
 class Scoreboard;

@@ -108,7 +108,7 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 		while(bugNode != NULL)
 		{
 			// Check if the child is a "bug" element
-			if(bugNode->GetName() == "bug" || bugNode->GetName() == "feature")
+			if(bugNode->GetName() == "bug" || bugNode->GetName() == "feature" || bugNode->GetName() == "spider")
 			{
 				bugs.push_back(bugNode);
 				mNumBugs++;
@@ -189,12 +189,29 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 				shared_ptr <Bug> bug = make_shared<RedundancyBug>(game,laptop,node);
 				bugItems.push_back(bug);
 			}
-			else
+			else if(bugType == "spider")
 			{
 				if (game->GetItemBitmaps(bugType).empty())
 				{
+					//auto splatBitmap = make_shared<wxBitmap>(FeatureBugSplatImageName,
+					//											  wxBITMAP_TYPE_ANY);
+					auto spriteBitmap = make_shared<wxBitmap>(SpiderBugImageName
+						,wxBITMAP_TYPE_ANY);
+
+					vector<std::pair<wxString, shared_ptr<wxBitmap>>> bitmaps;
+					//bitmaps.push_back(std::make_pair("Splat",splatBitmap));
+					bitmaps.push_back(std::make_pair("SpriteSheet",spriteBitmap));
+
+					game->AddItemBitmap(bugType,bitmaps);
+				}
+				shared_ptr <Bug> bug = make_shared<FeatureBug>(game,laptop,node);
+				bugItems.push_back(bug);
+			}
+			else{
+				if (game->GetItemBitmaps(bugType).empty())
+				{
 					auto splatBitmap = make_shared<wxBitmap>(FeatureBugSplatImageName,
-																  wxBITMAP_TYPE_ANY);
+															 wxBITMAP_TYPE_ANY);
 					auto spriteBitmap = make_shared<wxBitmap>(FeatureBugImageName
 						,wxBITMAP_TYPE_ANY);
 

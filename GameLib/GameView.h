@@ -33,7 +33,7 @@ private:
 	wxStopWatch mStopWatch;
 
     /// Enum class to keep track of game state
-    enum class State {LevelStart, LevelRunning, LevelEnd};
+    enum class State {LevelStart, LevelEnd};
 
     State mState = State::LevelStart;
 
@@ -74,21 +74,6 @@ public:
 
 	void GamePause();
 	void GameResume();
-
-    /**
-     * Set Level State to Start
-     */
-    void SetLevelStart() {mState=State::LevelStart;}
-
-    /**
-     * Set level State to Running
-     */
-    void SetLevelRunning() {mState=State::LevelRunning;}
-
-    /**
-     * Set level State to End
-     */
-    void SetLevelEnd() {mState=State::LevelEnd;}
 
 //	void OnUpdateViewShrink(wxUpdateUIEvent &event);
 

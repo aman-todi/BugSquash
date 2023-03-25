@@ -18,6 +18,9 @@ class NullBug;
 class RedundancyBug;
 class Spider;
 
+/**
+ * Increase the score of Missed
+ */
 class BugScoreboardVisitor : public ItemsVisitor {
 private:
     /// Pointer to Game Scoreboard

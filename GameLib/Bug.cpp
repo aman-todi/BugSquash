@@ -29,7 +29,6 @@ const double ProgramRange = 5;
  * @param game The game we are in
  * @param program The bug is associated with
  * @param bug The bugs information
- * @param filename Filename for the image we use
  */
 Bug::Bug(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) :
         Item(game)

@@ -54,7 +54,6 @@ void BugScoreboardVisitor::VisitShapeShifterBug (ShapeShifterBug* bug)
 
 /**
  * Set Scoreboard Pointer to Game Scoreboard
- * @param sb
  */
 void BugScoreboardVisitor::IncMiss()
 {

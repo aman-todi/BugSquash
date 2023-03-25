@@ -11,7 +11,9 @@
 #include "Bug.h"
 #include "Game.h"
 #include "RedundancyBug.h"
-
+/**
+ * The redundancy bugs that appear from being clicked on
+ */
 class RedundancySplitBug :  public RedundancyBug{
 private:
 

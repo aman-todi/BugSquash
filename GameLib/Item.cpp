@@ -24,14 +24,13 @@ Item::~Item()
 /**
  * Constructor
  * @param game The game this item is a member of
- * @param filename The name of the file to display for this item
  */
 Item::Item(Game *game) : mGame(game)
 {
 
 }
 
-///**
+//**
 // * Draw this bug
 // * @param dc Device context to draw on
 // */

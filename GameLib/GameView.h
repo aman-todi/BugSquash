@@ -35,6 +35,7 @@ private:
     /// Enum class to keep track of game state
     enum class State {LevelStart, LevelEnd};
 
+	/// The state of the game
     State mState = State::LevelStart;
 
     /// double used to track duration of display

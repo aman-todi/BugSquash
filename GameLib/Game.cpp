@@ -322,7 +322,12 @@ std::shared_ptr<Item> Game::OnClick(double x, double y,bool doubleCLick)
 
 	return clicked;
 }
-
+/**
+ * Finds the Bitmap that relates to that type of the bug
+ *
+ * @param itemType The image the looking for
+ * @return The vector that is holding the Bitmap images
+ */
 std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> Game::GetItemBitmaps(wxString itemType)
 {
 	auto it = mItemBitmaps.find(itemType);

@@ -61,6 +61,10 @@ public:
 	*/
 	std::wstring GetSolution(){return mSolution;}
 
+	/**
+	 * Grabs the program
+	 * @return The program
+	 */
 	std::shared_ptr<Item> GetProgram(){return mProgram;}
 
     /**

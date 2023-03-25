@@ -213,11 +213,16 @@ void Game::Clear()
 void Game::Update(double elapsed, double timeInSec)
 {
 	vector<shared_ptr<Item>> bugToRemove;
+
+    BugScoreboardVisitor visitor;
+    visitor.SetScoreboard(GetScoreboard());
+
 	for (auto bug : mItems)
 	{
 		// Check to see if the bugs are at the program
 		if(bug->AtProgram())
 		{
+            bug->Accept(&visitor);
 			bugToRemove.push_back(bug);
 			//This could be where add the missed and stuff
 		}
@@ -225,14 +230,11 @@ void Game::Update(double elapsed, double timeInSec)
 		bug->Update(elapsed, timeInSec);
 	}
 
-    BugScoreboardVisitor visitor;
-    visitor.SetScoreboard(GetScoreboard());
-
 	// this for loop is used to remove all the bugs at the program
 	for(auto bug: bugToRemove)
 	{
-		DeleteBug(bug);
-        bug->Accept(&visitor);
+
+        DeleteBug(bug);
 	}
 	// Destroy the vector
 	bugToRemove.clear();

@@ -143,7 +143,6 @@ void Game::AddItem(std::shared_ptr<Item> bug)
 	//Use Bug visitor to get list of bugs
 	//bug->SetLocation(X, Y);
 	mItems.push_back(bug);
-
 }
 
 shared_ptr<Bug> Game::AddRed(std::shared_ptr<Item> bug)

@@ -31,7 +31,34 @@ Spider::Spider(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) : Bug(ga
  */
 void Spider::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
+	// No else need since it can't be clicked on
+	this->UpdateFrame(timeInSec);
+	for (const auto& bitmapPair : mBitmaps)
+	{
+		if (bitmapPair.first == "SpriteSheet")
+		{
+			auto spriteSheet = bitmapPair.second->ConvertToImage();
+			double wid = spriteSheet.GetWidth();
+			double hit = spriteSheet.GetHeight()/SpiderNumSpriteImages;
+			auto currentBitmap = gc->CreateSubBitmap(gc->CreateBitmapFromImage(spriteSheet),
+													 0,mCurrentFrameIndex*hit,wid,hit);
 
+			gc->PushState();
+			// Translate to the center of the image
+			gc->Translate(GetX(), GetY());
+
+			// Rotate the image by the specified angle
+			gc->Rotate(this->GetAngleToRotate());
+
+			// Can't be a fat bug
+//			//double multiplierImage = this->IsFatbug() ? 1.25 : 1.0;
+//			wid = wid*multiplierImage;
+//			hit = hit*multiplierImage;
+			gc->DrawBitmap(currentBitmap,
+						   - wid / 2, (- hit / 2), wid, hit);
+			gc->PopState();
+		}
+	}
 }
 
 /**

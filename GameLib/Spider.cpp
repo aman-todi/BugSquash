@@ -22,6 +22,7 @@ const int SpiderNumSpriteImages = 7;
 Spider::Spider(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) : Bug(game,program,bug) {
 
 	mBitmaps = game->GetItemBitmaps("spider");
+	mSpeedX = GetSpeed();
 }
 
 /**
@@ -31,8 +32,8 @@ Spider::Spider(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) : Bug(ga
  */
 void Spider::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
-	// No else need since it can't be clicked on
 	this->UpdateFrame(timeInSec);
+
 	for (const auto& bitmapPair : mBitmaps)
 	{
 		if (bitmapPair.first == "SpriteSheet")
@@ -50,13 +51,54 @@ void Spider::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 			// Rotate the image by the specified angle
 			gc->Rotate(this->GetAngleToRotate());
 
-			// Can't be a fat bug
-//			//double multiplierImage = this->IsFatbug() ? 1.25 : 1.0;
-//			wid = wid*multiplierImage;
-//			hit = hit*multiplierImage;
 			gc->DrawBitmap(currentBitmap,
 						   - wid / 2, (- hit / 2), wid, hit);
 			gc->PopState();
+		}
+	}
+
+}
+
+/**
+ * Update the Spider bug (override Update from Bug.cpp)
+ * @param elapsed time elapsed since last class call
+ * @param timeInSec time since the level began
+ */
+void Spider::Update(double elapsed, double timeInSec)
+{
+	if(timeInSec > GetStartTime())
+	{
+		SetLocation(GetX() + mSpeedX * elapsed,
+					GetY() + mSpeedY * elapsed);
+
+		/// Make Spider Perimeter the Aquarium
+
+		/// While moving in X direction
+		if (mSpeedX > 0 && GetX() >= 935)
+		{
+			mSpeedX = 0;
+			mSpeedY = GetSpeed();
+			SetAngleToRotate(90);
+		}
+		else if (mSpeedX < 0 && GetX() <= 315)
+		{
+			mSpeedX = 0;
+			mSpeedY = -GetSpeed();
+			SetAngleToRotate(270);
+		}
+
+		/// While moving in Y direction
+		if (mSpeedY > 0 && GetY() >= 750)
+		{
+			mSpeedX = -GetSpeed();
+			mSpeedY = 0;
+			SetAngleToRotate(180);
+		}
+		else if (mSpeedY < 0 && GetY() <= 250)
+		{
+			mSpeedX = GetSpeed();
+			mSpeedY = 0;
+			SetAngleToRotate(0);
 		}
 	}
 }

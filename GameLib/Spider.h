@@ -23,6 +23,12 @@ private:
 	/// index of the current frame to draw
 	int mCurrentFrameIndex = 0;
 
+	/// speed in x direction
+	int mSpeedX = 0;
+
+	/// speed in y direction
+	int mSpeedY = 0;
+
 public:
 	/// Default constructor (disabled)
 	Spider() = delete;
@@ -36,9 +42,9 @@ public:
 	Spider(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug);
 
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, double timeInSec) override;
-	/**
-	 * Runs through the frames of the spider
-	 */
+
+	void Update(double elapsed, double timeInSec) override;
+
 	void UpdateFrame(double timeInSec);
 
 	/**

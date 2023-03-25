@@ -92,11 +92,18 @@ public:
 	  * @param program
 	  */
 	virtual void SetProgram(std::shared_ptr<Item> program){mProgram=program;}
+
 	/**
 	 * getter for angle to rotate
 	 * @return angle to rotate the image
 	 */
 	virtual double GetAngleToRotate(){return mAngleToRotate;}
+
+	/**
+ 	 * getter for angle to rotate
+     * @return angle to rotate the image
+     */
+	virtual void SetAngleToRotate(double angle){mAngleToRotate = angle;}
 
 	/**
 	 *  Check to see if code it associated with it

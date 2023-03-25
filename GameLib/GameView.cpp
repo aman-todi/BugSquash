@@ -165,6 +165,15 @@ void GameView::OnPaint(wxPaintEvent& event)
 
     mGame.OnDraw(gc,rect.GetWidth(), rect.GetHeight(),TimeInSec);
 
+    ActiveBugsCounter livingBugsCounter;
+    mGame.Accept(&livingBugsCounter);
+    int activeBugsCount = livingBugsCounter.GetActiveBugs();
+
+    if (activeBugsCount == 0) {
+        mState = State::LevelEnd;
+        mDisplayDuration = 0;
+    }
+
     if (mDisplayDuration < 2) {
         if (mState == State::LevelStart){
             // Draw Level Name
@@ -233,7 +242,6 @@ void GameView::OnTimer2(wxTimerEvent &event){
 	int activeBugsCount = livingBugsCounter.GetActiveBugs();
 
 	// If there are no active bugs in the game, go to next level
-
 	if (activeBugsCount == 0 && mLevel == LevelZero){
         wxSleep(LevelDelay);
 		mGame.Clear();

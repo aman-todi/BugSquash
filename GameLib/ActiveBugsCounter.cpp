@@ -10,6 +10,8 @@
 #include "NullBug.h"
 #include "RedundancyBug.h"
 #include "FeatureBug.h"
+#include "Spider.h"
+#include "ShapeShifterBug.h"
 
 void ActiveBugsCounter::VisitGarbageBug(GarbageBug* bug)
 {
@@ -35,3 +37,9 @@ void ActiveBugsCounter::VisitSpider(Spider* bug)
 {
 	// Do Nothing
 }
+
+void ActiveBugsCounter::VisitShapeShifterBug(ShapeShifterBug* bug)
+{
+	if (bug->GetSplat() == false) { mCount++; }
+}
+

@@ -63,6 +63,12 @@ public:
 	 */
 	void VisitSpider (Spider* bug) override ;
 
+	/**
+     * Visit a Spider
+     * @param bug The bug being visited
+     */
+	virtual void VisitShapeShifterBug (ShapeShifterBug* bug) override;
+
 };
 
 #endif //PROJECT1_GAMELIB_LIVINGBUGSCOUNTER_H

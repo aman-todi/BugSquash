@@ -1,6 +1,6 @@
 /**
  * @file RedundancyBug.cpp
- * @author srira
+ * @author sriram
  */
 
 #include "pch.h"
@@ -9,20 +9,6 @@
 #include "Scoreboard.h"
 
 
-/// The bug base image
-const std::wstring RedundancyBugImage = L"images/redundancy-fly-base.png";
-
-/// The bug top image
-const std::wstring RedundancyFlyTopImageName = L"images/redundancy-fly-top.png";
-
-/// The left wing image
-const std::wstring RedundancyFlyLeftWingImageName = L"images/redundancy-fly-lwing.png";
-
-/// The right wing image
-const std::wstring RedundancyFlyRightWingImageName = L"images/redundancy-fly-rwing.png";
-
-/// The splat image
-const std::wstring RedundancyFlySplatImageName = L"images/redundancy-fly-splat.png";
 
 /// Wing flapping period in seconds
 const double WingPeriod = 0.2;
@@ -55,19 +41,9 @@ const double ProgramRange = 50;
  * RedundancyBug Constructor
  * @param game Game this bug is a member of
  */
-RedundancyBug::RedundancyBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game, program, bug,RedundancyBugImage)
+RedundancyBug::RedundancyBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game, program, bug)
 {
-	mBugSplatBitmap = std::make_unique<wxBitmap>(RedundancyFlySplatImageName,wxBITMAP_TYPE_ANY);
-	wxImage FlyImageBase(RedundancyBugImage, wxBITMAP_TYPE_ANY);
-	wxImage FlyImageTop(RedundancyFlyTopImageName, wxBITMAP_TYPE_ANY);
-	wxImage FlyImageWingL(RedundancyFlyLeftWingImageName, wxBITMAP_TYPE_ANY);
-	wxImage FlyImageWingR(RedundancyFlyRightWingImageName, wxBITMAP_TYPE_ANY);
-
-
-	mBugPartsSpriteSheet.push_back(std::make_shared<wxImage>(FlyImageBase));
-	mBugPartsSpriteSheet.push_back(std::make_shared<wxImage>(FlyImageTop));
-	mBugPartsSpriteSheet.push_back(std::make_shared<wxImage>(FlyImageWingL));
-	mBugPartsSpriteSheet.push_back(std::make_shared<wxImage>(FlyImageWingR));
+	mBitmaps = game->GetItemBitmaps("redundancy");
 }
 
 /**
@@ -76,20 +52,33 @@ RedundancyBug::RedundancyBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug
  */
 void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
+	std::shared_ptr<wxBitmap> BugBase,BugTop,BugWingL,BugWingR;
 
 	if (!GetSplat())
 	{
-		auto BugBase = mBugPartsSpriteSheet[mCurrentFrameIndex];
-		auto BugTop = mBugPartsSpriteSheet[mCurrentFrameIndex+1];
-		auto BugWingL = mBugPartsSpriteSheet[mCurrentFrameIndex+2];
-		auto BugWingR = mBugPartsSpriteSheet[mCurrentFrameIndex+3];
-
-		//Create a graphics context
-		//auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
-		auto BugBaseBitmap = gc->CreateBitmapFromImage(*BugBase);
-		auto BugTopBitmap = gc->CreateBitmapFromImage(*BugTop);
-		auto BugWingLBitmap = gc->CreateBitmapFromImage(*BugWingL);
-		auto BugWingRBitmap = gc->CreateBitmapFromImage(*BugWingR);
+		for (const auto& bitmapPair : mBitmaps)
+		{
+			if(bitmapPair.first == "Base")
+			{
+				BugBase = bitmapPair.second;
+			}
+			if(bitmapPair.first == "Top")
+			{
+				BugTop = bitmapPair.second;
+			}
+			if(bitmapPair.first == "RightWing")
+			{
+				BugWingR = bitmapPair.second;
+			}
+			if(bitmapPair.first == "LeftWing")
+			{
+				BugWingL = bitmapPair.second;
+			}
+		}
+		auto BugBaseBitmap = gc->CreateBitmapFromImage(BugBase->ConvertToImage());
+		auto BugTopBitmap = gc->CreateBitmapFromImage(BugTop->ConvertToImage());
+		auto BugWingLBitmap = gc->CreateBitmapFromImage(BugWingL->ConvertToImage());
+		auto BugWingRBitmap = gc->CreateBitmapFromImage(BugWingR->ConvertToImage());
 
 		double wid = BugBase->GetWidth();
 		double hit = BugBase->GetHeight();
@@ -110,7 +99,6 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec
 		// Draw Base
 		gc->DrawBitmap(BugBaseBitmap,
 					   - wid / 2, (- hit / 2), wid, hit);
-
 
 
 		// Draw Wings
@@ -140,12 +128,20 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec
 	}
 	else
 	{
-		double wid = mBugSplatBitmap->GetWidth();
-		double hit = mBugSplatBitmap->GetHeight();
-		gc->DrawBitmap(*mBugSplatBitmap,
-					   int(GetX() - wid / 2),
-					   int(GetY() - hit / 2),wid,hit);
-		this->SetSpeed(0);
+		for(const auto &bitmapPair : mBitmaps)
+		{
+			if(bitmapPair.first == "Splat")
+			{
+				auto bugSplat = bitmapPair.second->ConvertToImage();
+				double wid = bugSplat.GetWidth();
+				double hit = bugSplat.GetHeight();
+				gc->DrawBitmap(bugSplat,
+							   int(GetX() - wid / 2),
+							   int(GetY() - hit / 2), wid, hit);
+				this->SetSpeed(0);
+			}
+			break;
+		}
 	}
 }
 
@@ -177,8 +173,5 @@ void RedundancyBug::UpdateFrame(std::shared_ptr<wxGraphicsContext> gc)
 
 void RedundancyBug::ClickedOn()
 {
-	if (!this->IsFatbug())
-	{
-		SetSplat();
-	}
+	SetSplat();
 }

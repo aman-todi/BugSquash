@@ -138,7 +138,7 @@ Game::Game()
  * Add a bug to the game
  * @param bug New bug to add
  */
-void Game::Add(std::shared_ptr<Item> bug)
+void Game::AddItem(std::shared_ptr<Item> bug)
 {
 	//Use Bug visitor to get list of bugs
 	//bug->SetLocation(X, Y);
@@ -322,4 +322,28 @@ std::shared_ptr<Item> Game::OnClick(double x, double y,bool doubleCLick)
 	}
 
 	return clicked;
+}
+
+std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> Game::GetItemBitmaps(wxString bugType)
+{
+	auto it = mItemBitmaps.find(bugType);
+	// Return the vector for bugType.
+	if (it != mItemBitmaps.end())
+	{
+		return it->second;
+	}
+	else
+	{
+		return {};
+	}
+}
+
+/**
+ * adds the bitmaps data to game
+ * @param bugType type of bug
+ * @param bitmaps all the bitmaps associated with it
+ */
+void Game::AddItemBitmap(wxString bugType, std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> bitmaps)
+{
+	mItemBitmaps[bugType] = bitmaps;
 }

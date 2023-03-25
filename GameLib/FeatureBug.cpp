@@ -8,11 +8,6 @@
 #include "Game.h"
 #include "Scoreboard.h"
 
-/// The feature sprite image
-const std::wstring FeatureImageName = L"images/feature.png";
-
-/// The splat image
-const std::wstring FeatureSplatImageName = L"images/feature-splat.png";
 
 /// Number of sprite images
 const int FeatureNumSpriteImages = 7;
@@ -26,22 +21,10 @@ const double ProgramRange = 50;
  * @param program The program the bug is associated with
  * @param bug The inform associated with the bug
  */
-FeatureBug::FeatureBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game, program, bug,FeatureImageName)
+FeatureBug::FeatureBug(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game, program, bug)
 {
 
-	mBugSplatBitmap = std::make_unique<wxBitmap>(FeatureSplatImageName,wxBITMAP_TYPE_ANY);
-	wxImage spriteSheet(FeatureImageName, wxBITMAP_TYPE_ANY);
-
-	// Get the height of each image
-	double imageHeight = spriteSheet.GetHeight() / FeatureNumSpriteImages;
-
-	for (int i = 0; i < FeatureNumSpriteImages; i++)
-	{
-		auto image = spriteSheet.GetSubImage(wxRect(0, i * imageHeight, imageHeight, imageHeight));
-		mSpriteSheetFrames.push_back(std::make_shared<wxImage>(image));
-	}
-	// Put the standing sprite at index 0
-	std::reverse(mSpriteSheetFrames.begin(),mSpriteSheetFrames.end());
+	mBitmaps = game->GetItemBitmaps("feature");
 }
 
 /**
@@ -53,39 +36,48 @@ void FeatureBug::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
 	if (!GetSplat())
 	{
-
 		this->UpdateFrame(timeInSec);
 
-		auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];
-		 //Create a graphics context
-		//auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
-		auto currentBugBitmap = gc->CreateBitmapFromImage(*currentBugImage);
+		for (const auto& bitmapPair : mBitmaps)
+		{
+			if (bitmapPair.first == "SpriteSheet")
+			{
+				auto spriteSheet = bitmapPair.second->ConvertToImage();
+				double wid = spriteSheet.GetWidth();
+				double hit = spriteSheet.GetHeight()/FeatureNumSpriteImages;
+				auto currentBitmap = gc->CreateSubBitmap(gc->CreateBitmapFromImage(spriteSheet),
+													  0,mCurrentFrameIndex*hit,wid,hit);
 
-		double multiplierImage = this->IsFatbug() ? 1.25 : 1.0;
+				gc->PushState();
+				// Translate to the center of the image
+				gc->Translate(GetX(), GetY());
 
-		double wid = currentBugImage->GetWidth()*multiplierImage;
-		double hit = currentBugImage->GetHeight()*multiplierImage;
+				// Rotate the image by the specified angle
+				gc->Rotate(this->GetAngleToRotate());
 
-		gc->PushState();
-		// Translate to the center of the image
-		gc->Translate(GetX(), GetY());
-
-		// Rotate the image by the specified angle
-		gc->Rotate(this->GetAngleToRotate());
-
-		gc->DrawBitmap(currentBugBitmap,
-					    - wid / 2, (- hit / 2), wid, hit);
-
-		gc->PopState();
+				double multiplierImage = this->IsFatbug() ? 1.25 : 1.0;
+				wid,hit = wid*multiplierImage,hit*multiplierImage;
+				gc->DrawBitmap(currentBitmap,
+							   - wid / 2, (- hit / 2), wid, hit);
+				gc->PopState();
+			}
+		}
 	}
 	else
 	{
-		double wid = mBugSplatBitmap->GetWidth();
-		double hit = mBugSplatBitmap->GetHeight();
-		gc->DrawBitmap(*mBugSplatBitmap,
-					   int(GetX() - wid / 2),
-					   int(GetY() - hit / 2), wid, hit);
-		this->SetSpeed(0);
+		for (const auto& bitmapPair : mBitmaps)
+		{
+			if (bitmapPair.first == "Splat")
+			{
+				auto bugSplatBitmap = bitmapPair.second->ConvertToImage();
+				double wid = bugSplatBitmap.GetWidth();
+				double hit = bugSplatBitmap.GetHeight();
+				gc->DrawBitmap(bugSplatBitmap,
+							   int(GetX() - wid / 2),
+							   int(GetY() - hit / 2), wid, hit);
+				this->SetSpeed(0);
+			}
+		}
 	}
 }
 

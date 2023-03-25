@@ -19,10 +19,7 @@ class Program : public Item
 {
 private:
     /// The Laptop image
-    std::shared_ptr<wxImage> mLaptopImage;
-
-    /// Laptop Bitmap
-    wxGraphicsBitmap mLaptopBitmap;
+	std::shared_ptr<wxBitmap> mLaptopBitmap;
 
 	///program name
 	wxString mNameString;

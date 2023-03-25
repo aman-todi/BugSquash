@@ -150,7 +150,7 @@ public:
 
 protected:
 
-	Bug(Game* game,wxXmlNode* program,wxXmlNode* bug,const std::wstring &filename);
+	Bug(Game* game,wxXmlNode* program,wxXmlNode* bug);
 };
 
 #endif //GAME_GAME_GAMELIB_BUG_H

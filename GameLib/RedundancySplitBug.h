@@ -14,9 +14,6 @@
 
 class RedundancySplitBug :  public RedundancyBug{
 private:
-    /// array to hold each part of the bug
-    std::vector<std::shared_ptr<wxImage>> mBugPartsSpriteSheet;
-
 
     double rotation = 0;
 
@@ -29,15 +26,9 @@ private:
     std::string Name() override {return "RedundancySplit";};
 
 
-    /// array to hold individual frames of the animation
-    std::vector<std::shared_ptr<wxImage>> mSpriteSheetFrames;
-
     /// index of the current frame to draw
     int mCurrentFrameIndex = 0;
 
-
-    /// The bitmap we can display for this Bug splash
-    std::shared_ptr<wxBitmap> mBugSplatBitmap;
 
 public:
 

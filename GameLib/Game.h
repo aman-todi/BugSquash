@@ -18,6 +18,7 @@
 #include <random>
 #include <wx/graphics.h>
 
+using namespace std;
 class Scoreboard;
 class ItemsVisitor;
 class Program;
@@ -30,10 +31,13 @@ class Game
 private:
 
 	/// All of the bugs in game
-	std::vector<std::shared_ptr<Item> > mItems;
+	vector<shared_ptr<Item> > mItems;
+
+	///image bitmaps for all bugs
+	unordered_map<wxString, vector<pair<wxString,shared_ptr<wxBitmap>>>> mItemBitmaps;
 
     ///Game Scoreboard
-    std::shared_ptr<Scoreboard> mScoreboard;
+    shared_ptr<Scoreboard> mScoreboard;
 
     /// Level Name
     wxString mLevelName;
@@ -64,12 +68,14 @@ public:
 	virtual ~Game() = default;
 
 
-	void Add(std::shared_ptr<Item> item);
+	void AddItem(std::shared_ptr<Item> item);
+	void AddItemBitmap(wxString bugType,vector<pair<wxString,shared_ptr<wxBitmap>>> bitmaps);
 	std::shared_ptr<Item> HitTest(int x, int y);
 //	void MoveToFront(std::shared_ptr<Bug> item);
 //	void MovetoEnd(std::shared_ptr<Bug> item);
 	void DeleteBug(std::shared_ptr<Item> item);
 
+	vector<pair<wxString,shared_ptr<wxBitmap>>> GetItemBitmaps(wxString bugType);
 
 	void OnDraw(std::shared_ptr<wxGraphicsContext> graphics,int width, int height,double timeInSec);
 

@@ -31,8 +31,8 @@ const double ProgramRange = 5;
  * @param bug The bugs information
  * @param filename Filename for the image we use
  */
-Bug::Bug(Game *game,wxXmlNode* program,wxXmlNode* bug, const std::wstring &filename) :
-        Item(game, filename)
+Bug::Bug(Game *game,wxXmlNode* program,wxXmlNode* bug) :
+        Item(game)
 {
     if (program != nullptr)
     {

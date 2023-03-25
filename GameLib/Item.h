@@ -24,11 +24,6 @@ private:
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
 
-    /// The underlying bug image
-    std::unique_ptr<wxImage> mItemImage;
-
-    /// The bitmap we can display for this bug
-    std::unique_ptr<wxBitmap> mItemBitmap;
 
     bool mMirror = false;   ///< True mirrors the item image
 
@@ -88,20 +83,20 @@ public:
  	 * Get item (bitmap) width
  	 * @return width in pixels
  	 */
-	double GetWidth() const {return mItemBitmap->GetWidth(); }
+	//double GetWidth() const {return mItemBitmap->GetWidth(); }
 
 	/**
 	 * Get item (bitmap) height
 	 * @return height in pixels
 	 */
-	double GetHeight() const {return mItemBitmap->GetHeight(); }
+	//double GetHeight() const {return mItemBitmap->GetHeight(); }
 
 	/**
 	 * Check if area is transparent
 	 * @param x, y
 	 * @return bool
 	 */
-	bool CheckTransparency(double x , double y) { return mItemImage->IsTransparent(int(x), int(y)); }
+	//bool CheckTransparency(double x , double y) { return mItemImage->IsTransparent(int(x), int(y)); }
 
     double DistanceTo(std::shared_ptr<Item> item);
 
@@ -156,7 +151,7 @@ public:
 
 
 protected:
-    Item(Game *game, const std::wstring &filename);
+    Item(Game *game);
 
 };
 

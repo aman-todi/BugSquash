@@ -57,26 +57,13 @@ const double ProgramRange = 50;
  */
 RedundancySplitBug::RedundancySplitBug(Game *game) : RedundancyBug(game, nullptr, nullptr)
 {
-    mBugSplatBitmap = std::make_unique<wxBitmap>(RedundancyFlySplatImageName,wxBITMAP_TYPE_ANY);
-    wxImage FlyImageBase(RedundancyBugImage, wxBITMAP_TYPE_ANY);
-    wxImage FlyImageTop(RedundancyFlyTopImageName, wxBITMAP_TYPE_ANY);
-    wxImage FlyImageWingL(RedundancyFlyLeftWingImageName, wxBITMAP_TYPE_ANY);
-    wxImage FlyImageWingR(RedundancyFlyRightWingImageName, wxBITMAP_TYPE_ANY);
 
-
-    mBugPartsSpriteSheet.push_back(std::make_shared<wxImage>(FlyImageBase));
-    mBugPartsSpriteSheet.push_back(std::make_shared<wxImage>(FlyImageTop));
-    mBugPartsSpriteSheet.push_back(std::make_shared<wxImage>(FlyImageWingL));
-    mBugPartsSpriteSheet.push_back(std::make_shared<wxImage>(FlyImageWingR));
 }
 
 
 void RedundancySplitBug::ClickedOn()
 {
-    if (!this->IsFatbug())
-    {
         SetSplat();
         auto scoreboard = GetGame()->GetScoreboard();
         scoreboard->IncFixed();
-    }
 }

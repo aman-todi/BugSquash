@@ -13,8 +13,6 @@ const static double GameWidth = 1250;
 /// Game area height in virtual pixels
 const static double GameHeight = 1000;
 
-/// Program image filename
-const std::wstring ProgramImage = L"images/laptop.png";
 
 /// How close the user has click
 /// For the bug to splat
@@ -31,7 +29,7 @@ const wxColour FontColor = wxColour(255, 255, 255);
  * @param game Game this bug is a member of
  * @param program The program info
  */
-Program::Program(Game* game,wxXmlNode* program) : Item(game, ProgramImage)
+Program::Program(Game* game,wxXmlNode* program) : Item(game)
 {
 	double programX, programY;
 	program->GetAttribute("x").ToDouble(&programX);
@@ -40,21 +38,16 @@ Program::Program(Game* game,wxXmlNode* program) : Item(game, ProgramImage)
 
 	SetLocation(programX,programY);
 
-    mLaptopImage = std::make_shared<wxImage>(ProgramImage);
+    mLaptopBitmap = game->GetItemBitmaps("program")[0].second;
 }
 
 void Program::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
-    //Create Image Bitmap
-    if (mLaptopBitmap.IsNull()) {
-        mLaptopBitmap = gc->CreateBitmapFromImage(*mLaptopImage);
-    }
-
-    int laptopWid = mLaptopImage->GetWidth();
-    int laptopHgt = mLaptopImage->GetHeight();
+    int laptopWid = mLaptopBitmap->GetWidth();
+    int laptopHgt = mLaptopBitmap->GetHeight();
 
     //Draw Laptop
-    gc->DrawBitmap(mLaptopBitmap, GetX() - laptopWid/3, GetY() - laptopHgt/3, laptopWid, laptopHgt);
+    gc->DrawBitmap(mLaptopBitmap->ConvertToImage(), GetX() - laptopWid/3, GetY() - laptopHgt/3, laptopWid, laptopHgt);
 
     //Draw Text
     wxFont fontLabel(ProgramNameFontSize,

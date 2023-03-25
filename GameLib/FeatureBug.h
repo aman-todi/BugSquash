@@ -17,15 +17,11 @@
 class FeatureBug: public Bug
 {
 private:
-	/// array to hold individual frames of the animation
-	std::vector<std::shared_ptr<wxImage>> mSpriteSheetFrames;
+	///bitmap information
+	std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> mBitmaps;
 
 	/// index of the current frame to draw
 	int mCurrentFrameIndex = 0;
-
-
-	/// The bitmap we can display for this Bug splash
-	std::shared_ptr<wxBitmap> mBugSplatBitmap;
 
 public:
 	/// Default constructor (disabled)

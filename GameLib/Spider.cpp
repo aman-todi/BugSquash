@@ -21,18 +21,7 @@ const int SpiderNumSpriteImages = 7;
  */
 Spider::Spider(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program,bug,SpiderImageName) {
 
-	wxImage spriteSheet(SpiderImageName, wxBITMAP_TYPE_ANY);
-
-	// Get the height of each image
-	double imageHeight = spriteSheet.GetHeight() / SpiderNumSpriteImages;
-
-	for (int i = 0; i < SpiderNumSpriteImages; i++)
-	{
-		auto image = spriteSheet.GetSubImage(wxRect(0, i * imageHeight, imageHeight, imageHeight));
-		mSpriteSheetFrames.push_back(std::make_shared<wxImage>(image));
-	}
-	// Put the standing sprite at index 0
-	std::reverse(mSpriteSheetFrames.begin(),mSpriteSheetFrames.end());
+	mBitmaps = game->GetItemBitmaps();
 }
 
 /**
@@ -43,27 +32,6 @@ Spider::Spider(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program,
 void Spider::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
 
-	this->UpdateFrame(timeInSec);
-
-	auto currentBugImage = mSpriteSheetFrames[mCurrentFrameIndex];
-	//Create a graphics context
-	//auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create( dc ));
-	auto currentBugBitmap = gc->CreateBitmapFromImage(*currentBugImage);
-
-	double wid = currentBugImage->GetWidth();
-	double hit = currentBugImage->GetHeight();
-
-	gc->PushState();
-	// Translate to the center of the image
-	gc->Translate(GetX(), GetY());
-
-	// Rotate the image by the specified angle
-	gc->Rotate(this->GetAngleToRotate());
-
-	gc->DrawBitmap(currentBugBitmap,
-				   - wid / 2, (- hit / 2), wid, hit);
-
-	gc->PopState();
 }
 
 /**

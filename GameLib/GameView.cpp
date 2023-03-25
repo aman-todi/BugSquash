@@ -223,6 +223,8 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
 		mLevel = LevelOne;
+        mDisplayDuration = 0;
+        mState = State::LevelStart;
 		LevelLoader level1(&mGame,LevelOneXMLFileName);
 		mStopWatch.Start(0);
 	}
@@ -231,6 +233,8 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
 		mLevel = LevelTwo;
+        mDisplayDuration = 0;
+        mState = State::LevelStart;
 		LevelLoader level2(&mGame,LevelTwoXMLFileName);
 		mStopWatch.Start(0);
 	}
@@ -239,6 +243,8 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
 		mLevel = LevelThree;
+        mDisplayDuration = 0;
+        mState = State::LevelStart;
 		LevelLoader level3(&mGame,LevelThreeXMLFileName);
 		mStopWatch.Start(0);
 	}
@@ -249,6 +255,8 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
 		mLevel = LevelThree;
+        mDisplayDuration = 0;
+        mState = State::LevelStart;
 		LevelLoader level3(&mGame,LevelThreeXMLFileName);
 		mStopWatch.Start(0);
 

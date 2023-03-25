@@ -44,6 +44,15 @@ void BugScoreboardVisitor::VisitFeatureBug(FeatureBug* bug)
 }
 
 /**
+ * Visit ShapeShifter bug
+ * @param bug shape shifter bug in question
+ */
+void BugScoreboardVisitor::VisitShapeShifterBug (ShapeShifterBug* bug)
+{
+	// Do something special here
+}
+
+/**
  * Set Scoreboard Pointer to Game Scoreboard
  * @param sb
  */

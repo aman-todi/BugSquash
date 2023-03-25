@@ -33,40 +33,16 @@ public:
 	 */
 	int GetActiveBugs() { return mCount; }
 
-	/**
-	 * visit garbage bug
-	 * @param bug garbage bug
-	 */
 	void VisitGarbageBug(GarbageBug* bug) override;
 
-	/**
-	 * visit null bug
-	 * @param bug null bug
-	 */
 	void VisitNullBug(NullBug* bug) override;
 
-	/**
-	 * Visit redundancy bug
-	 * @param bug redundancy bug in question
-	 */
 	void VisitRedundancyBug (RedundancyBug* bug) override;
 
-	/**
-	 * Vist Feature bug
-	 * @param bug feature bug in question
-	 */
 	void VisitFeatureBug (FeatureBug* bug) override ;
 
-	/**
-	 * Visit a Spider bug
-	 * @param bug  The bug being checked
-	 */
 	void VisitSpider (Spider* bug) override ;
 
-	/**
-     * Visit a Spider
-     * @param bug The bug being visited
-     */
 	virtual void VisitShapeShifterBug (ShapeShifterBug* bug) override;
 
 };

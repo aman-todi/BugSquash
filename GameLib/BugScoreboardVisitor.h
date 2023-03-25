@@ -48,6 +48,12 @@ public:
      */
     void VisitFeatureBug (FeatureBug* bug) override ;
 
+	/**
+	 * Visit ShapeShifter bug
+ 	 * @param bug shape shifter bug in question
+ 	 */
+	void VisitShapeShifterBug (ShapeShifterBug* bug) override ;
+
     /**
      * Set Scoreboard Pointer to Game Scoreboard
      * @param sb

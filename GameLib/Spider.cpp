@@ -19,9 +19,9 @@ const int SpiderNumSpriteImages = 7;
  * @param program he program the bug is associated with
  * @param bug The inform associated with the bug
  */
-Spider::Spider(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program,bug,SpiderImageName) {
+Spider::Spider(Game *game,wxXmlNode* program,wxXmlNode* bug) : Bug(game,program,bug) {
 
-	mBitmaps = game->GetItemBitmaps();
+	mBitmaps = game->GetItemBitmaps("spider");
 }
 
 /**

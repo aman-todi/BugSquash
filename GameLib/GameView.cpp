@@ -357,7 +357,7 @@ void GameView::OnDoubleClick(wxMouseEvent &event)
 			auto solution = visitor.GetSolution();
 
 			CodeDialogBox dlg(this, code,solution);
-			// Show the dialog box as a modal dialog
+			//Show the dialog box as a modal dialog
 			dlg.ShowModal();
 
 			//increase fixed score by 1

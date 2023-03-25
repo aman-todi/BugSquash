@@ -275,7 +275,7 @@ void Game::Accept(ItemsVisitor* visitor)
 
 /**
  * Take the last touched Item and moves it to the end of the list
- * @param item Item an pointer to item in the aquarium
+ * @param item Item an pointer to item in the Game
  */
 void Game::UpdateList(std::shared_ptr<Item> item)
 {

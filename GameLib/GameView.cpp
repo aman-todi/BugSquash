@@ -182,7 +182,23 @@ void GameView::OnPaint(wxPaintEvent& event)
             gc->DrawText(mGame.GetLevelName(), ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((GameHeight/2)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
             gc->PopState();
 
+        } else if (mState == State::LevelEnd) {
+            // Draw Level Name
+            gc->PushState();
 
+            wxFont fontScore(ScoreSize,
+                    wxFONTFAMILY_SWISS,
+                    wxFONTSTYLE_NORMAL,
+                    wxFONTWEIGHT_BOLD);
+
+            gc->SetFont(fontScore, FontColor);
+
+            wxString final = L"Level Complete";
+
+            double wid, hgt;
+            gc->GetTextExtent(final, &wid, &hgt);
+            gc->DrawText(final, ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((GameHeight/2)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
+            gc->PopState();
         }
     }
 }
@@ -219,7 +235,7 @@ void GameView::OnTimer2(wxTimerEvent &event){
 	// If there are no active bugs in the game, go to next level
 
 	if (activeBugsCount == 0 && mLevel == LevelZero){
-		wxSleep(LevelDelay);
+        wxSleep(LevelDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
 		mLevel = LevelOne;
@@ -229,6 +245,7 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		mStopWatch.Start(0);
 	}
 	else if (activeBugsCount == 0 && mLevel == LevelOne){
+
 		wxSleep(LevelDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();

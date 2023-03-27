@@ -285,6 +285,10 @@ void GameView::OnTimer2(wxTimerEvent &event){
 	}
 	// Calls game to update animation timer for each bug
 	mGame.UpdateAnimationTime();
+
+	// Calls
+
+
 	Refresh();
 }
 

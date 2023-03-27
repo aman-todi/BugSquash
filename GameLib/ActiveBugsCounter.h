@@ -41,8 +41,6 @@ public:
 
 	void VisitFeatureBug (FeatureBug* bug) override ;
 
-	void VisitSpider (Spider* bug) override ;
-
 	virtual void VisitShapeShifterBug (ShapeShifterBug* bug) override;
 
 };

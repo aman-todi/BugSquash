@@ -78,18 +78,3 @@ void BugVisitor::VisitFeatureBug(FeatureBug* bug)
 		mSolution = bug->GetSol();
 	}
 }
-/**
- * Visit a Spider bug
- * @param bug  The bug being checked
- */
-void BugVisitor::VisitSpider (Spider* bug)
-{
-	mIsFatbug = bug->IsFatbug();
-	mBug = bug;
-	mProgram = bug->GetProgram();
-	if (mIsFatbug)
-	{
-		mCodeData = bug->GetCode();
-		mSolution = bug->GetSol();
-	}
-}

@@ -50,15 +50,6 @@ void ActiveBugsCounter::VisitFeatureBug(FeatureBug* bug)
 }
 
 /**
- * Visit a Spider bug
- * @param bug  The bug being checked
- */
-void ActiveBugsCounter::VisitSpider(Spider* bug)
-{
-	// Do Nothing
-}
-
-/**
  * Visit a ShapeShifterBug
  * @param bug The bug being visited
  */

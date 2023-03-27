@@ -90,11 +90,6 @@ public:
 
 	void VisitFeatureBug (FeatureBug* bug) override ;
 
-	/**
-	 * Visit a Spider bug
-	 * @param bug  The bug being checked
-	 */
-	void VisitSpider (Spider* bug) override ;
 };
 
 #endif //PROJECT1_GAMELIB_BUGVISITOR_H

@@ -40,6 +40,8 @@ const double ProgramRange = 50;
 /**
  * RedundancyBug Constructor
  * @param game Game this bug is a member of
+ * @param program The program the bug is associated with
+ * @param bug The inform associated with the bug
  */
 RedundancyBug::RedundancyBug(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) : Bug(game, program, bug)
 {
@@ -49,6 +51,7 @@ RedundancyBug::RedundancyBug(Game *game,std::shared_ptr<Item> program,wxXmlNode*
 /**
  * Draws the bug if it is either splat or moving
  * @param gc The device context to draw on
+ * @param timeInSec How long the game has been running for
  */
 void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {

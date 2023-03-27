@@ -17,9 +17,9 @@
 class RedundancySplitBug :  public RedundancyBug{
 private:
 
-    double rotation = 0;
+    //double rotation = 0;
 
-    bool decreasing = false;
+    //bool decreasing = false;
 
 	/**
 	 * Name of this type of bug

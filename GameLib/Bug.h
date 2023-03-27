@@ -100,8 +100,8 @@ public:
 	virtual double GetAngleToRotate(){return mAngleToRotate;}
 
 	/**
- 	 * getter for angle to rotate
-     * @return angle to rotate the image
+ 	 * Setter for angle to rotate
+     * @param angle to rotate the image
      */
 	virtual void SetAngleToRotate(double angle){mAngleToRotate = angle;}
 

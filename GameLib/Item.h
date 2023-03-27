@@ -91,14 +91,10 @@ public:
 	 */
 	//double GetHeight() const {return mItemBitmap->GetHeight(); }
 
-	/**
-	 * Check if area is transparent
-	 * @param x, y
-	 * @return bool
-	 */
+
 	//bool CheckTransparency(double x , double y) { return mItemImage->IsTransparent(int(x), int(y)); }
 
-    double DistanceTo(std::shared_ptr<Item> item);
+    //double DistanceTo(std::shared_ptr<Item> item);
 
 	/**
 	 * Animation Time Getter

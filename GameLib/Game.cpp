@@ -350,7 +350,7 @@ std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> Game::GetItemBitmaps
 
 /**
  * adds the bitmaps data to game
- * @param bugType type of bug
+ * @param itemType type of item
  * @param bitmaps all the bitmaps associated with it
  */
 void Game::AddItemBitmap(wxString itemType, std::vector<std::pair<wxString, std::shared_ptr<wxBitmap>>> bitmaps)

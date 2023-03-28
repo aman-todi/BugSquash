@@ -76,7 +76,6 @@ public:
 	void GamePause();
 	void GameResume();
 
-//	void OnUpdateViewShrink(wxUpdateUIEvent &event);
 
 };
 

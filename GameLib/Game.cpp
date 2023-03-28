@@ -15,10 +15,8 @@
 #include "GarbageBug.h"
 #include "BugVisitor.h"
 #include "NullBug.h"
-#include "RedundancyBug.h"
 #include "RedundancySplitBug.h"
 #include "FeatureBug.h"
-#include "Program.h"
 #include "Scoreboard.h"
 #include "LevelLoader.h"
 #include "BugScoreboardVisitor.h"
@@ -140,8 +138,6 @@ Game::Game()
  */
 void Game::AddItem(std::shared_ptr<Item> bug)
 {
-	//Use Bug visitor to get list of bugs
-	//bug->SetLocation(X, Y);
 	mItems.push_back(bug);
 }
 
@@ -188,7 +184,6 @@ shared_ptr<Bug> Game::AddRed(std::shared_ptr<Item> bug, double randNum)
 */
 std::shared_ptr<Item> Game::HitTest(int x, int y)
 {
-
 	//Use Bug visitor to get list of bugs
 	for(auto i = mItems.rbegin(); i != mItems.rend(); i++)
 	{
@@ -207,9 +202,7 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
  */
 void Game::Clear()
 {
-	// TO DO...
 	mItems.clear();
-
 }
 
 
@@ -232,7 +225,6 @@ void Game::Update(double elapsed, double timeInSec)
 		{
             bug->Accept(&visitor);
 			bugToRemove.push_back(bug);
-			//This could be where add the missed and stuff
 		}
 		// Calling update on a null pointer
 		bug->Update(elapsed, timeInSec);

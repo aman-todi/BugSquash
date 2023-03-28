@@ -17,11 +17,6 @@
 class RedundancySplitBug :  public RedundancyBug{
 private:
 
-    //double rotation = 0;
-
-    //bool decreasing = false;
-
-
     /// index of the current frame to draw
     int mCurrentFrameIndex = 0;
 

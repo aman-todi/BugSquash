@@ -9,14 +9,6 @@
 #include "Game.h"
 #include "Scoreboard.h"
 
-/// Maximum speed in the X direction in
-/// in pixels per second
-const double MaxSpeedX = 50;
-
-/// Minimum speed in the X direction in
-/// pixels per second
-const double MinSpeedX = 20;
-
 /// How close the user has click
 /// For the bug to splat
 const double HitRadius = 50;

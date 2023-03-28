@@ -61,20 +61,7 @@ void Program::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
     gc->GetTextExtent(mNameString, &wid, &hit);
     gc->DrawText(mNameString, GetX() - wid/5, GetY());
 }
-/**
-	* HitTest
-	* @param x, y (x,y) coords
- 	* @return if the Hit is within the radius
-	*/
-//bool Program::HitTest(int x, int y)
-//{
-//
-////    double dx = x - GetX();
-////    double dy = y - GetY();
-////
-////    return sqrt(dx * dx + dy * dy) < HitRadius;
-//	return false;
-//}
+
 
 
 

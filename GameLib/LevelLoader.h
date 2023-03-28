@@ -22,8 +22,6 @@ private:
 	int mNumBugs = 0;
 
 public:
-	/// Default constructor (disabled)
-	//LevelLoader() = delete;
 
 	/// Copy constructor (disabled)
 	LevelLoader(const LevelLoader &) = delete;

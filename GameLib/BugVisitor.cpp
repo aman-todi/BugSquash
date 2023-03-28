@@ -27,7 +27,7 @@ void BugVisitor::VisitGarbageBug(GarbageBug* bug)
 		mCodeData = bug->GetCode();
 		mSolution = bug->GetSol();
 	}
-    visited = "Garbage";
+    mIsRedundancy = false;
 }
 
 /**
@@ -44,7 +44,7 @@ void BugVisitor::VisitNullBug(NullBug* bug)
 		mCodeData = bug->GetCode();
 		mSolution = bug->GetSol();
 	}
-    visited = "Null";
+    mIsRedundancy = false;
 }
 
 /**
@@ -61,7 +61,7 @@ void BugVisitor::VisitRedundancyBug(RedundancyBug* bug)
 		mCodeData = bug->GetCode();
 		mSolution = bug->GetSol();
 	}
-    visited = "Redundancy";
+    mIsRedundancy = true;
     mOldSpeed = bug->GetOldSpeed();
 }
 
@@ -80,7 +80,7 @@ void BugVisitor::VisitFeatureBug(FeatureBug* bug)
 		mCodeData = bug->GetCode();
 		mSolution = bug->GetSol();
 	}
-    visited = "Feature";
+    mIsRedundancy = false;
 }
 
 /**
@@ -89,5 +89,5 @@ void BugVisitor::VisitFeatureBug(FeatureBug* bug)
  */
 void BugVisitor::VisitRedundancySplitBug(RedundancySplitBug* bug)
 {
-    visited = "Split";
+    mIsRedundancy = false;
 }

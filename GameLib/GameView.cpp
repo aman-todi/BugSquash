@@ -89,11 +89,8 @@ void GameView::Initialize(wxFrame* parent)
             wxFULL_REPAINT_ON_RESIZE);
 
 	SetBackgroundStyle(wxBG_STYLE_PAINT);
-	//mTimerBugMotion.Start(3/BugSpeed);
 
 	Bind(wxEVT_PAINT, &GameView::OnPaint, this);
-	//parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnFileSaveAs, this, wxID_SAVEAS);
-	//parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnFileOpen, this, wxID_OPEN);
     Bind(wxEVT_SIZE , &GameView::OnSize, this, IDM_RESIZE);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnViewShrink, this, IDM_SHRINK);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevelZero, this, IDM_LEVELZERO);
@@ -225,9 +222,9 @@ void GameView::OnSize(wxSizeEvent& event)
  * Event handler for wxEVT_TIMER for animation timer
  * @param event Timer event
  */
-void GameView::OnTimer1(wxTimerEvent &event){
+void GameView::OnTimer1(wxTimerEvent &event)
+{
 
-//	Refresh();
 }
 
 /**
@@ -288,9 +285,6 @@ void GameView::OnTimer2(wxTimerEvent &event){
 	// Calls game to update animation timer for each bug
 	mGame.UpdateAnimationTime();
 
-	// Calls
-
-
 	Refresh();
 }
 
@@ -308,8 +302,7 @@ void GameView::OnLeftDown(wxMouseEvent &event)
         //Use a visitor to check if we hit a redundancy bug
         BugVisitor visitor;
         mClickedItem->Accept(&visitor);
-        auto name = visitor.GetBugType();
-        if (name == "Redundancy")
+        if (visitor.GetIsRedundancy())
         {
             int bugCount = rand() % 4 + 3;
             std::random_device rd;
@@ -324,7 +317,6 @@ void GameView::OnLeftDown(wxMouseEvent &event)
         }
 
 		//Moves the bug to the end of the list
-		//mGame.UpdateList(mClickedItem);
 		Refresh();
 	}
 }

@@ -32,9 +32,6 @@ const int FirstWingSetX = -36;
 /// of this is the Y position for the left wings.
 const int WingSetY = 5;
 
-/// Number of sprite images
-const int RedundancyNumSpriteImages = 1;
-
 /// The range of the program to consider at it
 const double ProgramRange = 50;
 /**
@@ -106,7 +103,7 @@ void RedundancyBug::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec
 
 		// Draw Wings
 		this->UpdateFrame(gc);
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < NumberOfSetsOfWings; i++)
 		{
 			gc->SetTransform(X);
 			gc->Translate(-WingSetXOffset * i,0);
@@ -169,10 +166,6 @@ void RedundancyBug::UpdateFrame(std::shared_ptr<wxGraphicsContext> gc)
 
 }
 
-//void RedundancyBug::OnTimer(wxTimerEvent &event)
-//{
-//
-//}
 
 void RedundancyBug::ClickedOn()
 {

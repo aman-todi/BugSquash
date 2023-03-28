@@ -9,7 +9,6 @@
 #define PROJECT1_GAMELIB_LIVINGBUGSCOUNTER_H
 
 #include <memory>
-
 #include "ItemsVisitor.h"
 #include "Bug.h"
 

@@ -43,7 +43,7 @@ private:
 	Bug* mBug = nullptr;
 
     /// Name of bug visited.
-    std::string visited = "none";
+    bool mIsRedundancy = false;
 
 public:
 
@@ -85,10 +85,10 @@ public:
 
 
     /**
-	* getter for visited
-	* @return string of bug visited
+	* getter for mIsRedundancy
+	* @return bool true if redundancy bug
 	*/
-    std::string GetBugType(){return visited;}
+    bool GetIsRedundancy(){return mIsRedundancy;}
 
 	void VisitGarbageBug(GarbageBug* bug) override;
 

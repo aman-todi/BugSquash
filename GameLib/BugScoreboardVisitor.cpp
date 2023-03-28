@@ -5,7 +5,7 @@
 
 #include "pch.h"
 #include "BugScoreboardVisitor.h"
-#include "Scoreboard.h"
+
 
 /**
  * visit garbage bug

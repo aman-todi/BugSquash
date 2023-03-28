@@ -20,12 +20,8 @@ private:
     /// The game this item is contained in
     Game *mGame = nullptr;
 
-
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
-
-
-    bool mMirror = false;   ///< True mirrors the item image
 
 	/// Time variable to help animation
 	long mKeepTime = 0;
@@ -74,22 +70,6 @@ public:
 	 */
     virtual bool HitTest(int x, int y) { return false; };
 
-	/**
- 	 * Get item (bitmap) width
- 	 * @return width in pixels
- 	 */
-	//double GetWidth() const {return mItemBitmap->GetWidth(); }
-
-	/**
-	 * Get item (bitmap) height
-	 * @return height in pixels
-	 */
-	//double GetHeight() const {return mItemBitmap->GetHeight(); }
-
-
-	//bool CheckTransparency(double x , double y) { return mItemImage->IsTransparent(int(x), int(y)); }
-
-    //double DistanceTo(std::shared_ptr<Item> item);
 
 	/**
 	 * Animation Time Getter

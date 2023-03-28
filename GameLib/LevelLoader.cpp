@@ -194,13 +194,10 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 			{
 				if (game->GetItemBitmaps(bugType).empty())
 				{
-					//auto splatBitmap = make_shared<wxBitmap>(FeatureBugSplatImageName,
-					//											  wxBITMAP_TYPE_ANY);
 					auto spriteBitmap = make_shared<wxBitmap>(SpiderBugImageName
 						,wxBITMAP_TYPE_ANY);
 
 					vector<std::pair<wxString, shared_ptr<wxBitmap>>> bitmaps;
-					//bitmaps.push_back(std::make_pair("Splat",splatBitmap));
 					bitmaps.push_back(std::make_pair("SpriteSheet",spriteBitmap));
 
 					game->AddItemBitmap(bugType,bitmaps);

@@ -47,8 +47,6 @@ public:
 
     virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, double timeInSec) override;
 
-    //void OnTimer(wxTimerEvent &event);
-
     void UpdateFrame(std::shared_ptr<wxGraphicsContext> gc);
 
     /**

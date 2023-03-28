@@ -43,8 +43,6 @@ private:
     /// Level Name
     wxString mLevelName;
 
-	//void XmlBug(wxXmlNode *node);
-
 	/// Random number generator
 	std::mt19937 mRandom;
 
@@ -72,8 +70,6 @@ public:
 	void AddItem(std::shared_ptr<Item> item);
 	void AddItemBitmap(wxString bugType,vector<pair<wxString,shared_ptr<wxBitmap>>> bitmaps);
 	std::shared_ptr<Item> HitTest(int x, int y);
-//	void MoveToFront(std::shared_ptr<Bug> item);
-//	void MovetoEnd(std::shared_ptr<Bug> item);
 	void DeleteBug(std::shared_ptr<Item> item);
 	vector<pair<wxString,shared_ptr<wxBitmap>>> GetItemBitmaps(wxString ItemType);
 
@@ -100,28 +96,16 @@ public:
     bool IsShrunk() {return mShrinked;}
 
 	void Update(double elapsed, double Time);
-	//void SortBugs();
 
 	void UpdateList(std::shared_ptr<Item> item);
 
 	void UpdateAnimationTime();
-
-	/**
-     * Get the random number generator
-     * @return Pointer to the random number generator
-     */
-	std::mt19937 &GetRandom() {
-		// Seed the random number generator
-		std::random_device rd;
-		mRandom.seed(1238197374);
-		return mRandom;}
 
 	/// visitor
 	void Accept(ItemsVisitor* visitor);
 
 	std::shared_ptr<Item> OnClick(double x, double y,bool doubleCLick);
 
-	//void XmlBug(std::wstring FileName);
 	/**
 	 * Gets the scoreboard
 	 * @return The scoreboard

@@ -10,7 +10,6 @@
 #include <wx/stdpaths.h>
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
-
 #include "ids.h"
 
 #include "GameView.h"
@@ -36,9 +35,6 @@ const static int GameWidth = 1250;
 
 /// Game area height in virtual pixels
 const static int GameHeight = 1000;
-
-///Bug speed in virtual pixels per second
-const static int BugSpeed = 10;
 
 /// To convert milliseconds to seconds
 const static double MsToSec = 1000;
@@ -187,7 +183,8 @@ void GameView::OnPaint(wxPaintEvent& event)
             gc->DrawText(mGame.GetLevelName(), ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((GameHeight/2)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
             gc->PopState();
 
-        } else if (mState == State::LevelEnd) {
+        }
+		else if (mState == State::LevelEnd) {
             // Draw Level Name
             gc->PushState();
 
@@ -207,6 +204,7 @@ void GameView::OnPaint(wxPaintEvent& event)
         }
     }
 }
+
 
 /**
  * Event handler for resizing the window
@@ -240,7 +238,7 @@ void GameView::OnTimer2(wxTimerEvent &event){
 	// If there are no active bugs in the game, go to next level
 
 	if (activeBugsCount == 0 && mLevel == LevelZero){
-		mState = State::LevelEnd;
+
 		wxSleep(GameDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
@@ -251,7 +249,6 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		mStopWatch.Start(0);
 	}
 	else if (activeBugsCount == 0 && mLevel == LevelOne){
-		mState = State::LevelEnd;
 		wxSleep(GameDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
@@ -262,7 +259,6 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		mStopWatch.Start(0);
 	}
 	else if (activeBugsCount == 0 && mLevel == LevelTwo){
-		mState = State::LevelEnd;
 		wxSleep(GameDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
@@ -275,7 +271,6 @@ void GameView::OnTimer2(wxTimerEvent &event){
 	// if at last level reload that level
 	if (activeBugsCount == 0 && mLevel == LevelThree)
 	{
-		mState = State::LevelEnd;
 		wxSleep(GameDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();

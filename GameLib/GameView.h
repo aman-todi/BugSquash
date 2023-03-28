@@ -76,7 +76,6 @@ public:
 	void GamePause();
 	void GameResume();
 
-
 };
 
 #endif //PROJECT1_GAMELIB_GAMEVIEW_H

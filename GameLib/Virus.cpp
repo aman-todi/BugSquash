@@ -8,10 +8,10 @@
 #include "Scoreboard.h"
 
 /// The Virus image
-const std::wstring SpiderImageName = L"images/virus.png";
+const std::wstring VirusImageName = L"images/virus.png";
 
 /// Number of sprite images
-const int SpiderNumSpriteImages = 7;
+const int VirusNumSpriteImages = 7;
 
 /**
  * Virus Constructor
@@ -21,12 +21,12 @@ const int SpiderNumSpriteImages = 7;
  */
 Virus::Virus(Game *game, std::shared_ptr<Item> program, wxXmlNode* bug) : Bug(game, program, bug) {
 
-	mBitmaps = game->GetItemBitmaps("spider");
+	mBitmaps = game->GetItemBitmaps("virus");
 	mSpeedX = GetSpeed();
 }
 
 /**
- * Draws the spider for level 3
+ * Draws the virus for level 3
  * @param gc The device context to draw on
  * @param timeInSec How long the game has been running for
  */
@@ -40,7 +40,7 @@ void Virus::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 		{
 			auto spriteSheet = bitmapPair.second->ConvertToImage();
 			double wid = spriteSheet.GetWidth();
-			double hit = spriteSheet.GetHeight()/SpiderNumSpriteImages;
+			double hit = spriteSheet.GetHeight()/VirusNumSpriteImages;
 			auto currentBitmap = gc->CreateSubBitmap(gc->CreateBitmapFromImage(spriteSheet),
 													 0,mCurrentFrameIndex*hit,wid,hit);
 
@@ -111,7 +111,7 @@ void Virus::UpdateFrame(double timeInSec)
 {
 	if (GetTime() >= (3000/GetSpeed()) && timeInSec > this->GetStartTime())
 	{
-		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (SpiderNumSpriteImages - 1);
+		mCurrentFrameIndex = (mCurrentFrameIndex + 1) % (VirusNumSpriteImages - 1);
 		ResetTime();
 	}
 }

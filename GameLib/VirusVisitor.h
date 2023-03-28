@@ -11,7 +11,10 @@
 #include "ItemsVisitor.h"
 #include "Bug.h"
 
-
+/**
+ * Visitor to find the virus in the game
+ * and return a pointer to it
+ */
 class Virus;
 
 class VirusVisitor : public ItemsVisitor

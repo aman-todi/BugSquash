@@ -362,9 +362,9 @@ void Game::AddItemBitmap(wxString itemType, std::vector<std::pair<wxString, std:
 void Game::PlayVirus()
 {
 	/// Find the virus
-	VirusVisitor visitSpider;
-	this->Accept(&visitSpider);
-	Virus* virus = visitSpider.FetchVirus();
+	VirusVisitor visitVirus;
+	this->Accept(&visitVirus);
+	Virus* virus = visitVirus.FetchVirus();
 
 	/// Find the feature bugs
 	FeatureVisitor visitFeatureBugs;
@@ -374,26 +374,29 @@ void Game::PlayVirus()
 	double virusX = virus->GetX();
 	double virusY = virus->GetY();
 
-	for (auto featureBug : featureBugs)
-	{
-		/// Check if any of the feature bugs are in the same location as the virus
-		if (featureBug->HitTest(virusX, virusY))
+	if ( !featureBugs.empty()){
+		for (auto featureBug : featureBugs)
 		{
-			for (auto item: mItems){
-				if (item.get() == featureBug){
-					/// Virus infiltrates Feature bug and converts it to a Null bug
-					auto node = new wxXmlNode(wxXML_ELEMENT_NODE, L"bug");
-                    node->AddAttribute(L"type", "null");
-					node->AddAttribute(L"x", wxString::FromDouble(virusX));
-					node->AddAttribute(L"y", wxString::FromDouble(virusY));
-					double speed = rand() % 80 + 100;
-					node->AddAttribute(L"speed", wxString::FromDouble(speed));
-					node->AddAttribute(L"start", wxString::FromDouble(0));
-					shared_ptr <Bug> bug = make_shared<NullBug>(this,visitFeatureBugs.FetchProgram(),node);
-					DeleteBug(item);
-					mItems.push_back(bug);
+			/// Check if any of the feature bugs are in the same location as the virus
+			if (featureBug->HitTest(virusX, virusY))
+			{
+				for (auto item: mItems){
+					if (item.get() == featureBug){
+						/// Virus infiltrates Feature bug and converts it to a Null bug
+						auto node = new wxXmlNode(wxXML_ELEMENT_NODE, L"bug");
+						node->AddAttribute(L"type", "null");
+						node->AddAttribute(L"x", wxString::FromDouble(virusX));
+						node->AddAttribute(L"y", wxString::FromDouble(virusY));
+						double speed = rand() % 80 + 100;
+						node->AddAttribute(L"speed", wxString::FromDouble(speed));
+						node->AddAttribute(L"start", wxString::FromDouble(0));
+						shared_ptr <Bug> bug = make_shared<NullBug>(this,visitFeatureBugs.FetchProgram(),
+																	node);
+						DeleteBug(item);
+						mItems.push_back(bug);
+					}
 				}
 			}
-		}
+	    }
 	}
 }

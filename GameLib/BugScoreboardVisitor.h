@@ -46,7 +46,7 @@ public:
     void VisitRedundancyBug (RedundancyBug* bug) override;
 
     /**
-     * Vist Feature bug
+     * Visit Feature bug
      * @param bug feature bug in question
      */
     void VisitFeatureBug (FeatureBug* bug) override ;

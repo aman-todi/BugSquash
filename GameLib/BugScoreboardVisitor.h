@@ -51,7 +51,7 @@ public:
      */
     void VisitFeatureBug (FeatureBug* bug) override ;
 
-	void VisitRedundancySplitBug(RedundancySplitBug *bug);
+	void VisitRedundancySplitBug(RedundancySplitBug *bug) override;
 
 
 	/**

@@ -59,6 +59,21 @@ private:
     <bug type="garbage" x="200" y="1350" speed="135" start="20"/>
     <bug type="spider" x="350" y="285" speed="100" start="4"/>
 
+    <!-- Bottom -->
+    <feature x="600" y="1100" speed="150" start="22"/>
+    <feature x="600" y="1100" speed="120" start="23"/>
+    <feature x="500" y="1100" speed="130" start="22"/>
+    <feature x="1000" y="1100" speed="100" start="22"/>
+    <!-- Top -->
+    <feature x="50" y="-100" speed="175" start="22"/>
+    <feature x="500" y="-100" speed="180" start="22"/>
+    <feature x="700" y="-100" speed="100" start="22"/>
+    <!-- Side -->
+    <feature x="-100" y="500" speed="115" start="22"/>
+    <feature x="1500" y="500" speed="140" start="22"/>
+
+
+
     <feature x="250" y="-800" speed="120" start="22"/>
 
   </program>

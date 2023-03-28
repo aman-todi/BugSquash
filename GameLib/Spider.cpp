@@ -71,7 +71,7 @@ void Spider::Update(double elapsed, double timeInSec)
 		SetLocation(GetX() + mSpeedX * elapsed,
 					GetY() + mSpeedY * elapsed);
 
-		/// Make Spider Perimeter the Aquarium
+		/// Make Spider Perimeter the Program
 
 		/// While moving in X direction
 		if (mSpeedX > 0 && GetX() >= 900)

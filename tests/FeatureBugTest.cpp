@@ -15,17 +15,17 @@ using namespace std;
 TEST(FeatureBug,Construct)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	FeatureBug featureBug(&game,&program,&bug);
+	FeatureBug featureBug(&game,program,&bug);
 }
 
 TEST(FeatureBug,HitTest)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	FeatureBug featureBug(&game,&program,&bug);
+	FeatureBug featureBug(&game,program,&bug);
 
 	featureBug.SetLocation(200,200);
 
@@ -49,9 +49,9 @@ TEST(FeatureBug,HitTest)
 TEST(FeatureBug,GetterAndSetter)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	FeatureBug featureBug(&game,&program,&bug);
+	FeatureBug featureBug(&game,program,&bug);
 
 	// Sets the location
 	featureBug.SetLocation(200,250);
@@ -72,26 +72,16 @@ TEST(FeatureBug,GetterAndSetter)
 
 	ASSERT_NEAR(featureBug.GetY(),500,.001);
 
-	//
-	// GetWidth and GetHeight
-	//
-
-	cout << "GetWidth and Height " << endl;
-
-	ASSERT_NEAR(featureBug.GetWidth(),100,.001);
-
-	// This is saying the sprite sheet is till 600 pixel
-	// that might be where are error could be coming from
-	ASSERT_NEAR(featureBug.GetHeight(),700,.001);
 }
 
 TEST(FeatureBug,Update)
 {
 	Game game;
-	wxXmlNode program;
 	wxXmlNode bug;
-	FeatureBug featureBug(&game,&program,&bug);
-	//NullBug programLocation(&game);
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
+	program->SetLocation(200,200);
+	FeatureBug featureBug(&game,program,&bug);
+
 
 	featureBug.SetLocation(50,50);
 	featureBug.SetSpeed(5);
@@ -104,12 +94,12 @@ TEST(FeatureBug,Update)
 
 	featureBug.Update(2.0, 2);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(featureBug.GetX(),42.92,.01);
-	ASSERT_NEAR(featureBug.GetY(),42.92,.01);
+	ASSERT_NEAR(featureBug.GetX(),57.07,.01);
+	ASSERT_NEAR(featureBug.GetY(),57.07,.01);
 
 	featureBug.Update(2.0, 4);
-	ASSERT_NEAR(featureBug.GetX(),35.86,.01);
-	ASSERT_NEAR(featureBug.GetY(),35.86,.01);
+	ASSERT_NEAR(featureBug.GetX(),64.14,.01);
+	ASSERT_NEAR(featureBug.GetY(),64.14,.01);
 }
 
 

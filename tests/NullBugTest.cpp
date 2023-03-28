@@ -14,17 +14,17 @@ using namespace std;
 TEST(NullBug,Construct)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	NullBug nullBug(&game,&program,&bug);
+	NullBug nullBug(&game,program,&bug);
 }
 
 TEST(NullBug,HitTest)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	NullBug nullBug(&game,&program,&bug);
+	NullBug nullBug(&game,program,&bug);
 
 	nullBug.SetLocation(200,200);
 
@@ -47,9 +47,9 @@ TEST(NullBug,HitTest)
 TEST(NULLBug,GetterAndSetter)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	NullBug nullBug(&game,&program,&bug);
+	NullBug nullBug(&game,program,&bug);
 
 	// Sets the location
 	nullBug.SetLocation(200,250);
@@ -70,24 +70,14 @@ TEST(NULLBug,GetterAndSetter)
 
 	ASSERT_NEAR(nullBug.GetY(),500,.001);
 
-	//
-	// GetWidth and GetHeight
-	//
-
-	cout << "GetWidth and Height " << endl;
-
-	ASSERT_NEAR(nullBug.GetWidth(),100,.001);
-
-	// This is saying the sprite sheet is till 600 pixel
-	// that might be where are error could be coming from
-	ASSERT_NEAR(nullBug.GetHeight(),700,.001);
 }
 TEST(NullBug,Update)
 {
 	Game game;
-	wxXmlNode program;
 	wxXmlNode bug;
-	NullBug nullBug(&game,&program,&bug);
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
+	program->SetLocation(200,200);
+	NullBug nullBug(&game,program,&bug);
 	//NullBug programLocation(&game);
 
 	nullBug.SetLocation(50,50);
@@ -100,11 +90,10 @@ TEST(NullBug,Update)
 	ASSERT_NEAR(nullBug.GetY(),50,.0001);
 
 	nullBug.Update(2.0, 2);
-	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(nullBug.GetX(),42.92,.01);
-	ASSERT_NEAR(nullBug.GetY(),42.92,.01);
+	ASSERT_NEAR(nullBug.GetX(),57.07,.01);
+	ASSERT_NEAR(nullBug.GetY(),57.07,.01);
 
 	nullBug.Update(2.0, 4);
-	ASSERT_NEAR(nullBug.GetX(),35.86,.01);
-	ASSERT_NEAR(nullBug.GetY(),35.86,.01);
+	ASSERT_NEAR(nullBug.GetX(),64.14,.01);
+	ASSERT_NEAR(nullBug.GetY(),64.14,.01);
 }

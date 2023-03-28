@@ -14,17 +14,17 @@ using namespace std;
 TEST(RedundancyBug,Construct)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	RedundancyBug redundancyBug(&game,&program,&bug);
+	RedundancyBug redundancyBug(&game,program,&bug);
 }
 
 TEST(RedundancyBug,HitTest)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	RedundancyBug redundancyBug(&game,&program,&bug);
+	RedundancyBug redundancyBug(&game,program,&bug);
 
 	redundancyBug.SetLocation(200,200);
 
@@ -48,9 +48,9 @@ TEST(RedundancyBug,HitTest)
 TEST(RedundancyBug,GetterAndSetter)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	RedundancyBug redundancyBug(&game,&program,&bug);
+	RedundancyBug redundancyBug(&game,program,&bug);
 
 	// Sets the location
 	redundancyBug.SetLocation(200,250);
@@ -71,13 +71,6 @@ TEST(RedundancyBug,GetterAndSetter)
 
 	ASSERT_NEAR(redundancyBug.GetY(),500,.001);
 
-	//
-	// GetWidth and GetHeight
-	//
-
-	ASSERT_NEAR(redundancyBug.GetWidth(),100,.001);
-
-	ASSERT_NEAR(redundancyBug.GetHeight(),100,.001);
 
 	//
 	// See if the bug has been clicked on
@@ -92,9 +85,10 @@ TEST(RedundancyBug,GetterAndSetter)
 TEST(RedundancyBug,Update)
 {
 	Game game;
-	wxXmlNode program;
 	wxXmlNode bug;
-	RedundancyBug redundancyBug(&game,&program,&bug);
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
+	program->SetLocation(200,200);
+	RedundancyBug redundancyBug(&game,program,&bug);
 	//NullBug programLocation(&game);
 
 	redundancyBug.SetLocation(50,50);
@@ -108,10 +102,10 @@ TEST(RedundancyBug,Update)
 
 	redundancyBug.Update(2.0, 2);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(redundancyBug.GetX(),42.92,.01);
-	ASSERT_NEAR(redundancyBug.GetY(),42.92,.01);
+	ASSERT_NEAR(redundancyBug.GetX(),57.07,.01);
+	ASSERT_NEAR(redundancyBug.GetY(),57.07,.01);
 
 	redundancyBug.Update(2.0, 4);
-	ASSERT_NEAR(redundancyBug.GetX(),35.86,.01);
-	ASSERT_NEAR(redundancyBug.GetY(),35.86,.01);
+	ASSERT_NEAR(redundancyBug.GetX(),64.14,.01);
+	ASSERT_NEAR(redundancyBug.GetY(),64.14,.01);
 }

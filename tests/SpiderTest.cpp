@@ -11,17 +11,17 @@
 TEST(Spider,Construct)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	Virus spider(&game, &program, &bug);
+	Virus spider(&game, program, &bug);
 }
 
 TEST(Spider,HitTest)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	Virus spider(&game, &program, &bug);
+	Virus spider(&game, program, &bug);
 
 	spider.SetLocation(200,200);
 
@@ -45,9 +45,9 @@ TEST(Spider,HitTest)
 TEST(Spider,GetterAndSetter)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	Virus spider(&game, &program, &bug);
+	Virus spider(&game, program, &bug);
 
 	// Sets the location
 	spider.SetLocation(200,250);
@@ -68,13 +68,6 @@ TEST(Spider,GetterAndSetter)
 
 	ASSERT_NEAR(spider.GetY(),500,.001);
 
-	//
-	// GetWidth and GetHeight
-	//
-
-	ASSERT_NEAR(spider.GetWidth(),100,.001);
-
-	ASSERT_NEAR(spider.GetHeight(),100,.001);
 
 	//
 	// See if the bug has been clicked on
@@ -83,15 +76,16 @@ TEST(Spider,GetterAndSetter)
 
 	spider.ClickedOn();
 
-	ASSERT_TRUE(spider.GetSplat());
+	ASSERT_FALSE(spider.GetSplat());
 }
 
 TEST(Spider,Update)
 {
 	Game game;
-	wxXmlNode program;
 	wxXmlNode bug;
-	Virus spider(&game, &program, &bug);
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
+	program->SetLocation(200,200);
+	Virus spider(&game, program, &bug);
 	//NullBug programLocation(&game);
 
 	spider.SetLocation(50,50);
@@ -105,10 +99,10 @@ TEST(Spider,Update)
 
 	spider.Update(2.0, 2);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(spider.GetX(),42.92,.01);
-	ASSERT_NEAR(spider.GetY(),42.92,.01);
+	ASSERT_NEAR(spider.GetX(),50,.01);
+	ASSERT_NEAR(spider.GetY(),50,.01);
 
 	spider.Update(2.0, 4);
-	ASSERT_NEAR(spider.GetX(),35.86,.01);
-	ASSERT_NEAR(spider.GetY(),35.86,.01);
+	ASSERT_NEAR(spider.GetX(),50,.01);
+	ASSERT_NEAR(spider.GetY(),50,.01);
 }

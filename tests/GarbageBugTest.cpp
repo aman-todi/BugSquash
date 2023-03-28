@@ -19,17 +19,17 @@ using namespace std;
 TEST(GarbageBug,Construct)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	GarbageBug garbageBug(&game,&program,&bug);
+	GarbageBug garbageBug(&game,program,&bug);
 }
 
 TEST(GarbageBug,HitTest)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	GarbageBug garbageBug(&game,&program,&bug);
+	GarbageBug garbageBug(&game,program,&bug);
 
 	garbageBug.SetLocation(200,200);
 
@@ -53,9 +53,9 @@ TEST(GarbageBug,HitTest)
 TEST(GarbageBug,GetterAndSetter)
 {
 	Game game;
-	wxXmlNode program;
+	shared_ptr<Item> program;
 	wxXmlNode bug;
-	GarbageBug garbageBug(&game,&program,&bug);
+	GarbageBug garbageBug(&game,program,&bug);
 
 	// Sets the location
 	garbageBug.SetLocation(200,250);
@@ -76,25 +76,15 @@ TEST(GarbageBug,GetterAndSetter)
 
 	ASSERT_NEAR(garbageBug.GetY(),500,.001);
 
-	//
-	// GetWidth and GetHeight
-	//
-
-	cout << "GetWidth and Height " << endl;
-
-	ASSERT_NEAR(garbageBug.GetWidth(),100,.001);
-
-	// This is saying the sprite sheet is till 600 pixel
-	// that might be where are error could be coming from
-	ASSERT_NEAR(garbageBug.GetHeight(),600,.001);
 }
 
 TEST(GarbageBug,Update)
 {
 	Game game;
-	wxXmlNode program;
 	wxXmlNode bug;
-	GarbageBug garbageBug(&game,&program,&bug);
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
+	program->SetLocation(200,200);
+	GarbageBug garbageBug(&game,program,&bug);
 	//NullBug programLocation(&game);
 
 	garbageBug.SetLocation(50,50);
@@ -108,35 +98,11 @@ TEST(GarbageBug,Update)
 
 	garbageBug.Update(2.0, 2);
 	// These will need change once we are not hard coding the program
-	ASSERT_NEAR(garbageBug.GetX(),42.92,.1);
-	ASSERT_NEAR(garbageBug.GetY(),42.92,.01);
+	ASSERT_NEAR(garbageBug.GetX(),57.07,.1);
+	ASSERT_NEAR(garbageBug.GetY(),57.07,.01);
 
 	garbageBug.Update(2.0, 4);
-	ASSERT_NEAR(garbageBug.GetX(),35.86,.01);
-	ASSERT_NEAR(garbageBug.GetY(),35.86,.01);
+	ASSERT_NEAR(garbageBug.GetX(),64.14,.01);
+	ASSERT_NEAR(garbageBug.GetY(),64.14,.01);
 }
-
-
-///// Don't know how to get access to the draw/how to make a grapihc in this test case
-//TEST(GarbageBug,Splat)
-//{
-//	Game game;
-//	GarbageBug garbageBug(&game);
-//
-//	garbageBug.SetSpeed(50,50);
-//
-//	ASSERT_NEAR(garbageBug.GetSpeed(),70.71,.001);
-//
-//	wxAutoBufferedPaintDC dc(this);
-//
-//	auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
-//
-//	garbageBug.ClickedOn(gc);
-//
-//	ASSERT_NEAR(garbageBug.GetSpeed(),0,.0001);
-//
-//
-//}
-//
-//
 

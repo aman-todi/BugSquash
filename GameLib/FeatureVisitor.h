@@ -20,14 +20,14 @@ private:
 	/// All the bug that the virus hits
 	std::vector<FeatureBug*> mFeatureBugs;
 	/// The program that the virus is assocated with
-	shared_ptr<Item> mProgram;
+	std::shared_ptr<Item> mProgram;
 
 public:
 	virtual void VisitFeatureBug(FeatureBug* bug) override;
 
 	std::vector<FeatureBug*> FetchFeatureBugs();
 
-	shared_ptr<Item> FetchProgram();
+	std::shared_ptr<Item> FetchProgram();
 };
 
 #endif //PROJECT1_GAMELIB_FEATUREVISITOR_H

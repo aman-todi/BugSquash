@@ -1,5 +1,5 @@
 /**
- * @file GarbafeBugTest.cpp
+ * @file GarbageBugTest.cpp
  * @author Auden Garrard
  */
 

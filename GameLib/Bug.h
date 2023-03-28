@@ -10,7 +10,7 @@
 
 #include "Item.h"
 #include "regex"
-#include "Program.h"
+class Program;
 class Game;
 /**
  * Base Class for Bug

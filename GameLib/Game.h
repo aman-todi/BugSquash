@@ -19,7 +19,6 @@
 #include <wx/graphics.h>
 #include <unordered_map>
 
-using namespace std;
 class Scoreboard;
 class ItemsVisitor;
 class Program;
@@ -32,13 +31,13 @@ class Game
 private:
 
 	/// All of the bugs in game
-	vector<shared_ptr<Item> > mItems;
+	std::vector<std::shared_ptr<Item> > mItems;
 
 	///image bitmaps for all bugs
-	unordered_map<wxString, vector<pair<wxString,shared_ptr<wxBitmap>>>> mItemBitmaps;
+	std::unordered_map<wxString, std::vector<std::pair<wxString,std::shared_ptr<wxBitmap>>>> mItemBitmaps;
 
     ///Game Scoreboard
-    shared_ptr<Scoreboard> mScoreboard;
+	std::shared_ptr<Scoreboard> mScoreboard;
 
     /// Level Name
     wxString mLevelName;
@@ -70,12 +69,12 @@ public:
 
 
 	void AddItem(std::shared_ptr<Item> item);
-	void AddItemBitmap(wxString bugType,vector<pair<wxString,shared_ptr<wxBitmap>>> bitmaps);
+	void AddItemBitmap(wxString bugType,std::vector<std::pair<wxString,std::shared_ptr<wxBitmap>>> bitmaps);
 	std::shared_ptr<Item> HitTest(int x, int y);
 //	void MoveToFront(std::shared_ptr<Bug> item);
 //	void MovetoEnd(std::shared_ptr<Bug> item);
 	void DeleteBug(std::shared_ptr<Item> item);
-	vector<pair<wxString,shared_ptr<wxBitmap>>> GetItemBitmaps(wxString ItemType);
+	std::vector<std::pair<wxString,std::shared_ptr<wxBitmap>>> GetItemBitmaps(wxString ItemType);
 
 	void OnDraw(std::shared_ptr<wxGraphicsContext> graphics,int width, int height,double timeInSec);
 

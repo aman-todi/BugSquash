@@ -8,7 +8,6 @@
 #ifndef PROJECT1_GAMELIB_CODEDIALOGBOX_H
 #define PROJECT1_GAMELIB_CODEDIALOGBOX_H
 
-#include "pch.h"
 #include "GameView.h"
 /**
  * The Fat Bug code box

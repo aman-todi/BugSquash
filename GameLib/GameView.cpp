@@ -181,6 +181,19 @@ void GameView::OnPaint(wxPaintEvent& event)
             double wid, hgt;
             gc->GetTextExtent(mGame.GetLevelName(), &wid, &hgt);
             gc->DrawText(mGame.GetLevelName(), ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((GameHeight/2)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
+
+            if (mLevel == 3) {
+                wxFont fontScore(ScoreSize/2,
+                        wxFONTFAMILY_SWISS,
+                        wxFONTSTYLE_NORMAL,
+                        wxFONTWEIGHT_BOLD);
+
+                gc->SetFont(fontScore, FontColor);
+                wxString spider = L"Beware of the Spider";
+                gc->GetTextExtent(spider, &wid, &hgt);
+                gc->DrawText(spider, ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((2*GameHeight/3)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
+            }
+
             gc->PopState();
 
         }
@@ -200,6 +213,7 @@ void GameView::OnPaint(wxPaintEvent& event)
             double wid, hgt;
             gc->GetTextExtent(final, &wid, &hgt);
             gc->DrawText(final, ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((GameHeight/2)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
+
             gc->PopState();
         }
     }

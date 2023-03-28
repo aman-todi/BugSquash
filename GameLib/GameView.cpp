@@ -189,7 +189,7 @@ void GameView::OnPaint(wxPaintEvent& event)
                         wxFONTWEIGHT_BOLD);
 
                 gc->SetFont(fontScore, FontColor);
-                wxString spider = L"Beware of the Spider";
+                wxString spider = L"Beware of the Virus";
                 gc->GetTextExtent(spider, &wid, &hgt);
                 gc->DrawText(spider, ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((2*GameHeight/3)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
             }

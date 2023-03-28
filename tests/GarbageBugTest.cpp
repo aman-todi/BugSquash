@@ -9,7 +9,7 @@
 #include "gtest/gtest.h"
 #include <GarbageBug.h>
 #include <Game.h>
-
+#include <Program.h>
 #include <wx/stdpaths.h>
 #include <wx/dcbuffer.h>
 #include <wx/graphics.h>
@@ -22,8 +22,8 @@ using namespace std;
 TEST(GarbageBug,Construct)
 {
 	Game game;
-	shared_ptr<Item> program;
 	wxXmlNode bug;
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
 	GarbageBug garbageBug(&game,program,&bug);
 }
 
@@ -33,8 +33,8 @@ TEST(GarbageBug,Construct)
 TEST(GarbageBug,HitTest)
 {
 	Game game;
-	shared_ptr<Item> program;
 	wxXmlNode bug;
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
 	GarbageBug garbageBug(&game,program,&bug);
 
 	garbageBug.SetLocation(200,200);
@@ -61,8 +61,8 @@ TEST(GarbageBug,HitTest)
 TEST(GarbageBug,GetterAndSetter)
 {
 	Game game;
-	shared_ptr<Item> program;
 	wxXmlNode bug;
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
 	GarbageBug garbageBug(&game,program,&bug);
 
 	// Sets the location

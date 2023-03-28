@@ -14,16 +14,16 @@ using namespace std;
 TEST(NullBug,Construct)
 {
 	Game game;
-	shared_ptr<Item> program;
 	wxXmlNode bug;
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
 	NullBug nullBug(&game,program,&bug);
 }
 
 TEST(NullBug,HitTest)
 {
 	Game game;
-	shared_ptr<Item> program;
 	wxXmlNode bug;
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
 	NullBug nullBug(&game,program,&bug);
 
 	nullBug.SetLocation(200,200);
@@ -47,8 +47,8 @@ TEST(NullBug,HitTest)
 TEST(NULLBug,GetterAndSetter)
 {
 	Game game;
-	shared_ptr<Item> program;
 	wxXmlNode bug;
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
 	NullBug nullBug(&game,program,&bug);
 
 	// Sets the location

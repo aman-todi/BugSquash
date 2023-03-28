@@ -7,20 +7,23 @@
 #include "gtest/gtest.h"
 #include <Virus.h>
 #include <Game.h>
+#include <Program.h>
+
+using namespace std;
 
 TEST(Spider,Construct)
 {
 	Game game;
-	shared_ptr<Item> program;
 	wxXmlNode bug;
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
 	Virus spider(&game, program, &bug);
 }
 
 TEST(Spider,HitTest)
 {
 	Game game;
-	shared_ptr<Item> program;
 	wxXmlNode bug;
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
 	Virus spider(&game, program, &bug);
 
 	spider.SetLocation(200,200);
@@ -45,8 +48,8 @@ TEST(Spider,HitTest)
 TEST(Spider,GetterAndSetter)
 {
 	Game game;
-	shared_ptr<Item> program;
 	wxXmlNode bug;
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
 	Virus spider(&game, program, &bug);
 
 	// Sets the location

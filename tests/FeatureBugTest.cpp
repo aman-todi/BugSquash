@@ -8,23 +8,23 @@
 #include "gtest/gtest.h"
 #include <FeatureBug.h>
 #include <Game.h>
-
+#include <Program.h>
 
 using namespace std;
 
 TEST(FeatureBug,Construct)
 {
 	Game game;
-	shared_ptr<Item> program;
 	wxXmlNode bug;
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
 	FeatureBug featureBug(&game,program,&bug);
 }
 
 TEST(FeatureBug,HitTest)
 {
 	Game game;
-	shared_ptr<Item> program;
 	wxXmlNode bug;
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
 	FeatureBug featureBug(&game,program,&bug);
 
 	featureBug.SetLocation(200,200);
@@ -49,8 +49,8 @@ TEST(FeatureBug,HitTest)
 TEST(FeatureBug,GetterAndSetter)
 {
 	Game game;
-	shared_ptr<Item> program;
 	wxXmlNode bug;
+	shared_ptr<Item> program = make_shared<Program>(&game,&bug);
 	FeatureBug featureBug(&game,program,&bug);
 
 	// Sets the location

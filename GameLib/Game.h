@@ -39,13 +39,9 @@ private:
     ///Game Scoreboard
 	std::shared_ptr<Scoreboard> mScoreboard;
 
-	/// level number
-	int mLevel = 1;
 
     /// Level Name
     wxString mLevelName;
-
-	//void XmlBug(wxXmlNode *node);
 
 	/// Random number generator
 	std::mt19937 mRandom;
@@ -74,8 +70,6 @@ public:
 	void AddItem(std::shared_ptr<Item> item);
 	void AddItemBitmap(wxString bugType,std::vector<std::pair<wxString,std::shared_ptr<wxBitmap>>> bitmaps);
 	std::shared_ptr<Item> HitTest(int x, int y);
-//	void MoveToFront(std::shared_ptr<Bug> item);
-//	void MovetoEnd(std::shared_ptr<Bug> item);
 	void DeleteBug(std::shared_ptr<Item> item);
 	std::vector<std::pair<wxString,std::shared_ptr<wxBitmap>>> GetItemBitmaps(wxString ItemType);
 
@@ -84,26 +78,14 @@ public:
 	void Clear();
 
 
-	/**
-	 * Items getter
-	 * @return pointer to mItems
-	 */
-	std::vector<std::shared_ptr<Item> >* GetItems() { return &mItems; }
-
     /**
      * Shrink The Game Window
      */
     void Shrink();
 
-    /**
-     * Is the Game Shrunk?
-     * @return bool
-     */
-    bool IsShrunk() {return mShrinked;}
 
 	void Update(double elapsed, double Time);
 
-	void UpdateList(std::shared_ptr<Item> item);
 
 	void UpdateAnimationTime();
 
@@ -138,13 +120,13 @@ public:
 
     /**
      * Get X Offset
-     * @return
+     * @return the X offset
      */
     double GetXOffSet() {return mXOffset;}
 
     /**
      * Get Y Offset
-     * @return
+     * @return The Y offset
      */
     double GetYOffSet() {return mYOffset;}
 

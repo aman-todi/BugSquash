@@ -13,15 +13,17 @@
 
 class Game;
 /**
- * base class for any item in our Game
+ * Base class for any item in our Game
  */
 class Item {
 private:
     /// The game this item is contained in
     Game *mGame = nullptr;
 
-    double  mX = 0;     ///< X location for the center of the item
-    double  mY = 0;     ///< Y location for the center of the item
+	/// X location for the center of the item
+    double  mX = 0;
+	/// Y location for the center of the item
+    double  mY = 0;
 
 	/// Time variable to help animation
 	long mKeepTime = 0;
@@ -64,7 +66,7 @@ public:
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, double timeInSec) {}
 
 	/**
-	 * virtual HitTest always returns false
+	 * Virtual HitTest always returns false
 	 * @param x, y location clicked
 	 * @return bool
 	 */

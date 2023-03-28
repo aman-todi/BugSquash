@@ -14,7 +14,7 @@ const static double GameWidth = 1250;
 /// Score font size to use
 const int ScoreSize = 85;
 
-/// Lable for score font size to use
+/// Label for score font size to use
 const int LabelSize = 40;
 
 /// The font color to use

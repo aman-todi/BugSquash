@@ -29,10 +29,6 @@ Bug::Bug(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) :
     {
 		double bugX,bugY;
 		mProgram = program;
-        bool xConvert = bug->GetAttribute("x").ToDouble(&bugX);
-        bool yConvert = bug->GetAttribute("y").ToDouble(&bugY);
-        bool speedConvert = bug->GetAttribute("speed").ToDouble(&mSpeed);
-        bool timeConvert = bug->GetAttribute("start").ToDouble(&mStartTime);
         SetLocation(bugX, bugY);
 
         //load the "code" if fat bug

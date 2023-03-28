@@ -26,8 +26,6 @@ private:
     /// Speed of bug before being set to 0
     double mOldSpeed = 0;
 
-
-
 	/// index of the current frame to draw
 	int mCurrentFrameIndex = 0;
 

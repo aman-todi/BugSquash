@@ -278,22 +278,6 @@ void Game::Accept(ItemsVisitor* visitor)
 	}
 }
 
-/**
- * Take the last touched Item and moves it to the end of the list
- * @param item Item an pointer to item in the Game
- */
-void Game::UpdateList(std::shared_ptr<Item> item)
-{
-	//finds the location of item in the list
-	auto loc = find(begin(mItems), end(mItems), item);
-	//if item is not found then iterator will be at the end of the list so
-	if (loc != end(mItems))
-	{
-		mItems.erase(loc);
-	}
-	//push the item back to the end of the list
-	mItems.push_back(item);
-}
 
 /**
  * Update the animation timer in each bug (item)
@@ -363,12 +347,12 @@ void Game::AddItemBitmap(wxString itemType, std::vector<std::pair<wxString, std:
  */
 void Game::PlayVirus()
 {
-	/// Find the virus
+	// Find the virus
 	VirusVisitor visitVirus;
 	this->Accept(&visitVirus);
 	Virus* virus = visitVirus.FetchVirus();
 
-	/// Find the feature bugs
+	// Find the feature bugs
 	FeatureVisitor visitFeatureBugs;
 	this->Accept(&visitFeatureBugs);
 	std::vector<FeatureBug*> featureBugs = visitFeatureBugs.FetchFeatureBugs();
@@ -382,12 +366,12 @@ void Game::PlayVirus()
 			double featureX = featureBug->GetX();
 			double featureY = featureBug->GetY();
 			double distance = sqrt(pow((virusX-featureX),2)+pow((virusY-featureY),2));
-			/// Check if any of the feature bugs are in the same location as the virus
+			// Check if any of the feature bugs are in the same location as the virus
 			if (distance<= 80)
 			{
 				for (auto item: mItems){
 					if (item.get() == featureBug){
-						/// Virus infiltrates Feature bug and converts it to a Null bug
+						// Virus infiltrates Feature bug and converts it to a Null bug
 						auto node = new wxXmlNode(wxXML_ELEMENT_NODE, L"bug");
 						node->AddAttribute(L"type", "null");
 						node->AddAttribute(L"x", wxString::FromDouble(featureX));

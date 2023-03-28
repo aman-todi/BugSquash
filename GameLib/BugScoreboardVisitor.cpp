@@ -33,9 +33,17 @@ void BugScoreboardVisitor::VisitRedundancyBug(RedundancyBug* bug)
 {
     IncMiss();
 }
+/**
+ * Visit redundancy bug
+ * @param bug redundancy bug in question
+ */
+void BugScoreboardVisitor::VisitRedundancySplitBug(RedundancySplitBug *bug)
+{
+	IncMiss();
+}
 
 /**
- * Vist Feature bug
+ * Visit Feature bug
  * @param bug feature bug in question
  */
 void BugScoreboardVisitor::VisitFeatureBug(FeatureBug* bug)

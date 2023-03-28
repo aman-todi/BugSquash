@@ -11,11 +11,15 @@
 #include "ItemsVisitor.h"
 #include "FeatureBug.h"
 #include "Program.h"
-
+/**
+ * Vist all the Feature bugs and see if the program is associated with it
+ */
 class FeatureVisitor : public ItemsVisitor
 {
 private:
+	/// All the bug that the virus hits
 	std::vector<FeatureBug*> mFeatureBugs;
+	/// The program that the virus is assocated with
 	shared_ptr<Item> mProgram;
 
 public:

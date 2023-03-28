@@ -16,10 +16,13 @@
  * and return a pointer to it
  */
 class Virus;
-
+/**
+ * Find the Virus
+ */
 class VirusVisitor : public ItemsVisitor
 {
 private:
+	/// The Virus
 	Virus* mVirus = nullptr;
 public:
 	virtual void VisitVirus (Virus* bug) override;

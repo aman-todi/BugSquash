@@ -6,10 +6,9 @@
 #include "pch.h"
 #include "VirusVisitor.h"
 #include "Virus.h"
-
 /**
- * Visit the Virus in the game if one
- * @param bug
+ * Assign the virus
+ * @param bug The bug being visited
  */
 void VirusVisitor::VisitVirus(Virus* bug)
 {
@@ -18,7 +17,7 @@ void VirusVisitor::VisitVirus(Virus* bug)
 
 /**
  * Return the Virus in the game if one
- * @return
+ * @return The virus
  */
 Virus* VirusVisitor::FetchVirus()
 {

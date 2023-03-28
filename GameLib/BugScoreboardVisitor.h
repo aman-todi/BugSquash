@@ -51,7 +51,10 @@ public:
      */
     void VisitFeatureBug (FeatureBug* bug) override ;
 
-    /**
+	void VisitRedundancySplitBug(RedundancySplitBug *bug);
+
+
+	/**
      * Set Scoreboard Pointer to Game Scoreboard
      * @param sb
      */

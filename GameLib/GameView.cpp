@@ -118,6 +118,8 @@ void GameView::Initialize(wxFrame* parent)
 	// The timer for bug motion
 	mTimerBugMotion.SetOwner(this);
 	mTimerBugMotion.Start(AnimationDuration);
+
+    mState = State::LevelStart;
 }
 
 
@@ -145,7 +147,7 @@ void GameView::OnPaint(wxPaintEvent& event)
 	//convert the time to seconds
 	double TimeInSec = (double(mTime) / MsToSec) - GameDelay;
 	mGame.Update(elapsed, TimeInSec);
-    mDisplayDuration += elapsed;
+    mDisplayDuration += TimeInSec;
 
     // Create a graphics context
     auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
@@ -171,7 +173,7 @@ void GameView::OnPaint(wxPaintEvent& event)
         mDisplayDuration = 0;
     }
 
-    if (mDisplayDuration < 2) {
+    if (mDisplayDuration < GameDelay) {
         if (mState == State::LevelStart){
             // Draw Level Name
             gc->PushState();
@@ -390,6 +392,8 @@ void GameView::OnLevelZero(wxCommandEvent& event)
 {
 	mGame.Clear();
 	mLevel = 0;
+    mDisplayDuration = 0;
+    mState = State::LevelStart;
     LevelLoader level0(&mGame,LevelZeroXMLFileName);
 }
 /**
@@ -400,6 +404,8 @@ void GameView::OnLevelOne(wxCommandEvent& event)
 {
 	mGame.Clear();
 	mLevel = 1;
+    mDisplayDuration = 0;
+    mState = State::LevelStart;
     LevelLoader level1(&mGame,LevelOneXMLFileName);
 	mStopWatch.Start(0);
 }
@@ -411,6 +417,8 @@ void GameView::OnLevelTwo(wxCommandEvent& event)
 {
 	mGame.Clear();
 	mLevel = 2;
+    mDisplayDuration = 0;
+    mState = State::LevelStart;
     LevelLoader level2(&mGame,LevelTwoXMLFileName);
 	mStopWatch.Start(0);
 }
@@ -422,6 +430,8 @@ void GameView::OnLevelThree(wxCommandEvent& event)
 {
 	mGame.Clear();
 	mLevel = 3;
+    mDisplayDuration = 0;
+    mState = State::LevelStart;
     LevelLoader level3(&mGame,LevelThreeXMLFileName);
 	mStopWatch.Start(0);
 }

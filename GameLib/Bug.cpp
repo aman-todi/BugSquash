@@ -35,7 +35,7 @@ Bug::Bug(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) :
         bool timeConvert = bug->GetAttribute("start").ToDouble(&mStartTime);
         SetLocation(bugX, bugY);
 
-        //load the "code" if fatbug
+        //load the "code" if fat bug
         if (bug->GetChildren()!=nullptr) {
             mFatbug = true;
             auto code = bug->GetChildren();

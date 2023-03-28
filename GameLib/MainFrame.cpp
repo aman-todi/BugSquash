@@ -67,6 +67,7 @@ void MainFrame::Initialize()
  */
 void MainFrame::OnExit(wxCommandEvent& event)
 {
+	mGameView->GamePause();
 	Close(true);
 }
 /**
@@ -86,5 +87,6 @@ void MainFrame::OnAbout(wxCommandEvent& event)
  */
 void MainFrame::OnClose(wxCommandEvent& event)
 {
-
+	mGameView->GamePause();
+	Close(true);
 }

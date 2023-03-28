@@ -16,6 +16,9 @@
 
 using namespace std;
 
+/**
+ * Test Garbage Bug Constructor
+ */
 TEST(GarbageBug,Construct)
 {
 	Game game;
@@ -24,6 +27,9 @@ TEST(GarbageBug,Construct)
 	GarbageBug garbageBug(&game,program,&bug);
 }
 
+/**
+ * Garbage Bug Hit Test
+ */
 TEST(GarbageBug,HitTest)
 {
 	Game game;
@@ -49,7 +55,9 @@ TEST(GarbageBug,HitTest)
 	ASSERT_FALSE(garbageBug.HitTest(300,250));
 }
 
-
+/**
+ * Test getter and setter
+ */
 TEST(GarbageBug,GetterAndSetter)
 {
 	Game game;
@@ -78,6 +86,9 @@ TEST(GarbageBug,GetterAndSetter)
 
 }
 
+/**
+ * Test Garbage Bug Update
+ */
 TEST(GarbageBug,Update)
 {
 	Game game;

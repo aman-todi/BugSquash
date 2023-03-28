@@ -21,12 +21,6 @@ private:
 
     //bool decreasing = false;
 
-	/**
-	 * Name of this type of bug
-	 * @return The name of this type of bug
-	 */
-    std::string Name() override {return "RedundancySplit";};
-
 
     /// index of the current frame to draw
     int mCurrentFrameIndex = 0;
@@ -50,7 +44,11 @@ public:
 	 */
     void ClickedOn() override;
 
-
+    /**
+	* Accept a visitor
+	* @param visitor The visitor we accept
+	*/
+    virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitRedundancySplitBug(this); }
 };
 
 #endif //PROJECT1_REDUNDANCYSPLITBUG_H

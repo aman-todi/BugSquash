@@ -145,10 +145,11 @@ void Game::AddItem(std::shared_ptr<Item> bug)
 	mItems.push_back(bug);
 }
 
-shared_ptr<Bug> Game::AddRed(std::shared_ptr<Item> bug)
+shared_ptr<Bug> Game::AddRed(std::shared_ptr<Item> bug, double randNum)
 {
     double X = bug->GetX();
     double Y = bug->GetY();
+
 
     BugVisitor visitor;
     bug->Accept(&visitor);
@@ -160,9 +161,17 @@ shared_ptr<Bug> Game::AddRed(std::shared_ptr<Item> bug)
 
     RedBug->SetProgram(program);
 
-    int randomNum = rand() % 401 + (-200);
+    /// Fixing random distance (a^2 + b^2 = c^2 distance)
+    if (randNum < 0)
+    {
+        randNum = -(sqrt((randNum * randNum) / 2));
+    }
+    else
+    {
+        randNum = sqrt((randNum * randNum) / 2);
+    }
 
-    RedBug->SetLocation(X+randomNum,Y+randomNum);
+    RedBug->SetLocation(X+randNum,Y+randNum);
     RedBug->SetSpeed(speed);
 
     mItems.push_back(RedBug);

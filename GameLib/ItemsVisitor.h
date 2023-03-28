@@ -14,6 +14,7 @@ class Bug;
 class GarbageBug;
 class NullBug;
 class RedundancyBug;
+class RedundancySplitBug;
 class FeatureBug;
 class Program;
 class Spider;
@@ -49,6 +50,12 @@ public:
 	 * @param bug The bug being visited
 	 */
 	virtual void VisitRedundancyBug(RedundancyBug* bug) {}
+
+    /**
+	 * Visit a Redundancy Split bug
+	 * @param bug The bug being visited
+	 */
+    virtual void VisitRedundancySplitBug(RedundancySplitBug* bug) {}
 
 	/**
 	 * Visit a Feature bug

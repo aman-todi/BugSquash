@@ -38,11 +38,6 @@ public:
      */
     double GetX() const { return mX; }
 
-	/**
-	 * Gets the name of the bug
-	 * @return
-	 */
-    virtual std::string Name(){return "none";};
 
     /**
      * The Y location of the item

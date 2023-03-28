@@ -154,6 +154,6 @@ public:
      */
     std::shared_ptr<Bug> AddRed(std::shared_ptr<Item> item, double randNum);
 
-	void PlaySpider();
+	void PlayVirus();
 };
 #endif //PROJECT1_GAMELIB_GAME_H

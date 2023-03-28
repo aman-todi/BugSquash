@@ -1,25 +1,25 @@
 /**
- * @file Spider.cpp
+ * @file Virus.cpp
  * @author Aman Todi
  */
 
 #include "pch.h"
-#include "Spider.h"
+#include "Virus.h"
 #include "Scoreboard.h"
 
-/// The Spider image
-const std::wstring SpiderImageName = L"images/spider.png";
+/// The Virus image
+const std::wstring SpiderImageName = L"images/virus.png";
 
 /// Number of sprite images
 const int SpiderNumSpriteImages = 7;
 
 /**
- * Spider Constructor
+ * Virus Constructor
  * @param game Game this bug is a member of
  * @param program he program the bug is associated with
  * @param bug The inform associated with the bug
  */
-Spider::Spider(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) : Bug(game,program,bug) {
+Virus::Virus(Game *game, std::shared_ptr<Item> program, wxXmlNode* bug) : Bug(game, program, bug) {
 
 	mBitmaps = game->GetItemBitmaps("spider");
 	mSpeedX = GetSpeed();
@@ -30,7 +30,7 @@ Spider::Spider(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug) : Bug(ga
  * @param gc The device context to draw on
  * @param timeInSec How long the game has been running for
  */
-void Spider::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
+void Virus::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
 	this->UpdateFrame(timeInSec);
 
@@ -60,18 +60,18 @@ void Spider::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 }
 
 /**
- * Update the Spider bug (override Update from Bug.cpp)
+ * Update the Virus bug (override Update from Bug.cpp)
  * @param elapsed time elapsed since last class call
  * @param timeInSec time since the level began
  */
-void Spider::Update(double elapsed, double timeInSec)
+void Virus::Update(double elapsed, double timeInSec)
 {
 	if(timeInSec > GetStartTime())
 	{
 		SetLocation(GetX() + mSpeedX * elapsed,
 					GetY() + mSpeedY * elapsed);
 
-		/// Make Spider Perimeter the Program
+		/// Make Virus Perimeter the Program
 
 		/// While moving in X direction
 		if (mSpeedX > 0 && GetX() >= 900)
@@ -107,7 +107,7 @@ void Spider::Update(double elapsed, double timeInSec)
  * Updates the value of current frame index
  * @param timeInSec How long the game has been running for
  */
-void Spider::UpdateFrame(double timeInSec)
+void Virus::UpdateFrame(double timeInSec)
 {
 	if (GetTime() >= (3000/GetSpeed()) && timeInSec > this->GetStartTime())
 	{

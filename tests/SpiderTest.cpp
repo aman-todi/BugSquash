@@ -5,7 +5,7 @@
 
 #include <pch.h>
 #include "gtest/gtest.h"
-#include <Spider.h>
+#include <Virus.h>
 #include <Game.h>
 
 TEST(Spider,Construct)
@@ -13,7 +13,7 @@ TEST(Spider,Construct)
 	Game game;
 	wxXmlNode program;
 	wxXmlNode bug;
-	Spider spider(&game,&program,&bug);
+	Virus spider(&game, &program, &bug);
 }
 
 TEST(Spider,HitTest)
@@ -21,7 +21,7 @@ TEST(Spider,HitTest)
 	Game game;
 	wxXmlNode program;
 	wxXmlNode bug;
-	Spider spider(&game,&program,&bug);
+	Virus spider(&game, &program, &bug);
 
 	spider.SetLocation(200,200);
 
@@ -47,7 +47,7 @@ TEST(Spider,GetterAndSetter)
 	Game game;
 	wxXmlNode program;
 	wxXmlNode bug;
-	Spider spider(&game,&program,&bug);
+	Virus spider(&game, &program, &bug);
 
 	// Sets the location
 	spider.SetLocation(200,250);
@@ -91,7 +91,7 @@ TEST(Spider,Update)
 	Game game;
 	wxXmlNode program;
 	wxXmlNode bug;
-	Spider spider(&game,&program,&bug);
+	Virus spider(&game, &program, &bug);
 	//NullBug programLocation(&game);
 
 	spider.SetLocation(50,50);

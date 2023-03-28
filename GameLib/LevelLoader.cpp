@@ -14,7 +14,7 @@
 #include "FeatureBug.h"
 #include "Program.h"
 #include "Scoreboard.h"
-#include "Spider.h"
+#include "Virus.h"
 
 /// The feature sprite image
 const std::wstring FeatureBugImageName = L"images/feature.png";
@@ -37,8 +37,8 @@ const std::wstring RedundancyFlyRightWingImageName = L"images/redundancy-fly-rwi
 /// The splat image
 const std::wstring RedundancyFlySplatImageName = L"images/redundancy-fly-splat.png";
 
-/// The Spider image
-const std::wstring SpiderBugImageName = L"images/spider.png";
+/// The Virus image
+const std::wstring VirusImageName = L"images/virus.png";
 
 /// The bug sprite image
 const std::wstring GarbageBugSpriteImageName = L"images/blue-maize-bug.png";
@@ -109,7 +109,7 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 		while(bugNode != NULL)
 		{
 			// Check if the child is a "bug" element
-			if(bugNode->GetName() == "bug" || bugNode->GetName() == "feature" || bugNode->GetName() == "spider")
+			if(bugNode->GetName() == "bug" || bugNode->GetName() == "feature" || bugNode->GetName() == "virus")
 			{
 				bugs.push_back(bugNode);
 				mNumBugs++;
@@ -190,11 +190,11 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 				shared_ptr <Bug> bug = make_shared<RedundancyBug>(game,laptop,node);
 				bugItems.push_back(bug);
 			}
-			else if(bugType == "spider")
+			else if(bugType == "virus")
 			{
 				if (game->GetItemBitmaps(bugType).empty())
 				{
-					auto spriteBitmap = make_shared<wxBitmap>(SpiderBugImageName
+					auto spriteBitmap = make_shared<wxBitmap>(VirusImageName
 						,wxBITMAP_TYPE_ANY);
 
 					vector<std::pair<wxString, shared_ptr<wxBitmap>>> bitmaps;
@@ -202,7 +202,7 @@ LevelLoader::LevelLoader(Game *game,const std::wstring &fileName)
 
 					game->AddItemBitmap(bugType,bitmaps);
 				}
-				shared_ptr <Bug> bug = make_shared<Spider>(game,laptop,node);
+				shared_ptr <Bug> bug = make_shared<Virus>(game, laptop, node);
 				bugItems.push_back(bug);
 			}
 			else{

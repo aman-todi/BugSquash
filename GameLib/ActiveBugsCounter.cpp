@@ -5,12 +5,11 @@
 
 #include "pch.h"
 #include "ActiveBugsCounter.h"
-#include "Bug.h"
 #include "GarbageBug.h"
 #include "NullBug.h"
 #include "RedundancyBug.h"
 #include "FeatureBug.h"
-#include "Spider.h"
+#include "Virus.h"
 
 
 /**

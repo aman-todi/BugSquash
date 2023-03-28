@@ -288,7 +288,7 @@ void GameView::OnTimer2(wxTimerEvent &event){
 	// Calls game to play level 3 (spider)
 	if (mLevel == 3)
 	{
-		mGame.PlaySpider();
+		mGame.PlayVirus();
 	}
 
 

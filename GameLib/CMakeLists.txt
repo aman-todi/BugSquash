@@ -17,13 +17,13 @@ set(SOURCE_FILES
         Scoreboard.cpp Scoreboard.h
         ItemsVisitor.h ItemsVisitor.cpp
         LevelLoader.h LevelLoader.cpp
-        Spider.h Spider.cpp
+        Virus.h Virus.cpp
         CodeDialogBox.h CodeDialogBox.cpp
         BugVisitor.h BugVisitor.cpp
         RedundancySplitBug.cpp RedundancySplitBug.h
         BugScoreboardVisitor.cpp BugScoreboardVisitor.h
         ActiveBugsCounter.h ActiveBugsCounter.cpp
-        SpiderVisitor.h SpiderVisitor.cpp
+        VirusVisitor.h VirusVisitor.cpp
         FeatureVisitor.h FeatureVisitor.cpp)
 
 set(wxBUILD_PRECOMP OFF)

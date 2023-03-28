@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<bug-squash level="Spider Level">
-  <program name="Spider " x="625" y="500">
+<bug-squash level="Virus Level">
+  <program name="Virus " x="625" y="500">
 
     <bug type="garbage" x="-100" y="-100" speed="120" start="1"/>
     <bug type="null" x="1350" y="1500" speed="96" start="3"/>
@@ -57,7 +57,7 @@ private:
     <bug type="redundancy" x="900" y="-400" speed="135" start="17"/>
     <bug type="garbage" x="-250" y="100" speed="120" start="19"/>
     <bug type="garbage" x="200" y="1350" speed="135" start="20"/>
-    <bug type="spider" x="350" y="285" speed="180" start="1"/>
+    <bug type="virus" x="350" y="285" speed="180" start="1"/>
 
     <!-- Bottom -->
     <feature x="600" y="1100" speed="150" start="22"/>

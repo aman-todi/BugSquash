@@ -15,7 +15,7 @@ class GarbageBug;
 class FeatureBug;
 class NullBug;
 class RedundancyBug;
-class Spider;
+class Virus;
 class RedundancySplitBug;
 /**
  * Visits all the bugs and checks if it is a FatBug
@@ -77,12 +77,10 @@ public:
 	*/
     double GetOldSpeed(){return mOldSpeed;}
 
-
 	/**
 	 * sets the mSplat for bug
 	 */
 	void SetSplat(){mBug->SetSplat();}
-
 
     /**
 	* getter for mIsRedundancy
@@ -92,12 +90,9 @@ public:
 
 	void VisitGarbageBug(GarbageBug* bug) override;
 
-
 	void VisitNullBug(NullBug* bug) override;
 
-
 	void VisitRedundancyBug (RedundancyBug* bug) override;
-
 
 	void VisitFeatureBug (FeatureBug* bug) override ;
 

@@ -10,7 +10,7 @@
 #include "RedundancyBug.h"
 #include "RedundancySplitBug.h"
 #include "FeatureBug.h"
-#include "Spider.h"
+#include "Virus.h"
 
 
 /**

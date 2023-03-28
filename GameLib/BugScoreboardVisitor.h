@@ -16,7 +16,7 @@ class GarbageBug;
 class FeatureBug;
 class NullBug;
 class RedundancyBug;
-class Spider;
+class Virus;
 
 /**
  * Increase the score of Missed
@@ -50,12 +50,6 @@ public:
      * @param bug feature bug in question
      */
     void VisitFeatureBug (FeatureBug* bug) override ;
-
-	/**
-	 * Visit ShapeShifter bug
- 	 * @param bug shape shifter bug in question
- 	 */
-	void VisitShapeShifterBug (ShapeShifterBug* bug) override ;
 
     /**
      * Set Scoreboard Pointer to Game Scoreboard

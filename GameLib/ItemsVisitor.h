@@ -17,7 +17,7 @@ class RedundancyBug;
 class RedundancySplitBug;
 class FeatureBug;
 class Program;
-class Spider;
+class Virus;
 class ShapeShifterBug;
 
 /** Items visitor base class */
@@ -70,16 +70,10 @@ public:
 	virtual void VisitProgram(Program* bug) {}
 
 	/**
-	 * Visit a Spider
+	 * Visit a Virus
 	 * @param bug The bug being visited
 	 */
-	virtual void VisitSpider (Spider* bug){}
-
-	/**
- 	 * Visit a Spider
-	 * @param bug The bug being visited
-  	 */
-	virtual void VisitShapeShifterBug (ShapeShifterBug* bug){}
+	virtual void VisitVirus (Virus* bug){}
 
 };
 

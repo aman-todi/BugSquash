@@ -14,7 +14,7 @@
 /**
  * The redundancy bugs that appear from being clicked on
  */
-class RedundancySplitBug :  public RedundancyBug{
+class RedundancySplitBug :  public RedundancyBug {
 private:
 
     /// index of the current frame to draw

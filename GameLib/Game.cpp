@@ -20,8 +20,8 @@
 #include "Scoreboard.h"
 #include "LevelLoader.h"
 #include "BugScoreboardVisitor.h"
-#include "SpiderVisitor.h"
-#include "Spider.h"
+#include "VirusVisitor.h"
+#include "Virus.h"
 #include "FeatureVisitor.h"
 
 using namespace std;
@@ -359,33 +359,34 @@ void Game::AddItemBitmap(wxString itemType, std::vector<std::pair<wxString, std:
 /**
  * Play level 3
  */
-void Game::PlaySpider()
+void Game::PlayVirus()
 {
-	SpiderVisitor visitSpider;
+	/// Find the virus
+	VirusVisitor visitSpider;
 	this->Accept(&visitSpider);
-	Spider* spider = visitSpider.FetchSpider();
+	Virus* virus = visitSpider.FetchVirus();
 
+	/// Find the feature bugs
 	FeatureVisitor visitFeatureBugs;
 	this->Accept(&visitFeatureBugs);
 	std::vector<FeatureBug*> featureBugs = visitFeatureBugs.FetchFeatureBugs();
 
-	double spiderX = spider->GetX();
-	double spiderY = spider->GetY();
+	double virusX = virus->GetX();
+	double virusY = virus->GetY();
 
 	for (auto featureBug : featureBugs)
 	{
-		if (featureBug->HitTest(spiderX, spiderY))
+		/// Check if any of the feature bugs are in the same location as the virus
+		if (featureBug->HitTest(virusX, virusY))
 		{
 			for (auto item: mItems){
 				if (item.get() == featureBug){
-
+					/// Virus infiltrates Feature bug and converts it to a Null bug
 					auto node = new wxXmlNode(wxXML_ELEMENT_NODE, L"bug");
                     node->AddAttribute(L"type", "null");
-					node->AddAttribute(L"x", wxString::FromDouble(spiderX));
-					node->AddAttribute(L"y", wxString::FromDouble(spiderY));
-
+					node->AddAttribute(L"x", wxString::FromDouble(virusX));
+					node->AddAttribute(L"y", wxString::FromDouble(virusY));
 					double speed = rand() % 80 + 100;
-
 					node->AddAttribute(L"speed", wxString::FromDouble(speed));
 					node->AddAttribute(L"start", wxString::FromDouble(0));
 					shared_ptr <Bug> bug = make_shared<NullBug>(this,visitFeatureBugs.FetchProgram(),node);

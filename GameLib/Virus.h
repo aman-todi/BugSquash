@@ -1,20 +1,20 @@
 /**
- * @file Spider.h
+ * @file Virus.h
  * @author Aman Todi
  *
  *
  */
 
-#ifndef PROJECT1_GAMELIB_SPIDER_H
-#define PROJECT1_GAMELIB_SPIDER_H
+#ifndef PROJECT1_GAMELIB_VIRUS_H
+#define PROJECT1_GAMELIB_VIRUS_H
 
 #include "Bug.h"
 #include "Game.h"
 
 /**
- * Class for a bug type FeatureBug
+ * Class for a bug type Virus
  */
-class Spider: public Bug
+class Virus: public Bug
 {
 private:
 	///bitmap information
@@ -31,15 +31,15 @@ private:
 
 public:
 	/// Default constructor (disabled)
-	Spider() = delete;
+	Virus() = delete;
 
 	/// Copy constructor (disabled)
-	Spider(const Spider &) = delete;
+	Virus(const Virus &) = delete;
 
 	/// Assignment operator
-	void operator=(const Spider &) = delete;
+	void operator=(const Virus &) = delete;
 
-	Spider(Game *game,std::shared_ptr<Item> program,wxXmlNode* bug);
+	Virus(Game *game, std::shared_ptr<Item> program, wxXmlNode* bug);
 
 	virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics, double timeInSec) override;
 
@@ -48,12 +48,12 @@ public:
 	void UpdateFrame(double timeInSec);
 
 	/**
-     * Accept a visitor
+     * Accept a visitor for virus
      * @param visitor The visitor we accept
      */
-	void Accept(ItemsVisitor* visitor) override { visitor->VisitSpider(this); }
+	void Accept(ItemsVisitor* visitor) override { visitor->VisitVirus(this); }
 
 };
 
 
-#endif //PROJECT1_GAMELIB_SPIDER_H
+#endif //PROJECT1_GAMELIB_VIRUS_H

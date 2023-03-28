@@ -2,6 +2,7 @@
  * @file GameView.cpp
  * @author sriram
  * @author ethan
+ * @author aman
  */
 
 #include "pch.h"
@@ -24,10 +25,7 @@
 #include "Scoreboard.h"
 #include "ActiveBugsCounter.h"
 
-/// Frame duration in milliseconds
-const int FrameDuration = 30;
-
-/// Animation timer duration in milliseconds
+/// Animation (Frame duration) timer duration in milliseconds
 const int AnimationDuration = 5;
 
 /// Game area in virtual pixels
@@ -100,17 +98,12 @@ void GameView::Initialize(wxFrame* parent)
 	Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
 	Bind(wxEVT_LEFT_DCLICK, &GameView::OnDoubleClick, this);
 	Bind(wxEVT_TIMER, &GameView::OnTimer1, this);
-	Bind(wxEVT_TIMER, &GameView::OnTimer2, this);
 
 
 	// The timer for animation
-	mTimerAnimation.SetOwner(this);
-	mTimerAnimation.Start(FrameDuration);
-	mStopWatch.Start();
-
-	// The timer for bug motion
 	mTimerBugMotion.SetOwner(this);
 	mTimerBugMotion.Start(AnimationDuration);
+	mStopWatch.Start();
 
     mState = State::LevelStart;
 }
@@ -171,16 +164,17 @@ void GameView::OnPaint(wxPaintEvent& event)
             // Draw Level Name
             gc->PushState();
 
-            wxFont fontScore(ScoreSize,
+            wxFont fontScore2(ScoreSize,
                     wxFONTFAMILY_SWISS,
                     wxFONTSTYLE_NORMAL,
                     wxFONTWEIGHT_BOLD);
 
-            gc->SetFont(fontScore, FontColor);
+            gc->SetFont(fontScore2, FontColor);
 
             double wid, hgt;
             gc->GetTextExtent(mGame.GetLevelName(), &wid, &hgt);
-            gc->DrawText(mGame.GetLevelName(), ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((GameHeight/2)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
+            gc->DrawText(mGame.GetLevelName(), ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2,
+						 ((GameHeight/2)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
 
             if (mLevel == 3) {
                 wxFont fontScore(ScoreSize/2,
@@ -191,7 +185,8 @@ void GameView::OnPaint(wxPaintEvent& event)
                 gc->SetFont(fontScore, FontColor);
                 wxString spider = L"Beware of the Virus";
                 gc->GetTextExtent(spider, &wid, &hgt);
-                gc->DrawText(spider, ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((2*GameHeight/3)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
+                gc->DrawText(spider, ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2,
+							 ((2*GameHeight/3)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
             }
 
             gc->PopState();
@@ -212,13 +207,13 @@ void GameView::OnPaint(wxPaintEvent& event)
 
             double wid, hgt;
             gc->GetTextExtent(final, &wid, &hgt);
-            gc->DrawText(final, ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2, ((GameHeight/2)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
+            gc->DrawText(final, ((GameWidth/2)*(mGame.GetScale()) + mGame.GetXOffSet()) - wid/2,
+						 ((GameHeight/2)*(mGame.GetScale()) + mGame.GetYOffSet()) - hgt/2);
 
             gc->PopState();
         }
     }
 }
-
 
 /**
  * Event handler for resizing the window
@@ -231,19 +226,10 @@ void GameView::OnSize(wxSizeEvent& event)
 }
 
 /**
- * Event handler for wxEVT_TIMER for animation timer
- * @param event Timer event
- */
-void GameView::OnTimer1(wxTimerEvent &event)
-{
-
-}
-
-/**
  * Event handler for wxEVT_TIMER for bug motion timer
  * @param event Timer event
  */
-void GameView::OnTimer2(wxTimerEvent &event){
+void GameView::OnTimer1(wxTimerEvent &event){
 
 	ActiveBugsCounter livingBugsCounter;
 	mGame.Accept(&livingBugsCounter);
@@ -304,7 +290,6 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		mGame.PlayVirus();
 	}
 
-
 	Refresh();
 }
 
@@ -336,7 +321,6 @@ void GameView::OnLeftDown(wxMouseEvent &event)
             mGame.DeleteBug(mClickedItem);
         }
 
-		//Moves the bug to the end of the list
 		Refresh();
 	}
 }
@@ -463,7 +447,6 @@ void GameView::GamePause()
 {
 	mStopWatch.Pause();
 	mTimerBugMotion.Stop();
-	mTimerAnimation.Stop();
 }
 
 /**
@@ -473,5 +456,4 @@ void GameView::GameResume()
 {
 	mStopWatch.Resume();
 	mTimerBugMotion.Start(5);
-	mTimerAnimation.Start(30);
 }

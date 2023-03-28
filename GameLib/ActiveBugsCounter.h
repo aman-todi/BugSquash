@@ -8,7 +8,6 @@
 #ifndef PROJECT1_GAMELIB_LIVINGBUGSCOUNTER_H
 #define PROJECT1_GAMELIB_LIVINGBUGSCOUNTER_H
 
-#include <memory>
 #include "ItemsVisitor.h"
 #include "Bug.h"
 
@@ -16,6 +15,8 @@ class GarbageBug;
 class FeatureBug;
 class NullBug;
 class RedundancyBug;
+class RedundancySplitBug;
+
 /**
  * `Sees how many bugs there are left in the game
  */
@@ -38,7 +39,9 @@ public:
 
 	void VisitRedundancyBug (RedundancyBug* bug) override;
 
-	void VisitFeatureBug (FeatureBug* bug) override ;
+	void VisitFeatureBug (FeatureBug* bug) override;
+
+	void VisitRedundancySplitBug (RedundancySplitBug* bug) override;
 
 };
 

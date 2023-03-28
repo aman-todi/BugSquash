@@ -44,7 +44,7 @@ const int ProgramNameFontSize = 22;
 /// Score font size to use
 const int ScoreSize = 85;
 
-/// Lable for score font size to use
+/// Label for score font size to use
 const int LabelSize = 40;
 
 /// The font color to use
@@ -222,6 +222,8 @@ void Game::Update(double elapsed, double timeInSec)
     BugScoreboardVisitor visitor;
     visitor.SetScoreboard(GetScoreboard());
 
+
+	/// check if bugs are at the program
 	for (auto bug : mItems)
 	{
 		// Check to see if the bugs are at the program
@@ -234,7 +236,7 @@ void Game::Update(double elapsed, double timeInSec)
 		bug->Update(elapsed, timeInSec);
 	}
 
-	// this for loop is used to remove all the bugs at the program
+	/// this for loop is used to remove all the bugs at the program
 	for(auto bug: bugToRemove)
 	{
 

@@ -10,6 +10,7 @@
 #include "RedundancyBug.h"
 #include "FeatureBug.h"
 #include "Virus.h"
+#include "RedundancySplitBug.h"
 
 
 /**
@@ -40,7 +41,7 @@ void ActiveBugsCounter::VisitRedundancyBug(RedundancyBug* bug)
 }
 
 /**
- * Vist Feature bug
+ * Visit Feature bug
  * @param bug feature bug in question
  */
 void ActiveBugsCounter::VisitFeatureBug(FeatureBug* bug)
@@ -48,4 +49,12 @@ void ActiveBugsCounter::VisitFeatureBug(FeatureBug* bug)
 	if (bug->GetSplat() == false) { mCount++; }
 }
 
+/**
+ * Visit Redundancy Split bug
+ * @param bug feature bug in question
+ */
+void ActiveBugsCounter::VisitRedundancySplitBug (RedundancySplitBug* bug)
+{
+	if (bug->GetSplat() == false) { mCount++; }
+}
 

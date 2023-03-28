@@ -41,6 +41,11 @@ Program::Program(Game* game,wxXmlNode* program) : Item(game)
     mLaptopBitmap = game->GetItemBitmaps("program")[0].second;
 }
 
+/**
+ * Draw program
+ * @param gc
+ * @param timeInSec how long the game has been running for
+ */
 void Program::Draw(std::shared_ptr<wxGraphicsContext> gc, double timeInSec)
 {
     int laptopWid = mLaptopBitmap->GetWidth();

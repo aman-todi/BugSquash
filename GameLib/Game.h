@@ -39,6 +39,9 @@ private:
     ///Game Scoreboard
 	std::shared_ptr<Scoreboard> mScoreboard;
 
+	/// level number
+	int mLevel = 1;
+
     /// Level Name
     wxString mLevelName;
 

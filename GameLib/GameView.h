@@ -63,7 +63,6 @@ public:
 
 
 	void OnTimer1(wxTimerEvent &event);
-	void OnTimer2(wxTimerEvent &event);
 
 	void OnViewShrink(wxCommandEvent &event);
     void OnSize(wxSizeEvent& event);

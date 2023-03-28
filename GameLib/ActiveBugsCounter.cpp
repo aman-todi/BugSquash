@@ -11,7 +11,7 @@
 #include "RedundancyBug.h"
 #include "FeatureBug.h"
 #include "Spider.h"
-#include "ShapeShifterBug.h"
+
 
 /**
  * visit garbage bug
@@ -49,12 +49,4 @@ void ActiveBugsCounter::VisitFeatureBug(FeatureBug* bug)
 	if (bug->GetSplat() == false) { mCount++; }
 }
 
-/**
- * Visit a ShapeShifterBug
- * @param bug The bug being visited
- */
-void ActiveBugsCounter::VisitShapeShifterBug(ShapeShifterBug* bug)
-{
-	if (bug->GetSplat() == false) { mCount++; }
-}
 

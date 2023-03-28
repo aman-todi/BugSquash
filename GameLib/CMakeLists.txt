@@ -22,8 +22,7 @@ set(SOURCE_FILES
         BugVisitor.h BugVisitor.cpp
         RedundancySplitBug.cpp RedundancySplitBug.h
         BugScoreboardVisitor.cpp BugScoreboardVisitor.h
-        ActiveBugsCounter.h ActiveBugsCounter.cpp
-        ShapeShifterBug.h ShapeShifterBug.cpp)
+        ActiveBugsCounter.h ActiveBugsCounter.cpp)
 
 set(wxBUILD_PRECOMP OFF)
 find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)

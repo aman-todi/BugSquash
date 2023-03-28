@@ -40,8 +40,6 @@ public:
 
 	void VisitFeatureBug (FeatureBug* bug) override ;
 
-	virtual void VisitShapeShifterBug (ShapeShifterBug* bug) override;
-
 };
 
 #endif //PROJECT1_GAMELIB_LIVINGBUGSCOUNTER_H

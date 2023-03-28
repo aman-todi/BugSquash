@@ -43,6 +43,8 @@ private:
     /// Level Name
     wxString mLevelName;
 
+	//void XmlBug(wxXmlNode *node);
+
 	/// Random number generator
 	std::mt19937 mRandom;
 
@@ -70,6 +72,8 @@ public:
 	void AddItem(std::shared_ptr<Item> item);
 	void AddItemBitmap(wxString bugType,vector<pair<wxString,shared_ptr<wxBitmap>>> bitmaps);
 	std::shared_ptr<Item> HitTest(int x, int y);
+//	void MoveToFront(std::shared_ptr<Bug> item);
+//	void MovetoEnd(std::shared_ptr<Bug> item);
 	void DeleteBug(std::shared_ptr<Item> item);
 	vector<pair<wxString,shared_ptr<wxBitmap>>> GetItemBitmaps(wxString ItemType);
 
@@ -149,5 +153,7 @@ public:
      * @return RedBug redundancy split bug object
      */
     std::shared_ptr<Bug> AddRed(std::shared_ptr<Item> item, double randNum);
+
+	void PlaySpider();
 };
 #endif //PROJECT1_GAMELIB_GAME_H

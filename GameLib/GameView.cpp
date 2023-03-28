@@ -285,6 +285,13 @@ void GameView::OnTimer2(wxTimerEvent &event){
 	// Calls game to update animation timer for each bug
 	mGame.UpdateAnimationTime();
 
+	// Calls game to play level 3 (spider)
+	if (mLevel == 3)
+	{
+		mGame.PlaySpider();
+	}
+
+
 	Refresh();
 }
 

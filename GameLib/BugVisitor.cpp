@@ -8,6 +8,7 @@
 #include "GarbageBug.h"
 #include "NullBug.h"
 #include "RedundancyBug.h"
+#include "RedundancySplitBug.h"
 #include "FeatureBug.h"
 #include "Spider.h"
 
@@ -26,6 +27,7 @@ void BugVisitor::VisitGarbageBug(GarbageBug* bug)
 		mCodeData = bug->GetCode();
 		mSolution = bug->GetSol();
 	}
+    visited = "Garbage";
 }
 
 /**
@@ -42,6 +44,7 @@ void BugVisitor::VisitNullBug(NullBug* bug)
 		mCodeData = bug->GetCode();
 		mSolution = bug->GetSol();
 	}
+    visited = "Null";
 }
 
 /**
@@ -58,7 +61,7 @@ void BugVisitor::VisitRedundancyBug(RedundancyBug* bug)
 		mCodeData = bug->GetCode();
 		mSolution = bug->GetSol();
 	}
-
+    visited = "Redundancy";
     mOldSpeed = bug->GetOldSpeed();
 }
 
@@ -77,4 +80,14 @@ void BugVisitor::VisitFeatureBug(FeatureBug* bug)
 		mCodeData = bug->GetCode();
 		mSolution = bug->GetSol();
 	}
+    visited = "Feature";
+}
+
+/**
+ * Visit a Split Redundancy Bug
+ * @param bug
+ */
+void BugVisitor::VisitRedundancySplitBug(RedundancySplitBug* bug)
+{
+    visited = "Split";
 }

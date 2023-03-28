@@ -161,8 +161,9 @@ public:
     /**
      * Add Split Redundancy Bug to the game
      * @param item redundancy bug item object
+     * @param randNum randomly generated number, average 200
      * @return RedBug redundancy split bug object
      */
-    std::shared_ptr<Bug> AddRed(std::shared_ptr<Item> item);
+    std::shared_ptr<Bug> AddRed(std::shared_ptr<Item> item, double randNum);
 };
 #endif //PROJECT1_GAMELIB_GAME_H

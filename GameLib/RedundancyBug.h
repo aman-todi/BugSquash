@@ -27,11 +27,6 @@ private:
     double mOldSpeed = 0;
 
 
-    /**
-     * Name of this type of bug
-     * @return The name of this type of bug
-     */
-    std::string Name() override {return "Redundancy";};
 
 	/// index of the current frame to draw
 	int mCurrentFrameIndex = 0;

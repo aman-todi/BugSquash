@@ -16,6 +16,7 @@ class FeatureBug;
 class NullBug;
 class RedundancyBug;
 class Spider;
+class RedundancySplitBug;
 /**
  * Visits all the bugs and checks if it is a FatBug
  */
@@ -40,6 +41,9 @@ private:
 
 	/// A pointer to the bug
 	Bug* mBug = nullptr;
+
+    /// Name of bug visited.
+    std::string visited = "none";
 
 public:
 
@@ -79,6 +83,13 @@ public:
 	 */
 	void SetSplat(){mBug->SetSplat();}
 
+
+    /**
+	* getter for visited
+	* @return string of bug visited
+	*/
+    std::string GetBugType(){return visited;}
+
 	void VisitGarbageBug(GarbageBug* bug) override;
 
 
@@ -89,6 +100,8 @@ public:
 
 
 	void VisitFeatureBug (FeatureBug* bug) override ;
+
+    void VisitRedundancySplitBug (RedundancySplitBug* bug) override;
 
 };
 

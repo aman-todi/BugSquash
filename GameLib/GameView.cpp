@@ -303,12 +303,20 @@ void GameView::OnLeftDown(wxMouseEvent &event)
 	mClickedItem = mGame.OnClick(event.GetX(),event.GetY(),false);
 	if(mClickedItem != nullptr)
 	{
-        if (mClickedItem->Name() == "Redundancy")
+        //Use a visitor to check if we hit a redundancy bug
+        BugVisitor visitor;
+        mClickedItem->Accept(&visitor);
+        auto name = visitor.GetBugType();
+        if (name == "Redundancy")
         {
-            int bugCount = rand() % 3 + 3;
+            int bugCount = rand() % 4 + 3;
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::normal_distribution<float> d(200, 100);
             for (int i = 0; i < bugCount; i++)
             {
-                auto RedBug = mGame.AddRed(mClickedItem);
+                double randNum = d(gen);
+                auto RedBug = mGame.AddRed(mClickedItem, randNum);
             }
             mGame.DeleteBug(mClickedItem);
         }

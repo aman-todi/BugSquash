@@ -240,6 +240,7 @@ void GameView::OnTimer2(wxTimerEvent &event){
 	// If there are no active bugs in the game, go to next level
 
 	if (activeBugsCount == 0 && mLevel == LevelZero){
+		mState = State::LevelEnd;
 		wxSleep(GameDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
@@ -250,6 +251,7 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		mStopWatch.Start(0);
 	}
 	else if (activeBugsCount == 0 && mLevel == LevelOne){
+		mState = State::LevelEnd;
 		wxSleep(GameDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
@@ -260,6 +262,7 @@ void GameView::OnTimer2(wxTimerEvent &event){
 		mStopWatch.Start(0);
 	}
 	else if (activeBugsCount == 0 && mLevel == LevelTwo){
+		mState = State::LevelEnd;
 		wxSleep(GameDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();
@@ -272,6 +275,7 @@ void GameView::OnTimer2(wxTimerEvent &event){
 	// if at last level reload that level
 	if (activeBugsCount == 0 && mLevel == LevelThree)
 	{
+		mState = State::LevelEnd;
 		wxSleep(GameDelay);
 		mGame.Clear();
 		mGame.GetScoreboard()->ResetScore();

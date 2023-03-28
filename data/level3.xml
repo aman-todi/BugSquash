@@ -62,8 +62,9 @@ private:
     <!-- Bottom -->
     <feature x="300" y="1100" speed="100" start="15"/>
     <feature x="600" y="1100" speed="100" start="15"/>
-    <feature x="500" y="1100" speed="115" start="25"/>
-    <feature x="1000" y="1100" speed="120" start="25"/>
+    <feature x="500" y="1100" speed="115" start="26"/>
+    <feature x="1000" y="1100" speed="120" start="26"/>
+
     <!-- Top -->
     <feature x="50" y="-100" speed="100" start="7"/>
     <feature x="500" y="-100" speed="100" start="15"/>
@@ -73,10 +74,10 @@ private:
     <!-- Side -->
     <feature x="-100" y="500" speed="115" start="5"/>
     <feature x="1500" y="500" speed="100" start="7"/>
-    <feature x="1450" y="300" speed="100" start="10"/>
+    <feature x="1450" y="300" speed="120" start="22"/>
     <feature x="-100" y="500" speed="115" start="10"/>
-    <feature x="1500" y="700" speed="100" start="15"/>
-    <feature x="-150" y="900" speed="100" start="26"/>
+    <feature x="1500" y="700" speed="100" start="20"/>
+    <feature x="-150" y="900" speed="100" start="24"/>
 
   </program>
 </bug-squash>

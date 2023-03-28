@@ -379,16 +379,19 @@ void Game::PlayVirus()
 	if ( !featureBugs.empty()){
 		for (auto featureBug : featureBugs)
 		{
+			double featureX = featureBug->GetX();
+			double featureY = featureBug->GetY();
+			double distance = sqrt(pow((virusX-featureX),2)+pow((virusY-featureY),2));
 			/// Check if any of the feature bugs are in the same location as the virus
-			if (featureBug->HitTest(virusX, virusY))
+			if (distance<= 80)
 			{
 				for (auto item: mItems){
 					if (item.get() == featureBug){
 						/// Virus infiltrates Feature bug and converts it to a Null bug
 						auto node = new wxXmlNode(wxXML_ELEMENT_NODE, L"bug");
 						node->AddAttribute(L"type", "null");
-						node->AddAttribute(L"x", wxString::FromDouble(virusX));
-						node->AddAttribute(L"y", wxString::FromDouble(virusY));
+						node->AddAttribute(L"x", wxString::FromDouble(featureX));
+						node->AddAttribute(L"y", wxString::FromDouble(featureY));
 						double speed = rand() % 80 + 100;
 						node->AddAttribute(L"speed", wxString::FromDouble(speed));
 						node->AddAttribute(L"start", wxString::FromDouble(0));

@@ -16,8 +16,7 @@
  */
 class RedundancySplitBug :  public RedundancyBug {
 private:
-	/// index of the current frame to draw
-	int mCurrentFrameIndex = 0;
+
 public:
 
     /// Default constructor (disabled)

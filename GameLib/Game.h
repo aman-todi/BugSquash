@@ -82,28 +82,11 @@ public:
 	void Clear();
 
 	/**
-	 * Items getter
-	 * @return pointer to mItems
-	 */
-	std::vector<std::shared_ptr<Item> >* GetItems() { return &mItems; }
-
-
-	/**
      * Shrink The Game Window
      */
     void Shrink();
 
-	/**
-  * Is the Game Shrunk?
-  * @return bool
-  */
-	bool IsShrunk() {return mShrinked;}
-
-
-	void UpdateList(std::shared_ptr<Item> item);
-
 	void Update(double elapsed, double Time);
-
 
 	void UpdateAnimationTime();
 

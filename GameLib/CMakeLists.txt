@@ -7,7 +7,7 @@ set(SOURCE_FILES
         ids.h
         Game.cpp Game.h
         GameView.h GameView.cpp
-        item.h item.cpp
+        Item.h Item.cpp
         Bug.h Bug.cpp
         GarbageBug.h GarbageBug.cpp
         NullBug.h NullBug.cpp

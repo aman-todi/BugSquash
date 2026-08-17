@@ -7,6 +7,9 @@
 
 #ifndef PROJECT1_SCOREBOARD_H
 #define PROJECT1_SCOREBOARD_H
+
+#include <memory>
+
 /**
  * The Main ScoreBoard class
  */

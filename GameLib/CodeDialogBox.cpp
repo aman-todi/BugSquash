@@ -70,5 +70,5 @@ void CodeDialogBox::OnTextChange(wxCommandEvent& event)
 {
 	auto editedCode = m_textCtrl->GetValue().ToStdWstring();
 	wxRegEx pattern(mSol);
-	mPassed = pattern.Matches(mSol);
+	mPassed = pattern.Matches(editedCode);
 }

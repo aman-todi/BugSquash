@@ -95,7 +95,10 @@ void FeatureBug::UpdateFrame(double timeInSec)
 
 void FeatureBug::ClickedOn()
 {
-    SetSplat();
-    auto scoreboard = GetGame()->GetScoreboard();
-    scoreboard->IncOops();
+    if (!this->IsFatbug())
+    {
+        SetSplat();
+        auto scoreboard = GetGame()->GetScoreboard();
+        scoreboard->IncOops();
+    }
 }

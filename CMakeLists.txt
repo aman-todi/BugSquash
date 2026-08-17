@@ -31,4 +31,4 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/images/
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/data/
         DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/data/)
 
-add_subdirectory(Tests)
+add_subdirectory(tests)

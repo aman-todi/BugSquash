@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef PROJECT1_GAMELIB_ITEMSVISITOR_H
-#define PROJECT1_GAMELIB_ITEMSVISITOR_H
+#ifndef BUGSQUASH_GAMELIB_ITEMSVISITOR_H
+#define BUGSQUASH_GAMELIB_ITEMSVISITOR_H
 
 // Forward references to all bug types
 class Item;
@@ -77,4 +77,4 @@ public:
 
 };
 
-#endif //PROJECT1_GAMELIB_ITEMSVISITOR_H
+#endif //BUGSQUASH_GAMELIB_ITEMSVISITOR_H

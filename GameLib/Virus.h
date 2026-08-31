@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef PROJECT1_GAMELIB_VIRUS_H
-#define PROJECT1_GAMELIB_VIRUS_H
+#ifndef BUGSQUASH_GAMELIB_VIRUS_H
+#define BUGSQUASH_GAMELIB_VIRUS_H
 
 #include "Bug.h"
 #include "Game.h"
@@ -56,4 +56,4 @@ public:
 };
 
 
-#endif //PROJECT1_GAMELIB_VIRUS_H
+#endif //BUGSQUASH_GAMELIB_VIRUS_H

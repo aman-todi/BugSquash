@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef PROJECT1_GAMELIB_VIRUSVISITOR_H
-#define PROJECT1_GAMELIB_VIRUSVISITOR_H
+#ifndef BUGSQUASH_GAMELIB_VIRUSVISITOR_H
+#define BUGSQUASH_GAMELIB_VIRUSVISITOR_H
 
 #include "ItemsVisitor.h"
 #include "Bug.h"
@@ -30,4 +30,4 @@ public:
 	Virus* FetchVirus();
 };
 
-#endif //PROJECT1_GAMELIB_VIRUSVISITOR_H
+#endif //BUGSQUASH_GAMELIB_VIRUSVISITOR_H

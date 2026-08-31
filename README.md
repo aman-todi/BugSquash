@@ -5,7 +5,7 @@ A desktop bug-squashing game built with C++ and [wxWidgets](https://www.wxwidget
 ## Project layout
 
 ```
-CMakeLists.txt      # top-level build: executable "Project1"
+CMakeLists.txt      # top-level build: executable "BugSquash"
 main.cpp             # entry point (wxIMPLEMENT_APP)
 GameApp.cpp / .h     # application bootstrap (wxApp)
 pch.h                # precompiled header
@@ -42,18 +42,18 @@ cmake ..
 cmake --build . -j
 ```
 
-This produces the `Project1` executable (on Windows/macOS it's built as a `WIN32`/`MACOSX_BUNDLE` app) along with copies of `data/` and `images/` alongside it.
+This produces the `BugSquash` executable (on Windows/macOS it's built as a `WIN32`/`MACOSX_BUNDLE` app) along with copies of `data/` and `images/` alongside it.
 
 ## Running the game
 
 From the build directory:
 
 ```bash
-./Project1        # Unix / macOS
+./BugSquash        # Unix / macOS
 ```
 
 ```powershell
-.\Project1.exe     # Windows
+.\BugSquash.exe     # Windows
 ```
 
 Run it from the build directory (or ensure `data/` and `images/` sit next to the executable) so level and image assets load correctly.

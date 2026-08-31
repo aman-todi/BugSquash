@@ -6,8 +6,8 @@
  */
 
 
-#ifndef PROJECT1_GAMELIB_GAMEVIEW_H
-#define PROJECT1_GAMELIB_GAMEVIEW_H
+#ifndef BUGSQUASH_GAMELIB_GAMEVIEW_H
+#define BUGSQUASH_GAMELIB_GAMEVIEW_H
 
 #include <memory>
 #include "Game.h"
@@ -77,4 +77,4 @@ public:
 
 };
 
-#endif //PROJECT1_GAMELIB_GAMEVIEW_H
+#endif //BUGSQUASH_GAMELIB_GAMEVIEW_H

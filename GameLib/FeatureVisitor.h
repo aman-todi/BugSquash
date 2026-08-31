@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef PROJECT1_GAMELIB_FEATUREVISITOR_H
-#define PROJECT1_GAMELIB_FEATUREVISITOR_H
+#ifndef BUGSQUASH_GAMELIB_FEATUREVISITOR_H
+#define BUGSQUASH_GAMELIB_FEATUREVISITOR_H
 
 #include "ItemsVisitor.h"
 #include "FeatureBug.h"
@@ -30,4 +30,4 @@ public:
 	std::shared_ptr<Item> FetchProgram();
 };
 
-#endif //PROJECT1_GAMELIB_FEATUREVISITOR_H
+#endif //BUGSQUASH_GAMELIB_FEATUREVISITOR_H

@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef PROJECT1_GAMELIB_LEVELLOADER_H
-#define PROJECT1_GAMELIB_LEVELLOADER_H
+#ifndef BUGSQUASH_GAMELIB_LEVELLOADER_H
+#define BUGSQUASH_GAMELIB_LEVELLOADER_H
 #include "Game.h"
 /**
  * Loads in the levels
@@ -44,4 +44,4 @@ public:
 	int GetNumBugs(){return mNumBugs;}
 };
 
-#endif //PROJECT1_GAMELIB_LEVELLOADER_H
+#endif //BUGSQUASH_GAMELIB_LEVELLOADER_H

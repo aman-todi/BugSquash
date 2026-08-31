@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef PROJECT1_REDUNDANCYSPLITBUG_H
-#define PROJECT1_REDUNDANCYSPLITBUG_H
+#ifndef BUGSQUASH_REDUNDANCYSPLITBUG_H
+#define BUGSQUASH_REDUNDANCYSPLITBUG_H
 
 #include "Bug.h"
 #include "Game.h"
@@ -42,4 +42,4 @@ public:
     virtual void Accept(ItemsVisitor* visitor) override { visitor->VisitRedundancySplitBug(this); }
 };
 
-#endif //PROJECT1_REDUNDANCYSPLITBUG_H
+#endif //BUGSQUASH_REDUNDANCYSPLITBUG_H

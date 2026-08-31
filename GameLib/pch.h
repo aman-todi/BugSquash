@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef PROJECT1_GAMELIB_PCH_H
-#define PROJECT1_GAMELIB_PCH_H
+#ifndef BUGSQUASH_GAMELIB_PCH_H
+#define BUGSQUASH_GAMELIB_PCH_H
 
 #include <wx/wxprec.h>
 #ifndef WX_PRECOMP
@@ -15,4 +15,4 @@
 
 #include <wx/xml/xml.h>
 
-#endif //PROJECT1_GAMELIB_PCH_H
+#endif //BUGSQUASH_GAMELIB_PCH_H

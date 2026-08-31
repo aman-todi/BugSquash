@@ -5,8 +5,8 @@
  * Main application class
  */
 
-#ifndef PROJECT_1__GAMEAPP_H
-#define PROJECT_1__GAMEAPP_H
+#ifndef BUGSQUASH_GAMEAPP_H
+#define BUGSQUASH_GAMEAPP_H
 
 
 /**
@@ -20,4 +20,4 @@ public:
 	bool OnInit() override;
 };
 
-#endif //PROJECT_1__GAMEAPP_H
+#endif //BUGSQUASH_GAMEAPP_H

@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef PROJECT1_SCOREBOARD_H
-#define PROJECT1_SCOREBOARD_H
+#ifndef BUGSQUASH_SCOREBOARD_H
+#define BUGSQUASH_SCOREBOARD_H
 /**
  * The Main ScoreBoard class
  */
@@ -61,4 +61,4 @@ public:
     void Draw(std::shared_ptr<wxGraphicsContext> gc);
 };
 
-#endif //PROJECT1_SCOREBOARD_H
+#endif //BUGSQUASH_SCOREBOARD_H

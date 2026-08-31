@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef PROJECT1_GAMELIB_BUGVISITOR_H
-#define PROJECT1_GAMELIB_BUGVISITOR_H
+#ifndef BUGSQUASH_GAMELIB_BUGVISITOR_H
+#define BUGSQUASH_GAMELIB_BUGVISITOR_H
 
 #include "ItemsVisitor.h"
 #include "Bug.h"
@@ -100,4 +100,4 @@ public:
 
 };
 
-#endif //PROJECT1_GAMELIB_BUGVISITOR_H
+#endif //BUGSQUASH_GAMELIB_BUGVISITOR_H

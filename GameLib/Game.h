@@ -5,8 +5,8 @@
  *
  */
 
-#ifndef PROJECT1_GAMELIB_GAME_H
-#define PROJECT1_GAMELIB_GAME_H
+#ifndef BUGSQUASH_GAMELIB_GAME_H
+#define BUGSQUASH_GAMELIB_GAME_H
 
 #include <memory>
 #include <vector>
@@ -141,4 +141,4 @@ public:
 
 	void PlayVirus();
 };
-#endif //PROJECT1_GAMELIB_GAME_H
+#endif //BUGSQUASH_GAMELIB_GAME_H
